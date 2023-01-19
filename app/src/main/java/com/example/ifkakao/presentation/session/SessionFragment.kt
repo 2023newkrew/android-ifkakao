@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.ifkakao.databinding.FragmentSessionBinding
@@ -26,10 +25,6 @@ class SessionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val sessionViewModel = ViewModelProvider(this)[SessionViewModel::class.java]
-        val textView: TextView = binding.textSession
-        sessionViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
     }
 
     override fun onDestroyView() {

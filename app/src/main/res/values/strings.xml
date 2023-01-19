@@ -4,10 +4,11 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="navigation_tag">Navigation Drawer</string>
     <string name="navigation_header_title">Android Studio</string>
     <string name="navigation_header_subtitle">android.studio@android.com</string>
     <string name="navigation_header_desc">Navigation header</string>
+
+    <string name="fragment_tag">Content Fragment</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_session">Session</string>

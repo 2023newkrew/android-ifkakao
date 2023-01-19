@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = getColor(R.color.blue)
 
         // initialize action bar
-        setSupportActionBar(binding.appBarMain.toolbar)
+        setSupportActionBar(binding.toolbarContent.toolbar)
 
         // initialize navigation drawer
         val drawerLayout: DrawerLayout = binding.drawerLayout

@@ -28,12 +28,18 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // set status bar color
+        requireActivity().window.statusBarColor = requireContext().getColor(R.color.blue_compressed)
+
         // initialize banner video
-        val uriPath = "android.resource://${requireActivity().packageName}/${R.raw.video_banner}"
+        val uriPath =
+            "android.resource://${requireActivity().packageName}/${R.raw.video_banner_compact}"
         binding.videoBanner.setVideoURI(Uri.parse(uriPath))
         binding.videoBanner.setOnPreparedListener {
             it.isLooping = true
             it.start()
+
+            // set layout height
             binding.videoBanner.layoutParams.height = WRAP_CONTENT
         }
     }

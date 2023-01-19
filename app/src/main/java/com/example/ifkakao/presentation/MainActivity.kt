@@ -1,6 +1,8 @@
 package com.example.ifkakao.presentation
 
+import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
 
-                // TODO backup status bar color and change it to transparent gray
+                // TODO backup status bar color and change it to black
             }
 
             override fun onDrawerClosed(drawerView: View) {
@@ -52,19 +54,30 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(drawerToggle)
 
         // initialize navigation controller
-        val navView: NavigationView = binding.navView
+        val navigationView: NavigationView = binding.navView
         val navController =
-            findNavController(com.example.ifkakao.R.id.nav_host_fragment_content_main)
+            findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                com.example.ifkakao.R.id.nav_home,
-                com.example.ifkakao.R.id.nav_session,
-                com.example.ifkakao.R.id.nav_coc
+                R.id.nav_home,
+                R.id.nav_session,
+                R.id.nav_coc
             ),
             drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        navigationView.setupWithNavController(navController)
+
+        val navigationLayoutParams = navigationView.layoutParams
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val windowMetrics = windowManager.currentWindowMetrics
+            navigationLayoutParams.width = windowMetrics.bounds.width()
+        } else {
+            val metrics = DisplayMetrics()
+            windowManager.defaultDisplay.getMetrics(metrics)
+            navigationLayoutParams.width = metrics.widthPixels
+        }
+        navigationView.layoutParams = navigationLayoutParams
     }
 
     override fun onSupportNavigateUp(): Boolean {

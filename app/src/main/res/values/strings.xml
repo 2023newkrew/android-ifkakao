@@ -13,4 +13,13 @@
     <string name="menu_home">Home</string>
     <string name="menu_session">Session</string>
     <string name="menu_coc">CoC</string>
+
+    <string name="highlight_ai">AI</string>
+    <string name="highlight_backend">Backend</string>
+    <string name="highlight_cloud">Cloud</string>
+    <string name="highlight_dev_ops">DevOps</string>
+    <string name="highlight_blockchain">Blockchain</string>
+    <string name="highlight_data">Data</string>
+    <string name="highlight_frontend">Frontend</string>
+    <string name="highlight_mobile">Mobile</string>
 </resources>

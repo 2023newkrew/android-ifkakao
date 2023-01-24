@@ -16,7 +16,6 @@ import com.example.ifkakao.R
 import com.example.ifkakao.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -28,14 +27,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // initialize action bar
-        setSupportActionBar(binding.toolbarContent.toolbar)
+        setSupportActionBar(binding.includeToolbar.toolbar)
 
         // initialize navigation drawer
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val drawerToggle = object : ActionBarDrawerToggle(
             this,
             drawerLayout,
-            binding.toolbarContent.toolbar,
+            binding.includeToolbar.toolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         ) {
@@ -68,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
 
+        // set navigation width to overlap full screen
         val navigationLayoutParams = navigationView.layoutParams
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             val windowMetrics = windowManager.currentWindowMetrics

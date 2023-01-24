@@ -7,9 +7,11 @@
     android:layout_height="match_parent"
     tools:openDrawer="start">
 
+    <include layout="@layout/include_content" />
+
     <include
-        android:id="@+id/toolbar_content"
-        layout="@layout/include_toolbar_content"
+        android:id="@+id/include_toolbar"
+        layout="@layout/include_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

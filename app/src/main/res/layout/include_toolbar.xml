@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
-    <include layout="@layout/include_content" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
+        app:titleTextAppearance="@style/ToolbarTitleAppearance"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@android:color/white" />
 </androidx.constraintlayout.widget.ConstraintLayout>

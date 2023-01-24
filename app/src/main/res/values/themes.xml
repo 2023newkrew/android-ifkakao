@@ -1,10 +1,9 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.IfKakao" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/blue_compressed</item>
-        <item name="colorPrimaryDark">@color/blue_compressed</item>
-        <item name="colorPrimaryVariant">@color/blue_compressed</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/blue_primary</item>
+        <item name="colorPrimaryDark">@color/blue_primary</item>
+        <item name="colorPrimaryVariant">@color/blue_primary</item>
 
         <!-- status bar color -->
         <item name="android:statusBarColor">@android:color/white</item>
@@ -14,10 +13,29 @@
 
         <!-- hamburger icon color -->
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+        <!-- window background -->
+        <item name="android:windowBackground">@color/black_primary</item>
+
+        <!-- text -->
+        <item name="android:textColor">@color/white_title</item>
+        <item name="android:textSize">@dimen/text_size_default</item>
+    </style>
+
+    <style name="Theme.White" parent="Theme.IfKakao">
+        <item name="colorAccent">@color/white_title</item>
+        <item name="colorPrimary">@color/white_title</item>
+        <item name="colorPrimaryDark">@color/white_title</item>
+        <item name="colorPrimaryVariant">@color/white_title</item>
     </style>
 
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="ToolbarTitleAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

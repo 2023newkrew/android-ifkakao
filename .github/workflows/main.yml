@@ -20,11 +20,3 @@ jobs:
       - name: Android Test Report
         uses: asadmansr/android-test-report-action@v1.2.0
         if: ${{ always() }} # IMPORTANT: run Android Test Report regardless
-        steps:
-          - name: Download Test Reports Folder
-            uses: actions/download-artifact@v2
-            with:
-              name: reports
-
-          - name: Android Test Report
-            uses: asadmansr/android-test-report-action@v1.2.0

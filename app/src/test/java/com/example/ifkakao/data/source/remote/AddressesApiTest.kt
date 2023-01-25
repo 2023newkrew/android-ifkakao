@@ -23,11 +23,7 @@ Stephen,Tyler,"7452 Terrace ""At the Plaza"" road",SomeTown,SD, 91234
 
     @Before
     fun setUp() {
-        api = Retrofit.Builder()
-            .baseUrl(AddressesApi.baseUrl)
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .build()
-            .create()
+        api = AddressesApi.create()
     }
 
     @Test

@@ -6,9 +6,8 @@ enum class Track(val alias: String) {
     BigData("bigdata"), Esg("esg"), General("general"), Culture("culture");
 
     companion object {
+        @Throws(NoSuchElementException::class)
         fun fromString(string: String): Track {
-            // 만약 string 으로 Track 찾지 못할 시 first 에서 아래 예외 발생됨
-            // throw NoSuchElementException("Array contains no element matching the predicate.")
             return Track.values().first { it.alias == string }
         }
     }

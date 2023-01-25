@@ -1,5 +1,8 @@
 package com.example.ifkakao.data.data_source.dto
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Session(
     val `0TNvHfMiEEEE`: String? = null,
     val `0xTNIhifz0t7`: String? = null,
@@ -25,5 +28,5 @@ data class Session(
     val kwC3iO8Lbj6D: String? = null,
     val p5Z5M0DP08AF: String? = null,
     val pShJsKRFz_mR: String? = null,
-    val tsHALc4rYA5Z: String? = null
+    val tsHALc4rYA5Z: Int = 0
 )

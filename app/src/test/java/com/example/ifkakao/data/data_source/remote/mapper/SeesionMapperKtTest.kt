@@ -74,7 +74,8 @@ class SeesionMapperKtTest {
         assertEquals(1, session.tracks.size)
         assertEquals(Track.Ai, session.tracks.first())
 
-        assertEquals(Date(1670468400000), session.date)
+        assertEquals(1670468400000, session.timeStamp)
+        assertEquals(2, session.sessionDay)
         assertEquals(Company.KakaoEnterPrise, session.company)
 
         assertEquals("https://youtu.be/-kqHg9Z3tto", session.sessionVodLink)

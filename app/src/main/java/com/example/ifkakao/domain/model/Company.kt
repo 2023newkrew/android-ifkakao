@@ -4,7 +4,7 @@ enum class Company(val alias: String) {
     Kakao("dk"), KakaoPay("kakaopay"), KakaoEnterPrise("kep"),
     KakaoMobility("km"), KakaoBank("kakaobank"), KakaoBrain("r"),
     KakaoGames("dg"), KakaoEntertainment("podo"),
-    KrustUniverse("ku"), KakaoPicComa("kpic");
+    KrustUniverse("ku"), KakaoPicComa("kpic"), Grepp("grepp");
 
     companion object {
         fun fromString(string: String): Company {

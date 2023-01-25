@@ -1,9 +1,8 @@
 package com.example.ifkakao.domain.repository
 
 import com.example.ifkakao.data.data_source.remote.SessionApi
+import com.example.ifkakao.domain.model.Session
 
-class SessionRepository(private val sessionApi: SessionApi) {
-    suspend fun getAllSessions() {
-
-    }
+interface SessionRepository {
+    suspend fun getAllSessions(): List<Session>
 }

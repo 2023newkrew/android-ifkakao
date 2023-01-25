@@ -1,12 +1,12 @@
 package com.example.ifkakao.domain.model
 
-import java.util.*
 
 data class Session(
     val id: Int,
     val title: String,
     val description: String,
-    val date: Date,
+    val timeStamp: Long,
+    val sessionDay: Int,
     val sessionType: SessionType,
     val tracks: List<Track>,
     val company: Company,

@@ -2,7 +2,6 @@ package com.example.ifkakao.data.data_source.remote.mapper
 
 import com.example.ifkakao.data.data_source.remote.dto.SessionDTO
 import com.example.ifkakao.domain.model.*
-import java.util.*
 
 fun parseTrackList(string: String): List<Track> {
     return string.removeSurrounding("[", "]")
@@ -62,7 +61,8 @@ fun SessionDTO.toSession(): Session {
         sessionType = SessionType.fromString(this.INYXb7hNIfMU),
         vodThumbUrl = this.L9WirNOAVF4J,
         tags = this.X_7c2hMWtxne,
-        date = Date(this.Yk7Sc6yEUma7),
+        timeStamp = this.Yk7Sc6yEUma7,
+        sessionDay = this.tsHALc4rYA5Z.toInt(),
         pptUrl = this.dc4kWp2OMZBr,
         description = this.pShJsKRFz_mR,
         users = users,

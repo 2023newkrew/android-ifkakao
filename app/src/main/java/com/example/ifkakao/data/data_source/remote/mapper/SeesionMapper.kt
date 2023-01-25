@@ -14,57 +14,50 @@ fun parseTrackList(string: String): List<Track> {
 
 fun SessionDTO.toSession(): Session {
 
-    // 9yVKHSTkTNmF live_image_url, don't use
-    // DvJr7DiMNfhG live_qna_url, don't use
-
-    // WCrhrhpRLki9 meet_up_register_link, don't use
-    // p5Z5M0DP08AF live_chanel_url, don't use
-    // tsHALc4rYA5Z session_day, don't use
-
     val users = mutableListOf<User>()
-    if (this.kwC3iO8Lbj6D.isNotEmpty()) {
+    if (this.user1Id.isNotEmpty()) {
         users.add(
             User(
-                id = this.kwC3iO8Lbj6D,
-                intro = this::`95fb8cVqD37E`.get(),
-                imageUrl = this.PAifZyJwjcmh
+                id = this.user1Id,
+                intro = this.user1Intro,
+                imageUrl = this.user1ImageUrl
             )
         )
     }
 
-    if (this.C90Y851TGjAd.isNotEmpty()) {
+    if (this.user2Id.isNotEmpty()) {
         users.add(
             User(
-                id = this.C90Y851TGjAd,
-                intro = this::`0TNvHfMiEEEE`.get(),
-                imageUrl = this::`6SI_gcz2h1l3`.get()
+                id = this.user2Id,
+                intro = this.user2Intro,
+                imageUrl = this.user2ImageUrl
             )
         )
     }
 
-    if (this.b1ERX6ZDBfTy.isNotEmpty()) {
+    if (this.user3Id.isNotEmpty()) {
         users.add(
             User(
-                id = this.b1ERX6ZDBfTy,
-                intro = this.MAjnegS2sUz_,
-                imageUrl = this.eHhghHsGMFV0
+                id = this.user3Id,
+                intro = this.user3Intro,
+                imageUrl = this.user3ImageUrl
             )
         )
     }
 
     return Session(
         id = this.id,
-        title = this.U2G0DHalEQHs,
-        company = Company.fromString(this::`0xTNIhifz0t7`.get()),
-        tracks = parseTrackList(this.GgWcMRm0cNSS),
-        sessionVodLink = this.I729yvCqaONJ,
-        sessionType = SessionType.fromString(this.INYXb7hNIfMU),
-        vodThumbUrl = this.L9WirNOAVF4J,
-        tags = this.X_7c2hMWtxne,
-        timeStamp = this.Yk7Sc6yEUma7,
-        sessionDay = this.tsHALc4rYA5Z.toInt(),
-        pptUrl = this.dc4kWp2OMZBr,
-        description = this.pShJsKRFz_mR,
+        title = this.title,
+        company = Company.fromString(this.company),
+        tracks = parseTrackList(this.tracks),
+        sessionVodLink = this.sessionVodLink,
+        sessionType = SessionType.fromString(this.sessionType),
+        vodThumbUrl = this.voidThumbUrl,
+        tags = this.tags,
+        timeStamp = this.timeStamp,
+        sessionDay = this.sessionDay.toInt(),
+        pptUrl = this.pptUrl,
+        description = this.description,
         users = users,
     )
 }

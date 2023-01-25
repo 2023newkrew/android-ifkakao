@@ -6,7 +6,6 @@ import com.example.ifkakao.domain.model.SessionType
 import com.example.ifkakao.domain.model.Track
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import java.util.*
 
 @Suppress("SpellCheckingInspection", "NonAsciiCharacters")
 class SeesionMapperKtTest {
@@ -33,31 +32,31 @@ class SeesionMapperKtTest {
     @Test
     fun toSession() {
         val sessionDTO = SessionDTO(
-            `6SI_gcz2h1l3` = "https://mk.kakaocdn.net/dn/if-kakao/2022/speaker%2Fpo.ai@kep.jpg",
-            C90Y851TGjAd = "po.ai",
-            MAjnegS2sUz_ = "",
-            eHhghHsGMFV0 = "",
-            dc4kWp2OMZBr = "https://speakerdeck.com/kakao/ifkakao22-68",
-            `0TNvHfMiEEEE` = "카카오엔터프라이즈 비전인텔리전스팀의 포 입니다. 얼굴인식을 모바일에 적용하는 일을 하고 있습니다.",
-            `95fb8cVqD37E` = "카카오엔터프라이즈 비전인텔리전스팀의 앤드루 입니다. 얼굴인식을 모바일에 적용하는 일을 하고 있습니다.",
-            tsHALc4rYA5Z = "2",
-            pShJsKRFz_mR = "딥러닝 기반의 얼굴인식 모델을 처리 성능이 빈약한 모바일 및 전용장비에 적용하기 위한 최적화 방법에 대해서 공유하고자 합니다.",
-            U2G0DHalEQHs = "모바일 얼굴인식 SDK 개발",
-            INYXb7hNIfMU = "tech",
-            `9yVKHSTkTNmF` = "",
-            kwC3iO8Lbj6D = "andrew.js",
-            PAifZyJwjcmh = "https://mk.kakaocdn.net/dn/if-kakao/2022/speaker%2Fandrew.js@kep.jpg",
+            user2ImageUrl = "https://mk.kakaocdn.net/dn/if-kakao/2022/speaker%2Fpo.ai@kep.jpg",
+            user2Id = "po.ai",
+            user3Intro = "",
+            user3ImageUrl = "",
+            pptUrl = "https://speakerdeck.com/kakao/ifkakao22-68",
+            user2Intro = "카카오엔터프라이즈 비전인텔리전스팀의 포 입니다. 얼굴인식을 모바일에 적용하는 일을 하고 있습니다.",
+            user1Intro = "카카오엔터프라이즈 비전인텔리전스팀의 앤드루 입니다. 얼굴인식을 모바일에 적용하는 일을 하고 있습니다.",
+            sessionDay = "2",
+            description = "딥러닝 기반의 얼굴인식 모델을 처리 성능이 빈약한 모바일 및 전용장비에 적용하기 위한 최적화 방법에 대해서 공유하고자 합니다.",
+            title = "모바일 얼굴인식 SDK 개발",
+            sessionType = "tech",
+            liveImageUrl = "",
+            user1Id = "andrew.js",
+            user1ImageUrl = "https://mk.kakaocdn.net/dn/if-kakao/2022/speaker%2Fandrew.js@kep.jpg",
             id = 68,
-            GgWcMRm0cNSS = "[\"ai\"]",
-            Yk7Sc6yEUma7 = 1670468400000,
-            `0xTNIhifz0t7` = "kep",
-            b1ERX6ZDBfTy = "",
-            WCrhrhpRLki9 = "",
-            DvJr7DiMNfhG = "https://tech.kakao.com/ifkakao2022/?title=%EB%AA%A8%EB%B0%94%EC%9D%BC%20%EC%96%BC%EA%B5%B4%EC%9D%B8%EC%8B%9D%20SDK%20%EA%B0%9C%EB%B0%9C&id=68",
-            p5Z5M0DP08AF = "",
-            I729yvCqaONJ = "https://youtu.be/-kqHg9Z3tto",
-            L9WirNOAVF4J = "https://mk.kakaocdn.net/dn/if-kakao/2022/thumb/andrew.js@kep.jpg",
-            X_7c2hMWtxne = "#FacialRecognition"
+            tracks = "[\"ai\"]",
+            timeStamp = 1670468400000,
+            company = "kep",
+            user3Id = "",
+            meetUpRegisterLink = "",
+            liveQnaUrl = "https://tech.kakao.com/ifkakao2022/?title=%EB%AA%A8%EB%B0%94%EC%9D%BC%20%EC%96%BC%EA%B5%B4%EC%9D%B8%EC%8B%9D%20SDK%20%EA%B0%9C%EB%B0%9C&id=68",
+            liveChanelUrl = "",
+            sessionVodLink = "https://youtu.be/-kqHg9Z3tto",
+            voidThumbUrl = "https://mk.kakaocdn.net/dn/if-kakao/2022/thumb/andrew.js@kep.jpg",
+            tags = "#FacialRecognition"
         )
         val session = sessionDTO.toSession()
         assertEquals(68, session.id)

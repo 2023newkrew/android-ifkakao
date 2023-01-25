@@ -2,6 +2,8 @@ package com.example.ifkakao.data.di
 
 import com.example.ifkakao.BASE_URL_SESSIONS
 import com.example.ifkakao.data.retrofit.SessionService
+import com.example.ifkakao.domain.repository.SessionRepository
+import com.example.ifkakao.domain.use_case.GetSessionsUseCase
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -26,4 +28,8 @@ object AppModule {
             .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
             .build()
             .create()
+
+    @Provides
+    @Singleton
+    fun provideGetSessionsUseCase(repository: SessionRepository) = GetSessionsUseCase(repository)
 }

@@ -13,7 +13,7 @@ import retrofit2.create
 class GetAddressesUseCaseTest {
 
     @Test
-    fun invoke() = runBlocking {
+    fun `Addresses 정보 가져오기`() = runBlocking {
         val useCase = GetAddressesUseCase(
             api = Retrofit.Builder()
                 .baseUrl(AddressesApi.baseUrl)

@@ -38,4 +38,9 @@
         <item name="android:textSize">@dimen/text_size_large</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="NavigationItemTextAppearance" parent="Theme.IfKakao">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

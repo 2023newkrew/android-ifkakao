@@ -1,9 +1,14 @@
 package com.example.ifkakao.presentation
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -13,12 +18,15 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.ifkakao.R
+import com.example.ifkakao.URL_COC
 import com.example.ifkakao.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,18 +49,23 @@ class MainActivity : AppCompatActivity() {
             override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
 
-                // TODO backup status bar color and change it to black
+                // backup status bar color
+                viewModel.backupStatusBarColor = window.statusBarColor
+
+                // set status bar color
+                window.statusBarColor = getColor(R.color.gray_transparent)
             }
 
             override fun onDrawerClosed(drawerView: View) {
                 super.onDrawerClosed(drawerView)
 
-                // TODO restore status bar color
+                // restore status bar color
+                window.statusBarColor = viewModel.backupStatusBarColor
             }
         }
         drawerLayout.addDrawerListener(drawerToggle)
 
-        // initialize navigation controller
+        // initialize navigation view
         val navigationView: NavigationView = binding.navView
         val navController =
             findNavController(R.id.nav_host_fragment_content_main)
@@ -66,6 +79,25 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
+        navigationView.menu.findItem(R.id.nav_coc).setOnMenuItemClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW
+            ).apply {
+                setDataAndType(Uri.parse(URL_COC), "application/pdf")
+            }
+            startActivity(browserIntent)
+            false
+        }
+
+        // initialize navigation header
+        val navigationHeaderView = navigationView.getHeaderView(0)
+        navigationHeaderView.findViewById<TextView>(R.id.header_title).setOnClickListener {
+            navController.navigateUp()
+            drawerLayout.close()
+        }
+        navigationHeaderView.findViewById<ImageView>(R.id.close_button).setOnClickListener {
+            drawerLayout.close()
+        }
 
         // set navigation width to overlap full screen
         val navigationLayoutParams = navigationView.layoutParams

@@ -2,8 +2,9 @@
     <dimen name="size_button">48dp</dimen>
 
     <dimen name="margin_default">16dp</dimen>
-    <dimen name="margin_medium">40dp</dimen>
-    <dimen name="margin_large">56dp</dimen>
+    <dimen name="margin_medium">20dp</dimen>
+    <dimen name="margin_large">40dp</dimen>
+    <dimen name="margin_xlarge">56dp</dimen>
     <dimen name="margin_huge">112dp</dimen>
 
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
@@ -11,6 +12,6 @@
 
     <dimen name="text_size_small">14sp</dimen>
     <dimen name="text_size_default">16sp</dimen>
-    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_large">17sp</dimen>
     <dimen name="text_size_huge">20sp</dimen>
 </resources>

@@ -21,8 +21,9 @@ import com.example.ifkakao.R
 import com.example.ifkakao.URL_COC
 import com.example.ifkakao.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding

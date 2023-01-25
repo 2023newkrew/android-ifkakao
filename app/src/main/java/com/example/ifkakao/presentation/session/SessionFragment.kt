@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.ifkakao.databinding.FragmentSessionBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SessionFragment : Fragment() {
     private var _binding: FragmentSessionBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: SessionViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +27,7 @@ class SessionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sessionViewModel = ViewModelProvider(this)[SessionViewModel::class.java]
+        // TODO
     }
 
     override fun onDestroyView() {

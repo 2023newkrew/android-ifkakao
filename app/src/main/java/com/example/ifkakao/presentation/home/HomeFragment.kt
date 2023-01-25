@@ -23,8 +23,6 @@ class HomeFragment : Fragment() {
 
     private val highlightListAdapter by lazy { HighlightListAdapter() }
 
-    //    private val viewModel: HomeViewModel by viewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

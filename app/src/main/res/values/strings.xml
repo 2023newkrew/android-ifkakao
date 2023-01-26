@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">If(kakao)dev2022</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
     <string name="slide_menu_session">Session</string>
     <string name="slide_menu_CoC">CoC</string>
+
     <string name="main_text_1">우리, 내년에 또 만나요~</string>
     <string name="main_text_2">함께 나아가는 더 나은 세상!</string>
     <string name="main_text_3">카카오 개발자 컨퍼런스가 마무리되었습니다.</string>
@@ -24,4 +25,24 @@
     <string name="main_button_session">세션 바로가기</string>
     <string name="main_button_link">링크 복사하기</string>
 
+
+    <string name="session_title">Session</string>
+    <string name="session_schedule_button">전체 일정표 보기</string>
+    <string name="session_radio_button_1">전체</string>
+    <string name="session_radio_button_2">12월 7일</string>
+    <string name="session_radio_button_3">12월 8일</string>
+    <string name="session_radio_button_4">12월 9일</string>
+    <string name="session_number_init">125</string>
+    <string name="session_number">Session</string>
+    <string name="session_filter_description">필터 버튼</string>
+
+    <string name="session_item_date_init">12.07</string>
+    <string name="session_item_group_init">카카오</string>
+    <string name="session_item_title_init">Our Social Mission</string>
+    <string name="session_item_keynote">키노트</string>
+
+    <string name="session_detail_back">세션 목록으로 돌아가기</string>
+    <string name="session_detail_back_content_description">뒤로가기 버튼</string>
+    <string name="session_detail_date_init">2022.12.07</string>
+    <string name="session_detail_share_button">공유하기</string>
 </resources>

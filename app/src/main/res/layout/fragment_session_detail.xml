@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".SessionDetailFragment" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="80dp"
+                android:backgroundTint="#00FFFFFF"
+                android:contentDescription="@string/session_detail_back_content_description"
+                android:minHeight="48dp"
+                android:src="@drawable/baseline_arrow_back_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/session_detail_back"
+                android:textColor="@color/main_text_color"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintTop_toTopOf="@+id/imageButton" />
+
+            <TextView
+                android:id="@+id/session_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/session_item_title_init"
+                android:textColor="@color/main_text_color"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+            <TextView
+                android:id="@+id/session_detail_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/session_item_group_init"
+                android:textColor="@color/main_text_color"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/session_detail_title" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="2dp"
+                android:layout_height="14dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:background="#2A3034"
+                app:layout_constraintBottom_toBottomOf="@id/session_detail_group"
+                app:layout_constraintStart_toEndOf="@id/session_detail_group"
+                app:layout_constraintTop_toTopOf="@id/session_detail_group" />
+
+            <TextView
+                android:id="@+id/session_detail_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/session_detail_date_init"
+                android:textColor="@color/radio_unselected"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/session_detail_group"
+                app:layout_constraintTop_toBottomOf="@+id/session_detail_group" />
+
+            <TextView
+                android:id="@+id/session_detail_keynote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/session_item_keynote"
+                android:textColor="@color/session_blue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toTopOf="@+id/view" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/session_detail_share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/tiny_round_rectangle"
+                android:backgroundTint="@color/session_detail_button"
+                android:text="@string/session_detail_share_button"
+                android:textColor="@color/main_text_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/session_detail_date" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/session_detail_youtube_player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/session_detail_share_button"
+                app:layout_constraintTop_toBottomOf="@id/session_detail_share_button" />
+
+            <TextView
+                android:id="@+id/session_detail_tags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:text="TextView"
+                android:textColor="@color/radio_unselected"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/session_detail_youtube_player" />
+
+            <TextView
+                android:id="@+id/session_detail_body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="TextView"
+                android:textColor="@color/main_text_color"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/session_detail_tags" />
+
+<!--            <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:id="@+id/imageView"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="40dp"-->
+<!--                android:src="@drawable/ifkakao_footer"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/session_detail_body" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/session_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="start"
+        android:background="#1A000000"
+        android:minHeight="?attr/actionBarSize" />
+</FrameLayout>

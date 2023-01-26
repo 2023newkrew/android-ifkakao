@@ -442,7 +442,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/main_session_button" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_footer"
                     android:layout_width="wrap_content"
                     android:layout_height="250dp"
@@ -461,12 +461,12 @@
     </ScrollView>
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="start"
         android:background="#1A000000"
         android:minHeight="?attr/actionBarSize"
-        app:titletextColor="@color/white" />
+        app:titleTextColor="@color/main_text_color" />
 
 </FrameLayout>

@@ -13,8 +13,9 @@ import com.example.ifkakao.databinding.ItemSessionBinding
 import com.example.ifkakao.domain.model.Info
 import java.util.*
 
-class SessionListAdapter(private val isAllDay: Boolean) :
-    ListAdapter<Info, SessionListAdapter.ViewHolder>(diffUtil) {
+class SessionListAdapter : ListAdapter<Info, SessionListAdapter.ViewHolder>(diffUtil) {
+    private var day = 0
+
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<Info>() {
             override fun areItemsTheSame(
@@ -51,7 +52,7 @@ class SessionListAdapter(private val isAllDay: Boolean) :
         holder.binding.sessionTitle.text = currentList[position].title
         holder.binding.sessionTypeText.text = currentList[position].sessionType
 
-        if (isAllDay) {
+        if (day == 0) {
             holder.binding.sessionDateText.visibility = VISIBLE
             holder.binding.sessionTimeText.visibility = GONE
         } else {
@@ -61,4 +62,8 @@ class SessionListAdapter(private val isAllDay: Boolean) :
     }
 
     override fun getItemCount(): Int = currentList.size
+
+    fun changeDay(day: Int) {
+        this.day = day
+    }
 }

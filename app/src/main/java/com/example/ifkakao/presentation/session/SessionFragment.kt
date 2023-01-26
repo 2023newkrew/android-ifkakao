@@ -32,7 +32,7 @@ class SessionFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: SessionViewModel by viewModels()
 
-    private var sessionListAdapter = SessionListAdapter(true)
+    private var sessionListAdapter = SessionListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -93,9 +93,9 @@ class SessionFragment : Fragment() {
         // initialize tab layout
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                sessionListAdapter = SessionListAdapter(tab?.id == 0)
-                sessionRecyclerView.adapter = sessionListAdapter
-                viewModel.filterInfoListByDay(tab?.position ?: 0)
+                val day = tab?.position ?: 0
+                sessionListAdapter.changeDay(day)
+                viewModel.filterInfoListByDay(day)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}

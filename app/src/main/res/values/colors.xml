@@ -2,11 +2,12 @@
 <resources>
     <color name="black_primary">#1C1F21</color>
     <color name="black_transparent">#801C1F21</color>
-    <color name="gray_transparent">#4D1C1F21</color>
 
     <color name="blue_primary">#30D6FD</color>
     <color name="blue_compressed">#3FE5F9</color>
 
     <color name="white_title">#EFF0F7</color>
     <color name="white_content">#D0D1D9</color>
+    <color name="gray_content">#ADAEB6</color>
+    <color name="gray_transparent">#4D1C1F21</color>
 </resources>

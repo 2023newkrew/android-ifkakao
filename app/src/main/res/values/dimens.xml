@@ -10,8 +10,9 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
 
-    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_small">13sp</dimen>
     <dimen name="text_size_default">16sp</dimen>
     <dimen name="text_size_large">17sp</dimen>
-    <dimen name="text_size_huge">20sp</dimen>
+    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="text_size_huge">24sp</dimen>
 </resources>

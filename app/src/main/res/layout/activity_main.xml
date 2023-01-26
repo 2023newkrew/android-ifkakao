@@ -25,6 +25,6 @@
         app:itemHorizontalPadding="@dimen/margin_medium"
         app:itemTextAppearance="@style/NavigationItemTextAppearance"
         app:itemShapeAppearance="@null"
-        app:itemTextColor="@drawable/selector_navigation_item"
+        app:itemTextColor="@drawable/selector_navigation_item_color"
         app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

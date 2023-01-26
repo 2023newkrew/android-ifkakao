@@ -9,7 +9,7 @@ import com.example.ifkakao.*
 import com.example.ifkakao.databinding.ItemHighlightBinding
 
 class HighlightListAdapter(
-    val onItemClick: (Int) -> Unit
+    private val onItemClick: (Int) -> Unit
 ) : ListAdapter<String, HighlightListAdapter.ViewHolder>(diffUtil) {
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<String>() {

@@ -93,11 +93,6 @@ class HomeFragment : Fragment() {
             )
         )
 
-        // initialize up button
-        binding.upButton.setOnClickListener {
-            binding.nestedScroll.smoothScrollTo(0, 0)
-        }
-
         // set click listener
         binding.allSessionButton.setOnClickListener {
             (requireActivity() as MainActivity).navigateToSession(null, null)
@@ -119,6 +114,9 @@ class HomeFragment : Fragment() {
                 requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
             val clipData: ClipData = ClipData.newPlainText(CLIP_LABEL_SHARE, URL_SHARE)
             clipboardManager.setPrimaryClip(clipData)
+        }
+        binding.upButton.setOnClickListener {
+            binding.nestedScroll.smoothScrollTo(0, 0)
         }
     }
 

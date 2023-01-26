@@ -22,7 +22,7 @@
         android:layout_gravity="start"
         android:background="@color/black_primary"
         app:headerLayout="@layout/navigation_header"
-        app:itemHorizontalPadding="@dimen/margin_medium"
+        app:itemHorizontalPadding="@dimen/margin_large"
         app:itemTextAppearance="@style/NavigationItemTextAppearance"
         app:itemShapeAppearance="@null"
         app:itemTextColor="@drawable/selector_navigation_item_color"

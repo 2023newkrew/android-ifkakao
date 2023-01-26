@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_xlarge"
+                android:layout_marginTop="@dimen/margin_xxlarge"
                 android:text="우리, 내년에 또 만나요~\n함께 나아가는 더 나은 세상!"
                 android:textAlignment="center"
                 android:textSize="@dimen/text_size_xlarge"
@@ -40,7 +40,7 @@
                 android:text="카카오 개발자 컨퍼런스가 마무리되었습니다.\n카카오는 개발자와 함께 성장할 수 있도록 더 노력하겠습니다."
                 android:textAlignment="center"
                 android:textColor="@color/white_content"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_xsmall"
                 android:textStyle="bold" />
 
             <Button
@@ -48,17 +48,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_xlarge"
                 android:background="@drawable/background_button_xround"
                 android:text="전체 세션 바로가기"
                 android:textColor="@color/black_primary"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_xsmall"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_huge"
+                android:layout_marginTop="@dimen/margin_xxxlarge"
                 android:text="2022년 한해, 카카오의\n고민과 경험을 공유합니다."
                 android:textAlignment="center"
                 android:textSize="@dimen/text_size_xlarge"
@@ -68,9 +68,9 @@
                 android:id="@+id/keynote_card_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_large"
-                android:layout_marginTop="@dimen/margin_large"
-                android:layout_marginEnd="@dimen/margin_large"
+                android:layout_marginStart="@dimen/margin_xlarge"
+                android:layout_marginTop="@dimen/margin_xlarge"
+                android:layout_marginEnd="@dimen/margin_xlarge"
                 android:adjustViewBounds="true"
                 android:src="@drawable/image_card_keynote" />
 
@@ -78,9 +78,9 @@
                 android:id="@+id/dev_session_card_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_large"
-                android:layout_marginTop="@dimen/margin_large"
-                android:layout_marginEnd="@dimen/margin_large"
+                android:layout_marginStart="@dimen/margin_xlarge"
+                android:layout_marginTop="@dimen/margin_xlarge"
+                android:layout_marginEnd="@dimen/margin_xlarge"
                 android:adjustViewBounds="true"
                 android:src="@drawable/image_card_dev_session" />
 
@@ -88,16 +88,16 @@
                 android:id="@+id/dev_ethics_card_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_large"
-                android:layout_marginTop="@dimen/margin_large"
-                android:layout_marginEnd="@dimen/margin_large"
+                android:layout_marginStart="@dimen/margin_xlarge"
+                android:layout_marginTop="@dimen/margin_xlarge"
+                android:layout_marginEnd="@dimen/margin_xlarge"
                 android:adjustViewBounds="true"
                 android:src="@drawable/image_card_dev_ethics" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_huge"
+                android:layout_marginTop="@dimen/margin_xxxlarge"
                 android:text="Highlight Track"
                 android:textAlignment="center"
                 android:textSize="@dimen/text_size_xlarge"
@@ -110,7 +110,7 @@
                 android:text="2022년 하이라이트 트랙 및 전체 세션을 확인해보세요!"
                 android:textAlignment="center"
                 android:textColor="@color/white_content"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_xsmall"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -125,11 +125,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_xlarge"
                 android:background="@drawable/background_button_xround"
                 android:text="세션 바로가기"
                 android:textColor="@color/black_primary"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_xsmall"
                 android:textStyle="bold"
                 android:theme="@style/Theme.White" />
 
@@ -137,7 +137,7 @@
                 android:id="@+id/share_banner_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_huge"
+                android:layout_marginTop="@dimen/margin_xxxlarge"
                 android:adjustViewBounds="true"
                 android:src="@drawable/image_banner_share" />
 
@@ -151,7 +151,7 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_huge"
+                android:layout_marginTop="@dimen/margin_xxxlarge"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/margin_default">
 
@@ -160,7 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default"
                     android:text="© Kakao Corp."
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_xsmall" />
 
                 <View
                     android:layout_width="0dp"
@@ -173,7 +173,7 @@
                     android:layout_marginEnd="@dimen/margin_default"
                     android:text="지난 if kakao"
                     android:textColor="@color/white_content"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_xsmall" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
@@ -184,7 +184,7 @@
         android:layout_height="@dimen/size_button"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/margin_default"
-        android:layout_marginBottom="@dimen/margin_xlarge"
+        android:layout_marginBottom="@dimen/margin_xxlarge"
         android:background="@drawable/background_button_xround"
         android:contentDescription="상단 이동 버튼"
         android:src="@drawable/icon_up"

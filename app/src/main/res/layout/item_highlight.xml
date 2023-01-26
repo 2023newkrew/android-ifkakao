@@ -17,7 +17,7 @@
         android:id="@+id/highlight_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_small"
+        android:textSize="@dimen/text_size_xsmall"
         android:textAlignment="center" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

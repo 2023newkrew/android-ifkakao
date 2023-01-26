@@ -51,4 +51,12 @@ dependencies {
     androidTestImplementation 'com.google.dagger:hilt-android-testing:2.44'
     kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.44'
     androidTestImplementation 'org.robolectric:robolectric:4.9'
+
+    //drawer layout
+    implementation "androidx.drawerlayout:drawerlayout:1.1.1"
+
+    // nav
+    def nav_version = "2.5.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 }

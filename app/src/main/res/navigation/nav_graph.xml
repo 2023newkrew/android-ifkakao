@@ -3,10 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/slide_menu">
+    app:startDestination="@id/main_fragment">
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.example.ifkakao.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/fragment_main" />
+
     <fragment
         android:id="@+id/slide_menu"
         android:name="com.example.ifkakao.SlideMenu"
-        android:label="slideMenu"
+        android:label="slide_menu"
         tools:layout="@layout/fragment_slide_menu" />
 </navigation>

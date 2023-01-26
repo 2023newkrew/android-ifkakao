@@ -1,6 +1,27 @@
 <resources>
-    <string name="app_name">IfKakao</string>
-    <string name="title_bar">If(kakao)dev2022</string>
+    <string name="app_name">If(kakao)dev2022</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="slide_menu_session">Session</string>
+    <string name="slide_menu_CoC">CoC</string>
+    <string name="main_text_1">우리, 내년에 또 만나요~</string>
+    <string name="main_text_2">함께 나아가는 더 나은 세상!</string>
+    <string name="main_text_3">카카오 개발자 컨퍼런스가 마무리되었습니다.</string>
+    <string name="main_text_4">카카오는 개발자와 함께 성장할 수 있도록 더 노력하겠습니다.</string>
+    <string name="main_button_total_session">전체 세션 바로가기</string>
+    <string name="main_text_5">2022년 한해, 카카오의</string>
+    <string name="main_text_6">고민과 경험을 공유합니다.</string>
+    <string name="main_text_7">Highlight Track</string>
+    <string name="main_text_8">2022년 하이라이트 트랙 및 전체 세션을 확인해보세요!</string>
+    <string name="main_text_ai">AI</string>
+    <string name="main_text_be">Backend</string>
+    <string name="main_text_cloud">Cloud</string>
+    <string name="main_text_devops">DevOps</string>
+    <string name="main_text_blockchain">BlockChain</string>
+    <string name="main_text_data">Data</string>
+    <string name="main_text_frontend">Frontend</string>
+    <string name="main_text_moblie">Mobile</string>
+    <string name="main_button_session">세션 바로가기</string>
+    <string name="main_button_link">링크 복사하기</string>
+
 </resources>

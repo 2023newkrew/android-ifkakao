@@ -68,5 +68,6 @@ class SessionListAdapter : ListAdapter<Info, SessionListAdapter.ViewHolder>(diff
 
     fun changeDay(day: Int) {
         this.day = day
+        notifyItemRangeChanged(0, itemCount)
     }
 }

@@ -1,7 +1,9 @@
 package com.example.ifkakao.data.data_source.dto
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Session(
     val id: Int,
     @SerialName("kwC3iO8Lbj6D")
@@ -27,7 +29,7 @@ data class Session(
     @SerialName("pShJsKRFz_mR")
     val description: String,
     @SerialName("INYXb7hNIfMU")
-    val session_type: SessionType, // sealed class로 바꾸고 싶음
+    val session_type: String, // sealed class로 바꾸고 싶음
     @SerialName("tsHALc4rYA5Z")
     val session_day: String,
     @SerialName("dc4kWp2OMZBr")

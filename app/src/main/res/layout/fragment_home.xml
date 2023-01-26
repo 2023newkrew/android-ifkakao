@@ -9,9 +9,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll"
-        android:overScrollMode="never"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -44,6 +44,7 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/all_session_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -120,6 +121,7 @@
                 android:overScrollMode="never" />
 
             <Button
+                android:id="@+id/session_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

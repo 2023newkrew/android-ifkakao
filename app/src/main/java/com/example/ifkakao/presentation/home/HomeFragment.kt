@@ -1,5 +1,8 @@
 package com.example.ifkakao.presentation.home
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context.CLIPBOARD_SERVICE
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -15,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ifkakao.*
 import com.example.ifkakao.databinding.FragmentHomeBinding
+import com.example.ifkakao.presentation.MainActivity
 import com.example.ifkakao.presentation.home.adapter.HighlightListAdapter
 
 class HomeFragment : Fragment() {
@@ -78,20 +82,43 @@ class HomeFragment : Fragment() {
         highlightRecyclerView.adapter = highlightListAdapter
         highlightListAdapter.submitList(
             listOf(
-                HIGHLIGHT_KEY_AI,
-                HIGHLIGHT_KEY_BACKEND,
-                HIGHLIGHT_KEY_CLOUD,
-                HIGHLIGHT_KEY_DEV_OPS,
-                HIGHLIGHT_KEY_BLOCK_CHAIN,
-                HIGHLIGHT_KEY_DATA,
-                HIGHLIGHT_KEY_FRONTEND,
-                HIGHLIGHT_KEY_MOBILE
+                TRACK_KEY_AI,
+                TRACK_KEY_BACKEND,
+                TRACK_KEY_CLOUD,
+                TRACK_KEY_DEV_OPS,
+                TRACK_KEY_BLOCK_CHAIN,
+                TRACK_KEY_DATA,
+                TRACK_KEY_FRONTEND,
+                TRACK_KEY_MOBILE
             )
         )
 
         // initialize up button
         binding.upButton.setOnClickListener {
             binding.nestedScroll.smoothScrollTo(0, 0)
+        }
+
+        // set click listener
+        binding.allSessionButton.setOnClickListener {
+            (requireActivity() as MainActivity).navigateToSession(null, null)
+        }
+        binding.keynoteCardImage.setOnClickListener {
+            (requireActivity() as MainActivity).navigateToSession(TYPE_KEY_KEYNOTE, null)
+        }
+        binding.devSessionCardImage.setOnClickListener {
+            (requireActivity() as MainActivity).navigateToSession(TYPE_KEY_TECH, null)
+        }
+        binding.devEthicsCardImage.setOnClickListener {
+            (requireActivity() as MainActivity).navigateToSession(null, TRACK_KEY_ESG)
+        }
+        binding.sessionButton.setOnClickListener {
+            (requireActivity() as MainActivity).navigateToSession(null, null)
+        }
+        binding.shareBannerImage.setOnClickListener {
+            val clipboardManager: ClipboardManager =
+                requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData: ClipData = ClipData.newPlainText(CLIP_LABEL_SHARE, URL_SHARE)
+            clipboardManager.setPrimaryClip(clipData)
         }
     }
 

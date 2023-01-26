@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.ifkakao.ARG_KEY_TRACK
+import com.example.ifkakao.ARG_KEY_TYPE
 import com.example.ifkakao.databinding.FragmentSessionBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +29,16 @@ class SessionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO
+        // initialize filter from arguments
+        arguments?.getString(ARG_KEY_TYPE)?.let {
+            viewModel.filterInfoListByType(it)
+        }
+        arguments?.getString(ARG_KEY_TRACK)?.let {
+            viewModel.filterInfoListByTrack(it)
+        }
+
+        // load info list
+        viewModel.loadInfoList()
     }
 
     override fun onDestroyView() {

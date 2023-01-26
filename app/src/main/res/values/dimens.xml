@@ -1,5 +1,6 @@
 <resources>
     <dimen name="size_button">48dp</dimen>
+    <dimen name="height_session">216dp</dimen>
 
     <dimen name="margin_small_minus">-8dp</dimen>
     <dimen name="margin_small">8dp</dimen>

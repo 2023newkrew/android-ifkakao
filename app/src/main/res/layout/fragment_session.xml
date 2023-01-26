@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize"
     tools:context=".presentation.session.SessionFragment"
     tools:ignore="HardcodedText,ScrollViewCount">
 
@@ -12,18 +11,21 @@
         android:id="@+id/nested_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:padding="@dimen/margin_default">
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:overScrollMode="never">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="?attr/actionBarSize">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default"
+                android:paddingTop="@dimen/margin_default"
                 android:text="Session"
                 android:textSize="@dimen/text_size_xxlarge"
                 android:textStyle="bold" />
@@ -84,7 +86,8 @@
                 <TextView
                     android:id="@+id/size_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -101,15 +104,15 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_filter"/>
+                    android:src="@drawable/icon_filter" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/session_list"
-                android:layout_marginStart="@dimen/margin_small_minus"
-                android:layout_marginEnd="@dimen/margin_small_minus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small_minus"
+                android:layout_marginEnd="@dimen/margin_small_minus"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never" />
 

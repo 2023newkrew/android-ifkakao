@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val highlightListAdapter by lazy { HighlightListAdapter() }
+    private val highlightListAdapter by lazy { HighlightListAdapter(::onHighlightItemClick) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -125,5 +125,23 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onHighlightItemClick(position: Int) {
+        (requireActivity() as MainActivity).navigateToSession(
+            null,
+            when (position) {
+                HIGHLIGHT_POSITION_AI -> TRACK_KEY_AI
+                HIGHLIGHT_POSITION_BACKEND -> TRACK_KEY_BACKEND
+                HIGHLIGHT_POSITION_CLOUD -> TRACK_KEY_CLOUD
+                HIGHLIGHT_POSITION_DEV_OPS -> TRACK_KEY_DEV_OPS
+                HIGHLIGHT_POSITION_BLOCK_CHAIN -> TRACK_KEY_BLOCK_CHAIN
+                HIGHLIGHT_POSITION_DATA -> TRACK_KEY_DATA
+                HIGHLIGHT_POSITION_FRONTEND -> TRACK_KEY_FRONTEND
+                HIGHLIGHT_POSITION_MOBILE -> TRACK_KEY_MOBILE
+                HIGHLIGHT_POSITION_ESG -> TRACK_KEY_ESG
+                else -> null
+            }
+        )
     }
 }

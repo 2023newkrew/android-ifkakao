@@ -3,6 +3,16 @@ package com.example.ifkakao
 const val ARG_KEY_TYPE = "type"
 const val ARG_KEY_TRACK = "track"
 
+const val HIGHLIGHT_POSITION_AI = 0
+const val HIGHLIGHT_POSITION_BACKEND = 1
+const val HIGHLIGHT_POSITION_CLOUD = 2
+const val HIGHLIGHT_POSITION_DEV_OPS = 3
+const val HIGHLIGHT_POSITION_BLOCK_CHAIN = 4
+const val HIGHLIGHT_POSITION_DATA = 5
+const val HIGHLIGHT_POSITION_FRONTEND = 6
+const val HIGHLIGHT_POSITION_MOBILE = 7
+const val HIGHLIGHT_POSITION_ESG = 8
+
 const val TYPE_KEY_KEYNOTE = "keynote"
 const val TYPE_KEY_PREVIEW = "preview"
 const val TYPE_KEY_TECH = "tech"

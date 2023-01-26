@@ -1,10 +1,7 @@
 package com.example.ifkakao.data.data_source.mapper
 
 import com.example.ifkakao.data.data_source.dto.Session
-import com.example.ifkakao.domain.model.SessionDay
-import com.example.ifkakao.domain.model.SessionInfo
-import com.example.ifkakao.domain.model.SessionType
-import com.example.ifkakao.domain.model.Track
+import com.example.ifkakao.domain.model.*
 
 fun Session.toSessionInfo(): SessionInfo {
     // track -> track List
@@ -12,18 +9,38 @@ fun Session.toSessionInfo(): SessionInfo {
         .replace("]", "")
         .replace("\"", "")
     val trackArr = tempTrack.split(",")
+    val users = arrayListOf<User>()
+    if (user1_id != ""){
+        users.add(
+            User(
+                id = user1_id,
+                intro = user1_intro,
+                img = user1_img,
+            )
+        )
+    }
+    if (user2_id != ""){
+        users.add(
+            User(
+                id = user2_id,
+                intro = user2_intro,
+                img = user2_img,
+            )
+        )
+    }
+    if (user3_id != ""){
+        users.add(
+            User(
+                id = user3_id,
+                intro = user3_intro,
+                img = user3_img,
+            )
+        )
+    }
 
     return SessionInfo(
         id = id,
-        user1Id = user1_id,
-        user1Img = user1_img,
-        user1Intro = user1_intro,
-        user2Id = user2_id,
-        user2Img = user2_img,
-        user2Intro = user2_intro,
-        user3Id = user3_id,
-        user3Img = user3_img,
-        user3Intro = user3_intro,
+        users = users,
         title = title,
         description = description,
         sessionType = SessionType.from(session_type),
@@ -31,7 +48,7 @@ fun Session.toSessionInfo(): SessionInfo {
         ppt = ppt,
         track = trackArr.map { Track.from(it) },
         sessionDate = session_date,
-        company = company,
+        company = Company.from(company),
         meetupRegisterLink = meetup_register_link,
         liveImgUrl = live_img_url,
         liveQnaUrl = live_qna_url,

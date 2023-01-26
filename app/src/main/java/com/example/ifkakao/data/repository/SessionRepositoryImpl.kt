@@ -26,5 +26,4 @@ class SessionRepositoryImpl @Inject constructor(
             ApiException(e)
         }
     }
-
 }

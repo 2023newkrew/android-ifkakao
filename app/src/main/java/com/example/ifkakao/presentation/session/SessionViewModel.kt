@@ -72,7 +72,7 @@ class SessionViewModel @Inject constructor(
         val filteredInfoList = mutableListOf<Info>()
             .apply { addAll(infoList) }
             .filter { state.value.typeSet.isEmpty() || state.value.typeSet.contains(it.sessionType) }
-            .filter { state.value.trackSet.isEmpty() || state.value.trackSet.contains(it.track) }
+            .filter { state.value.trackSet.isEmpty() || state.value.trackSet.intersect(it.track).isNotEmpty() }
             .filter { state.value.companySet.isEmpty() || state.value.companySet.contains(it.company) }
             .filter { state.value.day == 0 || state.value.day == it.sessionDay }
         _state.value = state.value.copy(

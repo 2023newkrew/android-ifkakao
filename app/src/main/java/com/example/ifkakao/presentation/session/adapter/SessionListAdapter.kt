@@ -50,7 +50,10 @@ class SessionListAdapter : ListAdapter<Info, SessionListAdapter.ViewHolder>(diff
         holder.binding.sessionTimeText.text = currentList[position].sessionTime
         holder.binding.sessionCompanyText.text = currentList[position].company
         holder.binding.sessionTitle.text = currentList[position].title
-        holder.binding.sessionTypeText.text = currentList[position].sessionType
+
+        val trackString = currentList[position].track.joinToString(separator = " ")
+        val trackText = currentList[position].sessionType + " " + trackString
+        holder.binding.sessionTrackText.text = trackText
 
         if (day == 0) {
             holder.binding.sessionDateText.visibility = VISIBLE

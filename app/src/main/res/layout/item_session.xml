@@ -44,7 +44,7 @@
         tools:text="Our Social Mission" />
 
     <TextView
-        android:id="@+id/session_type_text"
+        android:id="@+id/session_track_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_small"

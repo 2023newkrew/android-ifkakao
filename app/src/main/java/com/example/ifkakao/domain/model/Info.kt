@@ -17,7 +17,7 @@ data class Info(
     val user1Id: String? = null,
     val user1Image: String? = null,
     val id: Int = 0,
-    val track: String? = null,
+    val track: Set<String> = setOf(),
     val sessionTime: String? = null,
     val company: String? = null,
     val user3Id: String? = null,

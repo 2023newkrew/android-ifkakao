@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.ifkakao.data.data_source.local.SessionLikeDatabase
 import com.example.ifkakao.data.repository.SessionRepositoryMock
 import com.example.ifkakao.domain.repository.SessionRepository
+import com.example.ifkakao.domain.usecase.GetSessionsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,10 +26,15 @@ object AppModule {
         ).build()
     }
 
-
     @Provides
     @Singleton
     fun provideSessionRepository(sessionLikeDatabase: SessionLikeDatabase): SessionRepository {
         return SessionRepositoryMock(sessionLikeDatabase.sessionLikeDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetSessionsUseCase(sessionRepository: SessionRepository): GetSessionsUseCase {
+        return GetSessionsUseCase(sessionRepository)
     }
 }

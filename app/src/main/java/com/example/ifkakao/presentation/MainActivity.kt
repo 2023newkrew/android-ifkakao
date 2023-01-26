@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // initialize action bar
+        val toolbar = binding.includeToolbar.toolbar
+        toolbar.setOnClickListener { navController.navigateUp() }
         setSupportActionBar(binding.includeToolbar.toolbar)
 
         // initialize navigation drawer

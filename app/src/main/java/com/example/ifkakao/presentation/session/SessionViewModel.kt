@@ -1,6 +1,5 @@
 package com.example.ifkakao.presentation.session
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ifkakao.data.data_source.mapper.toInfo
@@ -14,20 +13,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SessionViewModel @Inject constructor(
-    private val application: Application,
     private val getSessionsUseCase: GetSessionsUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(SessionState())
     val state = _state.asStateFlow()
 
-    val infoList =
-        mutableListOf<Info>().apply {
-            viewModelScope.launch {
-                getSessionsUseCase().map {
-                    add(it.toInfo())
-                }
-            }
-        }
+    private val infoList = mutableListOf<Info>()
+
+    fun loadInfoList() = viewModelScope.launch {
+        getSessionsUseCase().map { infoList.add(it.toInfo()) }
+        filterInfoList()
+    }
 
     fun filterInfoListByType(type: String) {
         val typeSet = hashSetOf<String>().apply {
@@ -68,9 +64,9 @@ class SessionViewModel @Inject constructor(
     private fun filterInfoList() {
         val filteredInfoList = mutableListOf<Info>()
             .apply { addAll(infoList) }
-            .filter { state.value.typeSet.contains(it.sessionType) }
-            .filter { state.value.trackSet.contains(it.track) }
-            .filter { state.value.companySet.contains(it.company) }
+            .filter { state.value.typeSet.isEmpty() || state.value.typeSet.contains(it.sessionType) }
+            .filter { state.value.trackSet.isEmpty() || state.value.trackSet.contains(it.track) }
+            .filter { state.value.companySet.isEmpty() || state.value.companySet.contains(it.company) }
         _state.value = state.value.copy(
             filteredInfoList = filteredInfoList
         )

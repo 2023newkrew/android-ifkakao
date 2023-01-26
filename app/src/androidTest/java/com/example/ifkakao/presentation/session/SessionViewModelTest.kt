@@ -1,10 +1,11 @@
-package com.example.ifkakao.data.repository
+package com.example.ifkakao.presentation.session
 
 import com.example.ifkakao.BASE_URL_SESSIONS
-import com.example.ifkakao.data.data_source.mapper.toInfo
+import com.example.ifkakao.data.repository.SessionRepositoryImpl
 import com.example.ifkakao.data.retrofit.SessionService
+import com.example.ifkakao.domain.use_case.GetSessionsUseCase
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
@@ -13,7 +14,7 @@ import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.create
 
-class SessionRepositoryTest {
+class SessionViewModelTest {
     @OptIn(ExperimentalSerializationApi::class)
     private val sessionService: SessionService =
         Retrofit.Builder()
@@ -22,11 +23,14 @@ class SessionRepositoryTest {
             .build()
             .create()
     private val sessionRepositoryImpl = SessionRepositoryImpl(sessionService)
+    private val sessionsUseCase = GetSessionsUseCase(sessionRepositoryImpl)
+    private val viewModel = SessionViewModel(sessionsUseCase)
 
     @Test
-    fun testGetSessions() = runBlocking {
-        val sessions = sessionRepositoryImpl.getSessions()
-        val infoList = sessions.map { it.toInfo() }
-        Assert.assertEquals(infoList[0].id, 110)
+    fun testFilterInfoList() = runBlocking {
+        viewModel.loadInfoList()
+        delay(5000)
+        viewModel.filterInfoListByType("keynote")
+        Assert.assertEquals(viewModel.state.value.filteredInfoList[0].sessionType, "keynote")
     }
 }

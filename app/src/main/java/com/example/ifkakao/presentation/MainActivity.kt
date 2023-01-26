@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity() {
                 super.onDrawerOpened(drawerView)
 
                 // backup status bar color
-                viewModel.backupStatusBarColor = window.statusBarColor
+                if (navController.currentDestination?.id == R.id.nav_home)
+                    viewModel.backupStatusBarColor = window.statusBarColor
 
                 // set status bar color
                 window.statusBarColor = getColor(R.color.gray_transparent)
@@ -66,7 +67,11 @@ class MainActivity : AppCompatActivity() {
                 super.onDrawerClosed(drawerView)
 
                 // restore status bar color
-                window.statusBarColor = viewModel.backupStatusBarColor
+                viewModel.backupStatusBarColor?.let {
+                    if (navController.currentDestination?.id == R.id.nav_home) // prevent session status bar blue
+                        window.statusBarColor = it
+                }
+                viewModel.backupStatusBarColor = null
             }
         }
         drawerLayout.addDrawerListener(drawerToggle)
@@ -85,9 +90,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
         navigationView.menu.findItem(R.id.nav_coc).setOnMenuItemClickListener {
-            val browserIntent = Intent(
-                Intent.ACTION_VIEW
-            ).apply {
+            val browserIntent = Intent(Intent.ACTION_VIEW).apply {
                 setDataAndType(Uri.parse(URL_COC), "application/pdf")
             }
             startActivity(browserIntent)

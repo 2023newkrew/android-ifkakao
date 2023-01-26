@@ -15,4 +15,5 @@ data class Session(
     val users: List<User>,
     val tags: String,
     val pptUrl: String,
+    val isLike: Boolean = false,
 )

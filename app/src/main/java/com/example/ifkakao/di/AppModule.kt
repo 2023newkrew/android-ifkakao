@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.ifkakao.data.data_source.local.SessionLikeDatabase
 import com.example.ifkakao.data.repository.SessionRepositoryMock
 import com.example.ifkakao.domain.repository.SessionRepository
+import com.example.ifkakao.domain.usecase.ChangeLikeSessionUseCase
 import com.example.ifkakao.domain.usecase.GetSessionsUseCase
 import dagger.Module
 import dagger.Provides
@@ -36,5 +37,11 @@ object AppModule {
     @Singleton
     fun provideGetSessionsUseCase(sessionRepository: SessionRepository): GetSessionsUseCase {
         return GetSessionsUseCase(sessionRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideChangeLikeSessionUseCase(sessionRepository: SessionRepository): ChangeLikeSessionUseCase {
+        return ChangeLikeSessionUseCase(sessionRepository)
     }
 }

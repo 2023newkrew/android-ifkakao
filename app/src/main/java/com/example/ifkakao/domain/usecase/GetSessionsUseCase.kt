@@ -8,18 +8,29 @@ class GetSessionsUseCase(
     private val sessionRepository: SessionRepository
 ) {
     suspend operator fun invoke(
-        sessionFilter: SessionFilter, showLikeOnly: Boolean
+        sessionDay: Int,
+        sessionFilter: SessionFilter,
+        showLikeOnly: Boolean
     ): List<Session> {
         var ret = sessionRepository.getAllSessions().asSequence()
-        if (!sessionFilter.isEnable) return ret.toList()
+
+        // like-filter
+        if (showLikeOnly) ret = ret.filter { it.isLike }
+
+        // day-filter
+        if (sessionDay != 0) ret = ret.filter { it.sessionDay == sessionDay }
+
+        // filter
+        if (!sessionFilter.isEnable) return ret.sortedBy { it.id }.toList()
         if (sessionFilter.typeFilterEnable) ret =
             ret.filter { it.sessionType in sessionFilter.sessionTypes }
         if (sessionFilter.companyFilterEnable) ret =
             ret.filter { it.company in sessionFilter.companies }
         if (sessionFilter.trackFilterEnable) ret =
             ret.filter { it.tracks.intersect(sessionFilter.tracks.toSet()).isNotEmpty() }
-        if (showLikeOnly) ret = ret.filter { it.isLike }
 
-        return ret.toList()
+
+
+        return ret.sortedBy { it.id }.toList()
     }
 }

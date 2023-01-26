@@ -1,6 +1,7 @@
 package com.example.ifkakao.presentation.session
 
 import com.example.ifkakao.BASE_URL_SESSIONS
+import com.example.ifkakao.TYPE_KEY_KEYNOTE
 import com.example.ifkakao.data.repository.SessionRepositoryImpl
 import com.example.ifkakao.data.retrofit.SessionService
 import com.example.ifkakao.domain.use_case.GetSessionsUseCase
@@ -30,7 +31,7 @@ class SessionViewModelTest {
     fun testFilterInfoList() = runBlocking {
         viewModel.loadInfoList()
         delay(5000)
-        viewModel.filterInfoListByType("keynote")
-        Assert.assertEquals(viewModel.state.value.filteredInfoList[0].sessionType, "keynote")
+        viewModel.filterInfoListByType(TYPE_KEY_KEYNOTE)
+        Assert.assertEquals(viewModel.state.value.filteredInfoList[0].sessionType, TYPE_KEY_KEYNOTE)
     }
 }

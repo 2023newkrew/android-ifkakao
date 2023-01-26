@@ -1,5 +1,6 @@
 package com.example.ifkakao.presentation.session.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.ItemSessionBinding
 import com.example.ifkakao.domain.model.Info
+import java.util.*
 
 class SessionListAdapter : ListAdapter<Info, SessionListAdapter.ViewHolder>(diffUtil) {
     companion object {
@@ -38,8 +40,10 @@ class SessionListAdapter : ListAdapter<Info, SessionListAdapter.ViewHolder>(diff
         return ViewHolder(ItemSessionBinding.bind(view))
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.sessionDateText.text = currentList[position].sessionDate.toString()
+        holder.binding.sessionDateText.text = currentList[position].sessionDate
+        holder.binding.sessionTimeText.text = currentList[position].sessionTime
         holder.binding.sessionCompanyText.text = currentList[position].company
         holder.binding.sessionTitle.text = currentList[position].title
         holder.binding.sessionTypeText.text = currentList[position].sessionType

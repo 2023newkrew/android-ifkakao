@@ -42,6 +42,11 @@ class HomeFragment : Fragment() {
         // set status bar color
         requireActivity().window.statusBarColor = requireContext().getColor(R.color.blue_primary)
 
+        // set action bar color
+        (requireActivity() as AppCompatActivity).supportActionBar?.setBackgroundDrawable(
+            ColorDrawable(Color.TRANSPARENT)
+        )
+
         // set scroll change listener
         binding.nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, _ ->
             // set status bar color

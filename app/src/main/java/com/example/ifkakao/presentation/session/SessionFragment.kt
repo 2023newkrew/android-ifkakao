@@ -12,11 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ifkakao.ARG_KEY_TRACK
 import com.example.ifkakao.ARG_KEY_TYPE
 import com.example.ifkakao.R
 import com.example.ifkakao.URL_SCHEDULE
 import com.example.ifkakao.databinding.FragmentSessionBinding
+import com.example.ifkakao.presentation.session.adapter.SessionListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,6 +27,8 @@ class SessionFragment : Fragment() {
     private var _binding: FragmentSessionBinding? = null
     private val binding get() = _binding!!
     private val viewModel: SessionViewModel by viewModels()
+
+    private val sessionListAdapter = SessionListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +54,8 @@ class SessionFragment : Fragment() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { state ->
-                    // TODO
+                    sessionListAdapter.submitList(state.filteredInfoList)
+                    println()
                 }
             }
         }
@@ -72,7 +77,11 @@ class SessionFragment : Fragment() {
 
         // TODO initialize filter
 
-        // TODO initialize recycler view
+        // initialize recycler view
+        val sessionRecyclerView = binding.sessionList
+        sessionRecyclerView.layoutManager =
+            GridLayoutManager(requireContext(), 2)  // TODO change span dynamic
+        sessionRecyclerView.adapter = sessionListAdapter
 
         // set click listener
         binding.scheduleButton.setOnClickListener {

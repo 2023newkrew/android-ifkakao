@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_margin="@dimen/margin_small"
+    android:background="@drawable/background_session_item"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_default">
+
+    <TextView
+        android:id="@+id/session_date_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white_content"
+        android:textSize="@dimen/text_size_xsmall"
+        tools:text="12.07" />
+
+    <TextView
+        android:id="@+id/session_company_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textColor="@color/gray_content"
+        android:textSize="@dimen/text_size_xsmall"
+        tools:text="카카오" />
+
+    <TextView
+        android:id="@+id/session_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textSize="@dimen/text_size_small"
+        android:textStyle="bold"
+        tools:text="Our Social Mission" />
+
+    <TextView
+        android:id="@+id/session_type_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textColor="@color/blue_primary"
+        android:textSize="@dimen/text_size_xsmall"
+        tools:text="키노트" />
+</androidx.appcompat.widget.LinearLayoutCompat>

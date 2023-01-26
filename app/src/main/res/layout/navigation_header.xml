@@ -6,8 +6,8 @@
     android:background="@color/black_primary"
     android:orientation="horizontal"
     android:gravity="center"
-    android:paddingStart="@dimen/margin_medium"
-    android:paddingEnd="@dimen/margin_medium"
+    android:paddingStart="@dimen/margin_large"
+    android:paddingEnd="@dimen/margin_large"
     android:paddingTop="@dimen/margin_default"
     android:paddingBottom="@dimen/margin_default">
 

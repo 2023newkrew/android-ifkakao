@@ -2,6 +2,8 @@ package com.example.ifkakao.presentation.session.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,7 +13,8 @@ import com.example.ifkakao.databinding.ItemSessionBinding
 import com.example.ifkakao.domain.model.Info
 import java.util.*
 
-class SessionListAdapter : ListAdapter<Info, SessionListAdapter.ViewHolder>(diffUtil) {
+class SessionListAdapter(private val isAllDay: Boolean) :
+    ListAdapter<Info, SessionListAdapter.ViewHolder>(diffUtil) {
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<Info>() {
             override fun areItemsTheSame(
@@ -47,6 +50,14 @@ class SessionListAdapter : ListAdapter<Info, SessionListAdapter.ViewHolder>(diff
         holder.binding.sessionCompanyText.text = currentList[position].company
         holder.binding.sessionTitle.text = currentList[position].title
         holder.binding.sessionTypeText.text = currentList[position].sessionType
+
+        if (isAllDay) {
+            holder.binding.sessionDateText.visibility = VISIBLE
+            holder.binding.sessionTimeText.visibility = GONE
+        } else {
+            holder.binding.sessionDateText.visibility = GONE
+            holder.binding.sessionTimeText.visibility = VISIBLE
+        }
     }
 
     override fun getItemCount(): Int = currentList.size

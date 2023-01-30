@@ -1,6 +1,6 @@
 package com.example.ifkakao.data.data_source.remote.mapper
 
-import com.example.ifkakao.data.data_source.remote.dto.SessionDTO
+import com.example.ifkakao.data.data_source.remote.dto.SessionDto
 import com.example.ifkakao.domain.model.Company
 import com.example.ifkakao.domain.model.SessionType
 import com.example.ifkakao.domain.model.Track
@@ -31,7 +31,7 @@ class SeesionMapperKtTest {
 
     @Test
     fun toSession() {
-        val sessionDTO = SessionDTO(
+        val sessionDTO = SessionDto(
             user2ImageUrl = "https://mk.kakaocdn.net/dn/if-kakao/2022/speaker%2Fpo.ai@kep.jpg",
             user2Id = "po.ai",
             user3Intro = "",

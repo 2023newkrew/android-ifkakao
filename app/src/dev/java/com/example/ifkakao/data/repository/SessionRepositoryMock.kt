@@ -1,15 +1,12 @@
 package com.example.ifkakao.data.repository
 
 import com.example.ifkakao.data.data_source.local.SessionLikeDao
-import com.example.ifkakao.data.data_source.remote.dto.SessionDTO
+import com.example.ifkakao.data.data_source.remote.dto.SessionDto
 import com.example.ifkakao.data.data_source.remote.mapper.toSession
 import com.example.ifkakao.domain.model.Session
-import com.example.ifkakao.domain.model.SessionLike
 import com.example.ifkakao.domain.repository.SessionRepository
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
 
 class SessionRepositoryMock(private val sessionLikeDao: SessionLikeDao) : SessionRepository {
 
@@ -31,7 +28,7 @@ class SessionRepositoryMock(private val sessionLikeDao: SessionLikeDao) : Sessio
         sessionLikeDao.deleteSessionLike(likeSessionId = session.id)
     }
 
-    private val sessions = Gson().fromJson<List<SessionDTO>>(
+    private val sessions = Gson().fromJson<List<SessionDto>>(
         """
        [
          {

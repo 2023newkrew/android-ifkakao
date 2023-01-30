@@ -1,6 +1,6 @@
 package com.example.ifkakao.data.data_source.remote.mapper
 
-import com.example.ifkakao.data.data_source.remote.dto.SessionDTO
+import com.example.ifkakao.data.data_source.remote.dto.SessionDto
 import com.example.ifkakao.domain.model.*
 
 fun parseTrackList(string: String): List<Track> {
@@ -12,7 +12,7 @@ fun parseTrackList(string: String): List<Track> {
         .map { Track.fromString(it) }
 }
 
-fun SessionDTO.toSession(): Session {
+fun SessionDto.toSession(): Session {
 
     val users = mutableListOf<User>()
     if (this.user1Id.isNotEmpty()) {

@@ -2,7 +2,7 @@ package com.example.ifkakao.data.data_source.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class SessionDTO(
+data class SessionDto(
     @SerializedName("0TNvHfMiEEEE") val user2Intro: String,
     @SerializedName("0xTNIhifz0t7") val company: String,
     @SerializedName("6SI_gcz2h1l3") val user2ImageUrl: String,

@@ -19,18 +19,9 @@ class SessionListViewModel @Inject constructor(
     private val getSessionsUseCase: GetSessionsUseCase,
     private val changeLikeSessionUseCase: ChangeLikeSessionUseCase
 ) : ViewModel() {
-    private val _sessionDayState = MutableStateFlow(0)
-    val sessionDayState: StateFlow<Int> = _sessionDayState.asStateFlow()
 
-    private val _sessionFilterState = MutableStateFlow(SessionFilter())
-    val sessionFilterState: StateFlow<SessionFilter> = _sessionFilterState.asStateFlow()
-
-    private val _showLikeOnlyState = MutableStateFlow(false)
-    val showLikeOnlyState: StateFlow<Boolean> = _showLikeOnlyState.asStateFlow()
-
-    private val _sessionListState = MutableStateFlow<List<Session>>(listOf())
-    val sessionListState: StateFlow<List<Session>> = _sessionListState.asStateFlow()
-
+    private val _sessionListState = MutableStateFlow<SessionListState>(SessionListState())
+    val sessionListState: StateFlow<SessionListState> = _sessionListState.asStateFlow()
 
     init {
         loadSessions()
@@ -41,10 +32,14 @@ class SessionListViewModel @Inject constructor(
         getSessionsJob?.cancel()
 
         getSessionsJob = viewModelScope.launch {
-            _sessionListState.value = getSessionsUseCase(
-                sessionDay = sessionDayState.value,
-                sessionFilter = sessionFilterState.value,
-                showLikeOnly = showLikeOnlyState.value
+            val sessionList = getSessionsUseCase(
+                sessionDay = sessionListState.value.sessionDay,
+                sessionFilter = sessionListState.value.sessionFilter,
+                showLikeOnly = sessionListState.value.showLikeOnly
+            )
+
+            _sessionListState.value = sessionListState.value.copy(
+                sessionList = sessionList
             )
         }
     }
@@ -52,22 +47,25 @@ class SessionListViewModel @Inject constructor(
     fun onEvent(event: SessionListEvent) {
         when (event) {
             SessionListEvent.FilterInitialize -> {
-                _sessionFilterState.value = SessionFilter()
-                loadSessions()
+                _sessionListState.value = sessionListState.value.copy(
+                    sessionFilter = SessionFilter()
+                )
             }
             is SessionListEvent.FilterSessions -> {
-                _sessionFilterState.value = event.sessionFilter
-                loadSessions()
+                _sessionListState.value = sessionListState.value.copy(
+                    sessionFilter = event.sessionFilter
+                )
             }
             is SessionListEvent.ShowLikeSessionsOnly -> {
-                _showLikeOnlyState.value = event.isLikeSessionsOnly
-                loadSessions()
+                _sessionListState.value = sessionListState.value.copy(
+                    showLikeOnly = event.isLikeSessionsOnly
+                )
             }
             is SessionListEvent.ChangeSessionDay -> {
-                _sessionDayState.value = event.sessionDay
-                loadSessions()
+                _sessionListState.value = sessionListState.value.copy(
+                    sessionDay = event.sessionDay
+                )
             }
-            // 좋아요 여부 변경 시 리스트 전체를 다시 로드 하는 것이 옳은가..?
             is SessionListEvent.LikeSession -> {
                 viewModelScope.launch {
                     changeLikeSessionUseCase(
@@ -75,7 +73,6 @@ class SessionListViewModel @Inject constructor(
                         isLike = true
                     )
                 }
-                loadSessions()
             }
             is SessionListEvent.UnLikeSession -> {
                 viewModelScope.launch {
@@ -84,9 +81,8 @@ class SessionListViewModel @Inject constructor(
                         isLike = false
                     )
                 }
-                loadSessions()
             }
-
         }
+        loadSessions()
     }
 }

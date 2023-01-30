@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".presentation.slide_menu.SlideMenu">
+    tools:context=".presentation.slide_menu.view.SlideMenu">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/slide_toolbar"

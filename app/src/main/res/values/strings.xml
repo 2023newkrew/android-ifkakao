@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">If Kakao</string>
     <string name="label_main">if(kakao)dev 2022</string>
+    <string name="main_video_url_mp4">https://t1.kakaocdn.net/inhouse_daglona/ifkakao_2022/assets/mobile_2nd_day_1080x1848.mp4</string>
 </resources>

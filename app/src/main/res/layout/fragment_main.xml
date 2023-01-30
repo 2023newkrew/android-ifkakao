@@ -17,12 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <VideoView
+            <com.google.android.exoplayer2.ui.PlayerView
                 android:id="@+id/main_video"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:background="@color/black" />
+                app:use_controller="false"
+                app:resize_mode="fixed_width"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/main_text1"
@@ -38,15 +39,18 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="우리, 내년에 또 만나요 ~\n함께 나아가는 더 나은 세상!"
+                    android:layout_marginBottom="@dimen/margin_small"
                     android:textColor="?attr/colorOnSecondary"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/text_size_large" />
 
                 <TextView
-                    android:layout_width="290dp"
+                    android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="카카오 개발자 컨퍼런스가 마무리되었습니다.\n카카오는 개발자와 함께 성장할 수 있도록 더 노력하겠습니다."
-                    android:textColor="?attr/colorOnSecondary" />
+                    android:lineSpacingExtra="@dimen/line_space_small"
+                    android:text="카카오 개발자 컨퍼런스가 마무리되었습니다.\n카카오는 개발자와 함께 성장할 수 있도록 더\n노력하겠습니다."
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="@dimen/text_size_small"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -70,7 +74,7 @@
                 android:gravity="center"
                 android:text="2022년 한해, 카카오의\n고민과 경험을 공유합니다."
                 android:textColor="?attr/colorOnSecondary"
-                android:textSize="25sp"
+                android:textSize="@dimen/text_size_large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/to_all_session_button" />
@@ -119,7 +123,7 @@
                 android:gravity="center"
                 android:text="Highlight Track"
                 android:textColor="?attr/colorOnSecondary"
-                android:textSize="25sp"
+                android:textSize="@dimen/text_size_large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/to_tech_ethic_button" />
@@ -133,6 +137,7 @@
                 android:text="2022년 하이라이트 트랙 및 전체 세션을 확인해보세요!"
                 android:textColor="?attr/colorOnSecondary"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="@dimen/text_size_small"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/main_text3" />
 
@@ -379,7 +384,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/floating_up_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_small_minus"
                 android:layout_marginTop="@dimen/margin_default"
-                android:background="@color/black_primary"
+                android:background="@android:color/transparent"
                 app:tabGravity="start"
                 app:tabIndicatorFullWidth="false"
                 app:tabPaddingEnd="@dimen/margin_small"

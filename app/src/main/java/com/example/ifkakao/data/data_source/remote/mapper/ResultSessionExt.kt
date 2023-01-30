@@ -4,7 +4,9 @@ import com.example.ifkakao.data.data_source.remote.dto.ResultSession
 import com.example.ifkakao.domain.model.Session
 
 
-//fun ResultSession.toSession(): Session{
-//
-//    re
-//}
+fun ResultSession.toSession(): Session{
+
+    return Session(
+        id= id
+    )
+}

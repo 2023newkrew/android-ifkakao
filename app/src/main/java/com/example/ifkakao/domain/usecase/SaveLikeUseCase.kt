@@ -1,9 +1,9 @@
 package com.example.ifkakao.domain.usecase
 
-import com.example.ifkakao.domain.repository.RemoteRepository
+import com.example.ifkakao.domain.repository.LocalRepository
 
-class SaveLikeUseCase(private val repository: RemoteRepository) {
-    operator fun invoke(id: Int): Boolean {
-        return repository.saveLike(id)
+class SaveLikeUseCase(private val repository: LocalRepository) {
+    operator fun invoke(set: Set<String>): Boolean {
+        return repository.saveLike(set)
     }
 }

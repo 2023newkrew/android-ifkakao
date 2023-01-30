@@ -103,13 +103,13 @@ class HomeFragment : Fragment() {
             (requireActivity() as MainActivity).navigateToSession(null, null)
         }
         binding.keynoteCardImage.setOnClickListener {
-            (requireActivity() as MainActivity).navigateToSession(TYPE_KEY_KEYNOTE, null)
+            (requireActivity() as MainActivity).navigateToSession(TYPE_VALUE_KEYNOTE, null)
         }
         binding.devSessionCardImage.setOnClickListener {
-            (requireActivity() as MainActivity).navigateToSession(TYPE_KEY_TECH, null)
+            (requireActivity() as MainActivity).navigateToSession(TYPE_VALUE_TECH, null)
         }
         binding.devEthicsCardImage.setOnClickListener {
-            (requireActivity() as MainActivity).navigateToSession(null, TRACK_KEY_ESG)
+            (requireActivity() as MainActivity).navigateToSession(null, TRACK_VALUE_ESG)
         }
         binding.sessionButton.setOnClickListener {
             (requireActivity() as MainActivity).navigateToSession(null, null)
@@ -134,15 +134,15 @@ class HomeFragment : Fragment() {
         (requireActivity() as MainActivity).navigateToSession(
             null,
             when (position) {
-                HIGHLIGHT_POSITION_AI -> TRACK_KEY_AI
-                HIGHLIGHT_POSITION_BACKEND -> TRACK_KEY_BACKEND
-                HIGHLIGHT_POSITION_CLOUD -> TRACK_KEY_CLOUD
-                HIGHLIGHT_POSITION_DEV_OPS -> TRACK_KEY_DEV_OPS
-                HIGHLIGHT_POSITION_BLOCK_CHAIN -> TRACK_KEY_BLOCK_CHAIN
-                HIGHLIGHT_POSITION_DATA -> TRACK_KEY_DATA
-                HIGHLIGHT_POSITION_FRONTEND -> TRACK_KEY_FRONTEND
-                HIGHLIGHT_POSITION_MOBILE -> TRACK_KEY_MOBILE
-                HIGHLIGHT_POSITION_ESG -> TRACK_KEY_ESG
+                HIGHLIGHT_POSITION_AI -> TRACK_VALUE_AI
+                HIGHLIGHT_POSITION_BACKEND -> TRACK_VALUE_BACKEND
+                HIGHLIGHT_POSITION_CLOUD -> TRACK_VALUE_CLOUD
+                HIGHLIGHT_POSITION_DEV_OPS -> TRACK_VALUE_DEV_OPS
+                HIGHLIGHT_POSITION_BLOCK_CHAIN -> TRACK_VALUE_BLOCK_CHAIN
+                HIGHLIGHT_POSITION_DATA -> TRACK_VALUE_DATA
+                HIGHLIGHT_POSITION_FRONTEND -> TRACK_VALUE_FRONTEND
+                HIGHLIGHT_POSITION_MOBILE -> TRACK_VALUE_MOBILE
+                HIGHLIGHT_POSITION_ESG -> TRACK_VALUE_ESG
                 else -> null
             }
         )

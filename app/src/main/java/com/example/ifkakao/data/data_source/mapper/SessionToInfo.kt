@@ -27,9 +27,9 @@ fun Session.toInfo(): Info {
         description = pShJsKRFz_mR,
         title = U2G0DHalEQHs,
         sessionType = when (INYXb7hNIfMU) {
-             TYPE_KEY_KEYNOTE -> "키노트"
-             TYPE_KEY_PREVIEW -> "프리뷰"
-             TYPE_KEY_TECH -> "기술세션"
+            TYPE_KEY_KEYNOTE -> TYPE_VALUE_KEYNOTE
+            TYPE_KEY_PREVIEW -> TYPE_VALUE_PREVIEW
+            TYPE_KEY_TECH -> TYPE_VALUE_TECH
             else -> INYXb7hNIfMU
         },
         liveImageUrl = `9yVKHSTkTNmF`,
@@ -43,18 +43,18 @@ fun Session.toInfo(): Info {
                 .filter { it.isNotEmpty() && it != "," }
                 .map {
                     when (it) {
-                        TRACK_KEY_1015 -> "1015장애 회고"
-                        TRACK_KEY_AI -> "AI"
-                        TRACK_KEY_BACKEND -> "백엔드"
-                        TRACK_KEY_FRONTEND -> "프론트엔드"
-                        TRACK_KEY_MOBILE -> "모바일"
-                        TRACK_KEY_CLOUD -> "클라우드"
-                        TRACK_KEY_DATA -> "빅데이터"
-                        TRACK_KEY_BLOCK_CHAIN -> "블록체인"
-                        TRACK_KEY_DEV_OPS -> "DevOps"
-                        TRACK_KEY_ESG -> "ESG"
-                        TRACK_KEY_GENERAL -> "General"
-                        TRACK_KEY_CULTURE -> "Culture"
+                        TRACK_KEY_1015 -> TRACK_VALUE_1015
+                        TRACK_KEY_AI -> TRACK_VALUE_AI
+                        TRACK_KEY_BACKEND -> TRACK_VALUE_BACKEND
+                        TRACK_KEY_FRONTEND -> TRACK_VALUE_FRONTEND
+                        TRACK_KEY_MOBILE -> TRACK_VALUE_MOBILE
+                        TRACK_KEY_CLOUD -> TRACK_VALUE_CLOUD
+                        TRACK_KEY_DATA -> TRACK_VALUE_DATA
+                        TRACK_KEY_BLOCK_CHAIN -> TRACK_VALUE_BLOCK_CHAIN
+                        TRACK_KEY_DEV_OPS -> TRACK_VALUE_DEV_OPS
+                        TRACK_KEY_ESG -> TRACK_VALUE_ESG
+                        TRACK_KEY_GENERAL -> TRACK_VALUE_GENERAL
+                        TRACK_KEY_CULTURE -> TRACK_VALUE_CULTURE
                         else -> it
                     }
                 }

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">IfKakao</string>
+    <string name="session">Session</string>
+    <string name="coc">CoC</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="toolbar_title">if(kakao)dev2022</string>
 </resources>

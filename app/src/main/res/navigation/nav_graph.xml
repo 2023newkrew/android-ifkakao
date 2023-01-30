@@ -6,13 +6,13 @@
     app:startDestination="@id/main_fragment">
     <fragment
         android:id="@+id/main_fragment"
-        android:name="com.example.ifkakao.MainFragment"
+        android:name="com.example.ifkakao.presentation.main.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/fragment_main" />
 
     <fragment
         android:id="@+id/slide_menu"
-        android:name="com.example.ifkakao.SlideMenu"
+        android:name="com.example.ifkakao.presentation.slide_menu.SlideMenu"
         android:label="slide_menu"
         tools:layout="@layout/fragment_slide_menu" />
 </navigation>

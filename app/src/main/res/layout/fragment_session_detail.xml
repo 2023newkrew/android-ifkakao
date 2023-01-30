@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".SessionDetailFragment" >
+    tools:context=".presentation.session_detail.SessionDetailFragment" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -124,10 +124,10 @@
                 android:id="@+id/session_detail_tags"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
-                android:text="TextView"
+                android:layout_marginEnd="15dp"
+                android:text="@string/session_detail_tags_init"
                 android:textColor="@color/radio_unselected"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -138,25 +138,73 @@
                 android:id="@+id/session_detail_body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:text="TextView"
+                android:layout_marginEnd="15dp"
+                android:text="@string/session_detail_body_init"
                 android:textColor="@color/main_text_color"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/session_detail_tags" />
 
-<!--            <de.hdodenhof.circleimageview.CircleImageView-->
-<!--                android:id="@+id/imageView"-->
-<!--                android:layout_width="100dp"-->
-<!--                android:layout_height="100dp"-->
-<!--                android:layout_marginStart="15dp"-->
-<!--                android:layout_marginTop="40dp"-->
-<!--                android:src="@drawable/ifkakao_footer"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/session_detail_body" />-->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/session_detail_if_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/ifkakao_footer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/session_detail_body" />
+
+            <TextView
+                android:id="@+id/session_detail_nick_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/session_detail_nick_name_init"
+                android:textColor="@color/main_text_color"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/session_detail_if_image"
+                app:layout_constraintTop_toTopOf="@+id/session_detail_if_image" />
+
+            <TextView
+                android:id="@+id/session_detail_nick_name_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/session_detail_nick_name_detail_init"
+                android:textColor="@color/radio_unselected"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/session_detail_nick_name"
+                app:layout_constraintTop_toBottomOf="@+id/session_detail_nick_name" />
+
+            <TextView
+                android:id="@+id/session_detail_footer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/session_detail_footer"
+                android:textColor="@color/main_text_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/session_detail_if_image" />
+
+            <TextView
+                android:id="@+id/session_detail_last_ifkakao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/session_detail_last_ifkakao"
+                android:textColor="@color/session_blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

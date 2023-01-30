@@ -45,4 +45,11 @@
     <string name="session_detail_back_content_description">뒤로가기 버튼</string>
     <string name="session_detail_date_init">2022.12.07</string>
     <string name="session_detail_share_button">공유하기</string>
+    <string name="session_detail_tags_init">#ESG#사회적책임#일이되게하는방식#조직문화</string>
+    <string name="session_detail_body_init">남궁훈 카카오 비상대책위원회 재발방지대책 소위원장이 전하는 If Kakao 오프닝 인사말, 카카오의 사회적 소명에 대한 생각, 그리고 새로운 카카오에 대한 각오와 의지를 확인하실 수 있습니다.</string>
+    <string name="session_detail_nick_name_init">nkay.play</string>
+    <string name="session_detail_nick_name_detail_init">카카오 재발방지대책 소위원회 공동 위원장을 맡고 있는 남궁훈, Nkay입니다.</string>
+    <string name="session_detail_footer">©Kakao Corp.</string>
+    <string name="session_detail_last_ifkakao">지난 If kakao</string>
+
 </resources>

@@ -284,8 +284,14 @@ class SessionSelectFragment : Fragment() {
     }
 
     private fun onSessionItemClick(position: Int) {
+        val args = Bundle().apply {
+            putParcelable(ARG_KEY_INFO, viewModel.state.value.filteredInfoList[position])
+        }
+        val detailFragment = DetailFragment().apply {
+            arguments = args
+        }
         parentFragmentManager.beginTransaction()
-            .replace(R.id.session_fragment_container, DetailFragment())
+            .replace(R.id.session_fragment_container, detailFragment)
             .addToBackStack(null)
             .commit()
     }

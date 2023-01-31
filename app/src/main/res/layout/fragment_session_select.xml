@@ -47,7 +47,7 @@
                     android:minHeight="0dp"
                     android:text="전체 일정표 보기"
                     android:textColor="@color/black_primary"
-                    android:textSize="@dimen/text_size_xsmall"
+                    android:textSize="@dimen/text_size_xxsmall"
                     android:textStyle="bold"
                     android:theme="@style/Theme.White" />
 
@@ -149,6 +149,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="© Kakao Corp."
+                        android:textColor="@color/white_content"
                         android:textSize="@dimen/text_size_xsmall" />
 
                     <View
@@ -160,7 +161,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="지난 if kakao"
-                        android:textColor="@color/white_content"
+                        android:textColor="@color/gray_content"
                         android:textSize="@dimen/text_size_xsmall" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>

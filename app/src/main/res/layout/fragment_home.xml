@@ -160,6 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default"
                     android:text="© Kakao Corp."
+                    android:textColor="@color/white_content"
                     android:textSize="@dimen/text_size_xsmall" />
 
                 <View
@@ -172,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:text="지난 if kakao"
-                    android:textColor="@color/white_content"
+                    android:textColor="@color/gray_content"
                     android:textSize="@dimen/text_size_xsmall" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>

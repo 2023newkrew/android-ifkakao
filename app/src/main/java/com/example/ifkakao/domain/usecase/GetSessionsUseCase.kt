@@ -8,9 +8,7 @@ class GetSessionsUseCase(
     private val sessionRepository: SessionRepository
 ) {
     suspend operator fun invoke(
-        sessionDay: Int,
-        sessionFilter: SessionFilter,
-        showLikeOnly: Boolean
+        sessionDay: Int, sessionFilter: SessionFilter, showLikeOnly: Boolean
     ): List<Session> {
         var ret = sessionRepository.getAllSessions().asSequence()
 
@@ -28,6 +26,10 @@ class GetSessionsUseCase(
         if (sessionFilter.tracks.isNotEmpty()) ret =
             ret.filter { it.tracks.intersect(sessionFilter.tracks.toSet()).isNotEmpty() }
 
-        return ret.sortedBy { it.id }.toList()
+        return ret.sortedWith(
+            compareBy(
+                Session::sessionDay, Session::timeStamp, Session::id
+            )
+        ).toList()
     }
 }

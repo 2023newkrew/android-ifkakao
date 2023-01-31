@@ -7,5 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_black">#FF1B1C1E</color>
+    <color name="light_black">#1B1C1E</color>
+    <color name="dark_white">#EDEDF5</color>
+    <color name="gray">#ADAEB5</color>
+    <color name="line_stoke">#2A3034</color>
+    <color name="tab_blue">#62CFFA</color>
+    <color name="session_background">#222629</color>
+    <color name="session_date">#C9CAD1</color>
+    <color name="session_company">#ACADB4</color>
 </resources>

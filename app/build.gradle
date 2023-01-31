@@ -4,7 +4,10 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.0'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    // safe args - navigation 이동 시 안전한 이동을 위해
+    id 'androidx.navigation.safeargs.kotlin'
 }
+
 
 android {
     namespace 'com.example.ifkakao'
@@ -44,6 +47,7 @@ android {
             resources.srcDir 'src/test/res'
         }
     }
+
 }
 
 dependencies {
@@ -98,4 +102,11 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:2.18.2'
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.2'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.2'
+
+    // Room
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
 }

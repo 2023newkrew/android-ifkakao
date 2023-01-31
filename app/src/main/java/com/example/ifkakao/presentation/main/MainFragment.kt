@@ -1,24 +1,27 @@
 package com.example.ifkakao.presentation.main
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentMainBinding
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.util.Util
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
     private val binding: FragmentMainBinding by lazy { FragmentMainBinding.inflate(layoutInflater) }
     private var player: ExoPlayer? = null
@@ -56,24 +59,26 @@ class MainFragment : Fragment() {
         binding.floatingUpButton.setOnClickListener {
             binding.nestedScrollView.smoothScrollTo(0, 0)
         }
-    }
 
-
-    public override fun onStart() {
-        super.onStart()
-        if (Util.SDK_INT >= 24) {
-            initializePlayer()
-
-            binding.mainVideo.layoutParams.height = WRAP_CONTENT
+        binding.toAllSessionButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList()
+            view.findNavController().navigate(action)
+            requireActivity().findViewById<Toolbar>(R.id.toolbar).setTitle(R.string.label_main)
         }
     }
 
-    public override fun onResume() {
+
+    override fun onStart() {
+        super.onStart()
+        if (Util.SDK_INT >= 24) {
+            initializePlayer()
+        }
+    }
+
+    override fun onResume() {
         super.onResume()
         if ((Util.SDK_INT < 24 || player == null)) {
             initializePlayer()
-
-            binding.mainVideo.layoutParams.height = WRAP_CONTENT
         }
     }
 
@@ -84,7 +89,7 @@ class MainFragment : Fragment() {
         }
     }
 
-    public override fun onStop() {
+    override fun onStop() {
         super.onStop()
         if (Util.SDK_INT >= 24) {
             releasePlayer()
@@ -98,6 +103,7 @@ class MainFragment : Fragment() {
                 binding.mainVideo.player = exoPlayer
                 val mediaItem = MediaItem.fromUri(getString(R.string.main_video_url_mp4))
                 exoPlayer.setMediaItem(mediaItem)
+                exoPlayer.repeatMode = Player.REPEAT_MODE_ALL
                 exoPlayer.playWhenReady = playWhenReady
                 exoPlayer.seekTo(currentWindow, playbackPosition)
                 exoPlayer.prepare()

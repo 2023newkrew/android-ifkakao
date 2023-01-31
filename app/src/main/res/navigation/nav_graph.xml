@@ -9,10 +9,27 @@
         android:id="@+id/main"
         android:name="com.example.ifkakao.presentation.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_main_to_list"
+            app:destination="@id/list" />
+    </fragment>
     <fragment
         android:id="@+id/list"
         android:name="com.example.ifkakao.presentation.list.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list">
+        <argument
+            android:name="sessionType"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="sessionTrack"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="sessionCompany"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 </navigation>

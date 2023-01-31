@@ -1,16 +1,10 @@
 package com.example.ifkakao.presentation
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.ColorFilter
-import android.graphics.ColorMatrixColorFilter
-import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -20,8 +14,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var navController: NavController
@@ -59,10 +55,10 @@ class MainActivity : AppCompatActivity() {
             val id: Int = it.itemId
 
             if (id == R.id.list) {
-                Toast.makeText(this, "Session List 이동", Toast.LENGTH_SHORT).show()
-                navController.navigate(R.id.list)
+                // 계속 위에 추가되는 문제 방지
+                if (navController.currentDestination != navController.findDestination(R.id.list))
+                    navController.navigate(R.id.list)
             } else if (id == R.id.CoC) {
-                Toast.makeText(this, "CoC Clicked", Toast.LENGTH_SHORT).show()
                 it.isChecked = false
                 val browserIntent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse(
                     "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"

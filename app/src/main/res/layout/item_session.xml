@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="216dp"
+    android:layout_margin="@dimen/margin_large"
+    android:background="@drawable/grey_rounded_card"
+    android:padding="@dimen/margin_xlarge">
+
+    <TextView
+        android:id="@+id/session_date_or_time_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/darkgrey"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12.07" />
+
+    <TextView
+        android:id="@+id/session_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:textColor="@color/darkgrey"
+        app:layout_constraintTop_toBottomOf="@id/session_date_or_time_text"
+        tools:text="카카오" />
+
+    <TextView
+        android:id="@+id/session_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/whitesmoke"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/session_company"
+        tools:text="Our Social Mission" />
+
+    <TextView
+        android:id="@+id/session_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:textColor="?attr/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/session_title"
+        tools:text="키노트" />
+
+    <TextView
+        android:id="@+id/session_track"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_large"
+        android:textColor="?attr/colorPrimary"
+        app:layout_constraintStart_toEndOf="@id/session_type"
+        app:layout_constraintTop_toBottomOf="@id/session_title"
+        tools:text="AI" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

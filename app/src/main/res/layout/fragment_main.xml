@@ -20,10 +20,13 @@
             <com.google.android.exoplayer2.ui.PlayerView
                 android:id="@+id/main_video"
                 android:layout_width="match_parent"
+                android:backgroundTint="@color/black_80"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:use_controller="false"
-                app:resize_mode="fixed_width"/>
+                app:layout_constraintHeight_min="500dp"
+                app:show_buffering="always"
+                app:resize_mode="fixed_width" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/main_text1"

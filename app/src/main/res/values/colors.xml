@@ -11,4 +11,6 @@
     <color name="deepskyblue_light">#2adaff</color>
     <color name="deepskyblue">#17d2ff</color>
     <color name="whitesmoke">#eff0f6</color>
+    <color name="darkgrey">#adaeb6</color>
+    <color name="darklategrey">#212629</color>
 </resources>

@@ -11,7 +11,8 @@ enum class Company(val value: String) {
     KAKAO_ENTERTAINMENT("podo"),
     KRUST_UNIVERSE("ku"),
     KAKAO_PICCOMA("kpic"),
-    GREPP("grepp");
+    GREPP("grepp"),
+    Null("null");
 
     companion object {
         fun from(findValue: String): Company =

@@ -6,9 +6,12 @@ import kotlinx.serialization.Serializable
 enum class SessionType(val value: String) {
     Tech("tech"),
     KeyNote("keynote"),
-    Preview("preview");
+    Preview("preview"),
+    Null("null");
+
     companion object {
-        fun from(findValue: String): SessionType = SessionType.values().first { it.value == findValue }
+        fun from(findValue: String): SessionType =
+            SessionType.values().first { it.value == findValue }
     }
 }
 

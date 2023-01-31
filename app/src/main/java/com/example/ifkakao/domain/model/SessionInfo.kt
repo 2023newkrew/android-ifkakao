@@ -1,7 +1,5 @@
 package com.example.ifkakao.domain.model
 
-import kotlinx.serialization.SerialName
-
 data class SessionInfo(
     val id: Int,
     val users: List<User>,
@@ -20,4 +18,5 @@ data class SessionInfo(
     val sessionVodLink: String,
     val sessionImg: String,
     val tags: String,
+    var isLiked: Boolean = false,
 )

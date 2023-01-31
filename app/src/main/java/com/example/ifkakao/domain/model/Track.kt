@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class Track(val value: String) {
+    RE1015("re1015"),
     ESG("esg"),
     GENERAL("general"),
     BIG_DATA("bigdata"),
@@ -13,6 +14,7 @@ enum class Track(val value: String) {
     MOBILE("mobile"),
     BLOCK_CHAIN("blockchain"),
     CLOUD("cloud"),
+    DEVOPS("devops"),
     CULTURE("culture");
 
     companion object {

@@ -34,7 +34,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -43,6 +42,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="false"
+        app:itemTextColor="?attr/colorOnSecondary"
         android:backgroundTint="?attr/colorOnPrimary"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/main_drawer_menu" />

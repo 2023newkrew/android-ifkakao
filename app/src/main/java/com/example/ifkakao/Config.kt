@@ -2,6 +2,7 @@ package com.example.ifkakao
 
 const val ARG_KEY_TYPE = "type"
 const val ARG_KEY_TRACK = "track"
+const val ARG_KEY_INFO = "info"
 
 const val HIGHLIGHT_POSITION_AI = 0
 const val HIGHLIGHT_POSITION_BACKEND = 1

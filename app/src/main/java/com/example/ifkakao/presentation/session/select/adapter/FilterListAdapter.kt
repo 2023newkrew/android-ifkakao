@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.session.adapter
+package com.example.ifkakao.presentation.session.select.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

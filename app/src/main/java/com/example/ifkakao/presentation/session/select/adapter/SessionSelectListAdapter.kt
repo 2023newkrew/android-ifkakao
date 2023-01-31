@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.session.adapter
+package com.example.ifkakao.presentation.session.select.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -13,7 +13,9 @@ import com.example.ifkakao.databinding.ItemSessionBinding
 import com.example.ifkakao.domain.model.Info
 import java.util.*
 
-class SessionListAdapter : ListAdapter<Info, SessionListAdapter.ViewHolder>(diffUtil) {
+class SessionSelectListAdapter(
+    private val onItemClick: (Int) -> Unit
+) : ListAdapter<Info, SessionSelectListAdapter.ViewHolder>(diffUtil) {
     private var day = 0
 
     companion object {
@@ -30,18 +32,20 @@ class SessionListAdapter : ListAdapter<Info, SessionListAdapter.ViewHolder>(diff
         }
     }
 
-    class ViewHolder(val binding: ItemSessionBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        val onItemClick: (Int) -> Unit,
+        val binding: ItemSessionBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
         init {
             itemView.setOnClickListener {
-                // TODO
+                onItemClick(adapterPosition)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_session, parent, false)
-        return ViewHolder(ItemSessionBinding.bind(view))
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_session, parent, false)
+        return ViewHolder(onItemClick, ItemSessionBinding.bind(view))
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -51,8 +55,8 @@ class SessionListAdapter : ListAdapter<Info, SessionListAdapter.ViewHolder>(diff
         holder.binding.sessionCompanyText.text = currentList[position].company
         holder.binding.sessionTitle.text = currentList[position].title
 
-        val trackString = currentList[position].track.joinToString(separator = " ")
-        val trackText = currentList[position].sessionType + " " + trackString
+        val trackString = currentList[position].track.joinToString(separator = "  ")
+        val trackText = currentList[position].sessionType + "  " + trackString
         holder.binding.sessionTrackText.text = trackText
 
         if (day == 0) {

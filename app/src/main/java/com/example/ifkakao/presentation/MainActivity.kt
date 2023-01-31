@@ -133,9 +133,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun navigateToSession(type: String?, track: String?) {
-        val args = Bundle()
-        args.putString(ARG_KEY_TYPE, type)
-        args.putString(ARG_KEY_TRACK, track)
+        val args = Bundle().apply {
+            putString(ARG_KEY_TYPE, type)
+            putString(ARG_KEY_TRACK, track)
+        }
         navController.navigate(R.id.action_home_to_session, args)
     }
 

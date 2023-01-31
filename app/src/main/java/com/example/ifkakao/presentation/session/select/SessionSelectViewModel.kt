@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SessionViewModel @Inject constructor(
+class SessionSelectViewModel @Inject constructor(
     private val getSessionsUseCase: GetSessionsUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(SessionState())
@@ -21,7 +21,9 @@ class SessionViewModel @Inject constructor(
     private val infoList = mutableListOf<Info>()
 
     fun loadInfoList() = viewModelScope.launch {
-        getSessionsUseCase().map { infoList.add(it.toInfo()) }
+        if (infoList.isEmpty()) {
+            getSessionsUseCase().map { infoList.add(it.toInfo()) }
+        }
         filterInfoList()
     }
 

@@ -1,5 +1,9 @@
 package com.example.ifkakao.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Info(
     val user2Image: String? = null,
     val user2Id: String? = null,
@@ -27,4 +31,4 @@ data class Info(
     val sessionVodLink: String? = null,
     val sessionImage: String? = null,
     val tags: String? = null
-)
+) : Parcelable

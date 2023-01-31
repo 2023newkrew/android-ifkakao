@@ -72,6 +72,9 @@ class SessionFragment : Fragment() {
                     // set list size text
                     binding.sessionSizeText.text = state.filteredInfoList.size.toString()
 
+                    // set no session text visibility
+                    binding.noSessionText.isVisible = state.filteredInfoList.isEmpty()
+
                     // set filter button tint
                     binding.filterButton.imageTintList = ColorStateList.valueOf(
                         ContextCompat.getColor(

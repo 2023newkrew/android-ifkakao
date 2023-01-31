@@ -127,6 +127,17 @@
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never" />
 
+                <TextView
+                    android:id="@+id/no_session_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_session_double"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@drawable/background_session_item"
+                    android:gravity="center"
+                    android:text="선택하신 필터 조건의 항목이 없습니다."
+                    android:textColor="@color/gray_content"
+                    android:textSize="@dimen/text_size_small" />
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

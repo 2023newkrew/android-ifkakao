@@ -2,6 +2,7 @@
     <dimen name="size_button">48dp</dimen>
     <dimen name="size_check_box">20dp</dimen>
     <dimen name="height_session">216dp</dimen>
+    <dimen name="height_session_double">432dp</dimen>
     <dimen name="height_divider">1dp</dimen>
 
     <dimen name="margin_small_minus">-8dp</dimen>

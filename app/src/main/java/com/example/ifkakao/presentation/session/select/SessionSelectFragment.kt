@@ -61,6 +61,7 @@ class SessionSelectFragment : Fragment() {
         arguments?.getString(ARG_KEY_TRACK)?.let {
             viewModel.filterInfoListByTrack(it)
         }
+        arguments = null // prevent filter again when pop stack from detail fragment
 
         // collect state
         lifecycleScope.launch {
@@ -283,7 +284,7 @@ class SessionSelectFragment : Fragment() {
     }
 
     private fun onSessionItemClick(position: Int) {
-        requireActivity().supportFragmentManager.beginTransaction()
+        parentFragmentManager.beginTransaction()
             .replace(R.id.session_fragment_container, DetailFragment())
             .addToBackStack(null)
             .commit()

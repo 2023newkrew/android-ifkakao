@@ -1,15 +1,18 @@
 package com.example.ifkakao.presentation.session.detail
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.ifkakao.ARG_KEY_INFO
 import com.example.ifkakao.databinding.FragmentSessionDetailBinding
 import com.example.ifkakao.domain.model.Info
+
 
 class DetailFragment : Fragment() {
     private var _binding: FragmentSessionDetailBinding? = null
@@ -38,5 +41,22 @@ class DetailFragment : Fragment() {
                 viewModel.info = it
             }
         }
+
+        // set on click listener
+        binding.back.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        // prevent back to home
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 }

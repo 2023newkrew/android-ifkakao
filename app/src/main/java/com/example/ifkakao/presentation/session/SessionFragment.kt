@@ -31,7 +31,7 @@ class SessionFragment : Fragment() {
         if (savedInstanceState == null) {
             val sessionSelectFragment = SessionSelectFragment()
             arguments?.let { sessionSelectFragment.arguments = it }
-            requireActivity().supportFragmentManager.beginTransaction()
+            parentFragmentManager.beginTransaction()
                 .add(R.id.session_fragment_container, sessionSelectFragment)
                 .commit()
         }

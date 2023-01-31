@@ -6,9 +6,9 @@
     android:orientation="vertical"
     tools:context=".presenter.fragment.MainVideoFragment">
 
-    <TextView
+    <VideoView
+        android:id="@+id/main_video_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="/////////////////////\nMain_Video\n/////////////////////" />
+        android:layout_height="1dp" />
 
 </LinearLayout>

@@ -168,14 +168,14 @@ class SessionFragment : Fragment() {
         trackFilterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         trackFilterRecyclerView.adapter = trackFilterListAdapter
         trackFilterRecyclerView.setHasFixedSize(true)
-        typeFilterRecyclerView.itemAnimator = null
+        trackFilterRecyclerView.itemAnimator = null
         trackFilterListAdapter.refresh(viewModel.state.value.trackSet)
 
         val companyFilterRecyclerView = binding.companyFilterList
         companyFilterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         companyFilterRecyclerView.adapter = companyFilterListAdapter
         companyFilterRecyclerView.setHasFixedSize(true)
-        typeFilterRecyclerView.itemAnimator = null
+        companyFilterRecyclerView.itemAnimator = null
         companyFilterListAdapter.refresh(viewModel.state.value.companySet)
 
         // set scroll change listener

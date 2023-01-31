@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <size
+                android:width="@dimen/size_check_box"
+                android:height="@dimen/size_check_box" />
+            <corners android:radius="4dp" />
+            <solid android:color="@color/gray_background_bright" />
+        </shape>
+    </item>
+    <item>
+        <vector
+            android:width="@dimen/size_check_box"
+            android:height="@dimen/size_check_box"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <path
+                android:fillColor="@color/blue_primary"
+                android:pathData="M9,16.17L4.83,12l-1.42,1.41L9,19 21,7l-1.41,-1.41z" />
+        </vector>
+    </item>
+</layer-list>

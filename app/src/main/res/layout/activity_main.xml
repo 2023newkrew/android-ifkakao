@@ -21,10 +21,12 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/black_primary"
+        android:paddingStart="@dimen/margin_large"
+        android:paddingEnd="@dimen/margin_large"
         app:headerLayout="@layout/navigation_header"
-        app:itemHorizontalPadding="@dimen/margin_large"
-        app:itemTextAppearance="@style/NavigationItemTextAppearance"
+        app:itemHorizontalPadding="0dp"
         app:itemShapeAppearance="@null"
+        app:itemTextAppearance="@style/NavigationItemTextAppearance"
         app:itemTextColor="@drawable/selector_navigation_item_color"
         app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

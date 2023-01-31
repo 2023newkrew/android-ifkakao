@@ -43,9 +43,7 @@ class HomeFragment : Fragment() {
         requireActivity().window.statusBarColor = requireContext().getColor(R.color.blue_primary)
 
         // set action bar color
-        (requireActivity() as AppCompatActivity).supportActionBar?.setBackgroundDrawable(
-            ColorDrawable(Color.TRANSPARENT)
-        )
+        (requireActivity() as AppCompatActivity).supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         // set scroll change listener
         binding.nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, _ ->
@@ -115,8 +113,7 @@ class HomeFragment : Fragment() {
             (requireActivity() as MainActivity).navigateToSession(null, null)
         }
         binding.shareBannerImage.setOnClickListener {
-            val clipboardManager: ClipboardManager =
-                requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            val clipboardManager: ClipboardManager = requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
             val clipData: ClipData = ClipData.newPlainText(CLIP_LABEL_SHARE, URL_SHARE)
             clipboardManager.setPrimaryClip(clipData)
         }

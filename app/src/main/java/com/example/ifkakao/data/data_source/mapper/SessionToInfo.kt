@@ -62,16 +62,16 @@ fun Session.toInfo(): Info {
         } ?: setOf(),
         sessionTime = SimpleDateFormat("HH:mm").format(Date(Yk7Sc6yEUma7)),
         company = when (`0xTNIhifz0t7`) {
-            "dk" -> "카카오"
-            "kep" -> "카카오엔터프라이즈"
-            "kakaopay" -> "카카오페이"
-            "km" -> "카카오모빌리티"
-            "kakaobank" -> "카카오뱅크"
-            "r" -> "카카오브레인"
-            "ku" -> "크러스트 유니버스"
-            "dg" -> "카카오게임즈"
-            "podo" -> "카카오엔터테인먼트"
-            "kpic" -> "카카오픽코마"
+            COMPANY_KEY_KAKAO -> COMPANY_VALUE_KAKAO
+            COMPANY_KEY_KAKAO_PA -> COMPANY_VALUE_KAKAO_PA
+            COMPANY_KEY_KAKAO_EP -> COMPANY_VALUE_KAKAO_EP
+            COMPANY_KEY_KAKAO_M -> COMPANY_VALUE_KAKAO_M
+            COMPANY_KEY_KAKAO_B -> COMPANY_VALUE_KAKAO_B
+            COMPANY_KEY_KAKAO_R -> COMPANY_VALUE_KAKAO_R
+            COMPANY_KEY_KAKAO_G -> COMPANY_VALUE_KAKAO_G
+            COMPANY_KEY_KAKAO_ET -> COMPANY_VALUE_KAKAO_ET
+            COMPANY_KEY_KU -> COMPANY_VALUE_KU
+            COMPANY_KEY_KAKAO_PI -> COMPANY_VALUE_KAKAO_PI
             else -> `0xTNIhifz0t7`
         },
         user3Id = b1ERX6ZDBfTy,

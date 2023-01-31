@@ -37,8 +37,7 @@ class HighlightListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_highlight, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_highlight, parent, false)
         return ViewHolder(onItemClick, ItemHighlightBinding.bind(view))
     }
 

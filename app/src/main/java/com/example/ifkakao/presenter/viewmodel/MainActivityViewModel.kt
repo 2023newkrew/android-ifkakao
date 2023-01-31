@@ -1,13 +1,13 @@
-package com.example.ifkakao.presenter
+package com.example.ifkakao.presenter.viewmodel
 
 import android.util.Log
-import com.example.ifkakao.domain.repository.SessionRepository
-import javax.inject.Inject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ifkakao.domain.repository.SessionRepository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val sessionRepository: SessionRepository) : ViewModel() {
+class MainActivityViewModel @Inject constructor(private val sessionRepository: SessionRepository) : ViewModel() {
     fun load() {
         viewModelScope.launch {
             val testLog = sessionRepository.getSessions()

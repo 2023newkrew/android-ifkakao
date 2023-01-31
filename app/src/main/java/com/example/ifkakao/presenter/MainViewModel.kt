@@ -8,10 +8,10 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class MainViewModel @Inject constructor(private val sessionRepository: SessionRepository) : ViewModel() {
-    fun load(){
-        viewModelScope.launch{
+    fun load() {
+        viewModelScope.launch {
             val testLog = sessionRepository.getSessions()
-            Log.d("test",testLog.toString())
+            Log.d("test", testLog.toString())
         }
     }
 }

@@ -4,11 +4,9 @@ import com.example.ifkakao.data.dto.ResultSession
 import com.example.ifkakao.data.network.SessionApiService
 import javax.inject.Inject
 
-class SessionRepositoryImpl @Inject constructor(){
-    @Inject
-    lateinit var sessionApiService: SessionApiService
+class SessionRepositoryImpl @Inject constructor(private var sessionApiService: SessionApiService) {
 
-    suspend fun getSessions(): List<ResultSession>{
+    suspend fun getSessions(): List<ResultSession> {
         return sessionApiService.getSessions()
     }
 }

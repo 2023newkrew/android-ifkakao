@@ -53,7 +53,7 @@ class GetSessionsUseCaseTest {
         var sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                tracks = listOf(Track.Ai, Track.DevOps)
+                tracks = setOf(Track.Ai, Track.DevOps)
             ),
             showLikeOnly = false
         )
@@ -62,7 +62,7 @@ class GetSessionsUseCaseTest {
         sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                tracks = listOf(Track.Mobile)
+                tracks = setOf(Track.Mobile)
             ),
             showLikeOnly = false
         )
@@ -71,7 +71,7 @@ class GetSessionsUseCaseTest {
         sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                tracks = listOf(Track.Re1015, Track.Ai, Track.BackEnd)
+                tracks = setOf(Track.Re1015, Track.Ai, Track.BackEnd)
             ),
             showLikeOnly = false
         )
@@ -111,7 +111,7 @@ class GetSessionsUseCaseTest {
         var sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                sessionTypes = listOf(SessionType.KeyNote)
+                sessionTypes = setOf(SessionType.KeyNote)
             ),
             showLikeOnly = false
         )
@@ -120,7 +120,7 @@ class GetSessionsUseCaseTest {
         sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                sessionTypes = listOf(SessionType.Preview)
+                sessionTypes = setOf(SessionType.Preview)
             ),
             showLikeOnly = false
         )
@@ -129,7 +129,7 @@ class GetSessionsUseCaseTest {
         sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                sessionTypes = listOf(SessionType.Preview, SessionType.KeyNote)
+                sessionTypes = setOf(SessionType.Preview, SessionType.KeyNote)
             ),
             showLikeOnly = false
         )
@@ -138,7 +138,7 @@ class GetSessionsUseCaseTest {
         sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                sessionTypes = listOf(SessionType.TechSession)
+                sessionTypes = setOf(SessionType.TechSession)
             ),
             showLikeOnly = false
         )
@@ -151,7 +151,7 @@ class GetSessionsUseCaseTest {
         var sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                companies = listOf(Company.KakaoEnterPrise)
+                companies = setOf(Company.KakaoEnterPrise)
             ),
             showLikeOnly = false
         )
@@ -160,7 +160,7 @@ class GetSessionsUseCaseTest {
         sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                companies = listOf(Company.Kakao)
+                companies = setOf(Company.Kakao)
             ),
             showLikeOnly = false
         )
@@ -169,7 +169,7 @@ class GetSessionsUseCaseTest {
         sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                companies = listOf(Company.Kakao, Company.KakaoEnterPrise)
+                companies = setOf(Company.Kakao, Company.KakaoEnterPrise)
             ),
             showLikeOnly = false
         )
@@ -181,8 +181,8 @@ class GetSessionsUseCaseTest {
         var sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                companies = listOf(Company.Kakao),
-                sessionTypes = listOf(SessionType.TechSession)
+                companies = setOf(Company.Kakao),
+                sessionTypes = setOf(SessionType.TechSession)
             ),
             showLikeOnly = false
         )
@@ -191,8 +191,8 @@ class GetSessionsUseCaseTest {
         sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                companies = listOf(Company.Kakao, Company.KakaoEnterPrise),
-                sessionTypes = listOf(SessionType.TechSession, SessionType.Preview)
+                companies = setOf(Company.Kakao, Company.KakaoEnterPrise),
+                sessionTypes = setOf(SessionType.TechSession, SessionType.Preview)
             ),
             showLikeOnly = false
         )
@@ -201,9 +201,9 @@ class GetSessionsUseCaseTest {
         sessions = getSessionUseCase(
             sessionDay = 0,
             sessionFilter = SessionFilter().copy(
-                companies = listOf(Company.Kakao, Company.KakaoEnterPrise),
-                sessionTypes = listOf(SessionType.TechSession, SessionType.Preview),
-                tracks = listOf(Track.BackEnd)
+                companies = setOf(Company.Kakao, Company.KakaoEnterPrise),
+                sessionTypes = setOf(SessionType.TechSession, SessionType.Preview),
+                tracks = setOf(Track.BackEnd)
             ),
             showLikeOnly = false
         )
@@ -212,9 +212,9 @@ class GetSessionsUseCaseTest {
         sessions = getSessionUseCase(
             sessionDay = 3,
             sessionFilter = SessionFilter().copy(
-                companies = listOf(Company.Kakao, Company.KakaoEnterPrise),
-                sessionTypes = listOf(SessionType.TechSession, SessionType.Preview),
-                tracks = listOf(Track.BackEnd)
+                companies = setOf(Company.Kakao, Company.KakaoEnterPrise),
+                sessionTypes = setOf(SessionType.TechSession, SessionType.Preview),
+                tracks = setOf(Track.BackEnd)
             ),
             showLikeOnly = false
         )

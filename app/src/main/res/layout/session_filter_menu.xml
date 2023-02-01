@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:background="@color/light_black"
         android:contentDescription="@string/button_close"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:src="@drawable/baseline_close_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -7,6 +7,7 @@
 
     <dimen name="line_space_small">3dp</dimen>
 
+    <dimen name="margin_xsmall">4dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_default">12dp</dimen>
     <dimen name="margin_large">16dp</dimen>

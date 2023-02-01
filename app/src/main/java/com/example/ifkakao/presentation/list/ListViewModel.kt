@@ -42,15 +42,16 @@ class ListViewModel @Inject constructor(
         viewModelScope.launch {
             val result = getSessionInfoListUseCase(
                 likeList = getLikes().first(),
-                track = sessionState.value.tracks,
+                tracks = sessionState.value.tracks,
                 types = sessionState.value.types,
-                company = sessionState.value.companies,
+                companies = sessionState.value.companies,
             )
             when (result) {
                 is ApiSuccess -> {
                     _sessionData.value = sessionData.value.copy(
                         sessionList = result.data
                     )
+                    println(result.data)
                 }
                 is ApiError -> {
                     println("*************ERROR*************")

@@ -5,6 +5,7 @@
     android:id="@+id/filter_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -63,9 +64,9 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:background="?attr/colorOnPrimary"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="?attr/colorOnPrimary">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
@@ -130,6 +131,7 @@
                         android:layout_weight="1" />
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/filter_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/filter_list_24" />
@@ -166,16 +168,28 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <!--    <com.google.android.material.navigation.NavigationView-->
-    <!--        android:id="@+id/filter_nav_view"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent">-->
-    <!--        <androidx.core.widget.NestedScrollView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:overScrollMode="never">-->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/filter_nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:backgroundTint="?attr/colorOnPrimary"
+        android:fitsSystemWindows="false"
+        app:itemTextColor="?attr/colorOnSecondary">
 
-    <!--        </androidx.core.widget.NestedScrollView>-->
-    <!--    </com.google.android.material.navigation.NavigationView>-->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/filter_drawer_nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:paddingStart="@dimen/margin_default"
+            android:paddingTop="?attr/actionBarSize"
+            android:paddingEnd="@dimen/margin_default">
+
+            <include
+                android:id="@+id/session_filter_drawer_menu"
+                layout="@layout/session_filter_drawer_menu" />
+        </androidx.core.widget.NestedScrollView>
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

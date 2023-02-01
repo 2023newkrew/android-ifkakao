@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.list
+package com.example.ifkakao.presentation.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

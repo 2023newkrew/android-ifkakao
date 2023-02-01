@@ -19,20 +19,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    flavorDimensions "version"
-    productFlavors {
-        dev {
-            dimension "version"
-            applicationIdSuffix ".dev"
-            versionNameSuffix "-dev"
-        }
-        real {
-            dimension "version"
-            applicationIdSuffix ".real"
-            versionNameSuffix "-real"
-        }
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -40,7 +26,6 @@ android {
         }
     }
     compileOptions {
-        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }

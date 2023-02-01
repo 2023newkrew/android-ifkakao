@@ -12,6 +12,7 @@
     <color name="gray">#ADAEB5</color>
     <color name="line_stoke">#2A3034</color>
     <color name="tab_blue">#62CFFA</color>
+    <color name="dark_gray">#3A4045</color>
     <color name="session_background">#222629</color>
     <color name="session_date">#C9CAD1</color>
     <color name="session_company">#ACADB4</color>

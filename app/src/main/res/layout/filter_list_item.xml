@@ -6,23 +6,20 @@
     android:layout_height="wrap_content"
     android:background="@color/light_black">
 
-    <CheckBox
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/checkbox_filter"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_filter_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="-5dp"
+        android:background="@android:color/transparent"
+        android:button="@drawable/selector_check_box"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:textColor="@color/gray"
         android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="@+id/checkbox_filter"
-        app:layout_constraintStart_toEndOf="@+id/checkbox_filter"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:checked="true"
         tools:text="키노트" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

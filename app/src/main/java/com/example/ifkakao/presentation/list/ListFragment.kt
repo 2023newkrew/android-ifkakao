@@ -48,6 +48,7 @@ class ListFragment : Fragment() {
 
         // recycler view, Adapter setting
         sessionListAdapter = SessionListAdapter()
+        sessionListAdapter.setHasStableIds(true)
         val recyclerView = binding.sessionRecyclerView
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)

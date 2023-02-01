@@ -10,6 +10,9 @@ import com.example.ifkakao.R
 import com.example.ifkakao.databinding.SessionListItemBinding
 import com.example.ifkakao.domain.model.Session
 import com.example.ifkakao.domain.model.getTypeAndTracksString
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.*
 
 class SessionListAdapter :
@@ -38,13 +41,15 @@ class SessionListAdapter :
         return ViewHolder(SessionListItemBinding.bind(view))
     }
 
-    @Suppress("DEPRECATION")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
             val session = currentList[position]
-            val date = Date(session.timeStamp)
-            val sessionDate = "%d.%02d".format(date.month + 1, date.date)
-            val sessionTime = "%02d:%02d".format(date.hours, date.minutes)
+            val date = LocalDateTime.ofInstant(
+                Instant.ofEpochMilli(session.timeStamp),
+                ZoneId.systemDefault()
+            )
+            val sessionDate = "%d.%02d".format(date.monthValue, date.dayOfMonth)
+            val sessionTime = "%02d:%02d".format(date.hour, date.minute)
             val typeAndTracks = session.getTypeAndTracksString()
             binding.tvSessionDate.text = sessionDate
             binding.tvSessionTime.text = sessionTime

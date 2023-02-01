@@ -2,9 +2,9 @@ package com.example.ifkakao.domain.model
 
 import org.junit.Assert.*
 import org.junit.Test
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.*
 
 @Suppress("NonAsciiCharacters", "SpellCheckingInspection")
@@ -40,12 +40,12 @@ class SessionTest {
 
     }
 
-    @Suppress("DEPRECATION")
     @Test
     fun `타임스탬프의 월, 일, 시간이 잘 파싱된다`() {
         val timeStamp = 1670468400000L
-        assertEquals(12, Date(timeStamp).month + 1)
-        assertEquals(8, Date(timeStamp).date)
-        assertEquals(12, Date(timeStamp).hours)
+        val date = LocalDateTime.ofInstant(Instant.ofEpochMilli(timeStamp), ZoneId.systemDefault())
+        assertEquals(12, date.monthValue)
+        assertEquals(8, date.dayOfMonth)
+        assertEquals(12, date.hour)
     }
 }

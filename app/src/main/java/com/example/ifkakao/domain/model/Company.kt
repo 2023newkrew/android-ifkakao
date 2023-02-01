@@ -1,6 +1,6 @@
 package com.example.ifkakao.domain.model
 
-enum class Company(val value: String) {
+enum class Company(val value: String) : FilterType {
     KAKAO("dk"),
     KAKAO_PAY("kakaopay"),
     KAKAO_ENTERPRISE("kep"),

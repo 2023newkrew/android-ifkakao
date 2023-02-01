@@ -3,7 +3,7 @@ package com.example.ifkakao.domain.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class Track(val value: String) {
+enum class Track(val value: String) : FilterType {
     RE1015("re1015"),
     ESG("esg"),
     GENERAL("general"),

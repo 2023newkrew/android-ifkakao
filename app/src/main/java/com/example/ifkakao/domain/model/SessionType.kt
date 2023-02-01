@@ -3,7 +3,7 @@ package com.example.ifkakao.domain.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class SessionType(val value: String) {
+enum class SessionType(val value: String) : FilterType {
     Tech("tech"),
     KeyNote("keynote"),
     Preview("preview"),

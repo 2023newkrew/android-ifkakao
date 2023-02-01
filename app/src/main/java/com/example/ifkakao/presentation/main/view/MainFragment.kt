@@ -33,6 +33,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             it.start()
         }
 
+
         return view
     }
 

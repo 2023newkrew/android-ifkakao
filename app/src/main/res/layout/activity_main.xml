@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/main_drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -22,19 +23,22 @@
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:fitsSystemWindows="true" />
+            android:fitsSystemWindows="false"
+            app:headerLayout="@layout/fragment_slide_menu"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/main_toolbar"
+        app:title="@string/app_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="start"
         android:background="#1A000000"
         android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:titleTextColor="@color/main_text_color" />
 
 </FrameLayout>

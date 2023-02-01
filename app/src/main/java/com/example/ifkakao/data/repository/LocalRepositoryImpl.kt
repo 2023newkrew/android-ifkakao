@@ -7,7 +7,11 @@ class LocalRepositoryImpl(private val sharedPreferences: SharedPreferences) : Lo
 
     override fun loadLikes(): MutableSet<String> {
         val set = setOf<String>()
-        return sharedPreferences.getStringSet("Likes", set) ?: setOf<String>().toMutableSet()
+        return try {
+            sharedPreferences.getStringSet("Likes", set) ?: setOf<String>().toMutableSet()
+        }catch (e: Exception){
+            emptySet<String>().toMutableSet()
+        }
     }
 
     override fun saveLike(set: Set<String>): Boolean =

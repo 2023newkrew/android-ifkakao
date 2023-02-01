@@ -51,4 +51,19 @@
         android:textColor="@color/blue_primary"
         android:textSize="@dimen/text_size_xsmall"
         tools:text="키노트" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/session_like_image"
+        android:layout_width="@dimen/size_like"
+        android:layout_height="@dimen/size_like"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/margin_small_minus"
+        android:layout_marginBottom="@dimen/margin_small_minus"
+        android:padding="@dimen/margin_xsmall"
+        android:src="@drawable/icon_like" />
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -30,5 +30,6 @@ data class Info(
     val liveChannelUrl: String,
     val sessionVodLink: String,
     val sessionImage: String,
-    val tags: String
+    val tags: String,
+    var like: Boolean
 ) : Parcelable

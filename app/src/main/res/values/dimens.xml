@@ -1,5 +1,6 @@
 <resources>
     <dimen name="size_button">56dp</dimen>
+    <dimen name="size_like">40dp</dimen>
     <dimen name="size_check_box">20dp</dimen>
     <dimen name="height_session">216dp</dimen>
     <dimen name="height_session_double">432dp</dimen>

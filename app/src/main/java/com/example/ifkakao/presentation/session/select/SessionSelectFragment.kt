@@ -36,7 +36,7 @@ class SessionSelectFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: SessionSelectViewModel by viewModels()
 
-    private var sessionListAdapter = SessionSelectListAdapter(::onSessionItemClick)
+    private var sessionListAdapter = SessionSelectListAdapter(::onSessionItemClick, ::onSessionLikeClick)
     private var typeFilterListAdapter = FilterListAdapter(FILTER_CODE_TYPE, ::onTypeFilterItemClick)
     private var trackFilterListAdapter = FilterListAdapter(FILTER_CODE_TRACK, ::onTrackFilterItemClick)
     private var companyFilterListAdapter = FilterListAdapter(FILTER_CODE_COMPANY, ::onCompanyFilterItemClick)
@@ -191,9 +191,9 @@ class SessionSelectFragment : Fragment() {
 
         // initialize session recycler view
         val sessionRecyclerView = binding.sessionList
-        sessionRecyclerView.layoutManager =
-            GridLayoutManager(requireContext(), 2)  // TODO change span dynamic
+        sessionRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)  // TODO change span dynamic
         sessionRecyclerView.adapter = sessionListAdapter
+        sessionRecyclerView.itemAnimator = null
 
         // initialize tab layout
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -294,5 +294,9 @@ class SessionSelectFragment : Fragment() {
             .replace(R.id.session_fragment_container, detailFragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun onSessionLikeClick(position: Int) {
+        viewModel.toggleLike(viewModel.state.value.filteredInfoList[position].id)
     }
 }

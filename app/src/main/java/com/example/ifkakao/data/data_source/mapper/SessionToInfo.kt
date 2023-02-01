@@ -80,6 +80,7 @@ fun Session.toInfo(): Info {
         liveChannelUrl = p5Z5M0DP08AF ?: "",
         sessionVodLink = I729yvCqaONJ ?: "",
         sessionImage = L9WirNOAVF4J ?: "",
-        tags = X_7c2hMWtxne ?: ""
+        tags = X_7c2hMWtxne ?: "",
+        like = false
     )
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.main_session.fragment.ChoiceSessionTrackFragment">
+    tools:context=".presentation.main.fragment.ChoiceSessionTrackFragment">
 
     <TextView
         android:layout_width="match_parent"

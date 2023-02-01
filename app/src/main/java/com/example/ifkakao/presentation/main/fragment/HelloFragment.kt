@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.main_session.fragment
+package com.example.ifkakao.presentation.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,4 +14,6 @@ class HelloFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_hello, container, false)
     }
+
+
 }

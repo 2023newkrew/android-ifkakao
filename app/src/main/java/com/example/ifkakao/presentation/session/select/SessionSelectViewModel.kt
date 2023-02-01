@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SessionViewModel @Inject constructor(
+class SessionSelectViewModel @Inject constructor(
     private val getSessionsUseCase: GetSessionsUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(SessionState())
@@ -21,7 +21,9 @@ class SessionViewModel @Inject constructor(
     private val infoList = mutableListOf<Info>()
 
     fun loadInfoList() = viewModelScope.launch {
-        getSessionsUseCase().map { infoList.add(it.toInfo()) }
+        if (infoList.isEmpty()) {
+            getSessionsUseCase().map { infoList.add(it.toInfo()) }
+        }
         filterInfoList()
     }
 
@@ -68,11 +70,23 @@ class SessionViewModel @Inject constructor(
         filterInfoList()
     }
 
+    fun resetFilter() {
+        _state.value = state.value.copy(
+            typeSet = setOf(),
+            trackSet = setOf(),
+            companySet = setOf()
+        )
+        filterInfoList()
+    }
+
     private fun filterInfoList() {
         val filteredInfoList = mutableListOf<Info>()
             .apply { addAll(infoList) }
             .filter { state.value.typeSet.isEmpty() || state.value.typeSet.contains(it.sessionType) }
-            .filter { state.value.trackSet.isEmpty() || state.value.trackSet.intersect(it.track).isNotEmpty() }
+            .filter {
+                state.value.trackSet.isEmpty() || state.value.trackSet.intersect(it.track)
+                    .isNotEmpty()
+            }
             .filter { state.value.companySet.isEmpty() || state.value.companySet.contains(it.company) }
             .filter { state.value.day == 0 || state.value.day == it.sessionDay }
         _state.value = state.value.copy(

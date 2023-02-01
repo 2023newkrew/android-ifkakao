@@ -1,7 +1,7 @@
 package com.example.ifkakao.presentation.session
 
 import com.example.ifkakao.BASE_URL_SESSIONS
-import com.example.ifkakao.TYPE_KEY_KEYNOTE
+import com.example.ifkakao.TYPE_VALUE_KEYNOTE
 import com.example.ifkakao.data.repository.SessionRepositoryImpl
 import com.example.ifkakao.data.retrofit.SessionService
 import com.example.ifkakao.domain.use_case.GetSessionsUseCase
@@ -15,7 +15,7 @@ import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.create
 
-class SessionViewModelTest {
+class SessionSelectViewModelTest {
     @OptIn(ExperimentalSerializationApi::class)
     private val sessionService: SessionService =
         Retrofit.Builder()
@@ -25,13 +25,13 @@ class SessionViewModelTest {
             .create()
     private val sessionRepositoryImpl = SessionRepositoryImpl(sessionService)
     private val sessionsUseCase = GetSessionsUseCase(sessionRepositoryImpl)
-    private val viewModel = SessionViewModel(sessionsUseCase)
+    private val viewModel = SessionSelectViewModel(sessionsUseCase)
 
     @Test
     fun testFilterInfoList() = runBlocking {
         viewModel.loadInfoList()
         delay(5000)
-        viewModel.filterInfoListByType(TYPE_KEY_KEYNOTE)
-        Assert.assertEquals(viewModel.state.value.filteredInfoList[0].sessionType, TYPE_KEY_KEYNOTE)
+        viewModel.filterInfoListByType(TYPE_VALUE_KEYNOTE)
+        Assert.assertEquals(viewModel.state.value.filteredInfoList[0].sessionType, TYPE_VALUE_KEYNOTE)
     }
 }

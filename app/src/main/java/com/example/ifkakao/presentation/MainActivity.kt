@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         // initialize action bar
         val toolbar = binding.includeToolbar.toolbar
-        toolbar.setOnClickListener { navController.navigateUp() }
+        toolbar.setOnClickListener { navigateToHome() }
         setSupportActionBar(binding.includeToolbar.toolbar)
 
         // initialize navigation drawer
@@ -102,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         // initialize navigation header
         val navigationHeaderView = navigationView.getHeaderView(0)
         navigationHeaderView.findViewById<TextView>(R.id.header_title).setOnClickListener {
-            navController.navigateUp()
+            navigateToHome()
             drawerLayout.close()
         }
         navigationHeaderView.findViewById<ImageView>(R.id.close_button).setOnClickListener {
@@ -128,13 +129,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun navigateToHome() {
-        // TODO
+        navController.navigateUp()
     }
 
     fun navigateToSession(type: String?, track: String?) {
-        val args = Bundle()
-        args.putString(ARG_KEY_TYPE, type)
-        args.putString(ARG_KEY_TRACK, track)
+        val args = Bundle().apply {
+            putString(ARG_KEY_TYPE, type)
+            putString(ARG_KEY_TRACK, track)
+        }
         navController.navigate(R.id.action_home_to_session, args)
+    }
+
+    fun showToolbar() {
+        binding.includeToolbar.toolbarLayout.isVisible = true
+    }
+
+    fun hideToolbar() {
+        binding.includeToolbar.toolbarLayout.isVisible = false
     }
 }

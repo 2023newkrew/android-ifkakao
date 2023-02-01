@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:button="@drawable/selector_check_box_button"
+        android:checked="false"
+        android:minHeight="0dp"
+        android:paddingStart="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingEnd="@dimen/margin_small"
+        android:paddingBottom="@dimen/margin_small"
+        android:textColor="@color/gray_content"
+        android:textSize="@dimen/text_size_small"
+        tools:text="1015장애 회고" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

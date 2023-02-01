@@ -26,6 +26,9 @@ class ListViewModel @Inject constructor(
     private val _sessionState = MutableStateFlow(SessionState())
     val sessionState = _sessionState.asStateFlow()
 
+    private val _sessionData = MutableStateFlow(SessionData())
+    val sessionData = _sessionData.asStateFlow()
+
     init {
         viewModelScope.launch {
             getSessions()
@@ -45,7 +48,7 @@ class ListViewModel @Inject constructor(
             )
             when (result) {
                 is ApiSuccess -> {
-                    _sessionState.value = sessionState.value.copy(
+                    _sessionData.value = sessionData.value.copy(
                         sessionList = result.data
                     )
                 }
@@ -61,7 +64,42 @@ class ListViewModel @Inject constructor(
                 }
             }
         }
+    }
 
+    fun checkType(sessionType: SessionType) {
+        _sessionState.value = sessionState.value.copy(
+            types = sessionState.value.types.plus(sessionType)
+        )
+    }
+
+    fun unCheckType(sessionType: SessionType) {
+        _sessionState.value = sessionState.value.copy(
+            types = sessionState.value.types.minus(sessionType)
+        )
+    }
+
+    fun checkTrack(track: Track) {
+        _sessionState.value = sessionState.value.copy(
+            tracks = sessionState.value.tracks.plus(track)
+        )
+    }
+
+    fun unCheckTrack(track: Track) {
+        _sessionState.value = sessionState.value.copy(
+            tracks = sessionState.value.tracks.minus(track)
+        )
+    }
+
+    fun checkCompany(company: Company) {
+        _sessionState.value = sessionState.value.copy(
+            companies = sessionState.value.companies.plus(company)
+        )
+    }
+
+    fun unCheckCompany(company: Company) {
+        _sessionState.value = sessionState.value.copy(
+            companies = sessionState.value.companies.minus(company)
+        )
     }
 
     // 좋아요 확장 함수
@@ -82,5 +120,8 @@ data class SessionState(
     val tracks: Set<Track> = setOf(),
     val companies: Set<Company> = setOf(),
     val day: SessionDay? = null,
+)
+
+data class SessionData(
     val sessionList: List<SessionInfo> = mutableListOf()
 )

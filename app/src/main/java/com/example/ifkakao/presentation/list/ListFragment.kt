@@ -44,15 +44,21 @@ class ListFragment : Fragment() {
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.sessionState.collect { state ->
-                    println(state.sessionList)
+                viewModel.sessionState.collect {
+                    viewModel.getSessions()
+                }
+            }
+        }
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.sessionData.collect { state ->
                     sessionListAdapter.submitList(state.sessionList.toMutableList())
                 }
             }
         }
 
         binding.floatingUpButton.setOnClickListener {
-            binding.nestedScrollView.smoothScrollTo(0, 0)
+            binding.sessionRecyclerView.smoothScrollToPosition(0)
         }
     }
 

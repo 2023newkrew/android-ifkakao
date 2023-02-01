@@ -72,7 +72,7 @@ fun Session.toInfo(): Info {
             COMPANY_KEY_KAKAO_ET -> COMPANY_VALUE_KAKAO_ET
             COMPANY_KEY_KU -> COMPANY_VALUE_KU
             COMPANY_KEY_KAKAO_PI -> COMPANY_VALUE_KAKAO_PI
-            else -> ""
+            else -> "grepp"
         },
         user3Id = b1ERX6ZDBfTy ?: "",
         meetupRegisterLink = WCrhrhpRLki9 ?: "",

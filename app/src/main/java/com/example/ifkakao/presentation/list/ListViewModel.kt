@@ -45,6 +45,7 @@ class ListViewModel @Inject constructor(
                 tracks = sessionState.value.tracks,
                 types = sessionState.value.types,
                 companies = sessionState.value.companies,
+                day = sessionState.value.day,
             )
             when (result) {
                 is ApiSuccess -> {
@@ -65,6 +66,12 @@ class ListViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun setSessionDay(day: SessionDay) {
+        _sessionState.value = sessionState.value.copy(
+            day = day
+        )
     }
 
     fun checkType(sessionType: SessionType) {
@@ -120,7 +127,7 @@ data class SessionState(
     val types: Set<SessionType> = setOf(),
     val tracks: Set<Track> = setOf(),
     val companies: Set<Company> = setOf(),
-    val day: SessionDay? = null,
+    val day: SessionDay = SessionDay.Null,
 )
 
 data class SessionData(

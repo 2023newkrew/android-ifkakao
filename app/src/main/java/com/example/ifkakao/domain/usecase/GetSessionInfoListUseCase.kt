@@ -17,6 +17,7 @@ class GetSessionInfoListUseCase(private val repository: SessionRepository) {
         types: Set<SessionType> = setOf(),
         tracks: Set<Track> = setOf(),
         companies: Set<Company> = setOf(),
+        day: SessionDay = SessionDay.Null,
     ): ApiResult<List<SessionInfo>>? {
         if (result == null) {
             result = repository.getSessions()
@@ -46,6 +47,9 @@ class GetSessionInfoListUseCase(private val repository: SessionRepository) {
                         }
                         if (companies.isNotEmpty()) {
                             temp = temp && it.company in companies
+                        }
+                        if (day != SessionDay.Null) {
+                            temp = temp && it.sessionDay == day
                         }
                         temp
                     }

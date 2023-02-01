@@ -1,12 +1,15 @@
 package com.example.ifkakao.presentation.list
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -18,12 +21,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FilterListBinding
 import com.example.ifkakao.databinding.FragmentListBinding
-import com.example.ifkakao.domain.model.Company
-import com.example.ifkakao.domain.model.FilterType
-import com.example.ifkakao.domain.model.SessionType
-import com.example.ifkakao.domain.model.Track
+import com.example.ifkakao.domain.model.*
 import com.example.ifkakao.presentation.list.adapter.FilterListAdapter
 import com.example.ifkakao.presentation.list.adapter.SessionListAdapter
+import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -66,6 +67,21 @@ class ListFragment : Fragment() {
             Company.values().toList()
         )
 
+        // tab layout setting
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val day = tab?.position ?: 0
+                if (day == 0) {
+                    viewModel.setSessionDay(SessionDay.Null)
+                } else {
+                    viewModel.setSessionDay(SessionDay.from(day.toString()))
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.sessionState.collect { state ->
@@ -77,13 +93,28 @@ class ListFragment : Fragment() {
                         binding.sessionFilterDrawerMenu.companyFilter,
                         state.companies.size
                     )
+
+                    binding.filterButton.imageTintList = ColorStateList.valueOf(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            if (state.types.isNotEmpty() || state.tracks.isNotEmpty() || state.companies.isNotEmpty()) {
+                                R.color.deepskyblue
+                            } else {
+                                R.color.white
+                            }
+                        )
+                    )
                 }
             }
+
         }
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.sessionData.collect { state ->
-                    sessionListAdapter.submitList(state.sessionList.toMutableList())
+                    val recyclerViewState = recyclerView.layoutManager?.onSaveInstanceState()
+                    sessionListAdapter.submitList(state.sessionList.toMutableList()) {
+                        recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
+                    }
                 }
             }
         }

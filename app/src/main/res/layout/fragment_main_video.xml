@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presenter.fragment.MainVideoFragment">
+    tools:context=".presentation.main_session.fragment.MainVideoFragment">
 
     <VideoView
         android:id="@+id/main_video_view"

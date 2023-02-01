@@ -1,6 +1,6 @@
 package com.example.ifkakao.di.component
 
-import com.example.ifkakao.presenter.activity.MainActivity
+import com.example.ifkakao.presentation.main_session.activity.MainActivity
 import dagger.Subcomponent
 
 @Subcomponent

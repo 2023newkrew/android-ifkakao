@@ -1,4 +1,4 @@
-package com.example.ifkakao.presenter.fragment
+package com.example.ifkakao.presentation.main_session.fragment
 
 import android.net.Uri
 import android.os.Bundle

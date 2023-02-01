@@ -173,7 +173,10 @@ class SessionListFragment : Fragment(R.layout.fragment_session_list) {
                 )
             }
         }
-        filterListBinding.recyclerFilterItems.adapter = adapter
+        // prevent recycler item blinking
+        adapter.setHasStableIds(true)
+        filterListBinding.recyclerFilterItems.adapter =
+            adapter
     }
 
     private fun filterSubmitFilterItems(

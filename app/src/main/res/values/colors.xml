@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#1D1F21</color>
+    <color name="start_blue">#37DCFF</color>
+    <color name="main_text_color">#EFF0F7</color>
+    <color name="session_blue">#18D2FF</color>
+    <color name="radio_unselected">#ADAEB6</color>
+    <color name="session_grid_background">#212629</color>
+    <color name="session_detail_button">#394046</color>
 </resources>

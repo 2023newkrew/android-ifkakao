@@ -1,9 +1,14 @@
 package com.example.ifkakao.data.di
 
+import androidx.datastore.preferences.preferencesDataStore
 import com.example.ifkakao.BASE_URL_SESSIONS
+import com.example.ifkakao.DATA_STORE_NAME_LIKE
 import com.example.ifkakao.data.retrofit.SessionService
+import com.example.ifkakao.domain.repository.DataStoreRepository
 import com.example.ifkakao.domain.repository.SessionRepository
+import com.example.ifkakao.domain.use_case.GetLikeUseCase
 import com.example.ifkakao.domain.use_case.GetSessionsUseCase
+import com.example.ifkakao.domain.use_case.PutLikeUseCase
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -32,4 +37,16 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGetSessionsUseCase(repository: SessionRepository) = GetSessionsUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideLikeDataStore() = preferencesDataStore(DATA_STORE_NAME_LIKE)
+
+    @Provides
+    @Singleton
+    fun provideGetLikeUseCase(repository: DataStoreRepository) = GetLikeUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun providePutLikeUseCase(repository: DataStoreRepository) = PutLikeUseCase(repository)
 }

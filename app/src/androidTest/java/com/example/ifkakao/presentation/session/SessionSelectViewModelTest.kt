@@ -5,6 +5,7 @@ import com.example.ifkakao.TYPE_VALUE_KEYNOTE
 import com.example.ifkakao.data.repository.SessionRepositoryImpl
 import com.example.ifkakao.data.retrofit.SessionService
 import com.example.ifkakao.domain.use_case.GetSessionsUseCase
+import com.example.ifkakao.presentation.session.select.SessionSelectViewModel
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.*
 import kotlinx.serialization.ExperimentalSerializationApi

@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ifkakao.*
 import com.example.ifkakao.databinding.FragmentSessionSelectBinding
 import com.example.ifkakao.presentation.MainActivity
-import com.example.ifkakao.presentation.session.SessionSelectViewModel
 import com.example.ifkakao.presentation.session.detail.DetailFragment
 import com.example.ifkakao.presentation.session.select.adapter.FilterListAdapter
 import com.example.ifkakao.presentation.session.select.adapter.SessionSelectListAdapter

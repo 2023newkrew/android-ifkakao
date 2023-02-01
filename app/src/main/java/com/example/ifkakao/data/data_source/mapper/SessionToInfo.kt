@@ -35,7 +35,7 @@ fun Session.toInfo(): Info {
         liveImageUrl = `9yVKHSTkTNmF` ?: "",
         user1Id = kwC3iO8Lbj6D ?: "",
         user1Image = PAifZyJwjcmh ?: "",
-        id = id,
+        id = id.toString(),
         track =
         GgWcMRm0cNSS?.let { track ->
             track.substring(1, track.length - 1)

@@ -102,3 +102,5 @@ const val BASE_URL_SESSIONS = "http://104.198.248.76:3000/"
 const val URL_COC = "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"
 const val URL_SHARE = "https://if.kakao.com"
 const val URL_SCHEDULE = "https://t1.kakaocdn.net/inhouse_daglona/ifkakao_2022/static/prod/timetable.html"
+
+const val DATA_STORE_NAME_LIKE = "like"

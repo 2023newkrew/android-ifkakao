@@ -20,7 +20,7 @@ data class Info(
     val liveImageUrl: String,
     val user1Id: String,
     val user1Image: String,
-    val id: Int = 0,
+    val id: String,
     val track: Set<String> = setOf(),
     val sessionTime: String,
     val company: String,

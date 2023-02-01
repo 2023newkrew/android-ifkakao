@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.session
+package com.example.ifkakao.presentation.session.select
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -7,10 +7,7 @@ import androidx.fragment.app.commit
 import com.example.ifkakao.R
 import com.example.ifkakao.di.MyApplication
 import com.example.ifkakao.di.component.MainComponent
-import com.example.ifkakao.presenter.fragment.ChoiceSessionTrackFragment
-import com.example.ifkakao.presenter.fragment.ChoiceSessionTypeFragment
-import com.example.ifkakao.presenter.fragment.HelloFragment
-import com.example.ifkakao.presenter.fragment.MainVideoFragment
+import com.example.ifkakao.presenter.fragment.*
 import com.example.ifkakao.presenter.viewmodel.MainActivityViewModel
 import javax.inject.Inject
 
@@ -30,10 +27,11 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<MainVideoFragment>(R.id.main_video_fragment_container_view)
-                add<HelloFragment>(R.id.hello_fragment_container_view)
-                add<ChoiceSessionTypeFragment>(R.id.choice_session_type_fragment_container_view)
+//                add<MainVideoFragment>(R.id.main_video_fragment_container_view)
+//                add<HelloFragment>(R.id.hello_fragment_container_view)
+//                add<ChoiceSessionTypeFragment>(R.id.choice_session_type_fragment_container_view)
                 add<ChoiceSessionTrackFragment>(R.id.choice_session_track_fragment_container_view)
+//                add<EndingBannerFragment>(R.id.ending_banner_fragment_container_view)
             }
         }
 

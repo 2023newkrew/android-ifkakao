@@ -34,5 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_choice_session_track" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/ending_banner_fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_choice_session_track" />
     </LinearLayout>
 </ScrollView>

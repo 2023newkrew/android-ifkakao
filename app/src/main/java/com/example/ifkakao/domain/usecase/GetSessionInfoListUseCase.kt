@@ -42,8 +42,11 @@ class GetSessionInfoListUseCase(private val repository: SessionRepository) {
                             temp = it.sessionType in types
                         }
                         if (tracks.isNotEmpty()) {
-                            if (it.track.toSet().intersect(tracks).isNotEmpty())
-                                temp = temp && true
+                            temp = if (it.track.toSet().intersect(tracks).isNotEmpty()) {
+                                temp
+                            } else {
+                                false
+                            }
                         }
                         if (companies.isNotEmpty()) {
                             temp = temp && it.company in companies

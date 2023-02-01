@@ -132,6 +132,10 @@ class ListFragment : Fragment() {
             binding.filterDrawerLayout.open()
         }
 
+        binding.sessionFilterDrawerMenu.filterResetButton.setOnClickListener {
+            viewModel.resetFilter()
+        }
+
         binding.floatingUpButton.setOnClickListener {
             binding.sessionRecyclerView.smoothScrollToPosition(0)
         }

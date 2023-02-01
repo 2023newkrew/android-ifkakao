@@ -52,7 +52,6 @@ class ListViewModel @Inject constructor(
                     _sessionData.value = sessionData.value.copy(
                         sessionList = result.data
                     )
-                    println(result.data)
                 }
                 is ApiError -> {
                     println("*************ERROR*************")
@@ -107,6 +106,15 @@ class ListViewModel @Inject constructor(
     fun unCheckCompany(company: Company) {
         _sessionState.value = sessionState.value.copy(
             companies = sessionState.value.companies.minus(company)
+        )
+    }
+
+    fun resetFilter() {
+        _sessionState.value = sessionState.value.copy(
+            types = setOf(),
+            tracks = setOf(),
+            companies = setOf(),
+            day = SessionDay.Null,
         )
     }
 

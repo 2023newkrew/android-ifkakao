@@ -1,0 +1,20 @@
+<resources>
+    <dimen name="fragment_margin_vertical">56dp</dimen>
+    <dimen name="fragment_margin_horizontal">48dp</dimen>
+
+    <dimen name="content_margin_near">12dp</dimen>
+    <dimen name="content_margin_normal">24dp</dimen>
+    <dimen name="content_margin_far">36dp</dimen>
+
+    <dimen name="TODO">36dp</dimen>
+
+    <dimen name="button_radius">56dp</dimen>
+
+    <dimen name="text_size_xxsmall">12sp</dimen>
+    <dimen name="text_size_xsmall">13sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_default">16sp</dimen>
+    <dimen name="text_size_large">17sp</dimen>
+    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="text_size_xxlarge">24sp</dimen>
+</resources>

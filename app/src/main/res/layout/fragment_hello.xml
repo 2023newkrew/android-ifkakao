@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presenter.fragment.HelloFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_margin_vertical"
+        android:text="@string/hello_text_01"
+        android:textAlignment="center"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_near"
+        android:text="@string/hello_text_02"
+        android:textAlignment="center"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_size_xsmall"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/all_session_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:layout_marginBottom="@dimen/fragment_margin_vertical"
+        android:background="@drawable/rectangle_button"
+        android:text="@string/go_to_all_session_text"
+        android:textColor="@color/background_black"
+        android:textSize="@dimen/text_size_xsmall"
+        android:textStyle="bold" />
+</LinearLayout>

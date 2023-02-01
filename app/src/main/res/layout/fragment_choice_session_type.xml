@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_margin_vertical"
+        android:text="@string/choice_session_type_title"
+        android:textAlignment="center"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/keynote_card_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fragment_margin_horizontal"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:layout_marginBottom="@dimen/content_margin_near"
+        android:layout_marginEnd="@dimen/fragment_margin_horizontal"
+        android:adjustViewBounds="true"
+        android:src="@drawable/type_01" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dev_session_card_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fragment_margin_horizontal"
+        android:layout_marginTop="@dimen/content_margin_near"
+        android:layout_marginBottom="@dimen/content_margin_near"
+        android:layout_marginEnd="@dimen/fragment_margin_horizontal"
+        android:adjustViewBounds="true"
+        android:src="@drawable/type_02" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dev_ethics_card_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fragment_margin_horizontal"
+        android:layout_marginTop="@dimen/content_margin_near"
+        android:layout_marginEnd="@dimen/fragment_margin_horizontal"
+        android:layout_marginBottom="@dimen/fragment_margin_vertical"
+        android:adjustViewBounds="true"
+        android:src="@drawable/type_03" />
+</LinearLayout>

@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginStart="@dimen/margin_xsmall"
                 android:text="세션 목록으로 돌아가기"
                 android:textSize="@dimen/text_size_small" />
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -61,8 +61,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_small"
-                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_marginStart="@dimen/margin_xsmall"
+                android:layout_marginEnd="@dimen/margin_xsmall"
                 android:text=" |  "
                 android:textColor="@color/gray_content"
                 android:textSize="@dimen/text_size_xxsmall" />
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_xsmall"
             android:textColor="@color/gray_content"
             android:textSize="@dimen/text_size_xsmall"
             tools:text="2022.12.08" />
@@ -129,6 +129,35 @@
             android:textColor="@color/white_content"
             android:textSize="@dimen/text_size_small"
             tools:text="설명" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/detail_presentation_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginStart="@dimen/margin_default"
+            android:background="@drawable/background_button_round_outline"
+            android:paddingStart="@dimen/margin_default"
+            android:paddingTop="@dimen/margin_small"
+            android:paddingEnd="@dimen/margin_default"
+            android:paddingBottom="@dimen/margin_small">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:paddingTop="@dimen/margin_xxxsmall"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_download" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_xsmall"
+                android:text="발표 자료"
+                android:textSize="@dimen/text_size_xxsmall"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include
             android:id="@+id/detail_user_1"

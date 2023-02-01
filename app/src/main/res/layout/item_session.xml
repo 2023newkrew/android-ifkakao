@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_session"
-    android:layout_margin="@dimen/margin_small"
+    android:layout_margin="@dimen/margin_xsmall"
     android:background="@drawable/background_session_item"
     android:orientation="vertical"
     android:padding="@dimen/margin_default">
@@ -29,7 +29,7 @@
         android:id="@+id/session_company_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_xsmall"
         android:textColor="@color/gray_content"
         android:textSize="@dimen/text_size_xsmall"
         tools:text="카카오" />
@@ -38,7 +38,7 @@
         android:id="@+id/session_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_xsmall"
         android:textSize="@dimen/text_size_small"
         android:textStyle="bold"
         tools:text="Our Social Mission" />
@@ -47,7 +47,7 @@
         android:id="@+id/session_track_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_xsmall"
         android:textColor="@color/blue_primary"
         android:textSize="@dimen/text_size_xsmall"
         tools:text="키노트" />

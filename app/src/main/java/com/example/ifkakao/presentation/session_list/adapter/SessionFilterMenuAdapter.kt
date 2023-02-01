@@ -23,7 +23,7 @@ class SessionFilterMenuAdapter(private val onCheck: (Int, Boolean) -> Unit) :
                 oldItem: FilterListItem,
                 newItem: FilterListItem
             ): Boolean {
-                return oldItem == newItem
+                return oldItem === newItem
             }
 
             override fun areContentsTheSame(

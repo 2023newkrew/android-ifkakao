@@ -32,6 +32,7 @@ class SessionFragment : Fragment() {
             val sessionSelectFragment = SessionSelectFragment()
             arguments?.let { sessionSelectFragment.arguments = it }
             parentFragmentManager.beginTransaction()
+                .setReorderingAllowed(true)
                 .add(R.id.session_fragment_container, sessionSelectFragment)
                 .commit()
         }

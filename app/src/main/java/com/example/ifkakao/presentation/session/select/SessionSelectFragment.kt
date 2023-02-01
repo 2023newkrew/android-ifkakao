@@ -291,6 +291,7 @@ class SessionSelectFragment : Fragment() {
             arguments = args
         }
         parentFragmentManager.beginTransaction()
+            .setReorderingAllowed(true)
             .replace(R.id.session_fragment_container, detailFragment)
             .addToBackStack(null)
             .commit()

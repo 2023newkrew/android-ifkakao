@@ -1,6 +1,6 @@
 package com.example.ifkakao.domain.model
 
-enum class SessionType(val alias: String) {
+enum class SessionType(val alias: String) : SessionFilterableItem {
     KeyNote("keynote"), Preview("preview"), TechSession("tech");
 
     override fun toString(): String =

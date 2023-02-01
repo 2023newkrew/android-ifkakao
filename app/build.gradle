@@ -89,9 +89,6 @@ dependencies {
     implementation "androidx.room:room-runtime:2.5.0"
     kapt "androidx.room:room-compiler:2.5.0"
     annotationProcessor "androidx.room:room-compiler:2.5.0"
-    
-    // LocalDateTime Support < API 26
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.0'
 }
 
 kapt {

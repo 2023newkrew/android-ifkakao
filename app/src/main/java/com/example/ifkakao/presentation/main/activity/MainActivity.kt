@@ -8,10 +8,11 @@ import com.example.ifkakao.R
 import com.example.ifkakao.di.MyApplication
 import com.example.ifkakao.di.component.MainComponent
 import com.example.ifkakao.presentation.main.fragment.*
+import com.example.ifkakao.presentation.main.listener.MainActivityListener
 import com.example.ifkakao.presentation.main.viewmodel.MainActivityViewModel
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainActivityListener {
 
     @Inject
     lateinit var mainComponent: MainComponent
@@ -24,17 +25,16 @@ class MainActivity : AppCompatActivity() {
         mainComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                add<MainVideoFragment>(R.id.main_video_fragment_container_view)
-                add<HelloFragment>(R.id.hello_fragment_container_view)
-                add<ChoiceSessionTypeFragment>(R.id.choice_session_type_fragment_container_view)
-                add<ChoiceSessionTrackFragment>(R.id.choice_session_track_fragment_container_view)
-                add<EndingBannerFragment>(R.id.ending_banner_fragment_container_view)
-            }
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            add<MainFragment>(R.id.main_fragment_container_view)
         }
 
 //        viewModel.load()
+    }
+    override fun fragmentCallBack(code: MainActivityListener.Code) {
+        when (code){
+            MainActivityListener.Code.GO_TO_SESSION_LIST -> println("allen : ActivityGo")
+        }
     }
 }

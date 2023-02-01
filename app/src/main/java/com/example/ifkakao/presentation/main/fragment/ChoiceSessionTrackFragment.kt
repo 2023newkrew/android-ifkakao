@@ -1,5 +1,6 @@
 package com.example.ifkakao.presentation.main.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,26 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentChoiceSessionTrackBinding
 import com.example.ifkakao.presentation.main.adapter.TrackGridAdapter
+import com.example.ifkakao.presentation.main.listener.MainActivityListener
 
-class ChoiceSessionTrackFragment : Fragment() {
+class ChoiceSessionTrackFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentChoiceSessionTrackBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var parentListener: MainActivityListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is MainActivityListener) {
+            parentListener = context
+        } else {
+            throw ClassCastException(
+                context.toString()
+                        + " must implement OnFragmentInteractionListener"
+            )
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +52,13 @@ class ChoiceSessionTrackFragment : Fragment() {
         binding.trackList.layoutManager = GridLayoutManager(activity, 2)
         adapter.list = dataList
 
+        binding.sessionButton.setOnClickListener(this)
+
         return binding.root
+    }
+
+    override fun onClick(v: View?) {
+        parentListener.fragmentCallBack(MainActivityListener.Code.GO_TO_SESSION_LIST)
     }
 
     override fun onDestroyView() {

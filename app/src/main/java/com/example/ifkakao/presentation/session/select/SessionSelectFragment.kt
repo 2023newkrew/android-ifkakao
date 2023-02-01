@@ -40,6 +40,7 @@ class SessionSelectFragment : Fragment() {
     private var typeFilterListAdapter = FilterListAdapter(FILTER_CODE_TYPE, ::onTypeFilterItemClick)
     private var trackFilterListAdapter = FilterListAdapter(FILTER_CODE_TRACK, ::onTrackFilterItemClick)
     private var companyFilterListAdapter = FilterListAdapter(FILTER_CODE_COMPANY, ::onCompanyFilterItemClick)
+    private var likeFilterListAdapter = FilterListAdapter(FILTER_CODE_LIKE, ::onLikeFilterItemClick)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,7 +70,8 @@ class SessionSelectFragment : Fragment() {
                     val isTypeFiltered = state.typeSet.isNotEmpty()
                     val isTrackFiltered = state.trackSet.isNotEmpty()
                     val isCompanyFiltered = state.companySet.isNotEmpty()
-                    val isFiltered = isTypeFiltered || isTrackFiltered || isCompanyFiltered
+                    val isLikeFiltered = state.likeSet.isNotEmpty()
+                    val isFiltered = isTypeFiltered || isTrackFiltered || isCompanyFiltered || isLikeFiltered
 
                     // set list size text
                     binding.sessionSizeText.text = state.filteredInfoList.size.toString()
@@ -111,6 +113,7 @@ class SessionSelectFragment : Fragment() {
                     typeFilterListAdapter.refresh(state.typeSet)
                     trackFilterListAdapter.refresh(state.trackSet)
                     companyFilterListAdapter.refresh(state.companySet)
+                    likeFilterListAdapter.refresh(state.likeSet)
 
                     // set reset button tint
                     binding.filterResetImage.imageTintList = ColorStateList.valueOf(
@@ -182,6 +185,13 @@ class SessionSelectFragment : Fragment() {
         companyFilterRecyclerView.setHasFixedSize(true)
         companyFilterRecyclerView.itemAnimator = null
         companyFilterListAdapter.refresh(viewModel.state.value.companySet)
+
+        val likeFilterRecyclerView = binding.likeFilterList
+        likeFilterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        likeFilterRecyclerView.adapter = likeFilterListAdapter
+        likeFilterRecyclerView.setHasFixedSize(true)
+        likeFilterRecyclerView.itemAnimator = null
+        likeFilterListAdapter.refresh(viewModel.state.value.likeSet)
 
         // set scroll change listener
         binding.nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, _ ->
@@ -280,6 +290,14 @@ class SessionSelectFragment : Fragment() {
             else -> ""
         }
         viewModel.filterInfoListByCompany(value)
+    }
+
+    private fun onLikeFilterItemClick(position: Int) {
+        val value = when (position) {
+            LIKE_POSITION_LIKE -> LIKE_VALUE_LIKE
+            else -> ""
+        }
+        viewModel.filterInfoListByLike(value)
     }
 
     private fun onSessionItemClick(position: Int) {

@@ -17,6 +17,7 @@ const val HIGHLIGHT_POSITION_ESG = 8
 const val FILTER_CODE_TYPE = 0
 const val FILTER_CODE_TRACK = 1
 const val FILTER_CODE_COMPANY = 2
+const val FILTER_CODE_LIKE = 3
 
 const val TYPE_KEY_KEYNOTE = "keynote"
 const val TYPE_KEY_PREVIEW = "preview"
@@ -95,6 +96,9 @@ const val COMPANY_POSITION_KAKAO_G = 6
 const val COMPANY_POSITION_KAKAO_ET = 7
 const val COMPANY_POSITION_KU = 8
 const val COMPANY_POSITION_KAKAO_PI = 9
+
+const val LIKE_VALUE_LIKE = "즐겨찾기"
+const val LIKE_POSITION_LIKE = 0
 
 const val CLIP_LABEL_SHARE = "share"
 

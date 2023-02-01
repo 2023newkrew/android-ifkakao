@@ -69,6 +69,18 @@ class SessionSelectViewModel @Inject constructor(
         filterInfoList()
     }
 
+    fun filterInfoListByLike(like: String) {
+        val likeSet = hashSetOf<String>().apply {
+            addAll(state.value.likeSet)
+            if (contains(like)) remove(like)
+            else add(like)
+        }
+        _state.value = state.value.copy(
+            likeSet = likeSet
+        )
+        filterInfoList()
+    }
+
     fun filterInfoListByDay(day: Int) {
         _state.value = state.value.copy(
             day = day
@@ -80,7 +92,8 @@ class SessionSelectViewModel @Inject constructor(
         _state.value = state.value.copy(
             typeSet = setOf(),
             trackSet = setOf(),
-            companySet = setOf()
+            companySet = setOf(),
+            likeSet = setOf()
         )
         filterInfoList()
     }
@@ -107,6 +120,7 @@ class SessionSelectViewModel @Inject constructor(
                     .isNotEmpty()
             }
             .filter { state.value.companySet.isEmpty() || state.value.companySet.contains(it.company) }
+            .filter { state.value.likeSet.isEmpty() || it.like }
             .filter { state.value.day == 0 || state.value.day == it.sessionDay }
         _state.value = state.value.copy(
             filteredInfoList = filteredInfoList
@@ -118,6 +132,7 @@ data class SessionState(
     val typeSet: Set<String> = setOf(),
     val trackSet: Set<String> = setOf(),
     val companySet: Set<String> = setOf(),
+    val likeSet: Set<String> = setOf(),
     val day: Int = 0,
     val filteredInfoList: List<Info> = listOf()
 )

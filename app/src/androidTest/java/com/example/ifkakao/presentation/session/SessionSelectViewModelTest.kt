@@ -1,10 +1,17 @@
 package com.example.ifkakao.presentation.session
 
+import android.content.Context
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.test.core.app.ApplicationProvider
 import com.example.ifkakao.BASE_URL_SESSIONS
+import com.example.ifkakao.DATA_STORE_NAME_LIKE
 import com.example.ifkakao.TYPE_VALUE_KEYNOTE
+import com.example.ifkakao.data.repository.DataStoreRepositoryImpl
 import com.example.ifkakao.data.repository.SessionRepositoryImpl
 import com.example.ifkakao.data.retrofit.SessionService
+import com.example.ifkakao.domain.use_case.GetLikeUseCase
 import com.example.ifkakao.domain.use_case.GetSessionsUseCase
+import com.example.ifkakao.domain.use_case.PutLikeUseCase
 import com.example.ifkakao.presentation.session.select.SessionSelectViewModel
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.*
@@ -26,7 +33,13 @@ class SessionSelectViewModelTest {
             .create()
     private val sessionRepositoryImpl = SessionRepositoryImpl(sessionService)
     private val sessionsUseCase = GetSessionsUseCase(sessionRepositoryImpl)
-    private val viewModel = SessionSelectViewModel(sessionsUseCase)
+
+    private val Context.dataStore by preferencesDataStore(DATA_STORE_NAME_LIKE)
+    private val dataStoreRepositoryImpl = DataStoreRepositoryImpl(ApplicationProvider.getApplicationContext<Context>().dataStore)
+    private val getLikeUseCase = GetLikeUseCase(dataStoreRepositoryImpl)
+    private val putLikeUseCase = PutLikeUseCase(dataStoreRepositoryImpl)
+
+    private val viewModel = SessionSelectViewModel(sessionsUseCase, getLikeUseCase, putLikeUseCase)
 
     @Test
     fun testFilterInfoList() = runBlocking {

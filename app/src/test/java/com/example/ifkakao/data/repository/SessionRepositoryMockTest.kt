@@ -74,6 +74,6 @@ class SessionRepositoryMockTest {
         assertEquals(55, sessions.filter { it.sessionDay == 2 }.size)
         assertEquals(66, sessions.filter { it.sessionDay == 3 }.size)
 
-
+        println(sessions[0])
     }
 }

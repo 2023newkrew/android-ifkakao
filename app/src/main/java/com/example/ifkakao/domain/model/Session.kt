@@ -1,5 +1,9 @@
 package com.example.ifkakao.domain.model
 
+import java.time.Instant
+import java.time.LocalDateTime
+import java.util.*
+
 
 data class Session(
     val id: Int,
@@ -17,3 +21,11 @@ data class Session(
     val pptUrl: String,
     val isLike: Boolean = false,
 )
+
+fun Session.getTypeAndTracksString(): String {
+    return "$sessionType " + tracks.joinToString(
+        separator = " "
+    ) {
+        it.toString()
+    }
+}

@@ -1,0 +1,25 @@
+name: Android CI
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      # Execute unit tests
+      - name: Unit Test
+        run: ./gradlew test
+
+      - name: Release Build
+        run: ./gradlew assembleRelease

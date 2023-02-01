@@ -5,4 +5,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="toolbar_title">if(kakao)dev2022</string>
+    <string name="divider">divider</string>
+    <string name="show_all_schedule">전체 일정표 보기</string>
+    <string name="total">전체</string>
+    <string name="day_12_7">12월 7일</string>
+    <string name="day_12_8">12월 8일</string>
+    <string name="day_12_9">12월 9일</string>
+    <string name="button_filter_sessions">button_filter_sessions</string>
+    <string name="button_close">button_close</string>
+    <string name="init_filter">init_filter</string>
+    <string name="init">초기화</string>
 </resources>

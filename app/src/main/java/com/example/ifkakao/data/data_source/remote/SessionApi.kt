@@ -1,6 +1,6 @@
 package com.example.ifkakao.data.data_source.remote
 
-import com.example.ifkakao.data.data_source.remote.dto.SessionDTO
+import com.example.ifkakao.data.data_source.remote.dto.SessionDto
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -12,7 +12,7 @@ interface SessionApi {
     @GET("ifKakao")
     suspend fun getAllSessions(
         @Query("accept") accept: String = "application/json",
-    ): List<SessionDTO>
+    ): List<SessionDto>
 
     companion object {
         private const val BASE_URL = "http://104.198.248.76:3000/"

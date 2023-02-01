@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="216dp"
+    android:layout_margin="8dp"
+    android:background="@color/session_background"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_session_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/session_date"
+        tools:text="12.07" />
+
+    <TextView
+        android:id="@+id/tv_session_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/session_date"
+        android:visibility="gone"
+        tools:text="11:00" />
+
+    <TextView
+        android:id="@+id/tv_session_company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/session_company"
+        tools:text="카카오" />
+
+    <TextView
+        android:id="@+id/tv_session_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/dark_white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Our Social Mission" />
+
+    <TextView
+        android:id="@+id/tv_session_type_tracks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/tab_blue"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        tools:text="키노트" />
+
+</LinearLayout>

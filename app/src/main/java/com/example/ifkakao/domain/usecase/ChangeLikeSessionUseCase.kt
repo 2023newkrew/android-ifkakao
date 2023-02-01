@@ -7,8 +7,10 @@ class ChangeLikeSessionUseCase(
     private val sessionRepository: SessionRepository
 ) {
     suspend operator fun invoke(session: Session, isLike: Boolean) {
-        if (isLike) sessionRepository.likeSession(session) else sessionRepository.unlikeSession(
-            session
-        )
+        if (isLike) {
+            sessionRepository.likeSession(session)
+        } else {
+            sessionRepository.unlikeSession(session)
+        }
     }
 }

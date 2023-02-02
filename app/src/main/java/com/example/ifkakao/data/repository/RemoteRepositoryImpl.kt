@@ -7,7 +7,10 @@ import com.example.ifkakao.domain.repository.RemoteRepository
 class RemoteRepositoryImpl(private val sessionService: SessionService) : RemoteRepository {
 
     override suspend fun loadSessions(): List<ResultSession> {
-        return sessionService.getIfKakaoSessions()
+        return try {
+            sessionService.getIfKakaoSessions()
+        } catch (e: Exception){
+            emptyList()
+        }
     }
-
 }

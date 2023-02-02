@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presenter.fragment.ChoiceSessionTrackFragment">
+    android:orientation="vertical"
+    tools:context=".presentation.main.fragment.ChoiceSessionTrackFragment">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="/////////////////////\nChoise_Session_Track\n/////////////////////" />
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_margin_vertical"
+        android:text="Highlight Track"
+        android:textAlignment="center"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_near"
+        android:layout_marginBottom="@dimen/content_margin_normal"
+        android:text="2022년 하이라이트 트랙 및 전체 세션을 확인해보세요!"
+        android:textAlignment="center"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_size_xsmall"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/track_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:layout_marginBottom="@dimen/content_margin_normal" />
+
+    <Button
+        android:id="@+id/session_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:layout_marginBottom="@dimen/fragment_margin_vertical"
+        android:background="@drawable/rectangle_button"
+        android:text="세션 바로가기"
+        android:theme="@style/Theme.White"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_xsmall"
+        android:textStyle="bold" />
+</LinearLayout>

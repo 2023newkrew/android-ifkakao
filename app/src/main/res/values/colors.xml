@@ -15,4 +15,6 @@
 
     <color name="text_white">#D0D1D9</color>
     <color name="text_gray">#ADAEB6</color>
+
+    <color name="content_white">#D0D1D9</color>
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.main.fragment.EndingBannerFragment">
+
+    <ImageView
+        android:id="@+id/ending_banner_01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_margin_vertical"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/ending_banner_01_discription"
+        android:src="@drawable/ending_banner_01" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/fragment_margin_vertical"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/ending_banner_02_discription"
+        android:src="@drawable/ending_banner_02" />
+</LinearLayout>

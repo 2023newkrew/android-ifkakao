@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">IfKakao</string>
+
+    <string name="choice_session_type_title">2022년 한해, 카카오의\n고민과 경험을 공유합니다.</string>
+    <string name="hello_text_01">우리, 내년에 또 만나요~\n함께 나아가는 더 나은 세상!</string>
+    <string name="hello_text_02">카카오 개발자 컨퍼런스가 마무리되었습니다.\n카카오는 개발자와 함께 성장할 수 있도록 더 노력하겠습니다.</string>
+    <string name="go_to_all_session_text">전체 세션 바로가기</string>
+    <string name="ending_banner_01_discription">친구들에게 공유해 보세요!</string>
+    <string name="ending_banner_02_discription">이 사이트는 카카오의 노코드 플랫폼인 모노코드로 제작되었습니다.</string>
+    <string name="title_main">if(kakao)dev2022</string>
 </resources>

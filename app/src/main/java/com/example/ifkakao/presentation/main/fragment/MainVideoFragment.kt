@@ -1,4 +1,4 @@
-package com.example.ifkakao.presenter.fragment
+package com.example.ifkakao.presentation.main.fragment
 
 import android.net.Uri
 import android.os.Bundle
@@ -19,11 +19,10 @@ class MainVideoFragment : Fragment() {
     ): View {
         _binding = FragmentMainVideoBinding.inflate(inflater, container, false)
 
-        val VIDEO_PATH = "android.resource://" + (activity?.packageName ?: "com.example.ifkakao") + "/" + R.raw.main_video
-        val uri: Uri = Uri.parse(VIDEO_PATH)
+        val videoPath = "android.resource://" + (activity?.packageName ?: "com.example.ifkakao") + "/" + R.raw.main_video
+        val uri: Uri = Uri.parse(videoPath)
 
         binding.mainVideoView.setVideoURI(uri)
-        binding.mainVideoView.start()
         binding.mainVideoView.setOnPreparedListener {
             it.isLooping = true
             it.start()

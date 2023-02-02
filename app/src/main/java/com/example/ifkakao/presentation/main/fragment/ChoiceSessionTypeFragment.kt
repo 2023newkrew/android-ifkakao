@@ -1,4 +1,4 @@
-package com.example.ifkakao.presenter.fragment
+package com.example.ifkakao.presentation.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.ifkakao.R
 
-class ChoiceSessionTrackFragment : Fragment() {
+class ChoiceSessionTypeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +18,6 @@ class ChoiceSessionTrackFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choice_session_track, container, false)
+        return inflater.inflate(R.layout.fragment_choice_session_type, container, false)
     }
 }

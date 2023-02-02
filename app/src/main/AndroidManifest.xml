@@ -17,7 +17,7 @@
         android:theme="@style/Theme.IfKakao"
         tools:targetApi="31">
         <activity
-            android:name=".presenter.activity.MainActivity"
+            android:name=".presentation.main.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

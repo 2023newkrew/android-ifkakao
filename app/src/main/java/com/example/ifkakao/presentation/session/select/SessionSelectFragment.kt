@@ -226,8 +226,12 @@ class SessionSelectFragment : Fragment() {
             binding.drawerLayout.close()
         }
         binding.scheduleButton.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(URL_SCHEDULE))
-            startActivity(browserIntent)
+            Intent(Intent.ACTION_VIEW, Uri.parse(URL_SCHEDULE))
+                .also {
+                    it.resolveActivity(requireContext().packageManager)?.run {
+                        startActivity(it)
+                    }
+                }
         }
         binding.filterButton.setOnClickListener {
             (requireActivity() as MainActivity).hideToolbar()

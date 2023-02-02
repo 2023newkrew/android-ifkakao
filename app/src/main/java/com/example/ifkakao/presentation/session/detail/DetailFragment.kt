@@ -136,8 +136,12 @@ class DetailFragment : Fragment() {
             clipboardManager.setPrimaryClip(clipData)
         }
         binding.detailPresentationButton.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(viewModel.info?.ppt))
-            startActivity(browserIntent)
+            Intent(Intent.ACTION_VIEW, Uri.parse(viewModel.info?.ppt))
+                .also {
+                    it.resolveActivity(requireContext().packageManager)?.run {
+                        startActivity(it)
+                    }
+                }
         }
     }
 

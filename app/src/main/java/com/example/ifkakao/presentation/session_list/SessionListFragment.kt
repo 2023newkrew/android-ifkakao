@@ -150,6 +150,11 @@ class SessionListFragment : Fragment(R.layout.fragment_session_list) {
             binding.drawerLayout.close()
         }
 
+        binding.floatingUpButton.setOnClickListener {
+            binding.sessionList.smoothScrollToPosition(0)
+            binding.appBar.setExpanded(true, true)
+        }
+
     }
 
     private fun filterSetAdapter(

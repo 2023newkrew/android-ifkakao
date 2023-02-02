@@ -65,7 +65,6 @@ class MainActivity : AppCompatActivity() {
                 ))
                 startActivity(browserIntent)
             }
-            binding.toolbar.setTitle(R.string.label_main)
             false
         }
 
@@ -77,11 +76,7 @@ class MainActivity : AppCompatActivity() {
         navHeaderView.findViewById<TextView>(R.id.nav_home).setOnClickListener {
             navController.navigateUp()
             binding.drawerLayout.close()
-            binding.toolbar.setTitle(R.string.label_main)
         }
-
-        // jjoo 코드를 보면 따로 title 설정해 주지 않는데, 어떻게 하는 건지?!
-        binding.toolbar.setTitle(R.string.label_main)
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -14,9 +14,10 @@ class GetSessionInfoListUseCase(private val repository: SessionRepository) {
 
     suspend operator fun invoke(
         likeList: List<Like>,
-        types: Set<SessionType>? = null,
-        track: Set<Track>? = null,
-        company: Set<Company>? = null,
+        types: Set<SessionType> = setOf(),
+        tracks: Set<Track> = setOf(),
+        companies: Set<Company> = setOf(),
+        day: SessionDay = SessionDay.Null,
     ): ApiResult<List<SessionInfo>>? {
         if (result == null) {
             result = repository.getSessions()
@@ -34,7 +35,29 @@ class GetSessionInfoListUseCase(private val repository: SessionRepository) {
                         it.isLiked = true
                     }
                 }
-                result
+                val apiSuccess = ApiSuccess<List<SessionInfo>>(
+                    data = (result as ApiSuccess<List<SessionInfo>>).data.filter {
+                        var temp = true
+                        if (types.isNotEmpty()) {
+                            temp = it.sessionType in types
+                        }
+                        if (tracks.isNotEmpty()) {
+                            temp = if (it.track.toSet().intersect(tracks).isNotEmpty()) {
+                                temp
+                            } else {
+                                false
+                            }
+                        }
+                        if (companies.isNotEmpty()) {
+                            temp = temp && it.company in companies
+                        }
+                        if (day != SessionDay.Null) {
+                            temp = temp && it.sessionDay == day
+                        }
+                        temp
+                    }
+                )
+                apiSuccess
             }
             else -> {
                 result

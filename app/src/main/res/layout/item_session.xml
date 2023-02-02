@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_large"
         android:textColor="?attr/colorPrimary"
+        android:textSize="@dimen/text_size_xsmall"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/session_title"
         tools:text="키노트" />
@@ -51,6 +52,7 @@
         android:layout_marginLeft="@dimen/margin_large"
         android:layout_marginTop="@dimen/margin_large"
         android:textColor="?attr/colorPrimary"
+        android:textSize="@dimen/text_size_xsmall"
         app:layout_constraintStart_toEndOf="@id/session_type"
         app:layout_constraintTop_toBottomOf="@id/session_title"
         tools:text="AI" />

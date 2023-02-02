@@ -26,6 +26,9 @@ class ListViewModel @Inject constructor(
     private val _sessionState = MutableStateFlow(SessionState())
     val sessionState = _sessionState.asStateFlow()
 
+    private val _sessionData = MutableStateFlow(SessionData())
+    val sessionData = _sessionData.asStateFlow()
+
     init {
         viewModelScope.launch {
             getSessions()
@@ -39,13 +42,14 @@ class ListViewModel @Inject constructor(
         viewModelScope.launch {
             val result = getSessionInfoListUseCase(
                 likeList = getLikes().first(),
-                track = sessionState.value.tracks,
+                tracks = sessionState.value.tracks,
                 types = sessionState.value.types,
-                company = sessionState.value.companies,
+                companies = sessionState.value.companies,
+                day = sessionState.value.day,
             )
             when (result) {
                 is ApiSuccess -> {
-                    _sessionState.value = sessionState.value.copy(
+                    _sessionData.value = sessionData.value.copy(
                         sessionList = result.data
                     )
                 }
@@ -61,7 +65,57 @@ class ListViewModel @Inject constructor(
                 }
             }
         }
+    }
 
+    fun setSessionDay(day: SessionDay) {
+        _sessionState.value = sessionState.value.copy(
+            day = day
+        )
+    }
+
+    fun checkType(sessionType: SessionType) {
+        _sessionState.value = sessionState.value.copy(
+            types = sessionState.value.types.plus(sessionType)
+        )
+    }
+
+    fun unCheckType(sessionType: SessionType) {
+        _sessionState.value = sessionState.value.copy(
+            types = sessionState.value.types.minus(sessionType)
+        )
+    }
+
+    fun checkTrack(track: Track) {
+        _sessionState.value = sessionState.value.copy(
+            tracks = sessionState.value.tracks.plus(track)
+        )
+    }
+
+    fun unCheckTrack(track: Track) {
+        _sessionState.value = sessionState.value.copy(
+            tracks = sessionState.value.tracks.minus(track)
+        )
+    }
+
+    fun checkCompany(company: Company) {
+        _sessionState.value = sessionState.value.copy(
+            companies = sessionState.value.companies.plus(company)
+        )
+    }
+
+    fun unCheckCompany(company: Company) {
+        _sessionState.value = sessionState.value.copy(
+            companies = sessionState.value.companies.minus(company)
+        )
+    }
+
+    fun resetFilter() {
+        _sessionState.value = sessionState.value.copy(
+            types = setOf(),
+            tracks = setOf(),
+            companies = setOf(),
+            day = SessionDay.Null,
+        )
     }
 
     // 좋아요 확장 함수
@@ -81,6 +135,9 @@ data class SessionState(
     val types: Set<SessionType> = setOf(),
     val tracks: Set<Track> = setOf(),
     val companies: Set<Company> = setOf(),
-    val day: SessionDay? = null,
+    val day: SessionDay = SessionDay.Null,
+)
+
+data class SessionData(
     val sessionList: List<SessionInfo> = mutableListOf()
 )

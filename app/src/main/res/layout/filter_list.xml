@@ -11,24 +11,38 @@
         android:id="@+id/tv_filter_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="0dp"
+        android:paddingEnd="15dp"
         android:textColor="@color/dark_white"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_filter_count_first"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="유형" />
 
+
     <TextView
-        android:id="@+id/tv_filter_count"
+        android:id="@+id/tv_filter_count_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:textColor="@color/gray"
+        android:textColor="@color/tab_blue"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_filter_name"
         app:layout_constraintStart_toEndOf="@+id/tv_filter_name"
         app:layout_constraintTop_toTopOf="@+id/tv_filter_name"
-        tools:text="3" />
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/tv_filter_count_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_filter_count_first"
+        app:layout_constraintTop_toTopOf="@+id/tv_filter_name"
+        tools:text="/3" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_filter_items"

@@ -1,6 +1,6 @@
 package com.example.ifkakao.domain.model
 
-enum class Company(val alias: String) {
+enum class Company(val alias: String) : SessionFilterableItem {
     Kakao("dk"), KakaoPay("kakaopay"), KakaoEnterPrise("kep"),
     KakaoMobility("km"), KakaoBank("kakaobank"), KakaoBrain("r"),
     KakaoGames("dg"), KakaoEntertainment("podo"),

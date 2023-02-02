@@ -15,4 +15,5 @@
     <string name="button_close">button_close</string>
     <string name="init_filter">init_filter</string>
     <string name="init">초기화</string>
+    <string name="floating_up_button">floating_up_button</string>
 </resources>

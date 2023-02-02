@@ -20,7 +20,7 @@ class SessionListAdapter :
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<Session>() {
             override fun areItemsTheSame(oldItem: Session, newItem: Session): Boolean {
-                return oldItem == newItem
+                return oldItem === newItem
             }
 
             override fun areContentsTheSame(oldItem: Session, newItem: Session): Boolean {
@@ -38,13 +38,20 @@ class SessionListAdapter :
         return ViewHolder(SessionListItemBinding.bind(view))
     }
 
-    @Suppress("DEPRECATION")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
             val session = currentList[position]
-            val date = Date(session.timeStamp)
-            val sessionDate = "%d.%02d".format(date.month + 1, date.date)
-            val sessionTime = "%02d:%02d".format(date.hours, date.minutes)
+            val calendar = Calendar.getInstance()
+            calendar.time = Date(session.timeStamp)
+
+            val sessionDate = "%d.%02d".format(
+                calendar.get(Calendar.MONTH) + 1,
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+            val sessionTime = "%02d:%02d".format(
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE)
+            )
             val typeAndTracks = session.getTypeAndTracksString()
             binding.tvSessionDate.text = sessionDate
             binding.tvSessionTime.text = sessionTime

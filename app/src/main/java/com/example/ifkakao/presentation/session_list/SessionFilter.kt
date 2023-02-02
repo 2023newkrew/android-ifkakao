@@ -5,7 +5,7 @@ import com.example.ifkakao.domain.model.SessionType
 import com.example.ifkakao.domain.model.Track
 
 data class SessionFilter(
-    val sessionTypes: List<SessionType> = listOf(),
-    val tracks: List<Track> = listOf(),
-    val companies: List<Company> = listOf(),
+    val sessionTypes: Set<SessionType> = setOf(),
+    val tracks: Set<Track> = setOf(),
+    val companies: Set<Company> = setOf(),
 )

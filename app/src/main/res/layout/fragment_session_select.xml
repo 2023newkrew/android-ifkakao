@@ -60,8 +60,8 @@
                     android:background="@android:color/transparent"
                     app:tabGravity="start"
                     app:tabIndicatorFullWidth="false"
-                    app:tabPaddingEnd="@dimen/margin_small"
-                    app:tabPaddingStart="@dimen/margin_small"
+                    app:tabPaddingEnd="@dimen/margin_xsmall"
+                    app:tabPaddingStart="@dimen/margin_xsmall"
                     app:tabSelectedTextColor="@color/white_title"
                     app:tabTextAppearance="@style/TabTextAppearance"
                     app:tabTextColor="@color/gray_content">
@@ -131,7 +131,7 @@
                     android:id="@+id/no_session_text"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height_session_double"
-                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_xsmall"
                     android:background="@drawable/background_session_item"
                     android:gravity="center"
                     android:text="선택하신 필터 조건의 항목이 없습니다."
@@ -209,7 +209,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_xsmall"
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -217,7 +217,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="@dimen/margin_xsmall"
+                        android:layout_marginEnd="@dimen/margin_xxsmall"
                         android:src="@drawable/icon_reset" />
 
                     <TextView
@@ -241,7 +241,7 @@
                         android:textSize="@dimen/text_size_large" />
 
                     <View
-                        android:layout_width="@dimen/margin_small"
+                        android:layout_width="@dimen/margin_xsmall"
                         android:layout_height="0dp" />
 
                     <TextView
@@ -288,7 +288,7 @@
                         android:textSize="@dimen/text_size_large" />
 
                     <View
-                        android:layout_width="@dimen/margin_small"
+                        android:layout_width="@dimen/margin_xsmall"
                         android:layout_height="0dp" />
 
                     <TextView
@@ -335,7 +335,7 @@
                         android:textSize="@dimen/text_size_large" />
 
                     <View
-                        android:layout_width="@dimen/margin_small"
+                        android:layout_width="@dimen/margin_xsmall"
                         android:layout_height="0dp" />
 
                     <TextView
@@ -357,6 +357,27 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/company_filter_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_divider"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:background="@color/gray_background_bright" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:text="기타"
+                    android:textSize="@dimen/text_size_large" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/like_filter_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/margin_default"

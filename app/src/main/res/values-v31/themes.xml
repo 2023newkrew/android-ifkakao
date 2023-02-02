@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.IfKakao" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/blue_primary</item>
+        <item name="colorPrimaryDark">@color/blue_primary</item>
+        <item name="colorPrimaryVariant">@color/blue_primary</item>
+
+        <!-- navigation bar color -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <!-- hamburger icon color -->
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+        <!-- window background -->
+        <item name="android:windowBackground">@color/black_primary</item>
+
+        <!-- text -->
+        <item name="android:textColor">@color/white_title</item>
+        <item name="android:textSize">@dimen/text_size_default</item>
+
+        <!-- splash screen -->
+        <item name="android:windowSplashScreenBackground">@android:color/white</item>
+    </style>
+</resources>

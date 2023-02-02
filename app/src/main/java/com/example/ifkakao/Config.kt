@@ -17,6 +17,7 @@ const val HIGHLIGHT_POSITION_ESG = 8
 const val FILTER_CODE_TYPE = 0
 const val FILTER_CODE_TRACK = 1
 const val FILTER_CODE_COMPANY = 2
+const val FILTER_CODE_LIKE = 3
 
 const val TYPE_KEY_KEYNOTE = "keynote"
 const val TYPE_KEY_PREVIEW = "preview"
@@ -96,9 +97,14 @@ const val COMPANY_POSITION_KAKAO_ET = 7
 const val COMPANY_POSITION_KU = 8
 const val COMPANY_POSITION_KAKAO_PI = 9
 
+const val LIKE_VALUE_LIKE = "즐겨찾기"
+const val LIKE_POSITION_LIKE = 0
+
 const val CLIP_LABEL_SHARE = "share"
 
 const val BASE_URL_SESSIONS = "http://104.198.248.76:3000/"
 const val URL_COC = "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"
 const val URL_SHARE = "https://if.kakao.com"
 const val URL_SCHEDULE = "https://t1.kakaocdn.net/inhouse_daglona/ifkakao_2022/static/prod/timetable.html"
+
+const val DATA_STORE_NAME_LIKE = "like"

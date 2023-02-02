@@ -86,6 +86,10 @@ class FilterListAdapter(
                     COMPANY_VALUE_KU to valueSet.contains(COMPANY_VALUE_KU),
                     COMPANY_VALUE_KAKAO_PI to valueSet.contains(COMPANY_VALUE_KAKAO_PI)
                 )
+            FILTER_CODE_LIKE ->
+                listOf(
+                    LIKE_VALUE_LIKE to valueSet.contains(LIKE_VALUE_LIKE)
+                )
             else -> listOf()
         }
         submitList(list)

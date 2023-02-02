@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ifkakao.*
 import com.example.ifkakao.databinding.FragmentSessionSelectBinding
 import com.example.ifkakao.presentation.MainActivity
-import com.example.ifkakao.presentation.session.SessionSelectViewModel
 import com.example.ifkakao.presentation.session.detail.DetailFragment
 import com.example.ifkakao.presentation.session.select.adapter.FilterListAdapter
 import com.example.ifkakao.presentation.session.select.adapter.SessionSelectListAdapter
@@ -37,10 +36,11 @@ class SessionSelectFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: SessionSelectViewModel by viewModels()
 
-    private var sessionListAdapter = SessionSelectListAdapter(::onSessionItemClick)
+    private var sessionListAdapter = SessionSelectListAdapter(::onSessionItemClick, ::onSessionLikeClick)
     private var typeFilterListAdapter = FilterListAdapter(FILTER_CODE_TYPE, ::onTypeFilterItemClick)
     private var trackFilterListAdapter = FilterListAdapter(FILTER_CODE_TRACK, ::onTrackFilterItemClick)
     private var companyFilterListAdapter = FilterListAdapter(FILTER_CODE_COMPANY, ::onCompanyFilterItemClick)
+    private var likeFilterListAdapter = FilterListAdapter(FILTER_CODE_LIKE, ::onLikeFilterItemClick)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -70,7 +70,8 @@ class SessionSelectFragment : Fragment() {
                     val isTypeFiltered = state.typeSet.isNotEmpty()
                     val isTrackFiltered = state.trackSet.isNotEmpty()
                     val isCompanyFiltered = state.companySet.isNotEmpty()
-                    val isFiltered = isTypeFiltered || isTrackFiltered || isCompanyFiltered
+                    val isLikeFiltered = state.likeSet.isNotEmpty()
+                    val isFiltered = isTypeFiltered || isTrackFiltered || isCompanyFiltered || isLikeFiltered
 
                     // set list size text
                     binding.sessionSizeText.text = state.filteredInfoList.size.toString()
@@ -112,6 +113,7 @@ class SessionSelectFragment : Fragment() {
                     typeFilterListAdapter.refresh(state.typeSet)
                     trackFilterListAdapter.refresh(state.trackSet)
                     companyFilterListAdapter.refresh(state.companySet)
+                    likeFilterListAdapter.refresh(state.likeSet)
 
                     // set reset button tint
                     binding.filterResetImage.imageTintList = ColorStateList.valueOf(
@@ -184,6 +186,13 @@ class SessionSelectFragment : Fragment() {
         companyFilterRecyclerView.itemAnimator = null
         companyFilterListAdapter.refresh(viewModel.state.value.companySet)
 
+        val likeFilterRecyclerView = binding.likeFilterList
+        likeFilterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        likeFilterRecyclerView.adapter = likeFilterListAdapter
+        likeFilterRecyclerView.setHasFixedSize(true)
+        likeFilterRecyclerView.itemAnimator = null
+        likeFilterListAdapter.refresh(viewModel.state.value.likeSet)
+
         // set scroll change listener
         binding.nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, _ ->
             // set up button visibility
@@ -192,9 +201,9 @@ class SessionSelectFragment : Fragment() {
 
         // initialize session recycler view
         val sessionRecyclerView = binding.sessionList
-        sessionRecyclerView.layoutManager =
-            GridLayoutManager(requireContext(), 2)  // TODO change span dynamic
+        sessionRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)  // TODO change span dynamic
         sessionRecyclerView.adapter = sessionListAdapter
+        sessionRecyclerView.itemAnimator = null
 
         // initialize tab layout
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -283,6 +292,14 @@ class SessionSelectFragment : Fragment() {
         viewModel.filterInfoListByCompany(value)
     }
 
+    private fun onLikeFilterItemClick(position: Int) {
+        val value = when (position) {
+            LIKE_POSITION_LIKE -> LIKE_VALUE_LIKE
+            else -> ""
+        }
+        viewModel.filterInfoListByLike(value)
+    }
+
     private fun onSessionItemClick(position: Int) {
         val args = Bundle().apply {
             putParcelable(ARG_KEY_INFO, viewModel.state.value.filteredInfoList[position])
@@ -291,8 +308,13 @@ class SessionSelectFragment : Fragment() {
             arguments = args
         }
         parentFragmentManager.beginTransaction()
+            .setReorderingAllowed(true)
             .replace(R.id.session_fragment_container, detailFragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun onSessionLikeClick(position: Int) {
+        viewModel.toggleLike(viewModel.state.value.filteredInfoList[position].id)
     }
 }

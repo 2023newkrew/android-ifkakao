@@ -35,7 +35,7 @@ fun Session.toInfo(): Info {
         liveImageUrl = `9yVKHSTkTNmF` ?: "",
         user1Id = kwC3iO8Lbj6D ?: "",
         user1Image = PAifZyJwjcmh ?: "",
-        id = id,
+        id = id.toString(),
         track =
         GgWcMRm0cNSS?.let { track ->
             track.substring(1, track.length - 1)
@@ -72,7 +72,7 @@ fun Session.toInfo(): Info {
             COMPANY_KEY_KAKAO_ET -> COMPANY_VALUE_KAKAO_ET
             COMPANY_KEY_KU -> COMPANY_VALUE_KU
             COMPANY_KEY_KAKAO_PI -> COMPANY_VALUE_KAKAO_PI
-            else -> ""
+            else -> "grepp"
         },
         user3Id = b1ERX6ZDBfTy ?: "",
         meetupRegisterLink = WCrhrhpRLki9 ?: "",
@@ -80,6 +80,7 @@ fun Session.toInfo(): Info {
         liveChannelUrl = p5Z5M0DP08AF ?: "",
         sessionVodLink = I729yvCqaONJ ?: "",
         sessionImage = L9WirNOAVF4J ?: "",
-        tags = X_7c2hMWtxne ?: ""
+        tags = X_7c2hMWtxne ?: "",
+        like = false
     )
 }

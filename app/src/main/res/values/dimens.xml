@@ -1,13 +1,16 @@
 <resources>
     <dimen name="size_button">56dp</dimen>
+    <dimen name="size_like">40dp</dimen>
     <dimen name="size_check_box">20dp</dimen>
     <dimen name="height_session">216dp</dimen>
     <dimen name="height_session_double">432dp</dimen>
     <dimen name="height_divider">1dp</dimen>
 
     <dimen name="margin_small_minus">-8dp</dimen>
-    <dimen name="margin_xsmall">4dp</dimen>
-    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_xxxsmall">2dp</dimen>
+    <dimen name="margin_xxsmall">4dp</dimen>
+    <dimen name="margin_xsmall">8dp</dimen>
+    <dimen name="margin_small">12dp</dimen>
     <dimen name="margin_default">16dp</dimen>
     <dimen name="margin_large">20dp</dimen>
     <dimen name="margin_xlarge">40dp</dimen>

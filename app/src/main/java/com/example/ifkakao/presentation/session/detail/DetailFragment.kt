@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -64,6 +66,10 @@ class DetailFragment : Fragment() {
             binding.detailDateText.text = dateText
             binding.detailTagsText.text = it.tags
             binding.detailDescriptionText.text = it.description
+
+            binding.detailPresentationButton.visibility =
+                if (it.ppt.isNotEmpty()) VISIBLE
+                else GONE
 
             // user 1
             if (it.user1Id.isNotEmpty()) {
@@ -128,6 +134,10 @@ class DetailFragment : Fragment() {
             val clipboardManager: ClipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clipData: ClipData = ClipData.newPlainText(CLIP_LABEL_SHARE, viewModel.info?.sessionVodLink)
             clipboardManager.setPrimaryClip(clipData)
+        }
+        binding.detailPresentationButton.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(viewModel.info?.ppt))
+            startActivity(browserIntent)
         }
     }
 

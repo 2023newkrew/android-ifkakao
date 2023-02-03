@@ -126,7 +126,9 @@ class ListFragment : Fragment() {
                     "https://t1.kakaocdn.net/inhouse_daglona/ifkakao_2022/static/prod/timetable.html"
                 )
             )
-            startActivity(browserIntent)
+            if (browserIntent.resolveActivity(requireContext().packageManager) != null) {
+                startActivity(browserIntent)
+            }
         }
 
         binding.filterButton.setOnClickListener {

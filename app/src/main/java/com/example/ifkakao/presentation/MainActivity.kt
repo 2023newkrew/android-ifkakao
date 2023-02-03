@@ -60,10 +60,15 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.list)
             } else if (id == R.id.CoC) {
                 it.isChecked = false
-                val browserIntent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse(
-                    "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"
-                ))
-                startActivity(browserIntent)
+                // 안전하게 바꾸기
+                val browserIntent: Intent = Intent(
+                    Intent.ACTION_VIEW, Uri.parse(
+                        "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"
+                    )
+                )
+                if (browserIntent.resolveActivity(packageManager) != null) {
+                    startActivity(browserIntent)
+                }
             }
             false
         }

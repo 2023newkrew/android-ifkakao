@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
@@ -18,17 +19,14 @@ import androidx.drawerlayout.widget.DrawerLayout.DrawerListener
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.*
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 
-val CoC_URI = "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"
+const val CoC_URI = "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -61,24 +59,24 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
 
-        val closeButton =
-            binding.navView.getHeaderView(0).findViewById<ImageView>(R.id.drawer_close_button)
-        closeButton.setOnClickListener {
-            binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
-        }
+        binding.navView.getHeaderView(0).findViewById<ImageView>(R.id.drawer_close_button)
+            .setOnClickListener {
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
+            }
+        binding.navView.getHeaderView(0).findViewById<TextView>(R.id.menu_title)
+            .setOnClickListener {
+                navController.navigate(R.id.main_fragment)
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
+            }
+
 
         binding.navView.setNavigationItemSelectedListener { it ->
             when (it.itemId) {
-                R.id.menu_session -> {
-                    navController.navigate(R.id.session_list_fragment)
-                    binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
-                    true
-                }
                 R.id.menu_COC -> {
-                    val browseIntent = Intent(Intent.ACTION_VIEW).apply {
+                    Intent(Intent.ACTION_VIEW).apply {
                         setDataAndType(Uri.parse(CoC_URI), "application/pdf")
                     }.also {
-                        it.resolveActivity(packageManager)?.run{
+                        it.resolveActivity(packageManager)?.run {
                             startActivity(it)
                         }
                     }
@@ -93,7 +91,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp(appBarConfiguration)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        println("selected")
+        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+    }
 }

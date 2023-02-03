@@ -33,11 +33,12 @@
                 android:layout_height="50dp"
                 android:background="#1A000000"
                 android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
+                android:theme="@style/Theme.AppCompat.NoActionBar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:title="@string/app_name"
-                app:titleTextColor="@color/main_text_color" />
+                app:titleTextColor="@color/main_text_color"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

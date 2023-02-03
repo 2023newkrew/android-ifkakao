@@ -72,6 +72,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.navView.setNavigationItemSelectedListener { it ->
             when (it.itemId) {
+                R.id.menu_session -> {
+                    navController.navigate(R.id.session_list_fragment)
+                    binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+
                 R.id.menu_COC -> {
                     Intent(Intent.ACTION_VIEW).apply {
                         setDataAndType(Uri.parse(CoC_URI), "application/pdf")
@@ -94,8 +100,8 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        println("selected")
-        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        println("selected")
+//        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+//    }
 }

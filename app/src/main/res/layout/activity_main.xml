@@ -37,8 +37,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:title="@string/app_name"
-                app:titleTextColor="@color/main_text_color"
-                />
+                app:titleTextColor="@color/main_text_color" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

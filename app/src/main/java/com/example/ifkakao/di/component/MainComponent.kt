@@ -1,9 +1,13 @@
 package com.example.ifkakao.di.component
 
-import com.example.ifkakao.presentation.main.activity.MainActivity
+import com.example.ifkakao.di.module.NetworkModule
+import com.example.ifkakao.di.module.SessionListModule
+import com.example.ifkakao.di.scope.ActivityScope
+import com.example.ifkakao.presentation.activity.MainActivity
 import dagger.Subcomponent
 
-@Subcomponent
+@ActivityScope
+@Subcomponent(modules = [SessionListModule::class,NetworkModule::class])
 interface MainComponent {
     @Subcomponent.Factory
     interface Factory {
@@ -11,4 +15,5 @@ interface MainComponent {
     }
 
     fun inject(activity: MainActivity)
+    fun sessionListFragmentComponent(): SessionListComponent.Factory
 }

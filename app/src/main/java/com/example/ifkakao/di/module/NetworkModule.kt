@@ -1,17 +1,17 @@
 package com.example.ifkakao.di.module
 
 import com.example.ifkakao.data.network.SessionApiService
+import com.example.ifkakao.di.scope.ActivityScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 @Module
 class NetworkModule {
-    @Singleton
+    @ActivityScope
     @Provides
     fun provideSessionApiService(): SessionApiService {
         val BASE_URL = "http://104.198.248.76:3000/"

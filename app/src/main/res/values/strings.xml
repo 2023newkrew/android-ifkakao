@@ -8,4 +8,6 @@
     <string name="ending_banner_01_discription">친구들에게 공유해 보세요!</string>
     <string name="ending_banner_02_discription">이 사이트는 카카오의 노코드 플랫폼인 모노코드로 제작되었습니다.</string>
     <string name="title_main">if(kakao)dev2022</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

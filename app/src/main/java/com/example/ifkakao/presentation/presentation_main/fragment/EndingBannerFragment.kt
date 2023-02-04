@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.session_list
+package com.example.ifkakao.presentation.presentation_main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.ifkakao.R
 
-class SessionListFragment : Fragment() {
+class EndingBannerFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_session_list, container, false)
+        return inflater.inflate(R.layout.fragment_ending_banner, container, false)
     }
 }

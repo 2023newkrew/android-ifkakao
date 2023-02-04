@@ -5,6 +5,7 @@ data class Session(
     val date: String,
     val time: String,
     val company: String,
+    val title: String,
     val type: String,
     val track: String,
 )

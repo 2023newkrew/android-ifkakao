@@ -11,9 +11,10 @@
     <dimen name="TODO">36dp</dimen>
 
     <dimen name="button_radius">56dp</dimen>
+    <dimen name="angled_button_radius">4dp</dimen>
 
     <dimen name="session_height">216dp</dimen>
-    <dimen name="session_margin">8dp</dimen>
+    <dimen name="session_margin">6dp</dimen>
     <dimen name="session_padding">16dp</dimen>
 
     <dimen name="like_button_size">40dp</dimen>

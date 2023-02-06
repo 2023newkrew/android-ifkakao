@@ -140,6 +140,9 @@ class HomeFragment : Fragment() {
     private fun initializeDualPaneUI() {
         // set highlight list span count
         binding.highlightList.layoutManager = GridLayoutManager(requireContext(), 4)
+
+        // set session menu text color blue
+        (requireActivity() as MainActivity).setSessionMenuTextColorWhite()
     }
 
     private fun initializeSinglePaneUI() {

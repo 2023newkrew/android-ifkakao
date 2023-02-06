@@ -183,7 +183,7 @@ class MainActivity : AppCompatActivity() {
         }
         try {
             navController.navigate(R.id.action_home_to_session, args)
-        } catch (exception : IllegalArgumentException) {
+        } catch (exception: IllegalArgumentException) {
             // prevent crash when session to session
         }
     }
@@ -194,5 +194,15 @@ class MainActivity : AppCompatActivity() {
 
     fun hideToolbar() {
         binding.includeToolbar.toolbarLayout.isVisible = false
+    }
+
+    fun setSessionMenuTextColorBlue() {
+        if (::binding.isInitialized)
+            binding.includeToolbar.toolbar.findViewById<TextView>(R.id.nav_session)?.setTextColor(getColor(R.color.blue_primary))
+    }
+
+    fun setSessionMenuTextColorWhite() {
+        if (::binding.isInitialized)
+            binding.includeToolbar.toolbar.findViewById<TextView>(R.id.nav_session)?.setTextColor(getColor(R.color.white_title))
     }
 }

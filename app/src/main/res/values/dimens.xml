@@ -6,7 +6,9 @@
     <dimen name="height_session_double">432dp</dimen>
     <dimen name="height_divider">1dp</dimen>
 
-    <dimen name="margin_small_minus">-8dp</dimen>
+    <dimen name="margin_xsmall_minus">-8dp</dimen>
+    <dimen name="margin_small_minus">-12dp</dimen>
+
     <dimen name="margin_xxxsmall">2dp</dimen>
     <dimen name="margin_xxsmall">4dp</dimen>
     <dimen name="margin_xsmall">8dp</dimen>

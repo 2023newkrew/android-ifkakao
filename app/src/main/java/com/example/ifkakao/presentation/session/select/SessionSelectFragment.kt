@@ -20,6 +20,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.window.layout.WindowMetricsCalculator
 import com.example.ifkakao.*
 import com.example.ifkakao.databinding.FragmentSessionSelectBinding
 import com.example.ifkakao.presentation.MainActivity
@@ -41,6 +42,7 @@ class SessionSelectFragment : Fragment() {
     private var trackFilterListAdapter = FilterListAdapter(FILTER_CODE_TRACK, ::onTrackFilterItemClick)
     private var companyFilterListAdapter = FilterListAdapter(FILTER_CODE_COMPANY, ::onCompanyFilterItemClick)
     private var likeFilterListAdapter = FilterListAdapter(FILTER_CODE_LIKE, ::onLikeFilterItemClick)
+    private var dualPane = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +56,23 @@ class SessionSelectFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // initialize dualPane
+        val metrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(requireActivity())
+        val widthDp = metrics.bounds.width() / resources.displayMetrics.density
+        dualPane = widthDp >= 600f
+
+        // initialize UI
+        initializeCommonUI()
+        if (dualPane) initializeDualPaneUI()
+        else initializeSinglePaneUI()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun initializeCommonUI() {
         // initialize filter from arguments
         arguments?.getString(ARG_KEY_TYPE)?.let {
             viewModel.filterInfoListByType(it)
@@ -77,10 +96,11 @@ class SessionSelectFragment : Fragment() {
                     binding.sessionSizeText.text = state.filteredInfoList.size.toString()
 
                     // set no session text visibility
-                    binding.noSessionText.isVisible = state.filteredInfoList.isEmpty()
+                    binding.sessionList.isVisible = state.filteredInfoList.isNotEmpty()
+                    binding.noSessionText.isVisible = !binding.sessionList.isVisible
 
                     // set filter button tint
-                    binding.filterButton.imageTintList = ColorStateList.valueOf(
+                    binding.filterButton?.imageTintList = ColorStateList.valueOf(
                         ContextCompat.getColor(
                             requireContext(),
                             if (isFiltered) R.color.blue_primary
@@ -149,21 +169,6 @@ class SessionSelectFragment : Fragment() {
             ColorDrawable(ContextCompat.getColor(requireContext(), R.color.gray_transparent))
         )
 
-        // initialize navigation drawer
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val drawerToggle = object : ActionBarDrawerToggle(
-            requireActivity(),
-            drawerLayout,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        ) {
-            override fun onDrawerClosed(drawerView: View) {
-                super.onDrawerClosed(drawerView)
-                (requireActivity() as MainActivity).showToolbar()
-            }
-        }
-        drawerLayout.addDrawerListener(drawerToggle)
-
         // initialize filter recycler view
         val typeFilterRecyclerView = binding.typeFilterList
         typeFilterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -201,7 +206,6 @@ class SessionSelectFragment : Fragment() {
 
         // initialize session recycler view
         val sessionRecyclerView = binding.sessionList
-        sessionRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)  // TODO change span dynamic
         sessionRecyclerView.adapter = sessionListAdapter
         sessionRecyclerView.itemAnimator = null
 
@@ -218,13 +222,6 @@ class SessionSelectFragment : Fragment() {
         })
 
         // set click listener
-        binding.includeNavHeader.headerTitle.setOnClickListener {
-            (requireActivity() as MainActivity).navigateToHome()
-            (requireActivity() as MainActivity).showToolbar()
-        }
-        binding.includeNavHeader.closeButton.setOnClickListener {
-            binding.drawerLayout.close()
-        }
         binding.scheduleButton.setOnClickListener {
             Intent(Intent.ACTION_VIEW, Uri.parse(URL_SCHEDULE))
                 .also {
@@ -233,10 +230,7 @@ class SessionSelectFragment : Fragment() {
                     }
                 }
         }
-        binding.filterButton.setOnClickListener {
-            (requireActivity() as MainActivity).hideToolbar()
-            binding.drawerLayout.open()
-        }
+
         binding.filterResetLayout.setOnClickListener {
             viewModel.resetFilter()
         }
@@ -245,9 +239,45 @@ class SessionSelectFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun initializeDualPaneUI() {
+        // set session list span count
+        binding.sessionList.layoutManager = GridLayoutManager(requireContext(), 3)
+
+        // set session menu text color blue
+        (requireActivity() as MainActivity).setSessionMenuTextColorBlue()
+    }
+
+    private fun initializeSinglePaneUI() {
+        // initialize navigation drawer
+        val drawerLayout: DrawerLayout = binding.sessionDrawerLayout
+        val drawerToggle = object : ActionBarDrawerToggle(
+            requireActivity(),
+            drawerLayout,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        ) {
+            override fun onDrawerClosed(drawerView: View) {
+                super.onDrawerClosed(drawerView)
+                (requireActivity() as MainActivity).showToolbar()
+            }
+        }
+        drawerLayout.addDrawerListener(drawerToggle)
+
+        // set session list span count
+        binding.sessionList.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        // set click listener
+        binding.includeNavHeader?.headerTitle?.setOnClickListener {
+            (requireActivity() as MainActivity).navigateToHome()
+            (requireActivity() as MainActivity).showToolbar()
+        }
+        binding.includeNavHeader?.closeButton?.setOnClickListener {
+            drawerLayout.close()
+        }
+        binding.filterButton?.setOnClickListener {
+            (requireActivity() as MainActivity).hideToolbar()
+            drawerLayout.open()
+        }
     }
 
     private fun onTypeFilterItemClick(position: Int) {

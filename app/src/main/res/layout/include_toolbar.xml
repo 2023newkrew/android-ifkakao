@@ -13,7 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
         android:paddingStart="0dp"
-        android:paddingEnd="@dimen/margin_default"
+        android:paddingEnd="@dimen/margin_xsmall"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextAppearance="@style/ToolbarTitleAppearance"
         app:titleTextColor="@color/white_title" />

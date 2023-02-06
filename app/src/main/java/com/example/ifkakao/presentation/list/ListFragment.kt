@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,7 +49,7 @@ class ListFragment : Fragment() {
 
 
         // recycler view, Adapter setting
-        sessionListAdapter = SessionListAdapter()
+        sessionListAdapter = SessionListAdapter(::onItemClick)
         val recyclerView = binding.sessionRecyclerView
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -206,6 +207,15 @@ class ListFragment : Fragment() {
                 viewModel.unCheckCompany(filterType)
             }
         }
+    }
+
+    fun onItemClick(position: Int) {
+        val currentList = sessionListAdapter.currentList.toMutableList()
+        val session = currentList[position]
+
+        // 일단 모바일
+        val action = ListFragmentDirections.actionListToDetail(session)
+        binding.root.findNavController().navigate(action)
     }
 
     fun processArgs(

@@ -26,6 +26,7 @@ enum class Company(val value: String) : FilterType {
             KAKAO_GAMES -> "카카오게임즈"
             KAKAO_PICCOMA -> "카카오픽코마"
             KRUST_UNIVERSE -> "크러스트 유니버스"
+            GREPP -> "grepp"
             else -> "--"
         }
     }

@@ -1,5 +1,8 @@
 package com.example.ifkakao.domain.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class SessionInfo(
     val id: Int,
     val users: List<User>,
@@ -19,4 +22,4 @@ data class SessionInfo(
     val sessionImg: String,
     val tags: String,
     var isLiked: Boolean = false,
-)
+) : java.io.Serializable

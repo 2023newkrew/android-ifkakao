@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/session_height"
+    android:layout_margin="@dimen/session_margin"
+    android:background="@drawable/session_item_background"
+    android:orientation="vertical"
+    android:padding="@dimen/session_padding">
+
+    <TextView
+        android:id="@+id/session_item_text_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_size_xsmall" />
+
+    <TextView
+        android:id="@+id/session_item_text_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/session_margin"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_size_xsmall" />
+
+    <TextView
+        android:id="@+id/session_item_text_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/session_margin"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_small"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/session_item_text_four"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/session_margin"
+        android:textColor="@color/primary_blue"
+        android:textSize="@dimen/text_size_xsmall" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/session_like_image"
+        android:layout_width="@dimen/like_button_size"
+        android:layout_height="@dimen/like_button_size"
+        android:layout_gravity="end"
+        android:padding="@dimen/session_margin"
+        android:src="@drawable/icon_like" />
+</LinearLayout>

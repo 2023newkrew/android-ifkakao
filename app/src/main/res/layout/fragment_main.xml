@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.presentation_main.fragment.MainFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/main_video_fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_main_video" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/hello_fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_hello" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/choice_session_type_fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_choice_session_type" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/choice_session_track_fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_choice_session_track" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/ending_banner_fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_choice_session_track" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/content_margin_near"
+            android:layout_marginEnd="@dimen/content_margin_near"
+            android:layout_marginBottom="@dimen/content_margin_near"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="© Kakao Corp."
+                android:textColor="@color/text_white" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지난 if kakao"
+                android:textColor="@color/text_gray" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

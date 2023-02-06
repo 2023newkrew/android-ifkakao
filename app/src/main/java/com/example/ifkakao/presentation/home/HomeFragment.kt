@@ -1,5 +1,8 @@
 package com.example.ifkakao.presentation.home
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context.CLIPBOARD_SERVICE
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -112,6 +115,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.highlightTrackView.toAllSessionButton.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToSessionListFragment()
             findNavController().navigate(action)
+        }
+
+        binding.bannerView.bannerShare.setOnClickListener {
+            val clipboardManager: ClipboardManager =
+                requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData: ClipData =
+                ClipData.newPlainText("if_kakao_link", getString(R.string.if_kakao_url))
+            clipboardManager.setPrimaryClip(clipData)
         }
     }
 

@@ -30,4 +30,5 @@
     <string name="banner_mono">banner_mono</string>
     <string name="kakao_corp">© Kakao Corp.</string>
     <string name="last_if_kakao">지난 if kakao</string>
+    <string name="if_kakao_url">https://if.kakao.com</string>
 </resources>

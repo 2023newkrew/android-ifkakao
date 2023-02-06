@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/toolbar_layout"
     tools:context=".presentation.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        app:titleTextAppearance="@style/ToolbarTitleAppearance"
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/margin_default"
         app:layout_constraintTop_toTopOf="parent"
+        app:titleTextAppearance="@style/ToolbarTitleAppearance"
         app:titleTextColor="@color/white_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>

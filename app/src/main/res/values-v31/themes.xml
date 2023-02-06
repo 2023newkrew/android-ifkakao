@@ -21,5 +21,8 @@
 
         <!-- splash screen -->
         <item name="android:windowSplashScreenBackground">@android:color/white</item>
+
+        <!-- menu text color -->
+        <item name="android:actionMenuTextColor">@color/white_title</item>
     </style>
 </resources>

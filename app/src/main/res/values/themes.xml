@@ -17,6 +17,9 @@
         <!-- text -->
         <item name="android:textColor">@color/white_title</item>
         <item name="android:textSize">@dimen/text_size_default</item>
+
+        <!-- menu text color -->
+        <item name="android:actionMenuTextColor">@color/white_title</item>
     </style>
 
     <style name="Theme.White" parent="Theme.IfKakao">

@@ -22,6 +22,7 @@ import com.example.ifkakao.presentation.MainVideoURI
 import com.example.ifkakao.presentation.session_list.SessionListFilterItems
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -46,8 +47,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         navController = view.findNavController()
         val videoView = binding.mainVideoView
-        val uri = Uri.parse(MainVideoURI)
-        videoView.setVideoURI(uri)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val uri = Uri.parse(MainVideoURI)
+            videoView.setVideoURI(uri)
+        }
 
         videoView.setOnPreparedListener {
             it.isLooping = true

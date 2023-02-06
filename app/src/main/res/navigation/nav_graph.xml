@@ -3,10 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/sessionListFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/sessionListFragment"
         android:name="com.example.ifkakao.presentation.session_list.SessionListFragment"
         tools:layout="@layout/fragment_session_list" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.ifkakao.presentation.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
 </navigation>

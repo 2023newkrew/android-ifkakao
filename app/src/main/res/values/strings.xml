@@ -16,4 +16,18 @@
     <string name="init_filter">init_filter</string>
     <string name="init">초기화</string>
     <string name="floating_up_button">floating_up_button</string>
+    <string name="home_view">home_view</string>
+    <string name="see_you_next_year">우리, 내년에 또 만나요 ~\n함께 나아가는 더 나은 세상!</string>
+    <string name="finish_conference">카카오 개발자 컨퍼런스가 마무리되었습니다.\n카카오는 개발자와 함께 성장할 수 있도록 더 노력하겠습니다.</string>
+    <string name="to_all_session">전체 세션 바로가기</string>
+    <string name="share_experience">2022년 한해, 카카오의\n고민과 경험을 공유합니다.</string>
+    <string name="highlight_image">highlit_imgae</string>
+    <string name="track_icon">track_icon</string>
+    <string name="highlight_track">Highlight Track</string>
+    <string name="check_highlight_track_desc">2022년 하이라이트 트랙 및 전체 세션을 확인해보세요!</string>
+    <string name="go_session">세션 바로가기</string>
+    <string name="banner_share">banner_share</string>
+    <string name="banner_mono">banner_mono</string>
+    <string name="kakao_corp">© Kakao Corp.</string>
+    <string name="last_if_kakao">지난 if kakao</string>
 </resources>

@@ -38,16 +38,18 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         val inflater = navController.navInflater
         val graph = inflater.inflate(R.navigation.nav_graph)
-        navController.setGraph(graph, intent.extras)
+        if (savedInstanceState == null) {
+            navController.setGraph(graph, intent.extras)
+        }
         //appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.main,
                 R.id.list
-            ), binding.drawerLayout)
+            ), binding.drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
-
         binding.navView.setNavigationItemSelectedListener {
             it.isChecked = true
             binding.drawerLayout.close()
@@ -73,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             false
         }
 
+
         val navHeaderView = binding.navView.getHeaderView(0)
         // nav drawer close
         navHeaderView.findViewById<ImageView>(R.id.nav_close).setOnClickListener {
@@ -85,6 +88,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp(appBarConfiguration)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }

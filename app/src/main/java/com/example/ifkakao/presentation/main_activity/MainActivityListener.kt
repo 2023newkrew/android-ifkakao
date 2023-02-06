@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.listener
+package com.example.ifkakao.presentation.main_activity
 
 interface MainActivityListener {
     enum class Code {

@@ -3,7 +3,7 @@ package com.example.ifkakao.di.component
 import com.example.ifkakao.di.module.NetworkModule
 import com.example.ifkakao.di.module.SessionListModule
 import com.example.ifkakao.di.scope.ActivityScope
-import com.example.ifkakao.presentation.activity.MainActivity
+import com.example.ifkakao.presentation.main_activity.MainActivity
 import dagger.Subcomponent
 
 @ActivityScope

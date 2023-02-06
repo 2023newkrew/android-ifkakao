@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.presentation_main.fragment
+package com.example.ifkakao.presentation.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.presentation_main.fragment
+package com.example.ifkakao.presentation.main.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import com.example.ifkakao.databinding.FragmentHelloBinding
-import com.example.ifkakao.presentation.listener.MainActivityListener
+import com.example.ifkakao.presentation.main_activity.MainActivityListener
 
 class HelloFragment : Fragment(), OnClickListener {
 

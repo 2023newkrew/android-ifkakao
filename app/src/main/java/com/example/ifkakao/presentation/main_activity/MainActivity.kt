@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.activity
+package com.example.ifkakao.presentation.main_activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,10 +8,8 @@ import androidx.fragment.app.replace
 import com.example.ifkakao.R
 import com.example.ifkakao.di.MyApplication
 import com.example.ifkakao.di.component.MainComponent
-import com.example.ifkakao.presentation.listener.MainActivityListener
-import com.example.ifkakao.presentation.presentation_main.fragment.MainFragment
+import com.example.ifkakao.presentation.main.fragment.MainFragment
 import com.example.ifkakao.presentation.presentation_session_list.fragment.SessionListFragment
-import com.example.ifkakao.presentation.viewmodel.MainActivityViewModel
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainActivityListener {

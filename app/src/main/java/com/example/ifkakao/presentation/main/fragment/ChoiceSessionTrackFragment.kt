@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.presentation_main.fragment
+package com.example.ifkakao.presentation.main.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentChoiceSessionTrackBinding
-import com.example.ifkakao.presentation.presentation_main.adapter.TrackGridAdapter
-import com.example.ifkakao.presentation.listener.MainActivityListener
+import com.example.ifkakao.presentation.main.adapter.TrackGridAdapter
+import com.example.ifkakao.presentation.main_activity.MainActivityListener
 
 class ChoiceSessionTrackFragment : Fragment(), View.OnClickListener {
 

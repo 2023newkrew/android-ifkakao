@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.presentation_main.fragment.EndingBannerFragment">
+    tools:context=".presentation.main.fragment.EndingBannerFragment">
 
     <ImageView
         android:id="@+id/ending_banner_01"

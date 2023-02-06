@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ifkakao.databinding.FragmentSessionListBinding
 import com.example.ifkakao.di.component.SessionListComponent
 import com.example.ifkakao.domain.model.Session
-import com.example.ifkakao.presentation.activity.MainActivity
+import com.example.ifkakao.presentation.main_activity.MainActivity
 import com.example.ifkakao.presentation.presentation_session_list.adapter.SessionGridAdapter
 import com.example.ifkakao.presentation.presentation_session_list.viewmodel.SessionListFragmentViewModel
 import kotlinx.coroutines.flow.collectLatest

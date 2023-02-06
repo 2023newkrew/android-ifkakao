@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.viewmodel
+package com.example.ifkakao.presentation.main_activity
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

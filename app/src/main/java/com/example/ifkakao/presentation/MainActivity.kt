@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.ActivityMainBinding
+import com.example.ifkakao.presentation.session_list.SessionListFilterItems
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -62,7 +63,13 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setNavigationItemSelectedListener { it ->
             when (it.itemId) {
                 R.id.menu_session -> {
-                    navController.navigate(R.id.session_list_fragment)
+                    val args = Bundle().apply {
+                        putSerializable(
+                            "FilterItems",
+                            SessionListFilterItems()
+                        )
+                    }
+                    navController.navigate(R.id.session_list_fragment,args)
                     binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }

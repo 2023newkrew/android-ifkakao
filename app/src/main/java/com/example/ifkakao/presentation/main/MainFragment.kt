@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
 
-    private var _binding: FragmentMainBinding?= null
+    private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
     private val Fragment.packageManager get() = activity?.packageManager
@@ -48,7 +48,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val uri = Uri.parse(MainVideoURI)
         videoView.setVideoURI(uri)
 
-        videoView.setOnPreparedListener{
+        videoView.setOnPreparedListener {
             it.isLooping = true
             it.start()
         }
@@ -63,7 +63,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
-        binding.mainKeynoteImage.setOnClickListener{
+        binding.mainKeynoteImage.setOnClickListener {
             val args = Bundle().apply {
                 putSerializable(
                     "FilterItems",
@@ -73,7 +73,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
-        binding.mainTechImage.setOnClickListener{
+        binding.mainTechImage.setOnClickListener {
             val args = Bundle().apply {
                 putSerializable(
                     "FilterItems",
@@ -83,7 +83,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
-        binding.mainEthicsImage.setOnClickListener{
+        binding.mainEthicsImage.setOnClickListener {
             val args = Bundle().apply {
                 putSerializable(
                     "FilterItems",
@@ -103,7 +103,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
-        binding.mainImageBe.setOnClickListener{
+        binding.mainImageBe.setOnClickListener {
             val args = Bundle().apply {
                 putSerializable(
                     "FilterItems",
@@ -113,7 +113,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
-        binding.mainImageCl.setOnClickListener{
+        binding.mainImageCl.setOnClickListener {
             val args = Bundle().apply {
                 putSerializable(
                     "FilterItems",
@@ -123,7 +123,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
-        binding.mainImageDo.setOnClickListener{
+        binding.mainImageDo.setOnClickListener {
             val args = Bundle().apply {
                 putSerializable(
                     "FilterItems",
@@ -133,7 +133,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
-        binding.mainImageBc.setOnClickListener{
+        binding.mainImageBc.setOnClickListener {
             val args = Bundle().apply {
                 putSerializable(
                     "FilterItems",
@@ -143,7 +143,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
-        binding.mainImageDt.setOnClickListener{
+        binding.mainImageDt.setOnClickListener {
             val args = Bundle().apply {
                 putSerializable(
                     "FilterItems",
@@ -153,7 +153,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
-        binding.mainImageFe.setOnClickListener{
+        binding.mainImageFe.setOnClickListener {
             val args = Bundle().apply {
                 putSerializable(
                     "FilterItems",
@@ -163,7 +163,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
-        binding.mainImageM.setOnClickListener{
+        binding.mainImageM.setOnClickListener {
             val args = Bundle().apply {
                 putSerializable(
                     "FilterItems",
@@ -188,8 +188,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(KakaoCorpURi))
             //더 좋은 방법이 없을까
-            packageManager?.let{
-                if(intent.resolveActivity(packageManager!!) != null){
+            packageManager?.let {
+                if (intent.resolveActivity(packageManager!!) != null) {
                     startActivity(intent)
                 }
             }
@@ -202,19 +202,37 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.mainUiState.collectLatest {
-                    if(it.isKakaoCorpClicked){
-                        binding.mainFooterCorp.setTextColor(ContextCompat.getColor(view.context,R.color.session_blue))
+                    if (it.isKakaoCorpClicked) {
+                        binding.mainFooterCorp.setTextColor(
+                            ContextCompat.getColor(
+                                view.context,
+                                R.color.session_blue
+                            )
+                        )
+                    } else {
+                        binding.mainFooterCorp.setTextColor(
+                            ContextCompat.getColor(
+                                view.context,
+                                R.color.main_text_color
+                            )
+                        )
                     }
-                    else{
-                        binding.mainFooterCorp.setTextColor(ContextCompat.getColor(view.context,R.color.main_text_color))
-                    }
-                    if(it.isLastIfKakaoClicked){
-                        binding.mainFooterLastIfkakao.setTextColor(ContextCompat.getColor(view.context,R.color.session_blue))
-                    }
-                    else{
-                        binding.mainFooterLastIfkakao.setTextColor(ContextCompat.getColor(view.context,R.color.main_text_color))
+                    if (it.isLastIfKakaoClicked) {
+                        binding.mainFooterLastIfkakao.setTextColor(
+                            ContextCompat.getColor(
+                                view.context,
+                                R.color.session_blue
+                            )
+                        )
+                    } else {
+                        binding.mainFooterLastIfkakao.setTextColor(
+                            ContextCompat.getColor(
+                                view.context,
+                                R.color.main_text_color
+                            )
+                        )
                     }
                 }
             }

@@ -5,8 +5,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -29,6 +27,7 @@ import com.example.ifkakao.URL_COC
 import com.example.ifkakao.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -55,19 +54,6 @@ class MainActivity : AppCompatActivity() {
         else initializeSinglePaneUI()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if (dualPane) menuInflater.inflate(R.menu.activity_main_drawer, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_session -> navigateToSession(null, null)
-            R.id.nav_coc -> browseCoC()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
@@ -84,10 +70,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeDualPaneUI() {
-        // nothing
+        // set menu visibility
+        binding.includeToolbar.sessionMenu.isVisible = true
+        binding.includeToolbar.cocMenu.isVisible = true
+
+        // set session menu text color
+        if (navController.currentDestination?.id == navController.graph.startDestinationId) setSessionMenuTextColorWhite()
+        else setSessionMenuTextColorBlue()
+
+        // set click listener
+        binding.includeToolbar.sessionMenu.setOnClickListener {
+            navigateToSession(null, null)
+        }
+        binding.includeToolbar.cocMenu.setOnClickListener {
+            browseCoC()
+        }
     }
 
     private fun initializeSinglePaneUI() {
+        // set menu visibility
+        binding.includeToolbar.sessionMenu.isVisible = false
+        binding.includeToolbar.cocMenu.isVisible = false
+
         // initialize navigation drawer
         val drawerLayout: DrawerLayout = binding.mainDrawerLayout
         val drawerToggle = object : ActionBarDrawerToggle(
@@ -197,12 +201,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setSessionMenuTextColorBlue() {
-        if (::binding.isInitialized)
-            binding.includeToolbar.toolbar.findViewById<TextView>(R.id.nav_session)?.setTextColor(getColor(R.color.blue_primary))
+        if (::binding.isInitialized) binding.includeToolbar.sessionMenu.setTextColor(getColor(R.color.blue_primary))
     }
 
     fun setSessionMenuTextColorWhite() {
-        if (::binding.isInitialized)
-            binding.includeToolbar.toolbar.findViewById<TextView>(R.id.nav_session)?.setTextColor(getColor(R.color.white_title))
+        if (::binding.isInitialized) binding.includeToolbar.sessionMenu.setTextColor(getColor(R.color.white_title))
     }
 }

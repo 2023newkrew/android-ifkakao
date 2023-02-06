@@ -48,6 +48,11 @@ class SessionListViewModel @Inject constructor(
             }
         }
 
+        _sessionListState.value = sessionListState.value.copy(
+            isFilterEnable = sessionFilterState.value.sessionTypes.isNotEmpty() ||
+                    sessionFilterState.value.tracks.isNotEmpty() ||
+                    sessionFilterState.value.companies.isNotEmpty()
+        )
 
         loadSessions()
     }

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/sessionListFragment"
-        android:title="@string/session" />
 
-    <item
-        android:id="@+id/coc"
-        android:title="@string/coc" />
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/sessionListFragment"
+            android:title="@string/session" />
+
+        <item
+            android:id="@+id/coc"
+            android:title="@string/coc" />
+    </group>
 </menu>

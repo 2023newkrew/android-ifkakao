@@ -28,17 +28,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-        val appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
+
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.homeFragment,
+                R.id.sessionListFragment
+            ),
+            binding.drawerLayout
+        )
 
 
-        binding.navView
-            .setupWithNavController(navController)
+        binding.navView.setupWithNavController(navController)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
-
         binding.toolbar.setOnClickListener {
             navController.navigate(R.id.homeFragment)
         }
@@ -65,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             false
         }
     }
+
 
 }
 

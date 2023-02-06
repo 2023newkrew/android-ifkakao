@@ -29,6 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+
 @AndroidEntryPoint
 class SessionListFragment : Fragment(R.layout.fragment_session_list) {
 
@@ -205,6 +206,7 @@ class SessionListFragment : Fragment(R.layout.fragment_session_list) {
         filterListBinding: FilterListBinding,
         filterItems: List<FilterListItem>,
     ) {
+        filterListBinding.recyclerFilterItems.itemAnimator = null
         val adapter = filterListBinding.recyclerFilterItems.adapter as SessionFilterMenuAdapter
         val enableCount = filterItems.count { it.isChecked }
 

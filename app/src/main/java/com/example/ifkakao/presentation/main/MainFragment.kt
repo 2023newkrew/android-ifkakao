@@ -21,6 +21,7 @@ import com.example.ifkakao.presentation.KakaoCorpURi
 import com.example.ifkakao.presentation.MainVideoURI
 import com.example.ifkakao.presentation.session_list.SessionListFilterItems
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

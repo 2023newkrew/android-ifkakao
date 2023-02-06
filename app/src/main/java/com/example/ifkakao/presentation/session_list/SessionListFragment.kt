@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.session_detail.view
+package com.example.ifkakao.presentation.session_list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import com.example.ifkakao.R
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class SessionDetailFragment : Fragment() {
+class SessionListFragment : Fragment() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,6 +20,8 @@ class SessionDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_session_detail, container, false)
+        return inflater.inflate(R.layout.fragment_session_list, container, false)
     }
+
+
 }

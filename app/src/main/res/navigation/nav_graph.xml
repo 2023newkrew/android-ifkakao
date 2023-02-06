@@ -6,17 +6,17 @@
     app:startDestination="@id/main_fragment">
     <fragment
         android:id="@+id/main_fragment"
-        android:name="com.example.ifkakao.presentation.main.view.MainFragment"
+        android:name="com.example.ifkakao.presentation.main.MainFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/session_list_fragment"
-        android:name="com.example.ifkakao.presentation.session_list.view.SessionListFragment"
+        android:name="com.example.ifkakao.presentation.session_list.SessionListFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_session_list" />
     <fragment
         android:id="@+id/session_detail_fragment"
-        android:name="com.example.ifkakao.presentation.session_detail.view.SessionDetailFragment"
+        android:name="com.example.ifkakao.presentation.session_detail.SessionDetailFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_session_detail" />
 

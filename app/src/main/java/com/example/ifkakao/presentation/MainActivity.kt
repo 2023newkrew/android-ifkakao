@@ -93,10 +93,14 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
         navigationView.menu.findItem(R.id.nav_coc).setOnMenuItemClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW).apply {
-                setDataAndType(Uri.parse(URL_COC), "application/pdf")
-            }
-            startActivity(browserIntent)
+            Intent(Intent.ACTION_VIEW)
+                .apply {
+                    setDataAndType(Uri.parse(URL_COC), "application/pdf")
+                }.also {
+                    it.resolveActivity(packageManager)?.run {
+                        startActivity(it)
+                    }
+                }
             false
         }
 

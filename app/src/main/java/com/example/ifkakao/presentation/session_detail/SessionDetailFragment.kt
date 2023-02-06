@@ -16,6 +16,7 @@ class SessionDetailFragment : Fragment(R.layout.fragment_session_detail) {
     private val binding get() = _binding!!
     private val viewModel: SessionDetailViewModel by viewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -25,9 +26,9 @@ class SessionDetailFragment : Fragment(R.layout.fragment_session_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel
+        binding.youTubePlayerView.play(videoId = viewModel.session.value.youtubeId)
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

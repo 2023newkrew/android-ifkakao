@@ -20,7 +20,12 @@ class SessionDetailViewModel @Inject constructor(
     init {
         savedStateHandle.get<Session>("session")?.let {
             _session.value = it
-            println(it)
         }
     }
 }
+
+
+val Session.youtubeId: String
+    get() {
+        return this.sessionVodLink.takeLastWhile { it != '/' }
+    }

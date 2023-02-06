@@ -31,4 +31,5 @@
     <string name="kakao_corp">© Kakao Corp.</string>
     <string name="last_if_kakao">지난 if kakao</string>
     <string name="if_kakao_url">https://if.kakao.com</string>
+    <string name="back_session_list">세션 목록으로 돌아가기</string>
 </resources>

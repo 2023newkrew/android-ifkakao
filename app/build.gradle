@@ -23,7 +23,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -89,6 +89,8 @@ dependencies {
     implementation 'androidx.window:window:1.0.0'
 
 
+    // youtube-player
+    implementation 'kr.co.prnd:youtube-player-view:1.4.1'
 }
 
 kapt {

@@ -24,7 +24,6 @@ import com.example.ifkakao.CLIP_LABEL_SHARE
 import com.example.ifkakao.databinding.FragmentSessionDetailBinding
 import com.example.ifkakao.domain.model.Info
 
-
 class DetailFragment : Fragment() {
     private var _binding: FragmentSessionDetailBinding? = null
     private val binding get() = _binding!!

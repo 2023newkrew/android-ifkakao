@@ -8,9 +8,23 @@
     <fragment
         android:id="@+id/sessionListFragment"
         android:name="com.example.ifkakao.presentation.session_list.SessionListFragment"
-        tools:layout="@layout/fragment_session_list" />
+        tools:layout="@layout/fragment_session_list">
+        <argument
+            android:name="session_type"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="track"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.ifkakao.presentation.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_sessionListFragment"
+            app:destination="@id/sessionListFragment" />
+
+    </fragment>
 </navigation>

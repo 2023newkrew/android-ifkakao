@@ -1,5 +1,6 @@
 package com.example.ifkakao.presentation.session_list
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ifkakao.domain.model.Company
@@ -20,7 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SessionListViewModel @Inject constructor(
     private val getSessionsUseCase: GetSessionsUseCase,
-    private val changeLikeSessionUseCase: ChangeLikeSessionUseCase
+    private val changeLikeSessionUseCase: ChangeLikeSessionUseCase,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _sessionListState = MutableStateFlow(SessionListState())
@@ -30,6 +32,23 @@ class SessionListViewModel @Inject constructor(
     val sessionFilterState: StateFlow<SessionFilter> = _sessionFilterState.asStateFlow()
 
     init {
+        savedStateHandle.get<String>("session_type")?.let {
+            if (it.isNotEmpty()) {
+                _sessionFilterState.value = sessionFilterState.value.copy(
+                    sessionTypes = setOf(SessionType.fromString(it))
+                )
+            }
+
+        }
+        savedStateHandle.get<String>("track")?.let {
+            if (it.isNotEmpty()) {
+                _sessionFilterState.value = sessionFilterState.value.copy(
+                    tracks = setOf(Track.fromString(it))
+                )
+            }
+        }
+
+
         loadSessions()
     }
 

@@ -10,8 +10,9 @@ import com.example.ifkakao.databinding.HighlightTrackItemBinding
 import com.example.ifkakao.presentation.home.HighlightTrack
 
 
-class HighlightTrackAdapter
-    : ListAdapter<HighlightTrack, HighlightTrackAdapter.ViewHolder>(diffCallback) {
+class HighlightTrackAdapter(
+    private val onHighlightTrackClick: (HighlightTrack) -> Unit
+) : ListAdapter<HighlightTrack, HighlightTrackAdapter.ViewHolder>(diffCallback) {
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<HighlightTrack>() {
             override fun areItemsTheSame(
@@ -43,6 +44,9 @@ class HighlightTrackAdapter
         holder.apply {
             binding.imageHighlightTrack.setImageResource(currentList[position].resId)
             binding.tvHighlightTrack.text = currentList[position].alias
+            binding.root.setOnClickListener {
+                onHighlightTrackClick(currentList[position])
+            }
         }
     }
 }

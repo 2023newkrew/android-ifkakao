@@ -7,6 +7,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -82,7 +84,7 @@ class SessionSelectFragment : Fragment() {
         }
         arguments = null // prevent filter again when pop stack from detail fragment
 
-        // collect state
+        // collect session state
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { state ->
@@ -230,16 +232,70 @@ class SessionSelectFragment : Fragment() {
                     }
                 }
         }
-
         binding.filterResetLayout.setOnClickListener {
             viewModel.resetFilter()
         }
         binding.upButton.setOnClickListener {
             binding.nestedScroll.smoothScrollTo(0, 0)
         }
+        binding.typeFilterFoldButton?.setOnClickListener {
+            viewModel.toggleFold(FILTER_CODE_TYPE)
+        }
+        binding.trackFilterFoldButton?.setOnClickListener {
+            viewModel.toggleFold(FILTER_CODE_TRACK)
+        }
+        binding.companyFilterFoldButton?.setOnClickListener {
+            viewModel.toggleFold(FILTER_CODE_COMPANY)
+        }
+        binding.likeFilterFoldButton?.setOnClickListener {
+            viewModel.toggleFold(FILTER_CODE_LIKE)
+        }
     }
 
     private fun initializeDualPaneUI() {
+        // collect fold state
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.foldState.collect { foldState ->
+                    // type
+                    if (foldState.isTypeFolded) {
+                        binding.typeFilterFoldButton?.setImageResource(R.drawable.icon_down)
+                        binding.typeFilterList.visibility = GONE
+                    } else {
+                        binding.typeFilterFoldButton?.setImageResource(R.drawable.icon_up)
+                        binding.typeFilterList.visibility = VISIBLE
+                    }
+
+                    // track
+                    if (foldState.isTrackFolded) {
+                        binding.trackFilterFoldButton?.setImageResource(R.drawable.icon_down)
+                        binding.trackFilterList.visibility = GONE
+                    } else {
+                        binding.trackFilterFoldButton?.setImageResource(R.drawable.icon_up)
+                        binding.trackFilterList.visibility = VISIBLE
+                    }
+
+                    // company
+                    if (foldState.isCompanyFolded) {
+                        binding.companyFilterFoldButton?.setImageResource(R.drawable.icon_down)
+                        binding.companyFilterList.visibility = GONE
+                    } else {
+                        binding.companyFilterFoldButton?.setImageResource(R.drawable.icon_up)
+                        binding.companyFilterList.visibility = VISIBLE
+                    }
+
+                    // like
+                    if (foldState.isLikeFolded) {
+                        binding.likeFilterFoldButton?.setImageResource(R.drawable.icon_down)
+                        binding.likeFilterList.visibility = GONE
+                    } else {
+                        binding.likeFilterFoldButton?.setImageResource(R.drawable.icon_up)
+                        binding.likeFilterList.visibility = VISIBLE
+                    }
+                }
+            }
+        }
+
         // set session list span count
         binding.sessionList.layoutManager = GridLayoutManager(requireContext(), 3)
 

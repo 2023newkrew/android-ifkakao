@@ -44,8 +44,6 @@ class SessionListAdapter : ListAdapter<SessionInfo, SessionListAdapter.ViewHolde
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val context = holder.itemView.context
-
         // 분기 타줘야 할듯
         holder.binding.sessionDateOrTimeText.text = currentList[position].sessionDay.toString()
         holder.binding.sessionCompany.text = currentList[position].company.toString()

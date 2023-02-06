@@ -12,6 +12,7 @@ import com.example.ifkakao.domain.model.FilterType
 class FilterListAdapter(
     private val onFilterChecked: (FilterType) -> Unit,
     private val onFilterUnChecked: (FilterType) -> Unit,
+    private var checkedList: Set<FilterType>,
 ) : ListAdapter<FilterType, FilterListAdapter.ViewHolder>(diffUtil) {
 
     companion object {
@@ -56,8 +57,13 @@ class FilterListAdapter(
                 onFilterUnChecked(currentList[position])
             }
         }
+        holder.binding.filterCheckbox.isChecked = currentList[position] in checkedList
     }
 
     override fun getItemCount() = currentList.size
+    fun checkUpdate(updatedCheckList: Set<FilterType>) {
+        checkedList = updatedCheckList
+        notifyDataSetChanged()
+    }
 
 }

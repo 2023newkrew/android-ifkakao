@@ -15,7 +15,8 @@ enum class Track(val value: String) : FilterType {
     BLOCK_CHAIN("blockchain"),
     CLOUD("cloud"),
     DEVOPS("devops"),
-    CULTURE("culture");
+    CULTURE("culture"),
+    Null("null");
 
     override fun toString(): String {
         return when (this) {
@@ -31,6 +32,7 @@ enum class Track(val value: String) : FilterType {
             GENERAL -> "General"
             CULTURE -> "Culture"
             RE1015 -> "1015장애 회고"
+            else -> ""
         }
     }
 

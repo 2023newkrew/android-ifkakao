@@ -46,9 +46,9 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         // recycler view, Adapter setting
         sessionListAdapter = SessionListAdapter()
-        sessionListAdapter.setHasStableIds(true)
         val recyclerView = binding.sessionRecyclerView
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -56,13 +56,17 @@ class ListFragment : Fragment() {
 
         // drawer setting
         binding.filterDrawerNestedScrollView.isNestedScrollingEnabled = false
-        filterInitialize(
+        val fa1 = filterInitialize(
             binding.sessionFilterDrawerMenu.typeFilter,
             "유형",
             SessionType.values().toList()
         )
-        filterInitialize(binding.sessionFilterDrawerMenu.trackFilter, "트랙", Track.values().toList())
-        filterInitialize(
+        val fa2 = filterInitialize(
+            binding.sessionFilterDrawerMenu.trackFilter,
+            "트랙",
+            Track.values().toList()
+        )
+        val fa3 = filterInitialize(
             binding.sessionFilterDrawerMenu.companyFilter,
             "소속",
             Company.values().toList()
@@ -113,7 +117,7 @@ class ListFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.sessionData.collect { state ->
                     val recyclerViewState = recyclerView.layoutManager?.onSaveInstanceState()
-                    sessionListAdapter.submitList(state.sessionList.toMutableList()) {
+                    sessionListAdapter.submitList(state.sessionList) {
                         recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
                     }
                 }
@@ -137,25 +141,32 @@ class ListFragment : Fragment() {
 
         binding.sessionFilterDrawerMenu.filterResetButton.setOnClickListener {
             viewModel.resetFilter()
+            fa1.checkUpdate(viewModel.sessionState.value.types)
+            fa2.checkUpdate(viewModel.sessionState.value.tracks)
+            fa3.checkUpdate(viewModel.sessionState.value.companies)
         }
 
         binding.floatingUpButton.setOnClickListener {
             binding.sessionRecyclerView.smoothScrollToPosition(0)
         }
+
+        // safe args로 넘겨준 값 바탕으로 세팅
+        processArgs(args, fa1, fa2, fa3)
     }
 
     private fun filterInitialize(
         filterListBinding: FilterListBinding,
         name: String,
         filterData: List<FilterType>
-    ) {
-        val filterListAdapter = FilterListAdapter(::onFilterChecked, ::onFilterUnChecked)
+    ): FilterListAdapter {
+        val filterListAdapter = FilterListAdapter(::onFilterChecked, ::onFilterUnChecked, setOf())
         filterListBinding.filterNameTextView.text = name
         filterListBinding.filterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         filterListBinding.filterRecyclerView.adapter = filterListAdapter
         val filterList = filterData.filter { it.toString() != "" && it.toString() != "--" }
         filterListBinding.filterTotalCount.text = filterList.size.toString()
         filterListAdapter.submitList(filterList)
+        return filterListAdapter
     }
 
     private fun setFilterCount(filterListBinding: FilterListBinding, size: Int) {
@@ -194,6 +205,26 @@ class ListFragment : Fragment() {
             is Company -> {
                 viewModel.unCheckCompany(filterType)
             }
+        }
+    }
+
+    fun processArgs(
+        args: ListFragmentArgs,
+        fa1: FilterListAdapter,
+        fa2: FilterListAdapter,
+        fa3: FilterListAdapter,
+    ) {
+        if (args.sessionType != SessionType.Null) {
+            viewModel.checkType(args.sessionType)
+            fa1.checkUpdate(viewModel.sessionState.value.types)
+        }
+        if (args.sessionTrack != Track.Null) {
+            viewModel.checkTrack(args.sessionTrack)
+            fa2.checkUpdate(viewModel.sessionState.value.tracks)
+        }
+        if (args.sessionCompany != Company.Null) {
+            viewModel.checkCompany(args.sessionCompany)
+            fa3.checkUpdate(viewModel.sessionState.value.companies)
         }
     }
 }

@@ -30,6 +30,9 @@ class GetSessionInfoListUseCase(private val repository: SessionRepository) {
 
         return when (result) {
             is ApiSuccess -> {
+                // type이 제대로 안되는 거 고쳐야됨
+                // foreach 가 낫다
+                // 안티패턴
                 (result as ApiSuccess<List<SessionInfo>>).data.map {
                     if (it.id in likeSessionList) {
                         it.isLiked = true

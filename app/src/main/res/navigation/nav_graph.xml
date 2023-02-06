@@ -19,15 +19,15 @@
         tools:layout="@layout/fragment_list">
         <argument
             android:name="sessionType"
-            android:defaultValue="-1"
-            app:argType="integer" />
+            android:defaultValue="Null"
+            app:argType="com.example.ifkakao.domain.model.SessionType" />
         <argument
             android:name="sessionTrack"
-            android:defaultValue="-1"
-            app:argType="integer" />
+            android:defaultValue="Null"
+            app:argType="com.example.ifkakao.domain.model.Track" />
         <argument
             android:name="sessionCompany"
-            android:defaultValue="-1"
-            app:argType="integer" />
+            android:defaultValue="Null"
+            app:argType="com.example.ifkakao.domain.model.Company" />
     </fragment>
 </navigation>

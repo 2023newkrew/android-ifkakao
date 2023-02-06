@@ -6,8 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.ifkakao.R
@@ -15,7 +19,10 @@ import com.example.ifkakao.databinding.FragmentMainBinding
 import com.example.ifkakao.presentation.CocURI
 import com.example.ifkakao.presentation.KakaoCorpURi
 import com.example.ifkakao.presentation.MainVideoURI
+import com.example.ifkakao.presentation.session_list.SessionListFilterItems
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -47,55 +54,133 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
 
         binding.mainTotalSessionButton.setOnClickListener {
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems()
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainKeynoteImage.setOnClickListener{
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isKeynote = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainTechImage.setOnClickListener{
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isTechSession = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainEthicsImage.setOnClickListener{
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isESG = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainImageAi.setOnClickListener {
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isAi = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainImageBe.setOnClickListener{
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isBe = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainImageCl.setOnClickListener{
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isCloud = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainImageDo.setOnClickListener{
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isDevOps = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainImageBc.setOnClickListener{
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isBlockChain = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainImageDt.setOnClickListener{
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isBigData = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainImageFe.setOnClickListener{
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isFe = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainImageM.setOnClickListener{
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems(isMobile = true)
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainSessionButton.setOnClickListener {
-            navController.navigate(R.id.session_list_fragment)
+            val args = Bundle().apply {
+                putSerializable(
+                    "FilterItems",
+                    SessionListFilterItems()
+                )
+            }
+            navController.navigate(R.id.session_list_fragment, args)
         }
 
         binding.mainFooterCorp.setOnClickListener {
@@ -113,7 +198,26 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         binding.mainFooterLastIfkakao.setOnClickListener {
             viewModel.footerLastKakaoClicked()
 
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(KakaoCorpURi))
+            TODO() // View 새로 만들기
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.mainUiState.collectLatest {
+                    if(it.isKakaoCorpClicked){
+                        binding.mainFooterCorp.setTextColor(ContextCompat.getColor(view.context,R.color.session_blue))
+                    }
+                    else{
+                        binding.mainFooterCorp.setTextColor(ContextCompat.getColor(view.context,R.color.main_text_color))
+                    }
+                    if(it.isLastIfKakaoClicked){
+                        binding.mainFooterLastIfkakao.setTextColor(ContextCompat.getColor(view.context,R.color.session_blue))
+                    }
+                    else{
+                        binding.mainFooterLastIfkakao.setTextColor(ContextCompat.getColor(view.context,R.color.main_text_color))
+                    }
+                }
+            }
         }
 
         super.onViewCreated(view, savedInstanceState)

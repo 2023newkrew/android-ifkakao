@@ -1,5 +1,6 @@
 package com.example.ifkakao.presentation.detail_session
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -7,11 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
+import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentDetailSessionBinding
 import com.example.ifkakao.domain.model.Session
+import com.example.ifkakao.presentation.presentation_session_list.fragment.SessionListFragment
 
 class DetailSessionFragment : Fragment() {
+
+    private lateinit var onBackPressedCallback: OnBackPressedCallback
 
     private var _binding: FragmentDetailSessionBinding? = null
     private val binding get() = _binding!!
@@ -22,6 +31,19 @@ class DetailSessionFragment : Fragment() {
         } else {
             requireArguments().getSerializable("test") as? Session
         } ?: Session()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace<SessionListFragment>(R.id.main_fragment_container_view)
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     override fun onCreateView(
@@ -60,5 +82,10 @@ class DetailSessionFragment : Fragment() {
         binding.sessionWebView.loadUrl("https://www.youtube.com/embed/" + session.videoLink.split("/").last())
 
         return binding.root
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        onBackPressedCallback.remove()
     }
 }

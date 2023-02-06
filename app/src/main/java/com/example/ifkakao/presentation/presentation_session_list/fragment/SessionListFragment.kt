@@ -14,16 +14,19 @@ import com.example.ifkakao.databinding.FragmentSessionListBinding
 import com.example.ifkakao.di.component.SessionListComponent
 import com.example.ifkakao.domain.model.Session
 import com.example.ifkakao.presentation.main_activity.MainActivity
+import com.example.ifkakao.presentation.main_activity.MainActivityListener
 import com.example.ifkakao.presentation.presentation_session_list.adapter.SessionGridAdapter
 import com.example.ifkakao.presentation.presentation_session_list.viewmodel.SessionListFragmentViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SessionListFragment : Fragment() {
+class SessionListFragment : Fragment(), SessionListFragmentListener{
 
     private var _binding: FragmentSessionListBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var parentListener: MainActivityListener
 
     @Inject
     lateinit var fragmentComponent: SessionListComponent
@@ -34,6 +37,14 @@ class SessionListFragment : Fragment() {
         fragmentComponent = (activity as MainActivity).mainComponent.sessionListFragmentComponent().create()
         fragmentComponent.inject(this)
         super.onAttach(context)
+        if (context is MainActivityListener) {
+            parentListener = context
+        } else {
+            throw ClassCastException(
+                context.toString()
+                        + " must implement OnFragmentInteractionListener"
+            )
+        }
     }
 
     override fun onCreateView(
@@ -42,14 +53,8 @@ class SessionListFragment : Fragment() {
     ): View {
         _binding = FragmentSessionListBinding.inflate(inflater, container, false)
 
-        val dataList = mutableListOf(
-            Session(),
-            Session(),
-            Session(),
-            Session(),
-            Session(),
-        )
-        val adapter = SessionGridAdapter(dataList)
+        val dataList = mutableListOf(Session())
+        val adapter = SessionGridAdapter(dataList, this)
         binding.sessionList.adapter = adapter
         binding.sessionList.layoutManager = GridLayoutManager(activity, 2)
         adapter.list = dataList
@@ -64,9 +69,13 @@ class SessionListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.sessionListUiState.collectLatest {
-                    binding.sessionList.adapter = SessionGridAdapter(it.sessions.toMutableList())
+                    binding.sessionList.adapter = SessionGridAdapter(it.sessions.toMutableList(), this@SessionListFragment)
                 }
             }
         }
+    }
+
+    override fun callBack(session: Session) {
+        parentListener.callBack(MainActivityListener.Code.GO_TO_DETAIL_SESSION, session)
     }
 }

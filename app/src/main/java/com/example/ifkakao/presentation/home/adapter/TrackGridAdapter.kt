@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.main.adapter
+package com.example.ifkakao.presentation.home.adapter
 
 import android.view.LayoutInflater
 import android.view.View

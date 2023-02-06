@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.main.fragment
+package com.example.ifkakao.presentation.home.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -40,7 +40,7 @@ class HelloFragment : Fragment(), OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        parentListener.fragmentCallBack(MainActivityListener.Code.GO_TO_SESSION_LIST)
+        parentListener.callBack(MainActivityListener.Code.GO_TO_SESSION_LIST)
     }
 
 

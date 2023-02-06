@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.main.fragment
+package com.example.ifkakao.presentation.home.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentChoiceSessionTrackBinding
-import com.example.ifkakao.presentation.main.adapter.TrackGridAdapter
+import com.example.ifkakao.presentation.home.adapter.TrackGridAdapter
 import com.example.ifkakao.presentation.main_activity.MainActivityListener
 
 class ChoiceSessionTrackFragment : Fragment(), View.OnClickListener {
@@ -58,7 +58,7 @@ class ChoiceSessionTrackFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        parentListener.fragmentCallBack(MainActivityListener.Code.GO_TO_SESSION_LIST)
+        parentListener.callBack(MainActivityListener.Code.GO_TO_SESSION_LIST)
     }
 
     override fun onDestroyView() {

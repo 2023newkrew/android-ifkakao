@@ -1,5 +1,7 @@
 package com.example.ifkakao.domain.model
 
+import java.io.Serializable
+
 data class Session(
     val DB_ID: String = "DB_ID",
     val title: String = "title",
@@ -12,4 +14,4 @@ data class Session(
     val presenter: String = "presenter",
     val presenterDescription: String = "presenterDescription",
     val presenterImageUrl: String = "presenterImageUrl",
-)
+) : Serializable

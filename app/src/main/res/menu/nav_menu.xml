@@ -5,7 +5,7 @@
 
 
         <item
-            android:id="@+id/sessionListFragment"
+            android:id="@+id/session_navigation"
             android:title="@string/session" />
 
         <item

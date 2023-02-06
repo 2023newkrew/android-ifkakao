@@ -11,7 +11,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.ifkakao.R
+import com.example.ifkakao.SessionNavigationDirections
 import com.example.ifkakao.databinding.ActivityMainBinding
+import com.example.ifkakao.presentation.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 const val URL_COC = "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
-                R.id.sessionListFragment
+                R.id.session_navigation
             ),
             binding.drawerLayout
         )
@@ -44,29 +46,43 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setupWithNavController(navController)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
         binding.toolbar.setOnClickListener {
-            navController.navigate(R.id.homeFragment)
+            navController.navigate(HomeFragmentDirections.actionGlobalHomeFragment())
         }
 
 
         val navigationHeaderView = binding.navView.getHeaderView(0)
         navigationHeaderView.findViewById<TextView>(R.id.header_title).setOnClickListener {
-            navController.navigate(R.id.homeFragment)
+            navController.navigate(HomeFragmentDirections.actionGlobalHomeFragment())
             binding.drawerLayout.close()
         }
         navigationHeaderView.findViewById<ImageView>(R.id.close_button).setOnClickListener {
             binding.drawerLayout.close()
         }
 
-        binding.navView.menu.findItem(R.id.coc).setOnMenuItemClickListener {
-            Intent(Intent.ACTION_VIEW)
-                .apply {
-                    setDataAndType(Uri.parse(URL_COC), "application/pdf")
-                }.also {
-                    it.resolveActivity(packageManager)?.run {
-                        startActivity(it)
-                    }
+        binding.navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.coc -> {
+                    Intent(Intent.ACTION_VIEW)
+                        .apply {
+                            setDataAndType(Uri.parse(URL_COC), "application/pdf")
+                        }.also {
+                            it.resolveActivity(packageManager)?.run {
+                                startActivity(it)
+                            }
+                        }
+                    false
                 }
-            false
+
+                R.id.session_navigation -> {
+                    navController.navigate(
+                        SessionNavigationDirections.actionGlobalSessionNavigation()
+                    )
+                    binding.drawerLayout.close()
+                    true
+                }
+
+                else -> false
+            }
         }
     }
 

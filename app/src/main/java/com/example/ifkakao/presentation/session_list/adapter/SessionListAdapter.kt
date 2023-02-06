@@ -12,7 +12,9 @@ import com.example.ifkakao.domain.model.Session
 import com.example.ifkakao.domain.model.getTypeAndTracksString
 import java.util.*
 
-class SessionListAdapter :
+class SessionListAdapter(
+    private val onSessionClick: (Session) -> Unit
+) :
     ListAdapter<Session, SessionListAdapter.ViewHolder>(diffCallback) {
 
     private var day = 0
@@ -61,6 +63,10 @@ class SessionListAdapter :
 
             binding.tvSessionDate.isVisible = day == 0
             binding.tvSessionTime.isVisible = day != 0
+
+            binding.root.setOnClickListener {
+                onSessionClick(currentList[position])
+            }
         }
     }
 

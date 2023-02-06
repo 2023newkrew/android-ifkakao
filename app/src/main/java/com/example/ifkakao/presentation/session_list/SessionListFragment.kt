@@ -1,5 +1,7 @@
 package com.example.ifkakao.presentation.session_list
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -148,6 +150,26 @@ class SessionListFragment : Fragment(R.layout.fragment_session_list) {
 
         binding.sessionFilterMenu.btnCloseFilterMenu.setOnClickListener {
             binding.drawerLayout.close()
+        }
+
+        binding.floatingUpButton.setOnClickListener {
+            binding.sessionList.smoothScrollToPosition(0)
+            binding.appBar.setExpanded(true, true)
+        }
+
+        binding.buttonSchedule.setOnClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW, Uri.parse(
+                    "https://t1.kakaocdn.net/inhouse_daglona/ifkakao_2022/" +
+                            "static/prod/timetable.html"
+                )
+            )
+            requireActivity().packageManager.let {
+                if (browserIntent.resolveActivity(it) != null) {
+                    startActivity(browserIntent)
+                }
+            }
+
         }
 
     }

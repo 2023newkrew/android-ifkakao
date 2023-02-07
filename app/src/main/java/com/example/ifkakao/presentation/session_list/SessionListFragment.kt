@@ -8,27 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.example.ifkakao.data.data_source.remote.dto.ResultSession
 import com.example.ifkakao.databinding.FragmentSessionListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SessionListFragment : Fragment() {
-    private val filterItems: SessionListFilterItems by lazy {
-        val args =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                arguments?.getParcelable("FilterItems", SessionListFilterItems::class.java)
-            } else {
-                arguments?.getParcelable("FilterItems") as SessionListFilterItems?
-            }
-
-        if (args != null) {
-            viewModel.initFilterItems(args)
-            args
-        } else {
-            viewModel.initFilterItems(SessionListFilterItems())
-            SessionListFilterItems()
-        }
-    }
 
     private var _binding: FragmentSessionListBinding? = null
     private val binding get() = _binding!!
@@ -47,13 +33,23 @@ class SessionListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.initFilterItems(filterItems)
 
-//
-//        val adapter = SessionListAdapter()
-//        binding.sessionListGridView.adapter = adapter
+        val sessionListAdapter = SessionListAdapter(
+            onItemClick = ::onItemClick,
+            onLikeClick = ::onItemLike
+        )
+        binding.sessionListGridView.adapter = sessionListAdapter
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+
+    fun onItemClick(session: ResultSession) {
+
+    }
+
+    fun onItemLike(session: ResultSession) {
+
     }
 
 

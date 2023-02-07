@@ -11,25 +11,11 @@ import com.example.ifkakao.databinding.FragmentSessionListBinding
 import com.example.ifkakao.databinding.SessionGridItemBinding
 
 class SessionListAdapter(
-    private val onItemClick: (Int) -> (Unit),
-    private val onLikeClick: (Int) -> (Unit),
+    private val onItemClick: (ResultSession) -> (Unit),
+    private val onLikeClick: (ResultSession) -> (Unit),
 ) : ListAdapter<ResultSession, SessionListAdapter.ViewHolder>(diffCallback) {
 
-    class ViewHolder(
-        val binding: SessionGridItemBinding,
-        val onItemClick: (Int) -> Unit,
-        val onLikeClick: (Int) -> Unit
-    ) :
-        RecyclerView.ViewHolder(binding.root){
-            init {
-                itemView.setOnClickListener{
-                    onItemClick(bindingAdapterPosition)
-                }
-                binding.sessionItemLikeButton.setOnClickListener {
-                    onLikeClick(bindingAdapterPosition)
-                }
-            }
-        }
+    class ViewHolder(val binding: SessionGridItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<ResultSession>() {
@@ -47,13 +33,17 @@ class SessionListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.session_grid_item,parent,false)
-        return ViewHolder(SessionGridItemBinding.bind(view),onItemClick, onLikeClick)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.session_grid_item, parent, false)
+        return ViewHolder(SessionGridItemBinding.bind(view))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        currentList[position]
-        TODO("Not yet implemented")
+        holder.binding.sessionItemLikeButton.setOnClickListener {
+            onLikeClick(currentList[holder.bindingAdapterPosition])
+        }
+        holder.itemView.setOnClickListener {
+            onItemClick(currentList[holder.bindingAdapterPosition])
+        }
     }
 }

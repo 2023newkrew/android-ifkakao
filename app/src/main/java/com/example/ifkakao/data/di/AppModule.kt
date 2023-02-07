@@ -11,10 +11,7 @@ import com.example.ifkakao.data.retrofit.SessionService
 import com.example.ifkakao.domain.repository.DataStoreRepository
 import com.example.ifkakao.domain.repository.SessionRepository
 import com.example.ifkakao.domain.repository.WindowRepository
-import com.example.ifkakao.domain.use_case.GetIsDualPaneUseCase
-import com.example.ifkakao.domain.use_case.GetLikeUseCase
-import com.example.ifkakao.domain.use_case.GetSessionsUseCase
-import com.example.ifkakao.domain.use_case.PutLikeUseCase
+import com.example.ifkakao.domain.use_case.*
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -66,4 +63,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGetIsDualPaneUseCase(repository: WindowRepository) = GetIsDualPaneUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetWidthUseCase(repository: WindowRepository) = GetWidthUseCase(repository)
 }

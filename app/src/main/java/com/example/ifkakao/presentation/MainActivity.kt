@@ -2,9 +2,7 @@ package com.example.ifkakao.presentation
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -145,16 +143,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         // set navigation width to overlap full screen
-        val navigationLayoutParams = navigationView.layoutParams
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val windowMetrics = windowManager.currentWindowMetrics
-            navigationLayoutParams.width = windowMetrics.bounds.width()
-        } else {
-            val metrics = DisplayMetrics()
-            windowManager.defaultDisplay.getMetrics(metrics)
-            navigationLayoutParams.width = metrics.widthPixels
+        navigationView.layoutParams.run {
+            width = viewModel.getWidth()
         }
-        navigationView.layoutParams = navigationLayoutParams
     }
 
     private fun browseCoC() {

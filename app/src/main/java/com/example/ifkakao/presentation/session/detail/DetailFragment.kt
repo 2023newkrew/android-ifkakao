@@ -8,7 +8,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -23,7 +22,9 @@ import com.example.ifkakao.ARG_KEY_INFO
 import com.example.ifkakao.CLIP_LABEL_SHARE
 import com.example.ifkakao.databinding.FragmentSessionDetailBinding
 import com.example.ifkakao.domain.model.Info
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
     private var _binding: FragmentSessionDetailBinding? = null
     private val binding get() = _binding!!
@@ -108,15 +109,7 @@ class DetailFragment : Fragment() {
         }
 
         // initialize youtube web view
-        binding.youtubeWebView.layoutParams.height =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                val windowMetrics = requireActivity().windowManager.currentWindowMetrics
-                windowMetrics.bounds.width() * 9 / 16
-            } else {
-                val metrics = DisplayMetrics()
-                requireActivity().windowManager.defaultDisplay.getMetrics(metrics)
-                metrics.widthPixels * 9 / 16
-            }
+        binding.youtubeWebView.layoutParams.height = viewModel.getWidth() * 9 / 16
         binding.youtubeWebView.webViewClient = WebViewClient()
         binding.youtubeWebView.settings.run {
             javaScriptEnabled = true

@@ -7,17 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentSessionListBinding
 import com.example.ifkakao.di.component.SessionListComponent
 import com.example.ifkakao.domain.model.Session
-import com.example.ifkakao.presentation.home.fragment.HomeFragment
 import com.example.ifkakao.presentation.main_activity.MainActivity
 import com.example.ifkakao.presentation.main_activity.MainActivityListener
 import com.example.ifkakao.presentation.session_list.adapter.SessionGridAdapter
@@ -54,7 +50,7 @@ class SessionListFragment : Fragment() {
         }
         onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                parentListener.callBack(MainActivityListener.Code.GO_TO_HOME)
+                parentListener.goToFragment(MainActivityListener.Code.HOME)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
@@ -94,6 +90,6 @@ class SessionListFragment : Fragment() {
     }
 
     private val goToDetailSession = fun(session: Session) {
-        parentListener.callBack(MainActivityListener.Code.GO_TO_DETAIL_SESSION, session)
+        parentListener.goToFragment(MainActivityListener.Code.DETAIL_SESSION, session)
     }
 }

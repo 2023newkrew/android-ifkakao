@@ -10,13 +10,9 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
-import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentDetailSessionBinding
 import com.example.ifkakao.domain.model.Session
 import com.example.ifkakao.presentation.main_activity.MainActivityListener
-import com.example.ifkakao.presentation.session_list.fragment.SessionListFragment
 
 class DetailSessionFragment : Fragment() {
 
@@ -47,7 +43,7 @@ class DetailSessionFragment : Fragment() {
         }
         onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                parentListener.callBack(MainActivityListener.Code.GO_TO_SESSION_LIST)
+                parentListener.goToFragment(MainActivityListener.Code.SESSION_LIST)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)

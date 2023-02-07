@@ -1,8 +1,8 @@
 package com.example.ifkakao.presentation.main_activity
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.ifkakao.R
@@ -14,7 +14,8 @@ import com.example.ifkakao.presentation.home.fragment.HomeFragment
 import com.example.ifkakao.presentation.session_list.fragment.SessionListFragment
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainActivityListener {
+class MainActivity
+    : AppCompatActivity(), MainActivityListener {
 
     @Inject
     lateinit var mainComponent: MainComponent
@@ -22,25 +23,46 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
     @Inject
     lateinit var viewModel: MainActivityViewModel
 
+    var nowCode = MainActivityListener.Code.HOME
+    var nowSession = Session()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         mainComponent = (application as MyApplication).appComponent.mainComponent().create()
         mainComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            add<HomeFragment>(R.id.main_fragment_container_view)
+
+        if (savedInstanceState != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                nowCode = (savedInstanceState.getSerializable("code", MainActivityListener.Code::class.java)) ?: MainActivityListener.Code.HOME
+                nowSession = savedInstanceState.getSerializable("session", Session::class.java) ?: Session()
+            } else {
+                nowCode = (savedInstanceState.getSerializable("code") as? MainActivityListener.Code) ?: MainActivityListener.Code.HOME
+                nowSession = (savedInstanceState.getSerializable("session") as? Session) ?: Session()
+            }
         }
-//        viewModel.load()
+        goToFragment(nowCode, nowSession)
     }
 
-    override fun callBack(code: MainActivityListener.Code, session: Session) {
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putSerializable("code", nowCode)
+        outState.putSerializable("session", nowSession)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun goToFragment(code: MainActivityListener.Code, session: Session) {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
-            when(code){
-                MainActivityListener.Code.GO_TO_HOME -> replace<HomeFragment>(R.id.main_fragment_container_view)
-                MainActivityListener.Code.GO_TO_SESSION_LIST -> replace<SessionListFragment>(R.id.main_fragment_container_view)
-                MainActivityListener.Code.GO_TO_DETAIL_SESSION -> {
+            nowCode = code
+            when (code) {
+                MainActivityListener.Code.HOME -> {
+                    replace<HomeFragment>(R.id.main_fragment_container_view)
+                }
+                MainActivityListener.Code.SESSION_LIST -> {
+                    replace<SessionListFragment>(R.id.main_fragment_container_view)
+                }
+                MainActivityListener.Code.DETAIL_SESSION -> {
+                    nowSession = session
                     val bundle = Bundle()
                     bundle.putSerializable("test", session)
                     val detailSessionFragment = DetailSessionFragment()

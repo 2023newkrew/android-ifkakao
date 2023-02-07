@@ -60,17 +60,20 @@ class ListFragment : Fragment() {
         val fa1 = filterInitialize(
             binding.sessionFilterDrawerMenu.typeFilter,
             "유형",
-            SessionType.values().toList()
+            SessionType.values().toList(),
+            viewModel.sessionState.value.types,
         )
         val fa2 = filterInitialize(
             binding.sessionFilterDrawerMenu.trackFilter,
             "트랙",
-            Track.values().toList()
+            Track.values().toList(),
+            viewModel.sessionState.value.tracks,
         )
         val fa3 = filterInitialize(
             binding.sessionFilterDrawerMenu.companyFilter,
             "소속",
-            Company.values().toList()
+            Company.values().toList(),
+            viewModel.sessionState.value.companies,
         )
 
         // tab layout setting
@@ -158,9 +161,11 @@ class ListFragment : Fragment() {
     private fun filterInitialize(
         filterListBinding: FilterListBinding,
         name: String,
-        filterData: List<FilterType>
+        filterData: List<FilterType>,
+        currentFilterData: Set<FilterType>,
     ): FilterListAdapter {
-        val filterListAdapter = FilterListAdapter(::onFilterChecked, ::onFilterUnChecked, setOf())
+        val filterListAdapter =
+            FilterListAdapter(::onFilterChecked, ::onFilterUnChecked, currentFilterData)
         filterListBinding.filterNameTextView.text = name
         filterListBinding.filterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         filterListBinding.filterRecyclerView.adapter = filterListAdapter

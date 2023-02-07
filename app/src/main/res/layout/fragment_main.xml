@@ -20,13 +20,13 @@
             <com.google.android.exoplayer2.ui.PlayerView
                 android:id="@+id/main_video"
                 android:layout_width="match_parent"
-                android:backgroundTint="@color/black_80"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:use_controller="false"
+                android:backgroundTint="@color/black_80"
                 app:layout_constraintHeight_min="500dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:resize_mode="fixed_width"
                 app:show_buffering="always"
-                app:resize_mode="fixed_width" />
+                app:use_controller="false" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/main_text1"
@@ -40,9 +40,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_small"
                     android:gravity="center"
                     android:text="우리, 내년에 또 만나요 ~\n함께 나아가는 더 나은 세상!"
-                    android:layout_marginBottom="@dimen/margin_small"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/text_size_large" />
 
@@ -53,7 +53,7 @@
                     android:lineSpacingExtra="@dimen/line_space_small"
                     android:text="카카오 개발자 컨퍼런스가 마무리되었습니다.\n카카오는 개발자와 함께 성장할 수 있도록 더\n노력하겠습니다."
                     android:textColor="?attr/colorOnSecondary"
-                    android:textSize="@dimen/text_size_small"/>
+                    android:textSize="@dimen/text_size_small" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -139,8 +139,8 @@
                 android:gravity="center"
                 android:text="2022년 하이라이트 트랙 및 전체 세션을 확인해보세요!"
                 android:textColor="?attr/colorOnSecondary"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:textSize="@dimen/text_size_small"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/main_text3" />
 
@@ -149,8 +149,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?attr/colorOnPrimary"
-                android:textColor="?attr/colorOnSecondary"
                 android:orientation="horizontal"
+                android:textColor="?attr/colorOnSecondary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/sub_text3">
@@ -160,8 +160,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:backgroundTint="?attr/colorOnPrimary"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
@@ -182,8 +182,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:backgroundTint="?attr/colorOnPrimary"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
@@ -195,8 +195,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Backend"
                         android:backgroundTint="?attr/colorOnPrimary"
+                        android:text="Backend"
                         android:textColor="?attr/colorOnSecondary" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

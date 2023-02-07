@@ -17,6 +17,7 @@
         <activity
             android:name=".presentation.MainActivity"
             android:label="@string/label_main"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

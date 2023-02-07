@@ -3,6 +3,8 @@ package com.example.ifkakao.presentation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -69,7 +71,6 @@ class MainActivity : AppCompatActivity() {
             false
         }
 
-
         val navHeaderView = binding.navView.getHeaderView(0)
         // nav drawer close
         navHeaderView.findViewById<ImageView>(R.id.nav_close).setOnClickListener {
@@ -83,5 +84,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun hideActionBar() {
+        binding.toolbar.visibility = GONE
+    }
+
+    fun showActionBar() {
+        binding.toolbar.visibility = VISIBLE
     }
 }

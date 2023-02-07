@@ -114,7 +114,8 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
 
     // youtube
-    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:v2.1.0'
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.14.2'

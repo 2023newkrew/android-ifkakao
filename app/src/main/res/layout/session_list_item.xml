@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="216dp"
+    android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:background="@color/session_background"
     android:orientation="vertical"
@@ -51,5 +52,15 @@
         android:textSize="13sp"
         android:textStyle="bold"
         tools:text="키노트" />
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:backgroundTint="@color/session_background"
+        android:contentDescription="@string/button_favorite"
+        android:src="@drawable/baseline_favorite_border_24"
+        app:tint="@color/favorite" />
 
 </LinearLayout>

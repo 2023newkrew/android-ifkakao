@@ -148,6 +148,18 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_session_label"
                     app:tint="@color/dark_white" />
 
+                <ImageButton
+                    android:id="@+id/button_filter_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/light_black"
+                    android:contentDescription="@string/button_filter_favorite"
+                    android:src="@drawable/baseline_favorite_border_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_session_label"
+                    app:layout_constraintEnd_toStartOf="@+id/button_filter_sessions"
+                    app:layout_constraintTop_toTopOf="@+id/tv_session_label"
+                    app:tint="@color/favorite" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/session_list"
                     android:layout_width="match_parent"

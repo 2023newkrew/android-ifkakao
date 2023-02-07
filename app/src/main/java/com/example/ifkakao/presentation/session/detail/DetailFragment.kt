@@ -109,14 +109,16 @@ class DetailFragment : Fragment() {
         }
 
         // initialize youtube web view
-        binding.youtubeWebView.layoutParams.height = viewModel.getWidth() * 9 / 16
-        binding.youtubeWebView.webViewClient = WebViewClient()
-        binding.youtubeWebView.settings.run {
-            javaScriptEnabled = true
-            loadWithOverviewMode = true
-            useWideViewPort = true
+        binding.youtubeWebView.run {
+            layoutParams.height = viewModel.getWidth() * 9 / 16
+            webViewClient = WebViewClient()
+            settings.run {
+                javaScriptEnabled = true
+                loadWithOverviewMode = true
+                useWideViewPort = true
+            }
+            loadUrl("https://www.youtube.com/embed/" + viewModel.info?.sessionVodLink?.split("/")?.last())
         }
-        binding.youtubeWebView.loadUrl("https://www.youtube.com/embed/" + viewModel.info?.sessionVodLink?.split("/")?.last())
 
         // set on click listener
         binding.detailBackLayout.setOnClickListener {

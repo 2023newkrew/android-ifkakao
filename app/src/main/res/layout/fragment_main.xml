@@ -156,6 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@id/sub_text3">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ai_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -177,6 +178,7 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/be_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -212,6 +214,7 @@
                 app:layout_constraintTop_toBottomOf="@id/highlight_track1">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/cloud_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -232,6 +235,7 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/devops_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -263,6 +267,7 @@
                 app:layout_constraintTop_toBottomOf="@id/highlight_track2">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/blockchain_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -283,6 +288,7 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/data_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -315,6 +321,7 @@
                 app:layout_constraintTop_toBottomOf="@id/highlight_track3">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/fe_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -335,6 +342,7 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/mobile_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"

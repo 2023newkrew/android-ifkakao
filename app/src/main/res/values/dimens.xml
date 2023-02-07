@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="text_size_xlarge">26sp</dimen>
     <dimen name="text_size_large">22sp</dimen>
     <dimen name="text_size_default">18sp</dimen>
     <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_msmall">12sp</dimen>
     <dimen name="text_size_xsmall">10sp</dimen>
 
     <dimen name="line_space_small">3dp</dimen>
@@ -12,4 +14,6 @@
     <dimen name="margin_default">12dp</dimen>
     <dimen name="margin_large">16dp</dimen>
     <dimen name="margin_xlarge">20dp</dimen>
+    <dimen name="margin_xxlarge">30dp</dimen>
+    <dimen name="margin_xxxlarge">50dp</dimen>
 </resources>

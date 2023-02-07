@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/margin_default"
+    android:paddingBottom="@dimen/margin_default"
+    tools:background="?attr/colorOnPrimary">
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/user_image_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/be_02" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/user_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:textColor="?attr/colorOnSecondary"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/user_image_view"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="nkay.play" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/user_intro_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_xsmall"
+        android:textColor="@color/darkgrey"
+        android:textSize="@dimen/text_size_msmall"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_image_view"
+        app:layout_constraintTop_toBottomOf="@id/user_name_text_view"
+        tools:text="카카오 재발방지대책 소위원회 공동 위원장을 맡고 있는 남궁훈, Nkay입니다. " />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

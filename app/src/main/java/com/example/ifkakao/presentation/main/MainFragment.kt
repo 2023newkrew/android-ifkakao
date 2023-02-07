@@ -9,12 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentMainBinding
+import com.example.ifkakao.domain.model.SessionType
+import com.example.ifkakao.domain.model.Track
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -63,7 +64,61 @@ class MainFragment : Fragment() {
         binding.toAllSessionButton.setOnClickListener {
             val action = MainFragmentDirections.actionMainToList()
             view.findNavController().navigate(action)
-            requireActivity().findViewById<Toolbar>(R.id.toolbar).setTitle(R.string.label_main)
+        }
+
+        binding.toKeynoteButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionType = SessionType.KeyNote)
+            view.findNavController().navigate(action)
+        }
+
+        binding.toTechSessionButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionType = SessionType.Tech)
+            view.findNavController().navigate(action)
+        }
+
+        binding.toTechEthicButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionTrack = Track.ESG)
+            view.findNavController().navigate(action)
+        }
+
+        // highlight track
+        binding.aiButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionTrack = Track.AI)
+            view.findNavController().navigate(action)
+        }
+        binding.beButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionTrack = Track.BE)
+            view.findNavController().navigate(action)
+        }
+        binding.cloudButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionTrack = Track.CLOUD)
+            view.findNavController().navigate(action)
+        }
+        binding.devopsButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionTrack = Track.DEVOPS)
+            view.findNavController().navigate(action)
+        }
+        binding.blockchainButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionTrack = Track.BLOCK_CHAIN)
+            view.findNavController().navigate(action)
+        }
+        binding.dataButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionTrack = Track.BIG_DATA)
+            view.findNavController().navigate(action)
+        }
+        binding.feButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionTrack = Track.FE)
+            view.findNavController().navigate(action)
+        }
+        binding.mobileButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList(sessionTrack = Track.MOBILE)
+            view.findNavController().navigate(action)
+        }
+
+        // to session
+        binding.toSessionButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainToList()
+            view.findNavController().navigate(action)
         }
     }
 

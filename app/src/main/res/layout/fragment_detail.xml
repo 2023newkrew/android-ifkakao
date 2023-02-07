@@ -1,13 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorOnPrimary"
     tools:context=".presentation.detail.DetailFragment">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <WebView
+        android:id="@+id/video_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/contents_nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:descendantFocusability="blocksDescendants"
+        android:overScrollMode="never"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/video_web_view">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:gravity="start"
+                android:paddingStart="@dimen/margin_default"
+                android:paddingEnd="@dimen/margin_default"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="@dimen/text_size_xlarge"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Preview AI_1" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/company_type_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/margin_default"
+                android:paddingEnd="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/title_text_view">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/company_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="@dimen/text_size_small"
+                    tools:text="grepp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:text="|"
+                    android:textColor="@color/darkgrey" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/type_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="@dimen/text_size_small"
+                    tools:text="키노트" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/date_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/margin_default"
+                android:paddingEnd="@dimen/margin_default"
+                android:textColor="@color/darkgrey"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintTop_toBottomOf="@id/company_type_linear_layout"
+                tools:text="2022.12.07">
+
+            </androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_default"
+                android:background="@drawable/light_rounded_button"
+                android:backgroundTint="@color/darkslategray"
+                android:text="공유하기"
+                android:textColor="@color/darkgrey"
+                android:textSize="@dimen/text_size_small"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_text_view" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tags_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_xxlarge"
+                android:paddingStart="@dimen/margin_default"
+                android:paddingEnd="@dimen/margin_default"
+                android:textColor="@color/darkgrey"
+                android:textSize="@dimen/text_size_msmall"
+                app:layout_constraintTop_toBottomOf="@id/share_button"
+                tools:text="#ESG #사회적책임" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/content_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:paddingStart="@dimen/margin_default"
+                android:paddingEnd="@dimen/margin_default"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintTop_toBottomOf="@id/tags_text_view"
+                tools:text="남궁훈 카카오 비상대책위원회 재발방지대책 소위원회 위원장이 전하는 If Kakao 오프닝 인사말, 카카오의 사회적 소명에 대한 생각, 그리고 새로운 카카오에 대한 각오와 의지를 확인하실 수 있습니다." />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/ppt_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_xlarge"
+                android:background="@drawable/light_rounded_stroke_button"
+                android:text="발표 자료"
+                android:textColor="?attr/colorOnSecondary"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content_text_view" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/user_recyler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_xxxlarge"
+                android:paddingStart="@dimen/margin_default"
+                android:paddingEnd="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/ppt_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

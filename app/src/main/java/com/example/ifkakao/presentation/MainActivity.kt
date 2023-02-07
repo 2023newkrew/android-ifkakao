@@ -38,16 +38,18 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         val inflater = navController.navInflater
         val graph = inflater.inflate(R.navigation.nav_graph)
-        navController.setGraph(graph, intent.extras)
+        if (savedInstanceState == null) {
+            navController.setGraph(graph, intent.extras)
+        }
         //appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.main,
                 R.id.list
-            ), binding.drawerLayout)
+            ), binding.drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
-
         binding.navView.setNavigationItemSelectedListener {
             it.isChecked = true
             binding.drawerLayout.close()
@@ -60,13 +62,18 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.list)
             } else if (id == R.id.CoC) {
                 it.isChecked = false
-                val browserIntent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse(
-                    "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"
-                ))
-                startActivity(browserIntent)
+                val browserIntent: Intent = Intent(
+                    Intent.ACTION_VIEW, Uri.parse(
+                        "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"
+                    )
+                )
+                if (browserIntent.resolveActivity(packageManager) != null) {
+                    startActivity(browserIntent)
+                }
             }
             false
         }
+
 
         val navHeaderView = binding.navView.getHeaderView(0)
         // nav drawer close
@@ -80,6 +87,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp(appBarConfiguration)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }

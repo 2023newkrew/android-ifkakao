@@ -7,8 +7,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
-const val VIDEO_URL = "https://t1.kakaocdn.net/inhouse_daglona/ifkakao_2022/assets" +
+const val VIDEO_URL_PORT = "https://t1.kakaocdn.net/inhouse_daglona/ifkakao_2022/assets" +
         "/mobile_2nd_day_1080x1848.mp4"
+const val VIDEO_URL_LAND =
+    "https://t1.kakaocdn.net/inhouse_daglona/ifkakao_2022/assets/web_2nd_day_3840x2160.mp4"
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(

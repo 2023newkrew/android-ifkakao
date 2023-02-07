@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FilterListBinding
 import com.example.ifkakao.databinding.FragmentSessionListBinding
@@ -28,6 +29,7 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class SessionListFragment : Fragment(R.layout.fragment_session_list) {
@@ -46,7 +48,13 @@ class SessionListFragment : Fragment(R.layout.fragment_session_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sessionListAdapter = SessionListAdapter()
+        val sessionListAdapter = SessionListAdapter {
+            val action =
+                SessionListFragmentDirections.actionSessionListFragmentToSessionDetailFragment(
+                    it
+                )
+            findNavController().navigate(action)
+        }
         binding.sessionList.adapter = sessionListAdapter
 
         filterSetAdapter(
@@ -205,6 +213,7 @@ class SessionListFragment : Fragment(R.layout.fragment_session_list) {
         filterListBinding: FilterListBinding,
         filterItems: List<FilterListItem>,
     ) {
+        filterListBinding.recyclerFilterItems.itemAnimator = null
         val adapter = filterListBinding.recyclerFilterItems.adapter as SessionFilterMenuAdapter
         val enableCount = filterItems.count { it.isChecked }
 

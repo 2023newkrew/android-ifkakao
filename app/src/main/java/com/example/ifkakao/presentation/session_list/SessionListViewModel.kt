@@ -1,10 +1,10 @@
 package com.example.ifkakao.presentation.session_list
 
-import android.os.Build
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ifkakao.data.data_source.remote.dto.ResultSession
+import com.example.ifkakao.domain.model.Session
+import com.example.ifkakao.domain.model.isFilter
 import com.example.ifkakao.domain.usecase.LoadLikesUseCase
 import com.example.ifkakao.domain.usecase.LoadSessionsUseCase
 import com.example.ifkakao.domain.usecase.SaveLikeUseCase
@@ -24,15 +24,17 @@ class SessionListViewModel
     val saveLikeUseCase: SaveLikeUseCase,
 ) : ViewModel() {
 
-    private lateinit var _filterItems: MutableStateFlow<SessionListFilterItems>
-    private val filterItems by lazy {
+    private val _filterItems: MutableStateFlow<SessionListFilterItems>
+    = MutableStateFlow(SessionListFilterItems())
+    val filterItems by lazy {
         _filterItems.asStateFlow()
     }
 
-    private lateinit var sessionList: List<ResultSession>
+    private lateinit var sessionList: List<Session>
 
-    private lateinit var _showSessionList: MutableStateFlow<List<ResultSession>>
-    private val showSessionList by lazy {
+    private val _showSessionList: MutableStateFlow<List<Session>>
+    = MutableStateFlow(emptyList())
+    val showSessionList by lazy {
         _showSessionList.asStateFlow()
     }
 
@@ -45,15 +47,8 @@ class SessionListViewModel
 
         viewModelScope.launch {
             sessionList = loadSessionsUseCase()
-            filterItems.collectLatest {filter ->
-                if (filter != SessionListFilterItems()) {
-                    _showSessionList.value = sessionList.filter {
-                        it.
-                    }
-                }
-                else{
-                    _showSessionList.value = sessionList
-                }
+            filterItems.collectLatest { filter ->
+                _showSessionList.value = sessionList.filter { it.isFilter(filter) }
             }
         }
     }

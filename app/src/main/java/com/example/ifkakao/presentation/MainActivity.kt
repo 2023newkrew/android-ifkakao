@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.menu_session -> {
                     val args = Bundle().apply {
-                        putSerializable(
+                        putParcelable(
                             "FilterItems",
                             SessionListFilterItems()
                         )

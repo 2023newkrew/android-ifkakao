@@ -2,6 +2,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true" android:color="@color/main_text_color">
     </item>
-    <item android:state_checked="false" android:color="@color/radio_unselected">
+    <item android:state_checked="false" android:color="@color/second_main_text_color">
     </item>
 </selector>

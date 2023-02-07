@@ -144,7 +144,7 @@
                 android:layout_marginTop="20dp"
                 android:minWidth="10dp"
                 android:text="@string/session_number"
-                android:textColor="@color/radio_unselected"
+                android:textColor="@color/second_main_text_color"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/session_number_text"

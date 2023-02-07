@@ -30,7 +30,7 @@ class SessionListAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             itemView.setOnClickListener {
-                onItemClick(adapterPosition)
+                onItemClick(bindingAdapterPosition)
             }
         }
     }

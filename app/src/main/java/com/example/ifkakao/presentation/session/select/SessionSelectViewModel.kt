@@ -2,6 +2,10 @@ package com.example.ifkakao.presentation.session.select
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ifkakao.FILTER_CODE_COMPANY
+import com.example.ifkakao.FILTER_CODE_LIKE
+import com.example.ifkakao.FILTER_CODE_TRACK
+import com.example.ifkakao.FILTER_CODE_TYPE
 import com.example.ifkakao.data.data_source.mapper.toInfo
 import com.example.ifkakao.domain.model.Info
 import com.example.ifkakao.domain.use_case.GetLikeUseCase
@@ -21,6 +25,9 @@ class SessionSelectViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state = MutableStateFlow(SessionState())
     val state = _state.asStateFlow()
+
+    private val _foldState = MutableStateFlow(FoldState())
+    val foldState = _foldState.asStateFlow()
 
     private val infoList = mutableListOf<Info>()
 
@@ -114,6 +121,7 @@ class SessionSelectViewModel @Inject constructor(
     private fun filterInfoList() {
         val filteredInfoList = mutableListOf<Info>()
             .apply { addAll(infoList) }
+            .asSequence()
             .filter { state.value.typeSet.isEmpty() || state.value.typeSet.contains(it.sessionType) }
             .filter {
                 state.value.trackSet.isEmpty() || state.value.trackSet.intersect(it.track)
@@ -122,8 +130,26 @@ class SessionSelectViewModel @Inject constructor(
             .filter { state.value.companySet.isEmpty() || state.value.companySet.contains(it.company) }
             .filter { state.value.likeSet.isEmpty() || it.like }
             .filter { state.value.day == 0 || state.value.day == it.sessionDay }
+            .toList()
         _state.value = state.value.copy(
             filteredInfoList = filteredInfoList
+        )
+    }
+
+    fun toggleFold(filterCode: Int) {
+        _foldState.value = foldState.value.copy(
+            isTypeFolded =
+            if (filterCode == FILTER_CODE_TYPE) !foldState.value.isTypeFolded
+            else foldState.value.isTypeFolded,
+            isTrackFolded =
+            if (filterCode == FILTER_CODE_TRACK) !foldState.value.isTrackFolded
+            else foldState.value.isTrackFolded,
+            isCompanyFolded =
+            if (filterCode == FILTER_CODE_COMPANY) !foldState.value.isCompanyFolded
+            else foldState.value.isCompanyFolded,
+            isLikeFolded =
+            if (filterCode == FILTER_CODE_LIKE) !foldState.value.isLikeFolded
+            else foldState.value.isLikeFolded,
         )
     }
 }
@@ -135,4 +161,11 @@ data class SessionState(
     val likeSet: Set<String> = setOf(),
     val day: Int = 0,
     val filteredInfoList: List<Info> = listOf()
+)
+
+data class FoldState(
+    val isTypeFolded: Boolean = false,
+    val isTrackFolded: Boolean = false,
+    val isCompanyFolded: Boolean = false,
+    val isLikeFolded: Boolean = false
 )

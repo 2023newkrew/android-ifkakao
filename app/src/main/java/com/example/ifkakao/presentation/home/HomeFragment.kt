@@ -10,12 +10,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.window.layout.WindowMetricsCalculator
 import com.example.ifkakao.*
 import com.example.ifkakao.databinding.FragmentHomeBinding
 import com.example.ifkakao.presentation.MainActivity
@@ -26,6 +26,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val highlightListAdapter by lazy { HighlightListAdapter(::onHighlightItemClick) }
+    private var dualPane = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +40,23 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // initialize dualPane
+        val metrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(requireActivity())
+        val widthDp = metrics.bounds.width() / resources.displayMetrics.density
+        dualPane = widthDp >= 600f
+
+        // initialize UI
+        initializeCommonUI()
+        if (dualPane) initializeDualPaneUI()
+        else initializeSinglePaneUI()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun initializeCommonUI() {
         // set status bar color
         requireActivity().window.statusBarColor = requireContext().getColor(R.color.blue_primary)
 
@@ -66,22 +84,19 @@ class HomeFragment : Fragment() {
         }
 
         // initialize banner video
-        val uriPath =
-            "android.resource://${requireActivity().packageName}/${R.raw.video_banner_compact}" // TODO change video dynamic
+        val uriPath = "android.resource://${requireActivity().packageName}/${R.raw.video_banner}"
         binding.bannerVideo.setVideoURI(Uri.parse(uriPath))
         binding.bannerVideo.setOnPreparedListener {
             it.isLooping = true
             it.start()
 
             // set layout height
-            binding.bannerVideo.layoutParams.height = WRAP_CONTENT
+            binding.bannerVideo.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
         }
 
         // initialize highlight recycler view
         val highlightRecyclerView = binding.highlightList
         highlightRecyclerView.setHasFixedSize(true)
-        highlightRecyclerView.layoutManager =
-            GridLayoutManager(requireContext(), 2) // TODO change span dynamic
         highlightRecyclerView.adapter = highlightListAdapter
         highlightListAdapter.submitList(
             listOf(
@@ -122,9 +137,17 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun initializeDualPaneUI() {
+        // set highlight list span count
+        binding.highlightList.layoutManager = GridLayoutManager(requireContext(), 4)
+
+        // set session menu text color blue
+        (requireActivity() as MainActivity).setSessionMenuTextColorWhite()
+    }
+
+    private fun initializeSinglePaneUI() {
+        // set highlight list span count
+        binding.highlightList.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 
     private fun onHighlightItemClick(position: Int) {

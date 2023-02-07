@@ -2,7 +2,7 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/session_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.session.select.SessionSelectFragment"
@@ -55,7 +55,7 @@
                     android:id="@+id/tab_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_small_minus"
+                    android:layout_marginStart="@dimen/margin_xsmall_minus"
                     android:layout_marginTop="@dimen/margin_default"
                     android:background="@android:color/transparent"
                     app:tabGravity="start"
@@ -122,8 +122,8 @@
                     android:id="@+id/session_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_small_minus"
-                    android:layout_marginEnd="@dimen/margin_small_minus"
+                    android:layout_marginStart="@dimen/margin_xsmall_minus"
+                    android:layout_marginEnd="@dimen/margin_xsmall_minus"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never" />
 

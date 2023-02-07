@@ -19,6 +19,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.window.layout.WindowMetricsCalculator
 import com.example.ifkakao.ARG_KEY_TRACK
 import com.example.ifkakao.ARG_KEY_TYPE
 import com.example.ifkakao.R
@@ -34,20 +35,64 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
 
     private lateinit var navController: NavController
+    private var dualPane = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // initialize dualPane
+        val metrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(this)
+        val widthDp = metrics.bounds.width() / resources.displayMetrics.density
+        dualPane = widthDp >= 600f
+
+        // initialize UI
+        initializeCommonUI()
+        if (dualPane) initializeDualPaneUI()
+        else initializeSinglePaneUI()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun initializeCommonUI() {
         // initialize action bar
         val toolbar = binding.includeToolbar.toolbar
         toolbar.setOnClickListener { navigateToHome() }
         setSupportActionBar(binding.includeToolbar.toolbar)
 
+        // initialize navigation controller
+        navController = findNavController(R.id.nav_host_fragment_content_main)
+    }
+
+    private fun initializeDualPaneUI() {
+        // set menu visibility
+        binding.includeToolbar.sessionMenu.isVisible = true
+        binding.includeToolbar.cocMenu.isVisible = true
+
+        // set session menu text color
+        if (navController.currentDestination?.id == navController.graph.startDestinationId) setSessionMenuTextColorWhite()
+        else setSessionMenuTextColorBlue()
+
+        // set click listener
+        binding.includeToolbar.sessionMenu.setOnClickListener {
+            navigateToSession(null, null)
+        }
+        binding.includeToolbar.cocMenu.setOnClickListener {
+            browseCoC()
+        }
+    }
+
+    private fun initializeSinglePaneUI() {
+        // set menu visibility
+        binding.includeToolbar.sessionMenu.isVisible = false
+        binding.includeToolbar.cocMenu.isVisible = false
+
         // initialize navigation drawer
-        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val drawerLayout: DrawerLayout = binding.mainDrawerLayout
         val drawerToggle = object : ActionBarDrawerToggle(
             this,
             drawerLayout,
@@ -81,7 +126,6 @@ class MainActivity : AppCompatActivity() {
 
         // initialize navigation view
         val navigationView: NavigationView = binding.navView
-        navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
@@ -93,14 +137,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
         navigationView.menu.findItem(R.id.nav_coc).setOnMenuItemClickListener {
-            Intent(Intent.ACTION_VIEW)
-                .apply {
-                    setDataAndType(Uri.parse(URL_COC), "application/pdf")
-                }.also {
-                    it.resolveActivity(packageManager)?.run {
-                        startActivity(it)
-                    }
-                }
+            browseCoC()
             false
         }
 
@@ -127,9 +164,15 @@ class MainActivity : AppCompatActivity() {
         navigationView.layoutParams = navigationLayoutParams
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    private fun browseCoC() {
+        Intent(Intent.ACTION_VIEW)
+            .apply {
+                setDataAndType(Uri.parse(URL_COC), "application/pdf")
+            }.also {
+                it.resolveActivity(packageManager)?.run {
+                    startActivity(it)
+                }
+            }
     }
 
     fun navigateToHome() {
@@ -141,7 +184,11 @@ class MainActivity : AppCompatActivity() {
             putString(ARG_KEY_TYPE, type)
             putString(ARG_KEY_TRACK, track)
         }
-        navController.navigate(R.id.action_home_to_session, args)
+        try {
+            navController.navigate(R.id.action_home_to_session, args)
+        } catch (exception: IllegalArgumentException) {
+            // prevent crash when session to session
+        }
     }
 
     fun showToolbar() {
@@ -150,5 +197,13 @@ class MainActivity : AppCompatActivity() {
 
     fun hideToolbar() {
         binding.includeToolbar.toolbarLayout.isVisible = false
+    }
+
+    fun setSessionMenuTextColorBlue() {
+        if (::binding.isInitialized) binding.includeToolbar.sessionMenu.setTextColor(getColor(R.color.blue_primary))
+    }
+
+    fun setSessionMenuTextColorWhite() {
+        if (::binding.isInitialized) binding.includeToolbar.sessionMenu.setTextColor(getColor(R.color.white_title))
     }
 }

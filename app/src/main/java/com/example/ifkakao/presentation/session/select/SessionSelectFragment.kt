@@ -7,6 +7,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +22,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.window.layout.WindowMetricsCalculator
 import com.example.ifkakao.*
 import com.example.ifkakao.databinding.FragmentSessionSelectBinding
 import com.example.ifkakao.presentation.MainActivity
@@ -41,6 +44,7 @@ class SessionSelectFragment : Fragment() {
     private var trackFilterListAdapter = FilterListAdapter(FILTER_CODE_TRACK, ::onTrackFilterItemClick)
     private var companyFilterListAdapter = FilterListAdapter(FILTER_CODE_COMPANY, ::onCompanyFilterItemClick)
     private var likeFilterListAdapter = FilterListAdapter(FILTER_CODE_LIKE, ::onLikeFilterItemClick)
+    private var dualPane = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +58,23 @@ class SessionSelectFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // initialize dualPane
+        val metrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(requireActivity())
+        val widthDp = metrics.bounds.width() / resources.displayMetrics.density
+        dualPane = widthDp >= 600f
+
+        // initialize UI
+        initializeCommonUI()
+        if (dualPane) initializeDualPaneUI()
+        else initializeSinglePaneUI()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun initializeCommonUI() {
         // initialize filter from arguments
         arguments?.getString(ARG_KEY_TYPE)?.let {
             viewModel.filterInfoListByType(it)
@@ -63,7 +84,7 @@ class SessionSelectFragment : Fragment() {
         }
         arguments = null // prevent filter again when pop stack from detail fragment
 
-        // collect state
+        // collect session state
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { state ->
@@ -77,10 +98,11 @@ class SessionSelectFragment : Fragment() {
                     binding.sessionSizeText.text = state.filteredInfoList.size.toString()
 
                     // set no session text visibility
-                    binding.noSessionText.isVisible = state.filteredInfoList.isEmpty()
+                    binding.sessionList.isVisible = state.filteredInfoList.isNotEmpty()
+                    binding.noSessionText.isVisible = !binding.sessionList.isVisible
 
                     // set filter button tint
-                    binding.filterButton.imageTintList = ColorStateList.valueOf(
+                    binding.filterButton?.imageTintList = ColorStateList.valueOf(
                         ContextCompat.getColor(
                             requireContext(),
                             if (isFiltered) R.color.blue_primary
@@ -149,21 +171,6 @@ class SessionSelectFragment : Fragment() {
             ColorDrawable(ContextCompat.getColor(requireContext(), R.color.gray_transparent))
         )
 
-        // initialize navigation drawer
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val drawerToggle = object : ActionBarDrawerToggle(
-            requireActivity(),
-            drawerLayout,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        ) {
-            override fun onDrawerClosed(drawerView: View) {
-                super.onDrawerClosed(drawerView)
-                (requireActivity() as MainActivity).showToolbar()
-            }
-        }
-        drawerLayout.addDrawerListener(drawerToggle)
-
         // initialize filter recycler view
         val typeFilterRecyclerView = binding.typeFilterList
         typeFilterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -201,7 +208,6 @@ class SessionSelectFragment : Fragment() {
 
         // initialize session recycler view
         val sessionRecyclerView = binding.sessionList
-        sessionRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)  // TODO change span dynamic
         sessionRecyclerView.adapter = sessionListAdapter
         sessionRecyclerView.itemAnimator = null
 
@@ -218,13 +224,6 @@ class SessionSelectFragment : Fragment() {
         })
 
         // set click listener
-        binding.includeNavHeader.headerTitle.setOnClickListener {
-            (requireActivity() as MainActivity).navigateToHome()
-            (requireActivity() as MainActivity).showToolbar()
-        }
-        binding.includeNavHeader.closeButton.setOnClickListener {
-            binding.drawerLayout.close()
-        }
         binding.scheduleButton.setOnClickListener {
             Intent(Intent.ACTION_VIEW, Uri.parse(URL_SCHEDULE))
                 .also {
@@ -233,21 +232,108 @@ class SessionSelectFragment : Fragment() {
                     }
                 }
         }
-        binding.filterButton.setOnClickListener {
-            (requireActivity() as MainActivity).hideToolbar()
-            binding.drawerLayout.open()
-        }
         binding.filterResetLayout.setOnClickListener {
             viewModel.resetFilter()
         }
         binding.upButton.setOnClickListener {
             binding.nestedScroll.smoothScrollTo(0, 0)
         }
+        binding.typeFilterFoldButton?.setOnClickListener {
+            viewModel.toggleFold(FILTER_CODE_TYPE)
+        }
+        binding.trackFilterFoldButton?.setOnClickListener {
+            viewModel.toggleFold(FILTER_CODE_TRACK)
+        }
+        binding.companyFilterFoldButton?.setOnClickListener {
+            viewModel.toggleFold(FILTER_CODE_COMPANY)
+        }
+        binding.likeFilterFoldButton?.setOnClickListener {
+            viewModel.toggleFold(FILTER_CODE_LIKE)
+        }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun initializeDualPaneUI() {
+        // collect fold state
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.foldState.collect { foldState ->
+                    // type
+                    if (foldState.isTypeFolded) {
+                        binding.typeFilterFoldButton?.setImageResource(R.drawable.icon_down)
+                        binding.typeFilterList.visibility = GONE
+                    } else {
+                        binding.typeFilterFoldButton?.setImageResource(R.drawable.icon_up)
+                        binding.typeFilterList.visibility = VISIBLE
+                    }
+
+                    // track
+                    if (foldState.isTrackFolded) {
+                        binding.trackFilterFoldButton?.setImageResource(R.drawable.icon_down)
+                        binding.trackFilterList.visibility = GONE
+                    } else {
+                        binding.trackFilterFoldButton?.setImageResource(R.drawable.icon_up)
+                        binding.trackFilterList.visibility = VISIBLE
+                    }
+
+                    // company
+                    if (foldState.isCompanyFolded) {
+                        binding.companyFilterFoldButton?.setImageResource(R.drawable.icon_down)
+                        binding.companyFilterList.visibility = GONE
+                    } else {
+                        binding.companyFilterFoldButton?.setImageResource(R.drawable.icon_up)
+                        binding.companyFilterList.visibility = VISIBLE
+                    }
+
+                    // like
+                    if (foldState.isLikeFolded) {
+                        binding.likeFilterFoldButton?.setImageResource(R.drawable.icon_down)
+                        binding.likeFilterList.visibility = GONE
+                    } else {
+                        binding.likeFilterFoldButton?.setImageResource(R.drawable.icon_up)
+                        binding.likeFilterList.visibility = VISIBLE
+                    }
+                }
+            }
+        }
+
+        // set session list span count
+        binding.sessionList.layoutManager = GridLayoutManager(requireContext(), 3)
+
+        // set session menu text color blue
+        (requireActivity() as MainActivity).setSessionMenuTextColorBlue()
+    }
+
+    private fun initializeSinglePaneUI() {
+        // initialize navigation drawer
+        val drawerLayout: DrawerLayout = binding.sessionDrawerLayout
+        val drawerToggle = object : ActionBarDrawerToggle(
+            requireActivity(),
+            drawerLayout,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        ) {
+            override fun onDrawerClosed(drawerView: View) {
+                super.onDrawerClosed(drawerView)
+                (requireActivity() as MainActivity).showToolbar()
+            }
+        }
+        drawerLayout.addDrawerListener(drawerToggle)
+
+        // set session list span count
+        binding.sessionList.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        // set click listener
+        binding.includeNavHeader?.headerTitle?.setOnClickListener {
+            (requireActivity() as MainActivity).navigateToHome()
+            (requireActivity() as MainActivity).showToolbar()
+        }
+        binding.includeNavHeader?.closeButton?.setOnClickListener {
+            drawerLayout.close()
+        }
+        binding.filterButton?.setOnClickListener {
+            (requireActivity() as MainActivity).hideToolbar()
+            drawerLayout.open()
+        }
     }
 
     private fun onTypeFilterItemClick(position: Int) {

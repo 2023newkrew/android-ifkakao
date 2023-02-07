@@ -1,7 +1,7 @@
 package com.example.ifkakao.di.component
 
 import com.example.ifkakao.di.scope.FragmentScope
-import com.example.ifkakao.presentation.presentation_session_list.fragment.SessionListFragment
+import com.example.ifkakao.presentation.session_list.fragment.SessionListFragment
 import dagger.Subcomponent
 
 @FragmentScope

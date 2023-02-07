@@ -10,13 +10,12 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentDetailSessionBinding
 import com.example.ifkakao.domain.model.Session
-import com.example.ifkakao.presentation.presentation_session_list.fragment.SessionListFragment
+import com.example.ifkakao.presentation.session_list.fragment.SessionListFragment
 
 class DetailSessionFragment : Fragment() {
 

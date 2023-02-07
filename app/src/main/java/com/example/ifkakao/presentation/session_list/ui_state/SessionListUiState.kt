@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.presentation_session_list.ui_state
+package com.example.ifkakao.presentation.session_list.ui_state
 
 import com.example.ifkakao.domain.model.Session
 import com.example.ifkakao.domain.model.SessionCompany

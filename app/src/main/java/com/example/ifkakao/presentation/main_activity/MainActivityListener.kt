@@ -8,5 +8,6 @@ interface MainActivityListener {
         GO_TO_SESSION_LIST,
         GO_TO_DETAIL_SESSION,
     }
+
     fun callBack(code: Code, session: Session = Session())
 }

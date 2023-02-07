@@ -11,7 +11,7 @@ import com.example.ifkakao.di.component.MainComponent
 import com.example.ifkakao.domain.model.Session
 import com.example.ifkakao.presentation.detail_session.DetailSessionFragment
 import com.example.ifkakao.presentation.home.fragment.HomeFragment
-import com.example.ifkakao.presentation.presentation_session_list.fragment.SessionListFragment
+import com.example.ifkakao.presentation.session_list.fragment.SessionListFragment
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainActivityListener {

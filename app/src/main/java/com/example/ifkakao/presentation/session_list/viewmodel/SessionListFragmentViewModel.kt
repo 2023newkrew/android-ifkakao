@@ -1,11 +1,11 @@
-package com.example.ifkakao.presentation.presentation_session_list.viewmodel
+package com.example.ifkakao.presentation.session_list.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ifkakao.data.mapper.toSession
 import com.example.ifkakao.domain.model.Session
 import com.example.ifkakao.domain.repository.SessionRepository
-import com.example.ifkakao.presentation.presentation_session_list.ui_state.SessionListUiState
+import com.example.ifkakao.presentation.session_list.ui_state.SessionListUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

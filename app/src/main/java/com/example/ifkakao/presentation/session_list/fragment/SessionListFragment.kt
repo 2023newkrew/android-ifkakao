@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.presentation_session_list.fragment
+package com.example.ifkakao.presentation.session_list.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -20,13 +20,13 @@ import com.example.ifkakao.domain.model.Session
 import com.example.ifkakao.presentation.home.fragment.HomeFragment
 import com.example.ifkakao.presentation.main_activity.MainActivity
 import com.example.ifkakao.presentation.main_activity.MainActivityListener
-import com.example.ifkakao.presentation.presentation_session_list.adapter.SessionGridAdapter
-import com.example.ifkakao.presentation.presentation_session_list.viewmodel.SessionListFragmentViewModel
+import com.example.ifkakao.presentation.session_list.adapter.SessionGridAdapter
+import com.example.ifkakao.presentation.session_list.viewmodel.SessionListFragmentViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SessionListFragment : Fragment(), SessionListFragmentListener {
+class SessionListFragment : Fragment() {
 
     private lateinit var onBackPressedCallback: OnBackPressedCallback
 
@@ -70,12 +70,11 @@ class SessionListFragment : Fragment(), SessionListFragmentListener {
         _binding = FragmentSessionListBinding.inflate(inflater, container, false)
 
         val dataList = mutableListOf(Session())
-        val adapter = SessionGridAdapter(dataList, this)
+        val adapter = SessionGridAdapter(dataList, goToDetailSession)
         binding.sessionList.adapter = adapter
         binding.sessionList.layoutManager = GridLayoutManager(activity, 2)
         adapter.list = dataList
 
-        viewModel.load()
 
         return binding.root
     }
@@ -85,10 +84,11 @@ class SessionListFragment : Fragment(), SessionListFragmentListener {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.sessionListUiState.collectLatest {
-                    binding.sessionList.adapter = SessionGridAdapter(it.sessions.toMutableList(), this@SessionListFragment)
+                    binding.sessionList.adapter = SessionGridAdapter(it.sessions.toMutableList(), goToDetailSession)
                 }
             }
         }
+        viewModel.load()
     }
 
     override fun onDetach() {
@@ -96,7 +96,7 @@ class SessionListFragment : Fragment(), SessionListFragmentListener {
         onBackPressedCallback.remove()
     }
 
-    override fun callBack(session: Session) {
+    private val goToDetailSession = fun(session: Session) {
         parentListener.callBack(MainActivityListener.Code.GO_TO_DETAIL_SESSION, session)
     }
 }

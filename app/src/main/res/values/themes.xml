@@ -21,6 +21,13 @@
         <item name="colorPrimaryVariant">@color/white</item>
     </style>
 
+    <style name="Theme.Gray" parent="Theme.IfKakao">
+        <item name="colorAccent">@color/primary_gray</item>
+        <item name="colorPrimary">@color/primary_gray</item>
+        <item name="colorPrimaryDark">@color/primary_gray</item>
+        <item name="colorPrimaryVariant">@color/primary_gray</item>
+    </style>
+
     <style name="TabTextAppearance" parent="Theme.IfKakao">
         <item name="android:textSize">@dimen/text_size_default</item>
         <item name="android:textStyle">bold</item>

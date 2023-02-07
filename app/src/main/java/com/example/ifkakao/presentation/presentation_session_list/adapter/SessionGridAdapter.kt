@@ -7,10 +7,24 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifkakao.R
 import com.example.ifkakao.domain.model.Session
+import com.example.ifkakao.presentation.presentation_session_list.fragment.SessionListFragmentListener
 
-class SessionGridAdapter(var list: MutableList<Session>) : RecyclerView.Adapter<SessionGridAdapter.GridAdapter>() {
+class SessionGridAdapter(var list: MutableList<Session>, private val listener: SessionListFragmentListener) : RecyclerView.Adapter<SessionGridAdapter.GridAdapter>() {
 
-    class GridAdapter(layout: View) : RecyclerView.ViewHolder(layout)
+    class GridAdapter(layout: View) : RecyclerView.ViewHolder(layout){
+// Adapter 에서 ClickEvent 설정
+//            var layout: View
+//        init {
+//            this.layout = layout
+//            layout.setOnClickListener(View.OnClickListener {
+//                println("allen : $bindingAdapterPosition")
+//            })
+//            layout.setOnLongClickListener(View.OnLongClickListener {
+//                println("allen : $bindingAdapterPosition Long")
+//                return@OnLongClickListener true
+//            })
+//        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GridAdapter {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.session_item, parent, false)
@@ -32,6 +46,10 @@ class SessionGridAdapter(var list: MutableList<Session>) : RecyclerView.Adapter<
         }
         tempText = list[position].type + tempText
         textFour.text = tempText
+
+        holder.itemView.setOnClickListener {
+            listener.callBack(list[position])
+        }
     }
 
     override fun getItemCount(): Int {

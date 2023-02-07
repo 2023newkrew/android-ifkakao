@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.presentation_main.fragment
+package com.example.ifkakao.presentation.home.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.fragment.app.commit
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentMainBinding
 
-class MainFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!

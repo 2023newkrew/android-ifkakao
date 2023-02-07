@@ -17,7 +17,7 @@ fun ResultSession.toSession(): Session {
         },
         videoLink = this.sessionVodLink,
         track = this.tracks.removeSurrounding("[", "]").split(",").map{it.removeSurrounding("\"")},
-        Description = this.description,
+        description = this.description,
         presenter = this.user1Id,
         presenterDescription = this.user1Intro,
         presenterImageUrl = this.user1ImageUrl,

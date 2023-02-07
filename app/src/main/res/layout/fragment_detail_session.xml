@@ -15,8 +15,9 @@
             android:id="@+id/detail_back_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/content_margin_near"
+            android:layout_marginTop="@dimen/content_margin_normal"
+            android:layout_marginBottom="@dimen/content_margin_normal"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -28,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="@dimen/content_margin_near"
                 android:text="세션 목록으로 돌아가기"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_small" />
@@ -38,9 +39,9 @@
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginStart="@dimen/content_margin_near"
+            android:layout_marginTop="@dimen/content_margin_near"
+            android:layout_marginEnd="@dimen/content_margin_near"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_xxlarge"
             android:textStyle="bold" />
@@ -48,8 +49,9 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/content_margin_near"
+            android:layout_marginTop="@dimen/content_margin_near"
+            android:layout_marginBottom="@dimen/content_margin_near"
             android:orientation="horizontal">
 
             <TextView
@@ -87,8 +89,8 @@
             android:id="@+id/date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/content_margin_near"
+            android:layout_marginTop="@dimen/content_margin_near"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/text_size_xsmall" />
 
@@ -97,8 +99,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/content_margin_near"
+            android:layout_marginTop="@dimen/content_margin_near"
+            android:layout_marginBottom="@dimen/content_margin_near"
             android:background="@drawable/anguler_button"
             android:minWidth="0dp"
             android:minHeight="0dp"
@@ -112,16 +115,17 @@
             android:id="@+id/session_web_view"
             android:layout_width="match_parent"
             android:layout_height="256dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="@dimen/content_margin_normal"
+            android:layout_marginBottom="@dimen/content_margin_near"
             tools:ignore="WebViewLayout" />
 
         <TextView
             android:id="@+id/tag_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginStart="@dimen/content_margin_near"
+            android:layout_marginTop="@dimen/content_margin_near"
+            android:layout_marginEnd="@dimen/content_margin_near"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/text_size_xsmall"
             tools:ignore="DuplicateIds" />
@@ -130,37 +134,38 @@
             android:id="@+id/description_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginStart="@dimen/content_margin_near"
+            android:layout_marginTop="@dimen/content_margin_near"
+            android:layout_marginEnd="@dimen/content_margin_near"
             android:textColor="@color/text_white"
-            android:textSize="@dimen/text_size_small" />
+            android:textSize="@dimen/text_size_default" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/detail_presentation_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/content_margin_near"
+            android:layout_marginTop="@dimen/content_margin_near"
+            android:layout_marginBottom="@dimen/content_margin_normal"
             android:background="@drawable/outline_anguler_button"
-            android:paddingStart="0dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="0dp"
-            android:paddingBottom="0dp">
+            android:paddingStart="@dimen/content_margin_near"
+            android:paddingTop="@dimen/content_margin_near"
+            android:paddingEnd="@dimen/content_margin_near"
+            android:paddingBottom="@dimen/content_margin_near">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:paddingTop="0dp"
                 android:src="@drawable/icon_download" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:textColor="@color/white"
+                android:layout_marginStart="@dimen/content_margin_near"
+                android:layout_marginEnd="@dimen/content_margin_near"
                 android:text="발표 자료"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_size_xxsmall"
                 android:textStyle="bold" />
 

@@ -27,6 +27,7 @@ class SessionListFragment : Fragment() {
     private lateinit var navController: NavController
     private val Fragment.packageManager get() = activity?.packageManager
     private val viewModel: SessionListViewModel by viewModels()
+    private lateinit var sessionListAdapter: SessionListAdapter
 
 
     override fun onCreateView(
@@ -39,13 +40,12 @@ class SessionListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val sessionListAdapter = SessionListAdapter(
+        sessionListAdapter = SessionListAdapter(
             onItemClick = ::onItemClick,
             onLikeClick = ::onItemLike
         )
         binding.sessionListGridView.layoutManager = GridLayoutManager(view.context, 2)
         binding.sessionListGridView.adapter = sessionListAdapter
-//        binding.sessionListGridView.setHasFixedSize(true)
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
@@ -59,12 +59,12 @@ class SessionListFragment : Fragment() {
     }
 
 
-    fun onItemClick(Session: Session) {
+    private fun onItemClick(session: Session) {
 
     }
 
-    fun onItemLike(Session: Session) {
-
+    private fun onItemLike(session: Session) {
+        viewModel.likeToggle(session.id)
     }
 
 

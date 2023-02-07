@@ -38,6 +38,8 @@ class SessionListViewModel
         _showSessionList.asStateFlow()
     }
 
+    private lateinit var likeList: MutableSet<String>
+
     init {
         savedStateHandle.get<SessionListFilterItems>("FilterItems")?.let {
             _filterItems.value = it
@@ -46,12 +48,24 @@ class SessionListViewModel
         }
 
         viewModelScope.launch {
+            likeList = loadLikesUseCase()
             sessionList = loadSessionsUseCase()
+
             filterItems.collectLatest { filter ->
                 _showSessionList.value = sessionList.filter { it.isFilter(filter) }
             }
         }
     }
+
+
+    fun likeToggle(id: Int){
+        if(id.toString() in likeList)
+            likeList.remove(id.toString())
+        else
+            likeList.add(id.toString())
+        saveLikeUseCase(likeList)
+    }
+
 
 
 }

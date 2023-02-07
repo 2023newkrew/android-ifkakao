@@ -14,6 +14,12 @@ class WindowRepositoryTest {
     fun testGetIsDualPane() = runBlocking {
         val isDualPane = windowRepositoryImpl.getIsDualPane()
 //        Assert.assertEquals(isDualPane, false) // phone
-         Assert.assertEquals(isDualPane, true) // tablet
+        Assert.assertEquals(isDualPane, true) // tablet
+    }
+
+    @Test
+    fun testGetWidth() = runBlocking {
+        val width = windowRepositoryImpl.getWidth()
+        Assert.assertEquals(width in 1 until 3000, true)
     }
 }

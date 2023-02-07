@@ -1,6 +1,7 @@
 package com.example.ifkakao.data.di
 
 import android.content.Context
+import android.content.res.Resources
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -9,6 +10,8 @@ import com.example.ifkakao.DATA_STORE_NAME_LIKE
 import com.example.ifkakao.data.retrofit.SessionService
 import com.example.ifkakao.domain.repository.DataStoreRepository
 import com.example.ifkakao.domain.repository.SessionRepository
+import com.example.ifkakao.domain.repository.WindowRepository
+import com.example.ifkakao.domain.use_case.GetIsDualPaneUseCase
 import com.example.ifkakao.domain.use_case.GetLikeUseCase
 import com.example.ifkakao.domain.use_case.GetSessionsUseCase
 import com.example.ifkakao.domain.use_case.PutLikeUseCase
@@ -55,4 +58,12 @@ object AppModule {
     @Provides
     @Singleton
     fun providePutLikeUseCase(repository: DataStoreRepository) = PutLikeUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideResources(@ApplicationContext context: Context): Resources = context.resources
+
+    @Provides
+    @Singleton
+    fun provideGetIsDualPaneUseCase(repository: WindowRepository) = GetIsDualPaneUseCase(repository)
 }

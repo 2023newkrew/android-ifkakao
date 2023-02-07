@@ -22,7 +22,7 @@ class SessionListAdapter(
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<Session>() {
             override fun areItemsTheSame(oldItem: Session, newItem: Session): Boolean {
-                return oldItem === newItem
+                return oldItem == newItem
             }
 
             override fun areContentsTheSame(oldItem: Session, newItem: Session): Boolean {

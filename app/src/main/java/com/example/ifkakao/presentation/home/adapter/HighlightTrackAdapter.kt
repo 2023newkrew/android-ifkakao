@@ -19,7 +19,7 @@ class HighlightTrackAdapter(
                 oldItem: HighlightTrack,
                 newItem: HighlightTrack
             ): Boolean {
-                return oldItem === newItem
+                return oldItem == newItem
             }
 
             override fun areContentsTheSame(

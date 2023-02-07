@@ -13,7 +13,8 @@ import com.example.ifkakao.domain.model.getTypeAndTracksString
 import java.util.*
 
 class SessionListAdapter(
-    private val onSessionClick: (Session) -> Unit
+    private val onSessionClick: (Session) -> Unit,
+    private val onSessionLike: (Session) -> Unit,
 ) :
     ListAdapter<Session, SessionListAdapter.ViewHolder>(diffCallback) {
 
@@ -42,7 +43,7 @@ class SessionListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            val session = currentList[position]
+            val session = currentList[bindingAdapterPosition]
             val calendar = Calendar.getInstance()
             calendar.time = Date(session.timeStamp)
 
@@ -64,8 +65,22 @@ class SessionListAdapter(
             binding.tvSessionDate.isVisible = day == 0
             binding.tvSessionTime.isVisible = day != 0
 
+            when {
+                session.isLike -> {
+                    binding.buttonSessionFavorite.setImageResource(R.drawable.baseline_favorite_24)
+                }
+                else -> {
+                    binding.buttonSessionFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
+                }
+            }
+
+            binding.buttonSessionFavorite.setOnClickListener {
+                onSessionLike(session)
+            }
+
+
             binding.root.setOnClickListener {
-                onSessionClick(currentList[position])
+                onSessionClick(session)
             }
         }
     }

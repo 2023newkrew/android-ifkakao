@@ -40,9 +40,10 @@ class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(diffCallback) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            binding.userId.text = currentList[position].id
-            binding.userIntro.text = currentList[position].intro
-            binding.imageUserThumb.load(currentList[position].imageUrl)
+            val user = currentList[bindingAdapterPosition]
+            binding.userId.text = user.id
+            binding.userIntro.text = user.intro
+            binding.imageUserThumb.load(user.imageUrl)
         }
     }
 

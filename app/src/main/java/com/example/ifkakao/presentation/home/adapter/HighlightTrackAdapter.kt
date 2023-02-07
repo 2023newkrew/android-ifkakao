@@ -42,10 +42,11 @@ class HighlightTrackAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            binding.imageHighlightTrack.setImageResource(currentList[position].resId)
-            binding.tvHighlightTrack.text = currentList[position].alias
+            val highlightTrack = currentList[bindingAdapterPosition]
+            binding.imageHighlightTrack.setImageResource(highlightTrack.resId)
+            binding.tvHighlightTrack.text = highlightTrack.alias
             binding.root.setOnClickListener {
-                onHighlightTrackClick(currentList[position])
+                onHighlightTrackClick(highlightTrack)
             }
         }
     }

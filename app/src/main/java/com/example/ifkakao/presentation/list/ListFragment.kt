@@ -123,6 +123,7 @@ class ListFragment : Fragment() {
                     val recyclerViewState = recyclerView.layoutManager?.onSaveInstanceState()
                     sessionListAdapter.submitList(state.sessionList) {
                         recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
+                        binding.sizeText.text = "${state.sessionList.size}"
                     }
                 }
             }

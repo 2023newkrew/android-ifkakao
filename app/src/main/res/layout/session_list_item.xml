@@ -55,11 +55,13 @@
 
 
     <ImageButton
+        android:id="@+id/button_session_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:backgroundTint="@color/session_background"
         android:contentDescription="@string/button_favorite"
+        android:minHeight="48dp"
         android:src="@drawable/baseline_favorite_border_24"
         app:tint="@color/favorite" />
 

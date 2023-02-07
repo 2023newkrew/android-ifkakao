@@ -91,8 +91,27 @@ class SessionDetailFragment : Fragment(R.layout.fragment_session_detail) {
                         clipboardManager.setPrimaryClip(clipData)
                     }
 
+                    val isLike = viewModel.session.value.isLike
+                    when {
+                        isLike -> {
+                            binding.buttonDetailFavorite.setImageResource(R.drawable.baseline_favorite_24)
+                        }
+                        else -> {
+                            binding.buttonDetailFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
+                        }
+                    }
+
                     adapter.submitList(session.users)
                 }
+            }
+        }
+
+        binding.buttonDetailFavorite.setOnClickListener {
+            val isLike = viewModel.session.value.isLike
+            if (isLike) {
+                viewModel.onEvent(SessionDetailEvent.UnLikeSession(viewModel.session.value))
+            } else {
+                viewModel.onEvent(SessionDetailEvent.LikeSession(viewModel.session.value))
             }
         }
 

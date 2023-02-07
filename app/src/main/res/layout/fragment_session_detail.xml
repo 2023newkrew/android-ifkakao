@@ -81,6 +81,7 @@
                     tools:text="2022.12.08" />
 
                 <ImageButton
+                    android:id="@+id/button_detail_favorite"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="20dp"

@@ -16,9 +16,9 @@ class SessionListFragment : Fragment() {
     private val filterItems: SessionListFilterItems by lazy {
         val args =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                arguments?.getSerializable("FilterItems", SessionListFilterItems::class.java)
+                arguments?.getParcelable("FilterItems", SessionListFilterItems::class.java)
             } else {
-                arguments?.getSerializable("FilterItems") as SessionListFilterItems?
+                arguments?.getParcelable("FilterItems") as SessionListFilterItems?
             }
 
         if (args != null) {

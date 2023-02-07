@@ -52,6 +52,8 @@ class SessionListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        currentList[position]
         TODO("Not yet implemented")
     }
 }

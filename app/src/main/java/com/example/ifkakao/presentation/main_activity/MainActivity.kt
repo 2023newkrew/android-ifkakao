@@ -35,22 +35,18 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
     }
 
     override fun callBack(code: MainActivityListener.Code, session: Session) {
-        when (code) {
-            MainActivityListener.Code.GO_TO_HOME -> supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                replace<HomeFragment>(R.id.main_fragment_container_view)
-            }
-            MainActivityListener.Code.GO_TO_SESSION_LIST -> supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                replace<SessionListFragment>(R.id.main_fragment_container_view)
-            }
-            MainActivityListener.Code.GO_TO_DETAIL_SESSION -> supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                val bundle = Bundle()
-                bundle.putSerializable("test", session)
-                val detailSessionFragment = DetailSessionFragment()
-                detailSessionFragment.arguments = bundle
-                replace(R.id.main_fragment_container_view, detailSessionFragment)
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            when(code){
+                MainActivityListener.Code.GO_TO_HOME -> replace<HomeFragment>(R.id.main_fragment_container_view)
+                MainActivityListener.Code.GO_TO_SESSION_LIST -> replace<SessionListFragment>(R.id.main_fragment_container_view)
+                MainActivityListener.Code.GO_TO_DETAIL_SESSION -> {
+                    val bundle = Bundle()
+                    bundle.putSerializable("test", session)
+                    val detailSessionFragment = DetailSessionFragment()
+                    detailSessionFragment.arguments = bundle
+                    replace(R.id.main_fragment_container_view, detailSessionFragment)
+                }
             }
         }
     }

@@ -15,6 +15,7 @@ import androidx.fragment.app.replace
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentDetailSessionBinding
 import com.example.ifkakao.domain.model.Session
+import com.example.ifkakao.presentation.main_activity.MainActivityListener
 import com.example.ifkakao.presentation.session_list.fragment.SessionListFragment
 
 class DetailSessionFragment : Fragment() {
@@ -23,6 +24,8 @@ class DetailSessionFragment : Fragment() {
 
     private var _binding: FragmentDetailSessionBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var parentListener: MainActivityListener
 
     val session by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -34,12 +37,17 @@ class DetailSessionFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        if (context is MainActivityListener) {
+            parentListener = context
+        } else {
+            throw ClassCastException(
+                context.toString()
+                        + " must implement OnFragmentInteractionListener"
+            )
+        }
         onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                parentFragmentManager.commit {
-                    setReorderingAllowed(true)
-                    replace<SessionListFragment>(R.id.main_fragment_container_view)
-                }
+                parentListener.callBack(MainActivityListener.Code.GO_TO_SESSION_LIST)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)

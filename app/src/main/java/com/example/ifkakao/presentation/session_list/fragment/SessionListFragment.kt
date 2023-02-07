@@ -54,10 +54,7 @@ class SessionListFragment : Fragment() {
         }
         onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                parentFragmentManager.commit {
-                    setReorderingAllowed(true)
-                    replace<HomeFragment>(R.id.main_fragment_container_view)
-                }
+                parentListener.callBack(MainActivityListener.Code.GO_TO_HOME)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)

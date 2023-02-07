@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.session_detail.view
+package com.example.ifkakao.presentation.session_detail
 
 import android.os.Bundle
 import android.view.LayoutInflater

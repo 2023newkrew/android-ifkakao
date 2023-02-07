@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.view.MainFragment">
+    tools:context=".presentation.main.MainFragment">
 
 
     <ScrollView
@@ -28,8 +28,10 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,7 +159,7 @@
                     app:layout_constraintTop_toBottomOf="@id/main_text_5" />
 
                 <ImageView
-                    android:id="@+id/main_image_view_1"
+                    android:id="@+id/main_keynote_image"
                     android:layout_width="0dp"
                     android:layout_height="450dp"
                     android:layout_margin="30dp"
@@ -167,24 +169,24 @@
                     app:layout_constraintTop_toBottomOf="@id/main_text_6" />
 
                 <ImageView
-                    android:id="@+id/main_image_view_2"
+                    android:id="@+id/main_tech_image"
                     android:layout_width="0dp"
                     android:layout_height="450dp"
                     android:layout_margin="30dp"
                     android:src="@drawable/main_image_2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/main_image_view_1" />
+                    app:layout_constraintTop_toBottomOf="@id/main_keynote_image" />
 
                 <ImageView
-                    android:id="@+id/main_image_view_3"
+                    android:id="@+id/main_ethics_image"
                     android:layout_width="0dp"
                     android:layout_height="450dp"
                     android:layout_margin="30dp"
                     android:src="@drawable/main_image_3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/main_image_view_2" />
+                    app:layout_constraintTop_toBottomOf="@id/main_tech_image" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -445,20 +447,19 @@
 
                 <ImageView
                     android:id="@+id/main_monocode"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="250dp"
                     android:src="@drawable/main_image_dalgona"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/main_link_copy" />
 
                 <TextView
-                    android:id="@+id/session_detail_footer"
+                    android:id="@+id/main_footer_corp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="200dp"
+                    android:layout_marginTop="150dp"
                     android:layout_marginBottom="15dp"
                     android:text="@string/session_detail_footer"
                     android:textColor="@color/main_text_color"
@@ -467,7 +468,7 @@
                     app:layout_constraintTop_toBottomOf="@id/main_monocode" />
 
                 <TextView
-                    android:id="@+id/session_detail_last_ifkakao"
+                    android:id="@+id/main_footer_last_ifkakao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"

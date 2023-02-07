@@ -62,7 +62,6 @@ class SessionListAdapter(
         } else {
             holder.binding.sessionItemLikeButton.background =
                 ContextCompat.getDrawable(holder.binding.root.context, R.drawable.baseline_star_24)
-
         }
     }
 }

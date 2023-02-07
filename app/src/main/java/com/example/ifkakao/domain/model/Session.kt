@@ -27,7 +27,7 @@ fun Session.getTypeAndTracksString(): String {
     }
 }
 
-fun Session.isFilter(sessionListFilterItems: SessionListFilterItems): Boolean {
+fun Session.isFilter(sessionListFilterItems: SessionListFilterItems, likeList: Set<String>): Boolean {
     val type = sessionListFilterItems.isKeynote && type == Type.KeyNote
             || sessionListFilterItems.isPreview && type == Type.Preview
             || sessionListFilterItems.isTechSession && type == Type.TechSession
@@ -58,5 +58,8 @@ fun Session.isFilter(sessionListFilterItems: SessionListFilterItems): Boolean {
             || sessionListFilterItems.isKakaoPickoma && company == Company.KakaoPicComa
             || !sessionListFilterItems.isKakao && !sessionListFilterItems.isKakaoPay && !sessionListFilterItems.isKakaoEnterprise && !sessionListFilterItems.isKakaoMobility && !sessionListFilterItems.isKakaoBank && !sessionListFilterItems.isKakaoBrain && !sessionListFilterItems.isKakaoGames && !sessionListFilterItems.isKakaoEntertainment && !sessionListFilterItems.isKrustUniverse && !sessionListFilterItems.isKakaoPickoma
 
-    return type && track && company
+    val like = sessionListFilterItems.isLikeItem && id.toString() in likeList
+            ||!sessionListFilterItems.isLikeItem
+
+    return type && track && company && like
 }

@@ -12,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,15 +31,19 @@ class SessionListViewModel
         _filterItems.asStateFlow()
     }
 
-    private lateinit var sessionList: List<Session>
-
     private val _showSessionList: MutableStateFlow<List<Session>>
     = MutableStateFlow(emptyList())
     val showSessionList by lazy {
         _showSessionList.asStateFlow()
     }
 
-    private lateinit var likeList: MutableSet<String>
+    private val _likeList: MutableStateFlow<Set<String>>
+    = MutableStateFlow(emptySet())
+    val likeList by lazy {
+        _likeList.asStateFlow()
+    }
+
+
 
     init {
         savedStateHandle.get<SessionListFilterItems>("FilterItems")?.let {
@@ -48,24 +53,27 @@ class SessionListViewModel
         }
 
         viewModelScope.launch {
-            likeList = loadLikesUseCase()
-            sessionList = loadSessionsUseCase()
-
-            filterItems.collectLatest { filter ->
-                _showSessionList.value = sessionList.filter { it.isFilter(filter) }
-            }
+            _likeList.value = loadLikesUseCase()
+            _showSessionList.emit(loadSessionsUseCase().filter { it.isFilter(filterItems.value, _likeList.value) })
         }
     }
 
 
     fun likeToggle(id: Int){
-        if(id.toString() in likeList)
-            likeList.remove(id.toString())
-        else
-            likeList.add(id.toString())
-        saveLikeUseCase(likeList)
+
+//        viewModelScope.launch {
+//            _likeList.collectLatest {
+//                val set = _likeList.value.toMutableSet()
+//                if(id.toString() in it){
+//                    set.remove(id.toString())
+//                    _likeList.emit(set)
+//                }
+//                else{
+//                    set.add(id.toString())
+//                    _likeList.emit(set)
+//                }
+//                saveLikeUseCase(set)
+//            }
+//        }
     }
-
-
-
 }

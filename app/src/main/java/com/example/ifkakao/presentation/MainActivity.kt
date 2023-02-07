@@ -36,16 +36,11 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        val inflater = navController.navInflater
-        val graph = inflater.inflate(R.navigation.nav_graph)
-        if (savedInstanceState == null) {
-            navController.setGraph(graph, intent.extras)
-        }
-        //appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.main,
-                R.id.list
+                R.id.list,
+                R.id.detail
             ), binding.drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -25,6 +25,7 @@
                 android:paddingHorizontal="20dp">
 
                 <TextView
+                    android:id="@+id/button_to_session_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -60,7 +61,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/divisor"
+                        android:text="   |   "
                         android:textColor="@color/gray" />
 
                     <TextView
@@ -118,7 +119,26 @@
                     android:textColor="@color/dark_white"
                     tools:text="@string/session_desc_sample" />
 
+                <TextView
+                    android:id="@+id/button_presentation_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/background_button_outline"
+                    android:drawablePadding="4dp"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/presentation_button"
+                    android:textColor="@color/dark_white"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:drawableLeftCompat="@drawable/baseline_download_24"
+                    app:drawableTint="@color/dark_white"
+                    tools:visibility="visible" />
+
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"

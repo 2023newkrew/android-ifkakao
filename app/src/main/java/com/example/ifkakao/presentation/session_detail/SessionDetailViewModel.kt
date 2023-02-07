@@ -29,3 +29,8 @@ val Session.youtubeId: String
     get() {
         return this.sessionVodLink.takeLastWhile { it != '/' }
     }
+
+val Session.sessionWebLink: String
+    get() {
+        return "https://if.kakao.com/2022/session/${this.id}"
+    }

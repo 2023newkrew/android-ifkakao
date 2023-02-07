@@ -36,4 +36,5 @@
     <string name="share">공유하기</string>
     <string name="session_desc_sample">ifkakaodev2022 컨퍼런스에서 Mobile 관련 기술 발표세션을 소개합니다.\n\n1. 다리는 걸을 뿐.. 만보기 서비스 개발기: 만보기 서비스를 개발하면서 겪은 이야기 by 이현재(cado.avo)\n2. 카카오페이 iOS 웹뷰 소개 및 리팩토링 이야기 by 윤한울(joey.con)\n3. SwiftLayout을 소개합니다.: 선언형 문법으로 가독성 높은 UIKit 코드 작성하기 by 이희종(jay.choi), 최광훈(aiden.h)\n4. 카카오뱅크 iOS 프로젝트의 모듈화 여정: Tuist를 활용한 모듈 아키텍처 설계 사례 by 안정민(damon.ahn)\n5. Brunch Architecture @ayla.k \n6. 카카오페이 앱 리빌딩 스토리: DI, 모듈화, UI를 중심으로 by 심문규(skyler.shin), 강진호( eddy.kang)\n7. 안드로이드 개발 환경 개선을 위한 노력들: Jenkins CI 파이프라인과 리모트 빌드 소개 by 정성민(smith.jspiner), 이재욱(louis.0802), 소준상(june.bee)</string>
     <string name="user_desc_sample">카카오페이 엔지니어들이 성장할 수 있는 문화를 만들고, 카카오페이만의 개발 문화를 널리 알리고 싶은 로라입니다.</string>
+    <string name="presentation_button">발표 자료</string>
 </resources>

@@ -88,6 +88,9 @@ dependencies {
     // screen-width
     implementation 'androidx.window:window:1.0.0'
 
+    // coil- user thumb
+    implementation "io.coil-kt:coil:2.2.2"
+
 }
 
 kapt {

@@ -1,11 +1,9 @@
 package com.example.ifkakao.presentation.session.select
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ifkakao.FILTER_CODE_COMPANY
-import com.example.ifkakao.FILTER_CODE_LIKE
-import com.example.ifkakao.FILTER_CODE_TRACK
-import com.example.ifkakao.FILTER_CODE_TYPE
+import com.example.ifkakao.*
 import com.example.ifkakao.data.data_source.mapper.toInfo
 import com.example.ifkakao.domain.model.Info
 import com.example.ifkakao.domain.use_case.GetIsDualPaneUseCase
@@ -23,7 +21,8 @@ class SessionSelectViewModel @Inject constructor(
     private val getSessionsUseCase: GetSessionsUseCase,
     private val getLikeUseCase: GetLikeUseCase,
     private val putLikeUseCase: PutLikeUseCase,
-    private val getIsDualPaneUseCase: GetIsDualPaneUseCase
+    private val getIsDualPaneUseCase: GetIsDualPaneUseCase,
+    private var savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val _state = MutableStateFlow(SessionState())
     val state = _state.asStateFlow()
@@ -39,7 +38,21 @@ class SessionSelectViewModel @Inject constructor(
                 infoList.add(session.toInfo().apply { like = getLikeUseCase(id) })
             }
         }
-        filterInfoList()
+
+        var isFiltered = false
+        savedStateHandle.get<String>(ARG_KEY_TYPE)?.let {
+            filterInfoListByType(it)
+            isFiltered = true
+        }
+        savedStateHandle.get<String>(ARG_KEY_TRACK)?.let {
+            filterInfoListByTrack(it)
+            isFiltered = true
+        }
+
+        // prevent filter again when pop stack from detail fragment
+        savedStateHandle = SavedStateHandle.createHandle(null, null)
+
+        if (!isFiltered) filterInfoList()
     }
 
     fun filterInfoListByType(type: String) {

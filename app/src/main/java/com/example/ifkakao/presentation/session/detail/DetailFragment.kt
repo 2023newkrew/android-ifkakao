@@ -6,7 +6,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +17,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.example.ifkakao.ARG_KEY_INFO
 import com.example.ifkakao.CLIP_LABEL_SHARE
 import com.example.ifkakao.databinding.FragmentSessionDetailBinding
-import com.example.ifkakao.domain.model.Info
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,17 +39,6 @@ class DetailFragment : Fragment() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // initialize info from arguments
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable(ARG_KEY_INFO, Info::class.java)?.let {
-                viewModel.info = it
-            }
-        } else {
-            arguments?.getParcelable<Info>(ARG_KEY_INFO)?.let {
-                viewModel.info = it
-            }
-        }
 
         // set text
         viewModel.info?.let {

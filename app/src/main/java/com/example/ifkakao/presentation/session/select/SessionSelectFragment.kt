@@ -68,15 +68,6 @@ class SessionSelectFragment : Fragment() {
     }
 
     private fun initializeCommonUI() {
-        // initialize filter from arguments
-        arguments?.getString(ARG_KEY_TYPE)?.let {
-            viewModel.filterInfoListByType(it)
-        }
-        arguments?.getString(ARG_KEY_TRACK)?.let {
-            viewModel.filterInfoListByTrack(it)
-        }
-        arguments = null // prevent filter again when pop stack from detail fragment
-
         // collect session state
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

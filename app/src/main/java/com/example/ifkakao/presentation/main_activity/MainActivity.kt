@@ -2,10 +2,16 @@ package com.example.ifkakao.presentation.main_activity
 
 import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_OPEN
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.ifkakao.R
+import com.example.ifkakao.databinding.ActivityMainBinding
+import com.example.ifkakao.databinding.FragmentMainBinding
 import com.example.ifkakao.di.MyApplication
 import com.example.ifkakao.di.component.MainComponent
 import com.example.ifkakao.domain.model.Session
@@ -23,14 +29,19 @@ class MainActivity
     @Inject
     lateinit var viewModel: MainActivityViewModel
 
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
+
     var nowCode = MainActivityListener.Code.HOME
     var nowSession = Session()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         mainComponent = (application as MyApplication).appComponent.mainComponent().create()
         mainComponent.inject(this)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(view)
 
         if (savedInstanceState != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -42,6 +53,16 @@ class MainActivity
             }
         }
         goToFragment(nowCode, nowSession)
+
+        binding.drawerMenuOpenButton.setOnClickListener(View.OnClickListener {
+            binding.drawerLayout.openDrawer(Gravity.LEFT)
+            binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_OPEN)
+        })
+        binding.drawerMenuCloseButton.setOnClickListener(View.OnClickListener {
+            binding.drawerLayout.closeDrawer(Gravity.LEFT)
+            binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        })
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

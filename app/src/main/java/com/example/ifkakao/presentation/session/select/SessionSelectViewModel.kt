@@ -8,6 +8,7 @@ import com.example.ifkakao.FILTER_CODE_TRACK
 import com.example.ifkakao.FILTER_CODE_TYPE
 import com.example.ifkakao.data.data_source.mapper.toInfo
 import com.example.ifkakao.domain.model.Info
+import com.example.ifkakao.domain.use_case.GetIsDualPaneUseCase
 import com.example.ifkakao.domain.use_case.GetLikeUseCase
 import com.example.ifkakao.domain.use_case.GetSessionsUseCase
 import com.example.ifkakao.domain.use_case.PutLikeUseCase
@@ -21,7 +22,8 @@ import javax.inject.Inject
 class SessionSelectViewModel @Inject constructor(
     private val getSessionsUseCase: GetSessionsUseCase,
     private val getLikeUseCase: GetLikeUseCase,
-    private val putLikeUseCase: PutLikeUseCase
+    private val putLikeUseCase: PutLikeUseCase,
+    private val getIsDualPaneUseCase: GetIsDualPaneUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(SessionState())
     val state = _state.asStateFlow()
@@ -152,6 +154,8 @@ class SessionSelectViewModel @Inject constructor(
             else foldState.value.isLikeFolded,
         )
     }
+
+    fun getIsDualPane() = getIsDualPaneUseCase()
 }
 
 data class SessionState(

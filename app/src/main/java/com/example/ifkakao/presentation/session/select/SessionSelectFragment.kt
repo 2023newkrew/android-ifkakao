@@ -22,7 +22,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.window.layout.WindowMetricsCalculator
 import com.example.ifkakao.*
 import com.example.ifkakao.databinding.FragmentSessionSelectBinding
 import com.example.ifkakao.presentation.MainActivity
@@ -44,7 +43,6 @@ class SessionSelectFragment : Fragment() {
     private var trackFilterListAdapter = FilterListAdapter(FILTER_CODE_TRACK, ::onTrackFilterItemClick)
     private var companyFilterListAdapter = FilterListAdapter(FILTER_CODE_COMPANY, ::onCompanyFilterItemClick)
     private var likeFilterListAdapter = FilterListAdapter(FILTER_CODE_LIKE, ::onLikeFilterItemClick)
-    private var dualPane = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,14 +56,9 @@ class SessionSelectFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // initialize dualPane
-        val metrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(requireActivity())
-        val widthDp = metrics.bounds.width() / resources.displayMetrics.density
-        dualPane = widthDp >= 600f
-
         // initialize UI
         initializeCommonUI()
-        if (dualPane) initializeDualPaneUI()
+        if (viewModel.getIsDualPane()) initializeDualPaneUI()
         else initializeSinglePaneUI()
     }
 

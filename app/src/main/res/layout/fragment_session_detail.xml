@@ -80,6 +80,17 @@
                     android:textColor="@color/gray"
                     tools:text="2022.12.08" />
 
+                <ImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:adjustViewBounds="true"
+                    android:backgroundTint="@color/light_black"
+                    android:contentDescription="@string/button_favorite"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/baseline_favorite_border_24"
+                    app:tint="@color/favorite" />
+
                 <Button
                     android:id="@+id/button_share_session"
                     android:layout_width="wrap_content"

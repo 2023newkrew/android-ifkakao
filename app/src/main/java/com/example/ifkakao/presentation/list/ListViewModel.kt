@@ -50,7 +50,7 @@ class ListViewModel @Inject constructor(
             when (result) {
                 is ApiSuccess -> {
                     _sessionData.value = sessionData.value.copy(
-                        sessionList = result.data
+                        sessionList = result.data.toMutableList()
                     )
                 }
                 is ApiError -> {
@@ -119,14 +119,14 @@ class ListViewModel @Inject constructor(
     }
 
     // 좋아요 확장 함수
-    fun SessionInfo.like() = viewModelScope.launch {
-        likeUseCaseBundle.insertLikeUseCase(Like(id))
-        isLiked = true
+    fun sessionLike(sessionInfo: SessionInfo) = viewModelScope.launch {
+        likeUseCaseBundle.insertLikeUseCase(Like(sessionInfo.id))
+        sessionInfo.isLiked = true
     }
 
-    fun SessionInfo.unlike() = viewModelScope.launch {
-        likeUseCaseBundle.deleteLikeUseCase(Like(id))
-        isLiked = false
+    fun sessionUnLike(sessionInfo: SessionInfo) = viewModelScope.launch {
+        likeUseCaseBundle.deleteLikeUseCase(Like(sessionInfo.id))
+        sessionInfo.isLiked = false
     }
 
 }

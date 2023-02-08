@@ -2,6 +2,8 @@ package com.example.ifkakao.presentation.list
 
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,12 +31,15 @@ import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+
+// TODO: 좋아요 기능 추가
 @AndroidEntryPoint
 class ListFragment : Fragment() {
     private val args: ListFragmentArgs by navArgs()
     private val binding: FragmentListBinding by lazy { FragmentListBinding.inflate(layoutInflater) }
     private val viewModel: ListViewModel by viewModels()
     private lateinit var sessionListAdapter: SessionListAdapter
+    private lateinit var layoutManager: GridLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,12 +52,21 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val r: Resources = Resources.getSystem()
+        val config: Configuration = r.configuration
+        layoutManager = if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // 가로모드
+            GridLayoutManager(requireContext(), 3)
+        } else {
+            // 세로모드
+            GridLayoutManager(requireContext(), 2)
+        }
 
         // recycler view, Adapter setting
-        sessionListAdapter = SessionListAdapter(::onItemClick)
+        sessionListAdapter = SessionListAdapter(::onItemClick, ::onLikeClick)
         val recyclerView = binding.sessionRecyclerView
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerView.layoutManager = layoutManager
         recyclerView.adapter = sessionListAdapter
 
         // drawer setting
@@ -115,13 +129,27 @@ class ListFragment : Fragment() {
                     )
                 }
             }
-
         }
+
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getLikes().collect {
+                    println("like 변경 탐지!")
+                    viewModel.getSessions()
+                    // TODO: getSessions 호출해서 sessionList 가 변경되었지만, 아래 collect 실행 안됨
+                    //  그리고 notifyItemChanged(position) 넣어주면 해당 Item이 깜빡거림
+                    //  notifyDataSetChanged()로 하면 깜빡 X -> 왜?
+                    //sessionListAdapter.notifyDataSetChanged()
+                }
+            }
+        }
+
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.sessionData.collect { state ->
+                    println("sessionList 변경 탐지!")
                     val recyclerViewState = recyclerView.layoutManager?.onSaveInstanceState()
-                    sessionListAdapter.submitList(state.sessionList) {
+                    sessionListAdapter.submitList(state.sessionList.toMutableList()) {
                         recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
                         binding.sizeText.text = "${state.sessionList.size}"
                     }
@@ -157,6 +185,16 @@ class ListFragment : Fragment() {
 
         // safe args로 넘겨준 값 바탕으로 세팅
         processArgs(args, fa1, fa2, fa3)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            layoutManager.spanCount = 3
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            layoutManager.spanCount = 2
+        }
     }
 
     private fun filterInitialize(
@@ -222,6 +260,17 @@ class ListFragment : Fragment() {
         // 일단 모바일
         val action = ListFragmentDirections.actionListToDetail(session)
         binding.root.findNavController().navigate(action)
+    }
+
+    fun onLikeClick(position: Int) {
+        val currentList = sessionListAdapter.currentList.toMutableList()
+        val session = currentList[position]
+        if (session.isLiked) {
+            viewModel.sessionUnLike(session)
+        } else {
+            viewModel.sessionLike(session)
+        }
+        //sessionListAdapter.notifyItemChanged(position)
     }
 
     fun processArgs(

@@ -95,7 +95,8 @@ class DetailFragment : Fragment() {
                     PlayerFullScreenListener(
                         binding.youtubePlayerView,
                         requireActivity() as MainActivity,
-                        binding
+                        binding,
+                        viewModel,
                     )
                 )
                 youTubePlayer.loadOrCueVideo(lifecycle, videoId, 0f)
@@ -120,7 +121,7 @@ class DetailFragment : Fragment() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-
+        viewModel.setOrientation(newConfig.orientation)
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             binding.youtubePlayerView.enterFullScreen()

@@ -1,6 +1,7 @@
 package com.example.ifkakao.presentation.detail
 
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Build
 import android.view.*
 import android.view.View.GONE
@@ -14,6 +15,7 @@ class PlayerFullScreenListener(
     private val playerUi: YouTubePlayerView,
     private val activity: MainActivity,
     private val binding: FragmentDetailBinding,
+    private val viewModel: DetailViewModel,
 ) : YouTubePlayerFullScreenListener {
 
     override fun onYouTubePlayerEnterFullScreen() {
@@ -21,7 +23,10 @@ class PlayerFullScreenListener(
         viewParams.height = ViewGroup.LayoutParams.MATCH_PARENT
         viewParams.width = ViewGroup.LayoutParams.MATCH_PARENT
         playerUi.layoutParams = viewParams
-        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+
+        if (viewModel.detailFragmentState.value.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        }
 
         activity.hideActionBar()
         binding.topMarginView.visibility = GONE
@@ -34,7 +39,11 @@ class PlayerFullScreenListener(
         viewParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
         viewParams.width = ViewGroup.LayoutParams.MATCH_PARENT
         playerUi.layoutParams = viewParams
-        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+
+        if (viewModel.detailFragmentState.value.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        }
+
 
         activity.showActionBar()
         binding.topMarginView.visibility = VISIBLE

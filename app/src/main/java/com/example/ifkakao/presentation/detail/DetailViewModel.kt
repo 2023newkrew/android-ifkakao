@@ -1,5 +1,6 @@
 package com.example.ifkakao.presentation.detail
 
+import android.content.res.Configuration
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -7,6 +8,9 @@ import kotlinx.coroutines.flow.asStateFlow
 class DetailViewModel : ViewModel() {
     private val _videoPlayerState = MutableStateFlow(VideoPlayerState())
     val videoPlayerState = _videoPlayerState.asStateFlow()
+
+    private val _detailFragmentState = MutableStateFlow(DetailFragmentState())
+    val detailFragmentState = _detailFragmentState.asStateFlow()
 
     fun updateVideoPlayerState(
         currentWindow: Int,
@@ -25,6 +29,12 @@ class DetailViewModel : ViewModel() {
             videoUrl = videoUrl
         )
     }
+
+    fun setOrientation(orientation: Int) {
+        _detailFragmentState.value = detailFragmentState.value.copy(
+            orientation = orientation
+        )
+    }
 }
 
 data class VideoPlayerState(
@@ -32,4 +42,8 @@ data class VideoPlayerState(
     val playbackPosition: Long = 0L,
     val playWhenReady: Boolean = true,
     val videoUrl: String = "",
+)
+
+data class DetailFragmentState(
+    val orientation: Int = Configuration.ORIENTATION_PORTRAIT
 )

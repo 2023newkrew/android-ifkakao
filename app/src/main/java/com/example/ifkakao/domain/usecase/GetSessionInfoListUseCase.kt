@@ -27,16 +27,19 @@ class GetSessionInfoListUseCase(private val repository: SessionRepository) {
         }
 
         val likeSessionList = likeList.map { it.sessionId }
+        println("likeSessionList: ${likeSessionList}")
 
         return when (result) {
             is ApiSuccess -> {
-                // type이 제대로 안되는 거 고쳐야됨
-                // foreach 가 낫다
-                // 안티패턴
-                (result as ApiSuccess<List<SessionInfo>>).data.map {
-                    if (it.id in likeSessionList) {
-                        it.isLiked = true
-                    }
+                // TODO: foreach 가 낫다
+                //  안티패턴
+//                (result as ApiSuccess<List<SessionInfo>>).data.map {
+//                    if (it.id in likeSessionList) {
+//                        it.isLiked = true
+//                    }
+//                }
+                (result as ApiSuccess<List<SessionInfo>>).data.forEach {
+                    it.isLiked = it.id in likeSessionList
                 }
                 val apiSuccess = ApiSuccess<List<SessionInfo>>(
                     data = (result as ApiSuccess<List<SessionInfo>>).data.filter {

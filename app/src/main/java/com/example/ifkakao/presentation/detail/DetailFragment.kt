@@ -24,7 +24,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFram
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.DefaultPlayerUiController
 
-
+// TODO: 좋아요 기능 추가
 class DetailFragment : Fragment() {
     private val args: DetailFragmentArgs by navArgs()
     private val binding: FragmentDetailBinding by lazy {

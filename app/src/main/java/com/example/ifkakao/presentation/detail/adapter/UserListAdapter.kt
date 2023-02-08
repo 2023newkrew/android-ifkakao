@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.ItemUserBinding
 import com.example.ifkakao.domain.model.User
+import com.example.ifkakao.domain.module.GlideApp
 
 class UserListAdapter : ListAdapter<User, UserListAdapter.ViewHolder>(diffUtil) {
     companion object {
@@ -40,7 +40,7 @@ class UserListAdapter : ListAdapter<User, UserListAdapter.ViewHolder>(diffUtil) 
         // 분기 타줘야 할듯
         holder.binding.userNameTextView.text = currentList[position].id
         holder.binding.userIntroTextView.text = currentList[position].intro
-        Glide.with(context).load(currentList[position].img).circleCrop()
+        GlideApp.with(context).load(currentList[position].img).circleCrop()
             .into(holder.binding.userImageView)
     }
 

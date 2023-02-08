@@ -50,6 +50,7 @@ android {
 
 }
 
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
@@ -63,6 +64,7 @@ dependencies {
     // navigation
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.core:core-ktx:+'
 
     // test
@@ -85,7 +87,7 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
 
     // hilt
-    implementation "com.google.dagger:hilt-android:2.44"
+    implementation "com.google.dagger:hilt-android:2.44.2"
     kapt "com.google.dagger:hilt-compiler:2.44"
     // ...with Kotlin.
     kaptTest 'com.google.dagger:hilt-android-compiler:2.44'
@@ -111,7 +113,11 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
 
+    // youtube
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
+
     // glide
     implementation 'com.github.bumptech.glide:glide:4.14.2'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+    kapt 'com.github.bumptech.glide:compiler:4.14.2'
 }

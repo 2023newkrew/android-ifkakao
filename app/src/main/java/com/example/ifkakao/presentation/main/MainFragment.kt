@@ -1,5 +1,8 @@
 package com.example.ifkakao.presentation.main
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -173,6 +176,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
+        binding.mainLinkCopy.setOnClickListener {
+            val clipboardManager: ClipboardManager = requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData: ClipData = ClipData.newPlainText("share", "https://if.kakao.com")
+            clipboardManager.setPrimaryClip(clipData)
+        }
+
         binding.mainSessionButton.setOnClickListener {
             val args = Bundle().apply {
                 putParcelable(
@@ -187,7 +196,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             viewModel.footerCorpClicked()
 
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(KakaoCorpURi))
-            //더 좋은 방법이 없을까
             packageManager?.let {
                 if (intent.resolveActivity(packageManager!!) != null) {
                     startActivity(intent)

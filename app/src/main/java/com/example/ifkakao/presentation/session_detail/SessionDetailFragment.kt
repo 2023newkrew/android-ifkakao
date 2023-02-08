@@ -1,5 +1,8 @@
 package com.example.ifkakao.presentation.session_detail
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -52,6 +55,11 @@ class SessionDetailFragment : Fragment() {
 
         binding.sessionDetailBackButton.setOnClickListener {
             navController.navigateUp()
+        }
+        binding.sessionDetailShareButton.setOnClickListener {
+            val clipboardManager: ClipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData: ClipData = ClipData.newPlainText("clip", viewModel.session.sessionVodLink)
+            clipboardManager.setPrimaryClip(clipData)
         }
 
         super.onViewCreated(view, savedInstanceState)

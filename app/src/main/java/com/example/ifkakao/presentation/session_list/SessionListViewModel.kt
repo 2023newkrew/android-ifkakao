@@ -126,4 +126,8 @@ class SessionListViewModel
                 it
         }
     }
+
+    fun filterItemChanged(id: Int, value: Boolean){
+
+    }
 }

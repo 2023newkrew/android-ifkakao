@@ -15,6 +15,10 @@ import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentSessionDetailBinding
 import com.example.ifkakao.databinding.FragmentSessionListBinding
 import com.example.ifkakao.presentation.session_list.SessionListViewModel
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -57,10 +61,21 @@ class SessionDetailFragment : Fragment() {
             navController.navigateUp()
         }
         binding.sessionDetailShareButton.setOnClickListener {
-            val clipboardManager: ClipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipboardManager: ClipboardManager =
+                requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clipData: ClipData = ClipData.newPlainText("clip", viewModel.session.sessionVodLink)
             clipboardManager.setPrimaryClip(clipData)
         }
+
+        lifecycle.addObserver(binding.sessionDetailYoutubePlayer)
+        binding.sessionDetailYoutubePlayer.addYouTubePlayerListener(
+             object : AbstractYouTubePlayerListener() {
+                 override fun onReady(youTubePlayer: YouTubePlayer) {
+                     val youtubeId = viewModel.session.sessionVodLink.split("/").last()
+                     youTubePlayer.loadVideo(youtubeId,0f)
+                 }
+            }
+        )
 
         super.onViewCreated(view, savedInstanceState)
     }

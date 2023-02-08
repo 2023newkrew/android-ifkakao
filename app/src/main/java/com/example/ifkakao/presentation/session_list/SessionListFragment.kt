@@ -5,20 +5,23 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Checkbox
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextPainter
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -31,6 +34,7 @@ import com.example.ifkakao.R
 import com.example.ifkakao.data.data_source.remote.dto.ResultSession
 import com.example.ifkakao.databinding.FragmentSessionListBinding
 import com.example.ifkakao.domain.model.Session
+import com.example.ifkakao.presentation.MainActivity
 import com.google.accompanist.appcompattheme.AppCompatTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -81,13 +85,36 @@ class SessionListFragment : Fragment() {
             AppCompatTheme {
                 val data = viewModel.filterItems.collectAsState()
 
-                filterLayout(data.value)
+                FilterLayout(data.value)
             }
         }
+
+
         binding.sessionFilterButton.setOnClickListener {
             binding.sessionListDrawerLayout.openDrawer(GravityCompat.START)
+            ((requireActivity()) as MainActivity).hideToolbar()
         }
 
+
+
+        binding.sessionListDrawerLayout.addDrawerListener(
+            object : DrawerLayout.DrawerListener {
+                override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                }
+
+                override fun onDrawerOpened(drawerView: View) {
+                    (requireActivity() as MainActivity).hideToolbar()
+                }
+
+                override fun onDrawerClosed(drawerView: View) {
+                    (requireActivity() as MainActivity).showToolbar()
+                }
+
+                override fun onDrawerStateChanged(newState: Int) {
+                }
+
+            }
+        )
 
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -119,27 +146,87 @@ class SessionListFragment : Fragment() {
 
 
     @Composable
-    fun filterLayout(filters: SessionListFilterItems) {
+    fun FilterLayout(filters: SessionListFilterItems) {
+        var checked by remember {
+            mutableStateOf(filters.isKeynote)
+        }
         Column(
-            Modifier.fillMaxSize()
+            Modifier
+                .fillMaxSize()
                 .padding(10.dp)
+
         ) {
-            Row{
+            Row {
+                Text(
+                    text = getString(R.string.app_name),
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    modifier = Modifier.padding(10.dp)
+                )
+                Spacer(modifier = Modifier.weight(1f))
+
+                IconButton(onClick = { binding.sessionListDrawerLayout.closeDrawer(GravityCompat.START) }
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        tint = Color.White,
+                        contentDescription = "close button"
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+                .border(1.dp, Color.White))
+            Spacer(modifier = Modifier.height(10.dp))
+            Row {
                 Text(
                     text = "유형",
                     color = Color.White,
+                    fontSize = 18.sp,
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .align(Alignment.CenterVertically)
+                )
+                Text(
+                    text = "3",
+                    color = Color.Gray,
+                    fontSize = 18.sp,
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .align(Alignment.CenterVertically)
                 )
             }
 
 
             Row {
                 Checkbox(
-                    checked = filters.isKeynote,
+                    checked = checked,
                     onCheckedChange = {
-                        viewModel.filterItemChanged(0,it)
-                    }
+                        checked = !checked
+                    },
+                    colors = checkBokClick(),
+                    enabled = true
+                )
+                Text(
+                    text = "키노트",
+                    color = Color.Gray,
+                    fontSize = 18.sp,
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .align(Alignment.CenterVertically)
                 )
             }
+
         }
+    }
+
+    @Composable
+    fun checkBokClick() : CheckboxColors{
+        return CheckboxDefaults.colors(
+            checkedColor = Color.Cyan,
+            uncheckedColor = Color.LightGray
+        )
     }
 }

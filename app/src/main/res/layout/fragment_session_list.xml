@@ -51,6 +51,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="15dp"
+                    android:minWidth="10dp"
                     android:background="@drawable/tiny_round_rectangle"
                     android:backgroundTint="@color/main_text_color"
                     android:padding="15dp"
@@ -186,7 +187,6 @@
             android:layout_gravity="start"
             android:background="@color/background"
             android:fitsSystemWindows="false"
-            app:headerLayout="@layout/main_menu_header"
             app:itemTextAppearance="@style/TextAppearance.AppCompat.Medium"
             app:itemTextColor="@color/main_text_color">
             <androidx.compose.ui.platform.ComposeView

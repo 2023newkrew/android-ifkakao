@@ -25,9 +25,9 @@ class DetailSessionFragment : Fragment() {
 
     val session by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requireArguments().getSerializable("test", Session::class.java)
+            requireArguments().getSerializable("session", Session::class.java)
         } else {
-            requireArguments().getSerializable("test") as? Session
+            requireArguments().getSerializable("session") as? Session
         } ?: Session()
     }
 

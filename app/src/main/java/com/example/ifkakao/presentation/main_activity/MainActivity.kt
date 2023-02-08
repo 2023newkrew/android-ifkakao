@@ -52,7 +52,7 @@ class MainActivity
                 nowSession = (savedInstanceState.getSerializable("session") as? Session) ?: Session()
             }
         }
-        goToFragment(nowCode, nowSession)
+        goToFragment(nowCode)
 
         binding.drawerMenuOpenButton.setOnClickListener(View.OnClickListener {
             binding.drawerLayout.openDrawer(Gravity.LEFT)
@@ -72,9 +72,12 @@ class MainActivity
     }
 
     override fun goToFragment(code: MainActivityListener.Code, session: Session) {
+        nowCode = code
+        if (session != Session()) {
+            nowSession = session
+        }
         supportFragmentManager.commit {
             setReorderingAllowed(true)
-            nowCode = code
             when (code) {
                 MainActivityListener.Code.HOME -> {
                     replace<HomeFragment>(R.id.main_fragment_container_view)
@@ -83,9 +86,8 @@ class MainActivity
                     replace<SessionListFragment>(R.id.main_fragment_container_view)
                 }
                 MainActivityListener.Code.DETAIL_SESSION -> {
-                    nowSession = session
                     val bundle = Bundle()
-                    bundle.putSerializable("test", session)
+                    bundle.putSerializable("session", nowSession)
                     val detailSessionFragment = DetailSessionFragment()
                     detailSessionFragment.arguments = bundle
                     replace(R.id.main_fragment_container_view, detailSessionFragment)

@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/content_margin_near"
-                android:src="@drawable/icon_menu" />
+                android:src="@drawable/icon_close" />
         </LinearLayout>
 
         <View

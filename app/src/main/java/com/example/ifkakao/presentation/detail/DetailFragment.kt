@@ -55,13 +55,14 @@ class DetailFragment : Fragment() {
         userListAdapter.submitList(args.sessionInfo.users)
         binding.contentsNestedScrollView.isNestedScrollingEnabled = false
 
-        val tracks = args.sessionInfo.track.map {
+        val tracks = args.sessionInfo.track.joinToString(separator = "\t\t") {
             it.toString()
         }
+        val typeTracks = args.sessionInfo.sessionType.toString() + tracks
         binding.titleTextView.text = args.sessionInfo.title
         binding.companyTextView.text = args.sessionInfo.company.toString()
-        binding.typeTextView.text =
-            args.sessionInfo.sessionType.toString() + tracks.joinToString(separator = "\t\t")
+        binding.typeTextView.text = typeTracks
+
         binding.contentTextView.text = args.sessionInfo.description
         if (args.sessionInfo.ppt != "") {
             binding.pptButton.visibility = VISIBLE

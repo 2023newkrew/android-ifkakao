@@ -9,22 +9,12 @@
         android:name="com.example.ifkakao.presentation.main.MainFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_main_fragment_to_session_list_fragment"
-            app:destination="@id/session_list_fragment" >
-            <argument
-                android:name="filterItems"
-                app:argType="com.example.ifkakao.presentation.session_list.SessionListFilterItems" />
-        </action>
     </fragment>
     <fragment
         android:id="@+id/session_list_fragment"
         android:name="com.example.ifkakao.presentation.session_list.SessionListFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_session_list" >
-        <action
-            android:id="@+id/action_session_list_fragment_to_session_detail_fragment"
-            app:destination="@id/session_detail_fragment" />
     </fragment>
     <fragment
         android:id="@+id/session_detail_fragment"

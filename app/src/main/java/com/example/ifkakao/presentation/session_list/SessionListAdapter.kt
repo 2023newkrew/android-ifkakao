@@ -43,7 +43,6 @@ class SessionListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dayList = listOf("", "12.07", "12.08", "12.09")
         holder.binding.sessionItemLikeButton.setOnClickListener {
-            println("clicked")
             onLikeClick(currentList[holder.bindingAdapterPosition])
         }
         holder.itemView.setOnClickListener {

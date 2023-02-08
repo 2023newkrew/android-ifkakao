@@ -89,7 +89,6 @@ class SessionListViewModel
                     it
             }
         }
-        println(set)
         _likeList.value = set
         saveLikeUseCase(set)
 

@@ -10,7 +10,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.ifkakao.R
 import com.example.ifkakao.data.data_source.remote.dto.ResultSession
 import com.example.ifkakao.databinding.FragmentSessionListBinding
 import com.example.ifkakao.domain.model.Session
@@ -25,7 +27,6 @@ class SessionListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var navController: NavController
-    private val Fragment.packageManager get() = activity?.packageManager
     private val viewModel: SessionListViewModel by viewModels()
     private lateinit var sessionListAdapter: SessionListAdapter
 
@@ -39,6 +40,8 @@ class SessionListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        navController = view.findNavController()
 
         sessionListAdapter = SessionListAdapter(
             onItemClick = ::onItemClick,
@@ -60,12 +63,17 @@ class SessionListFragment : Fragment() {
 
 
     private fun onItemClick(session: Session) {
-
+        val args = Bundle().apply {
+            putParcelable(
+                "Session",
+                session
+            )
+        }
+        navController.navigate(R.id.session_detail_fragment, args = args)
     }
 
     private fun onItemLike(session: Session) {
         viewModel.likeToggle(session.id)
     }
-
 
 }

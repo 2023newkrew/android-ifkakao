@@ -1,7 +1,10 @@
 package com.example.ifkakao.domain.model
 
+import android.os.Parcelable
 import com.example.ifkakao.presentation.session_list.SessionListFilterItems
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Session(
     val id: Int = 0,
     val title: String = "",
@@ -17,7 +20,7 @@ data class Session(
     val tags: String = "",
     val pptUrl: String = "",
     var isLike: Boolean = false,
-)
+) : Parcelable
 
 fun Session.getTypeAndTracksString(): String {
     return "$type " + tracks.joinToString(
@@ -27,7 +30,10 @@ fun Session.getTypeAndTracksString(): String {
     }
 }
 
-fun Session.isFilter(sessionListFilterItems: SessionListFilterItems, likeList: Set<String>): Boolean {
+fun Session.isFilter(
+    sessionListFilterItems: SessionListFilterItems,
+    likeList: Set<String>
+): Boolean {
     val type = sessionListFilterItems.isKeynote && type == Type.KeyNote
             || sessionListFilterItems.isPreview && type == Type.Preview
             || sessionListFilterItems.isTechSession && type == Type.TechSession
@@ -59,7 +65,7 @@ fun Session.isFilter(sessionListFilterItems: SessionListFilterItems, likeList: S
             || !sessionListFilterItems.isKakao && !sessionListFilterItems.isKakaoPay && !sessionListFilterItems.isKakaoEnterprise && !sessionListFilterItems.isKakaoMobility && !sessionListFilterItems.isKakaoBank && !sessionListFilterItems.isKakaoBrain && !sessionListFilterItems.isKakaoGames && !sessionListFilterItems.isKakaoEntertainment && !sessionListFilterItems.isKrustUniverse && !sessionListFilterItems.isKakaoPickoma
 
     val like = sessionListFilterItems.isLikeItem && id.toString() in likeList
-            ||!sessionListFilterItems.isLikeItem
+            || !sessionListFilterItems.isLikeItem
 
     return type && track && company && like
 }

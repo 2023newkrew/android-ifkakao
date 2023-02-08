@@ -81,4 +81,11 @@ dependencies {
     //okhttp
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
     implementation("com.squareup.okhttp3:logging-interceptor")
+
+    //Compose
+    // When using a MDC theme
+    implementation "com.google.android.material:compose-theme-adapter:1.2.1"
+
+    // When using a AppCompat theme
+    implementation "com.google.accompanist:accompanist-appcompat-theme:0.25.1"
 }

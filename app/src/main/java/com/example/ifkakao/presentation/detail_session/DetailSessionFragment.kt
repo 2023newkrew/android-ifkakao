@@ -84,6 +84,9 @@ class DetailSessionFragment : Fragment() {
         }
         binding.sessionWebView.loadUrl("https://www.youtube.com/embed/" + session.videoLink.split("/").last())
 
+        binding.imageViewBack.setOnClickListener(View.OnClickListener {
+            parentListener.goToFragment(MainActivityListener.Code.SESSION_LIST)
+        })
         return binding.root
     }
 

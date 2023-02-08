@@ -1,11 +1,14 @@
 package com.example.ifkakao.presentation.session_list.fragment
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -63,12 +66,34 @@ class SessionListFragment : Fragment() {
         _binding = FragmentSessionListBinding.inflate(inflater, container, false)
 
         val dataList = mutableListOf(Session())
-        val adapter = SessionGridAdapter(dataList, goToDetailSession)
+        val adapter = SessionGridAdapter(dataList, ::goToDetailSession)
         binding.sessionList.adapter = adapter
         binding.sessionList.layoutManager = GridLayoutManager(activity, 2)
         adapter.list = dataList
 
-
+        binding.scheduleButton.setOnClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW, Uri.parse(
+                    "https://t1.kakaocdn.net/inhouse_daglona/ifkakao_2022/static/prod/timetable.html"
+                )
+            )
+            startActivity(browserIntent)
+        }
+        binding.filterButton.setOnClickListener {
+            binding.filterDrawerLayout.openDrawer(GravityCompat.START)
+        }
+        binding.filterDrawerMenu.trackCheckAi.setOnClickListener {
+            if (binding.filterDrawerMenu.trackCheckAi.isChecked) viewModel.addTrackFilter("ai")
+            else viewModel.deleteTrackFilter("ai")
+        }
+        binding.filterDrawerMenu.trackCheckMobile.setOnClickListener {
+            if (binding.filterDrawerMenu.trackCheckAi.isChecked) viewModel.addTrackFilter("mobile")
+            else viewModel.deleteTrackFilter("mobile")
+        }
+        binding.filterDrawerMenu.trackCheckTechDevops.setOnClickListener {
+            if (binding.filterDrawerMenu.trackCheckAi.isChecked) viewModel.addTrackFilter("devops")
+            else viewModel.deleteTrackFilter("devops")
+        }
         return binding.root
     }
 
@@ -76,8 +101,8 @@ class SessionListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.sessionListUiState.collectLatest {
-                    binding.sessionList.adapter = SessionGridAdapter(it.sessions.toMutableList(), goToDetailSession)
+                viewModel.sessionListState.collectLatest {
+                    binding.sessionList.adapter = SessionGridAdapter(it.sessions.toMutableList(), ::goToDetailSession)
                 }
             }
         }
@@ -89,7 +114,7 @@ class SessionListFragment : Fragment() {
         onBackPressedCallback.remove()
     }
 
-    private val goToDetailSession = fun(session: Session) {
+    private fun goToDetailSession(session: Session) {
         parentListener.goToFragment(MainActivityListener.Code.DETAIL_SESSION, session)
     }
 }

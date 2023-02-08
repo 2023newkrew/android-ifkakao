@@ -1,10 +1,13 @@
 package com.example.ifkakao.presentation.main_activity
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_OPEN
 import androidx.fragment.app.commit
@@ -54,14 +57,30 @@ class MainActivity
         }
         goToFragment(nowCode)
 
-        binding.drawerMenuOpenButton.setOnClickListener(View.OnClickListener {
-            binding.drawerLayout.openDrawer(Gravity.LEFT)
-            binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_OPEN)
-        })
-        binding.drawerMenuCloseButton.setOnClickListener(View.OnClickListener {
-            binding.drawerLayout.closeDrawer(Gravity.LEFT)
+        binding.toolbarTextTitle.setOnClickListener {
+            goToFragment(MainActivityListener.Code.HOME)
             binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
-        })
+        }
+        binding.drawerMenuOpenButton.setOnClickListener {
+            binding.drawerLayout.openDrawer(GravityCompat.START)
+            binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_OPEN)
+        }
+        binding.drawerTextSession.setOnClickListener {
+            goToFragment(MainActivityListener.Code.SESSION_LIST)
+            binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        }
+        binding.drawerTextCoc.setOnClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW, Uri.parse(
+                    "https://mk.kakaocdn.net/dn/if-kakao/2022/if_kakao_code_of_conduct_v1.1.pdf"
+                )
+            )
+            startActivity(browserIntent)
+        }
+        binding.drawerMenuCloseButton.setOnClickListener {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+            binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        }
 
     }
 

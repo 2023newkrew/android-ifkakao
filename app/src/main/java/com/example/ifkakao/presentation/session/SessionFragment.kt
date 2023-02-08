@@ -10,7 +10,6 @@ import com.example.ifkakao.databinding.FragmentSessionBinding
 import com.example.ifkakao.presentation.session.select.SessionSelectFragment
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class SessionFragment : Fragment() {
     private var _binding: FragmentSessionBinding? = null
     private val binding get() = _binding!!

@@ -2,9 +2,7 @@ package com.example.ifkakao.presentation
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,7 +17,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.window.layout.WindowMetricsCalculator
 import com.example.ifkakao.ARG_KEY_TRACK
 import com.example.ifkakao.ARG_KEY_TYPE
 import com.example.ifkakao.R
@@ -35,21 +32,15 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
 
     private lateinit var navController: NavController
-    private var dualPane = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // initialize dualPane
-        val metrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(this)
-        val widthDp = metrics.bounds.width() / resources.displayMetrics.density
-        dualPane = widthDp >= 600f
-
         // initialize UI
         initializeCommonUI()
-        if (dualPane) initializeDualPaneUI()
+        if (viewModel.getIsDualPane()) initializeDualPaneUI()
         else initializeSinglePaneUI()
     }
 
@@ -152,16 +143,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         // set navigation width to overlap full screen
-        val navigationLayoutParams = navigationView.layoutParams
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val windowMetrics = windowManager.currentWindowMetrics
-            navigationLayoutParams.width = windowMetrics.bounds.width()
-        } else {
-            val metrics = DisplayMetrics()
-            windowManager.defaultDisplay.getMetrics(metrics)
-            navigationLayoutParams.width = metrics.widthPixels
+        navigationView.layoutParams.run {
+            width = viewModel.getWidth()
         }
-        navigationView.layoutParams = navigationLayoutParams
     }
 
     private fun browseCoC() {

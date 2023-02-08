@@ -14,19 +14,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.window.layout.WindowMetricsCalculator
 import com.example.ifkakao.*
 import com.example.ifkakao.databinding.FragmentHomeBinding
 import com.example.ifkakao.presentation.MainActivity
 import com.example.ifkakao.presentation.home.adapter.HighlightListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: HomeViewModel by viewModels()
 
     private val highlightListAdapter by lazy { HighlightListAdapter(::onHighlightItemClick) }
-    private var dualPane = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,14 +42,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // initialize dualPane
-        val metrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(requireActivity())
-        val widthDp = metrics.bounds.width() / resources.displayMetrics.density
-        dualPane = widthDp >= 600f
-
         // initialize UI
         initializeCommonUI()
-        if (dualPane) initializeDualPaneUI()
+        if (viewModel.getIsDualPane()) initializeDualPaneUI()
         else initializeSinglePaneUI()
     }
 

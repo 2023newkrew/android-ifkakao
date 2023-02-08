@@ -6,9 +6,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -19,11 +17,11 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.example.ifkakao.ARG_KEY_INFO
 import com.example.ifkakao.CLIP_LABEL_SHARE
 import com.example.ifkakao.databinding.FragmentSessionDetailBinding
-import com.example.ifkakao.domain.model.Info
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
     private var _binding: FragmentSessionDetailBinding? = null
     private val binding get() = _binding!!
@@ -41,17 +39,6 @@ class DetailFragment : Fragment() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // initialize info from arguments
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable(ARG_KEY_INFO, Info::class.java)?.let {
-                viewModel.info = it
-            }
-        } else {
-            arguments?.getParcelable<Info>(ARG_KEY_INFO)?.let {
-                viewModel.info = it
-            }
-        }
 
         // set text
         viewModel.info?.let {
@@ -108,22 +95,16 @@ class DetailFragment : Fragment() {
         }
 
         // initialize youtube web view
-        binding.youtubeWebView.layoutParams.height =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                val windowMetrics = requireActivity().windowManager.currentWindowMetrics
-                windowMetrics.bounds.width() * 9 / 16
-            } else {
-                val metrics = DisplayMetrics()
-                requireActivity().windowManager.defaultDisplay.getMetrics(metrics)
-                metrics.widthPixels * 9 / 16
+        binding.youtubeWebView.run {
+            layoutParams.height = viewModel.getWidth() * 9 / 16
+            webViewClient = WebViewClient()
+            settings.run {
+                javaScriptEnabled = true
+                loadWithOverviewMode = true
+                useWideViewPort = true
             }
-        binding.youtubeWebView.webViewClient = WebViewClient()
-        binding.youtubeWebView.settings.run {
-            javaScriptEnabled = true
-            loadWithOverviewMode = true
-            useWideViewPort = true
+            loadUrl("https://www.youtube.com/embed/" + viewModel.info?.sessionVodLink?.split("/")?.last())
         }
-        binding.youtubeWebView.loadUrl("https://www.youtube.com/embed/" + viewModel.info?.sessionVodLink?.split("/")?.last())
 
         // set on click listener
         binding.detailBackLayout.setOnClickListener {

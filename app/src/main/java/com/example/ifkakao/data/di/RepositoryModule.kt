@@ -2,8 +2,10 @@ package com.example.ifkakao.data.di
 
 import com.example.ifkakao.data.repository.DataStoreRepositoryImpl
 import com.example.ifkakao.data.repository.SessionRepositoryImpl
+import com.example.ifkakao.data.repository.WindowRepositoryImpl
 import com.example.ifkakao.domain.repository.DataStoreRepository
 import com.example.ifkakao.domain.repository.SessionRepository
+import com.example.ifkakao.domain.repository.WindowRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -24,4 +26,10 @@ abstract class RepositoryModule {
     abstract fun bindDataStoreRepository(
         dataStoreRepositoryImpl: DataStoreRepositoryImpl
     ): DataStoreRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindWindowRepository(
+        windowRepositoryImpl: WindowRepositoryImpl
+    ): WindowRepository
 }

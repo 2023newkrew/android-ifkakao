@@ -8,7 +8,9 @@ import com.example.ifkakao.DATA_STORE_NAME_LIKE
 import com.example.ifkakao.TYPE_VALUE_KEYNOTE
 import com.example.ifkakao.data.repository.DataStoreRepositoryImpl
 import com.example.ifkakao.data.repository.SessionRepositoryImpl
+import com.example.ifkakao.data.repository.WindowRepositoryImpl
 import com.example.ifkakao.data.retrofit.SessionService
+import com.example.ifkakao.domain.use_case.GetIsDualPaneUseCase
 import com.example.ifkakao.domain.use_case.GetLikeUseCase
 import com.example.ifkakao.domain.use_case.GetSessionsUseCase
 import com.example.ifkakao.domain.use_case.PutLikeUseCase
@@ -39,7 +41,17 @@ class SessionSelectViewModelTest {
     private val getLikeUseCase = GetLikeUseCase(dataStoreRepositoryImpl)
     private val putLikeUseCase = PutLikeUseCase(dataStoreRepositoryImpl)
 
-    private val viewModel = SessionSelectViewModel(sessionsUseCase, getLikeUseCase, putLikeUseCase)
+    private val resources = ApplicationProvider.getApplicationContext<Context>().resources
+    private val windowRepositoryImpl = WindowRepositoryImpl(resources)
+    private val getIsDualPaneUseCase = GetIsDualPaneUseCase(windowRepositoryImpl)
+
+    private val viewModel = SessionSelectViewModel(
+        sessionsUseCase,
+        getLikeUseCase,
+        putLikeUseCase,
+        getIsDualPaneUseCase,
+//        SavedStateHandle.createHandle(null, null)
+    )
 
     @Test
     fun testFilterInfoList() = runBlocking {

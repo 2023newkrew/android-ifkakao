@@ -12,9 +12,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.ActivityMainBinding
+import com.example.ifkakao.presentation.main.MainFragment
+import com.example.ifkakao.presentation.main.MainFragmentDirections
 import com.example.ifkakao.presentation.session_list.SessionListFilterItems
 import dagger.hilt.android.AndroidEntryPoint
-
 
 
 @AndroidEntryPoint
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                             SessionListFilterItems()
                         )
                     }
-                    navController.navigate(R.id.session_list_fragment,args)
+                    navController.navigate(R.id.session_list_fragment, args)
                     binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
@@ -88,16 +89,14 @@ class MainActivity : AppCompatActivity() {
                     false
                 }
             }
+        }
 
+        binding.mainToolbar.setOnClickListener {
+            navController.navigate(MainFragmentDirections.actionGlobalMainFragment())
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        println("selected")
-//        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-//    }
 }

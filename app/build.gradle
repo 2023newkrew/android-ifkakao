@@ -6,6 +6,9 @@ plugins {
     id 'kotlin-parcelize'
 }
 
+
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
     namespace 'com.example.ifkakao'
     compileSdk 33
@@ -78,5 +81,4 @@ dependencies {
     //okhttp
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
     implementation("com.squareup.okhttp3:logging-interceptor")
-
 }

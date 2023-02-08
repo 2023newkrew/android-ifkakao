@@ -16,7 +16,7 @@ data class Session(
     val users: List<User> = listOf(),
     val tags: String = "",
     val pptUrl: String = "",
-    val isLike: Boolean = false,
+    var isLike: Boolean = false,
 )
 
 fun Session.getTypeAndTracksString(): String {

@@ -1,5 +1,6 @@
 package com.example.ifkakao.presentation.session_list
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -40,8 +41,9 @@ class SessionListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val dayList = listOf("","12.07", "12.08", "12.09")
+        val dayList = listOf("", "12.07", "12.08", "12.09")
         holder.binding.sessionItemLikeButton.setOnClickListener {
+            println("clicked")
             onLikeClick(currentList[holder.bindingAdapterPosition])
         }
         holder.itemView.setOnClickListener {
@@ -52,16 +54,29 @@ class SessionListAdapter(
         holder.binding.sessionItemDate.text = dayList[currentList[position].sessionDay]
         holder.binding.sessionItemGroup.text = currentList[position].company.toString()
         holder.binding.sessionItemKeynote.text = currentList[position].type.toString()
-        if (currentList[position].isLike) {
-            holder.binding.sessionItemLikeButton.background =
-                ContextCompat.getDrawable(
-                    holder.binding.root.context,
-                    R.drawable.baseline_star_24_yellow
+        if(currentList[position].isLike){
+            holder.binding.sessionItemLikeButton.imageTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(holder.binding.root.context,R.color.session_like_yellow)
                 )
-
-        } else {
-            holder.binding.sessionItemLikeButton.background =
-                ContextCompat.getDrawable(holder.binding.root.context, R.drawable.baseline_star_24)
         }
+        else{
+            holder.binding.sessionItemLikeButton.imageTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(holder.binding.root.context,R.color.second_main_text_color)
+                )
+        }
+
+
+//        if (currentList[position].isLike) {
+//            holder.binding.sessionItemLikeButton.background =
+//                ContextCompat.getDrawable(
+//                    holder.binding.root.context,
+//                    R.drawable.baseline_star_24_yellow
+//                )
+//        } else {
+//            holder.binding.sessionItemLikeButton.background =
+//                ContextCompat.getDrawable(holder.binding.root.context, R.drawable.baseline_star_24)
+//        }
     }
 }

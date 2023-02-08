@@ -59,7 +59,7 @@ class SessionListViewModel
                     _likeList.value
                 )
             }.map {
-                if(_likeList.value.contains(it.id.toString()))
+                if (_likeList.value.contains(it.id.toString()))
                     it.copy(isLike = true)
                 else
                     it
@@ -75,8 +75,7 @@ class SessionListViewModel
             _showSessionList.value = showSessionList.value.map {
                 if (it.id == id) {
                     it.copy(isLike = false)
-                }
-                else
+                } else
                     it
             }
         } else {
@@ -84,14 +83,47 @@ class SessionListViewModel
             _showSessionList.value = showSessionList.value.map {
                 if (it.id == id) {
                     it.copy(isLike = true)
-                }
-                else
+                } else
                     it
             }
         }
         _likeList.value = set
         saveLikeUseCase(set)
+    }
 
-
+    fun dateSelected(num: Int) {
+        when(num){
+            0 -> _filterItems.value = filterItems.value.copy(
+                isDateOne = false,
+                isDateTwo = false,
+                isDateThree = false
+            )
+            1-> _filterItems.value = filterItems.value.copy(
+                isDateOne = true,
+                isDateTwo = false,
+                isDateThree = false
+            )
+            2-> _filterItems.value = filterItems.value.copy(
+                isDateOne = false,
+                isDateTwo = true,
+                isDateThree = false
+            )
+            3-> _filterItems.value = filterItems.value.copy(
+                isDateOne = false,
+                isDateTwo = false,
+                isDateThree = true
+            )
+        }
+        _showSessionList.value = sessionList.filter {
+            it.isFilter(
+                filterItems.value,
+                _likeList.value
+            )
+        }.map {
+            if (_likeList.value.contains(it.id.toString()))
+                it.copy(isLike = true)
+            else
+                it
+        }
     }
 }

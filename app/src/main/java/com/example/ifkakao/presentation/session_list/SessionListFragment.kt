@@ -50,6 +50,18 @@ class SessionListFragment : Fragment() {
         binding.sessionListGridView.layoutManager = GridLayoutManager(view.context, 2)
         binding.sessionListGridView.adapter = sessionListAdapter
 
+        binding.sessionRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when(checkedId){
+                R.id.session_radio_button_1 -> viewModel.dateSelected(0)
+                R.id.session_radio_button_2 -> viewModel.dateSelected(1)
+                R.id.session_radio_button_3 -> viewModel.dateSelected(2)
+                R.id.session_radio_button_4 -> viewModel.dateSelected(3)
+            }
+            //TODO: 날짜 클릭시 recyclerview가 최상단으로 올라가지 않는 문제
+            binding.sessionListGridView.smoothScrollToPosition(0)
+        }
+
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.showSessionList.collectLatest {

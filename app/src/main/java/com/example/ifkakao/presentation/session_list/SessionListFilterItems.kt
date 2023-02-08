@@ -34,4 +34,8 @@ data class SessionListFilterItems(
     val isKakaoPickoma: Boolean = false,
 
     val isLikeItem: Boolean = false,
+
+    val isDateOne: Boolean = false,
+    val isDateTwo: Boolean = false,
+    val isDateThree: Boolean = false
 ) : Parcelable

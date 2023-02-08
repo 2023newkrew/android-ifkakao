@@ -67,5 +67,9 @@ fun Session.isFilter(
     val like = sessionListFilterItems.isLikeItem && id.toString() in likeList
             || !sessionListFilterItems.isLikeItem
 
-    return type && track && company && like
+    val date = sessionListFilterItems.isDateOne && sessionDay == 1
+            || sessionListFilterItems.isDateTwo && sessionDay == 2
+            || sessionListFilterItems.isDateThree && sessionDay == 3
+            || !sessionListFilterItems.isDateOne && !sessionListFilterItems.isDateTwo && !sessionListFilterItems.isDateThree
+    return type && track && company && like && date
 }

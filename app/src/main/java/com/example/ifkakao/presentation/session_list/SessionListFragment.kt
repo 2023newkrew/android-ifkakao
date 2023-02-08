@@ -66,6 +66,7 @@ class SessionListFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.showSessionList.collectLatest {
                     sessionListAdapter.submitList(it.toMutableList())
+                    binding.sessionNumberText.text = it.size.toString()
                 }
             }
         }

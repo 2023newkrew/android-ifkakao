@@ -53,6 +53,8 @@ class SessionListAdapter(
         holder.binding.sessionItemDate.text = dayList[currentList[position].sessionDay]
         holder.binding.sessionItemGroup.text = currentList[position].company.toString()
         holder.binding.sessionItemKeynote.text = currentList[position].type.toString()
+        holder.binding.sessionItemTech.text = currentList[position].tracks.joinToString { "$it " }
+
         if(currentList[position].isLike){
             holder.binding.sessionItemLikeButton.imageTintList =
                 ColorStateList.valueOf(

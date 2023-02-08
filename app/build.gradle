@@ -88,9 +88,9 @@ dependencies {
     // screen-width
     implementation 'androidx.window:window:1.0.0'
 
+    // coil- user thumb
+    implementation "io.coil-kt:coil:2.2.2"
 
-    // youtube-player
-    implementation 'kr.co.prnd:youtube-player-view:1.4.1'
 }
 
 kapt {

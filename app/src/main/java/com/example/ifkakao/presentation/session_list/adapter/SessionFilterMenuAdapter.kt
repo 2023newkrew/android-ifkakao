@@ -46,9 +46,10 @@ class SessionFilterMenuAdapter(private val onCheck: (Int, Boolean) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            binding.checkboxFilter.text = currentList[position].label
+            val filterListItem = currentList[bindingAdapterPosition]
+            binding.checkboxFilter.text = filterListItem.label
             binding.checkboxFilter.setOnCheckedChangeListener(null)
-            binding.checkboxFilter.isChecked = currentList[position].isChecked
+            binding.checkboxFilter.isChecked = filterListItem.isChecked
 
             binding.checkboxFilter.setOnCheckedChangeListener { _, isChecked ->
                 onCheck(position, isChecked)

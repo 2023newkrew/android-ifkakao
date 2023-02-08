@@ -30,7 +30,7 @@
                 <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
-                    android:minHeight="?attr/actionBarSize"
+                    android:minHeight="50dp"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
@@ -148,18 +148,43 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_session_label"
                     app:tint="@color/dark_white" />
 
+                <ImageButton
+                    android:id="@+id/button_filter_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/light_black"
+                    android:contentDescription="@string/button_filter_favorite"
+                    android:src="@drawable/baseline_favorite_border_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_session_label"
+                    app:layout_constraintEnd_toStartOf="@+id/button_filter_sessions"
+                    app:layout_constraintTop_toTopOf="@+id/tv_session_label"
+                    app:tint="@color/favorite" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/session_list"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/footer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_session_count"
                     app:spanCount="2"
                     tools:listitem="@layout/session_list_item" />
+
+                <include
+                    android:id="@+id/footer"
+                    layout="@layout/footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/session_list" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

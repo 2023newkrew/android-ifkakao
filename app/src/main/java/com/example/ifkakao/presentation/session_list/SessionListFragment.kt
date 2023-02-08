@@ -48,12 +48,19 @@ class SessionListFragment : Fragment(R.layout.fragment_session_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sessionListAdapter = SessionListAdapter {
+        val sessionListAdapter = SessionListAdapter({
             val action =
                 SessionListFragmentDirections.actionSessionListFragmentToSessionDetailFragment(
                     it
                 )
             findNavController().navigate(action)
+        }) {
+            if (it.isLike) {
+                viewModel.onEvent(SessionListEvent.UnLikeSession(it))
+            } else {
+                viewModel.onEvent(SessionListEvent.LikeSession(it))
+            }
+
         }
         binding.sessionList.adapter = sessionListAdapter
 
@@ -127,6 +134,16 @@ class SessionListFragment : Fragment(R.layout.fragment_session_list) {
                     }
 
                     binding.buttonFilterSessions.setColorFilter(color)
+
+                    val showLikeOnly = viewModel.sessionListState.value.showLikeOnly
+                    when {
+                        showLikeOnly -> {
+                            binding.buttonFilterFavorite.setImageResource(R.drawable.baseline_favorite_24)
+                        }
+                        else -> {
+                            binding.buttonFilterFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
+                        }
+                    }
                 }
             }
         }
@@ -180,6 +197,11 @@ class SessionListFragment : Fragment(R.layout.fragment_session_list) {
 
         }
 
+        binding.buttonFilterFavorite.setOnClickListener {
+            val showLikeOnly = viewModel.sessionListState.value.showLikeOnly
+            viewModel.onEvent(SessionListEvent.ShowLikeSessionsOnly(!showLikeOnly))
+        }
+
     }
 
     private fun filterSetAdapter(
@@ -231,6 +253,10 @@ class SessionListFragment : Fragment(R.layout.fragment_session_list) {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadSessions()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

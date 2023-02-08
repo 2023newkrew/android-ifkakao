@@ -58,7 +58,7 @@ class SessionListViewModel @Inject constructor(
     }
 
     private var getSessionsJob: Job? = null
-    private fun loadSessions() {
+    fun loadSessions() {
         getSessionsJob?.cancel()
 
         getSessionsJob = viewModelScope.launch {
@@ -79,16 +79,19 @@ class SessionListViewModel @Inject constructor(
         when (event) {
             SessionListEvent.FilterInitialize -> {
                 _sessionFilterState.value = SessionFilter()
+                loadSessions()
             }
             is SessionListEvent.ShowLikeSessionsOnly -> {
                 _sessionListState.value = sessionListState.value.copy(
                     showLikeOnly = event.isLikeSessionsOnly
                 )
+                loadSessions()
             }
             is SessionListEvent.ChangeSessionDay -> {
                 _sessionListState.value = sessionListState.value.copy(
                     sessionDay = event.sessionDay
                 )
+                loadSessions()
             }
             is SessionListEvent.LikeSession -> {
                 viewModelScope.launch {
@@ -96,6 +99,7 @@ class SessionListViewModel @Inject constructor(
                         event.session,
                         isLike = true
                     )
+                    loadSessions()
                 }
             }
             is SessionListEvent.UnLikeSession -> {
@@ -104,14 +108,17 @@ class SessionListViewModel @Inject constructor(
                         event.session,
                         isLike = false
                     )
+                    loadSessions()
                 }
             }
             is SessionListEvent.AddFilterItem -> {
                 sessionFilterItemAddOrRemove(true, event.filterableItem)
+                loadSessions()
 
             }
             is SessionListEvent.RemoveFilterItem -> {
                 sessionFilterItemAddOrRemove(false, event.filterableItem)
+                loadSessions()
             }
         }
         _sessionListState.value = sessionListState.value.copy(
@@ -120,7 +127,7 @@ class SessionListViewModel @Inject constructor(
                     sessionFilterState.value.companies.isNotEmpty()
         )
 
-        loadSessions()
+
     }
 
     private fun sessionFilterItemAddOrRemove(

@@ -3,7 +3,6 @@
 
     <group android:checkableBehavior="single">
 
-
         <item
             android:id="@+id/session_navigation"
             android:title="@string/session" />

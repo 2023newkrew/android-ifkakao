@@ -21,10 +21,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingHorizontal="10dp">
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp">
 
                 <TextView
+                    android:id="@+id/button_to_session_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -34,12 +35,138 @@
                     app:drawableLeftCompat="@drawable/baseline_arrow_back_24"
                     app:drawableTint="@color/dark_white" />
 
+                <TextView
+                    android:id="@+id/tv_session_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/dark_white"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    tools:text="Preview Mobile" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/dark_white"
+                        tools:text="카카오페이" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="   |   "
+                        android:textColor="@color/gray" />
+
+                    <TextView
+                        android:id="@+id/tv_session_type_tracks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/tab_blue"
+                        tools:text="프리뷰 모바일" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_session_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/gray"
+                    tools:text="2022.12.08" />
+
+                <ImageButton
+                    android:id="@+id/button_detail_favorite"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:adjustViewBounds="true"
+                    android:backgroundTint="@color/light_black"
+                    android:contentDescription="@string/button_favorite"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/baseline_favorite_border_24"
+                    app:tint="@color/favorite" />
+
+                <Button
+                    android:id="@+id/button_share_session"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/dark_gray"
+                    android:text="@string/share"
+                    android:textColor="@color/dark_white" />
             </LinearLayout>
 
-            <kr.co.prnd.YouTubePlayerView
-                android:id="@+id/you_tube_player_view"
+            <WebView
+                android:id="@+id/youtube_web_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="256dp"
+                android:layout_marginTop="40dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp">
+
+                <TextView
+                    android:id="@+id/tv_session_tags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    tools:text="#Mobile #카카오 #카카오모빌리티 #카카오뱅크 #카카오페이" />
+
+                <TextView
+                    android:id="@+id/tv_session_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/dark_white"
+                    tools:text="@string/session_desc_sample" />
+
+                <TextView
+                    android:id="@+id/button_presentation_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/background_button_outline"
+                    android:drawablePadding="4dp"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/presentation_button"
+                    android:textColor="@color/dark_white"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:drawableLeftCompat="@drawable/baseline_download_24"
+                    app:drawableTint="@color/dark_white"
+                    tools:visibility="visible" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/detail_user_item" />
+
+                <include
+                    android:id="@+id/footer"
+                    layout="@layout/footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginBottom="20dp" />
+
+            </LinearLayout>
 
 
         </LinearLayout>

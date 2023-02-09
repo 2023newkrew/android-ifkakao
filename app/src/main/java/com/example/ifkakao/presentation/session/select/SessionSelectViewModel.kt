@@ -32,6 +32,11 @@ class SessionSelectViewModel @Inject constructor(
 
     private val infoList = mutableListOf<Info>()
 
+    init {
+        savedStateHandle.get<String>(ARG_KEY_TYPE)?.let { filterInfoListByType(it) }
+        savedStateHandle.get<String>(ARG_KEY_TRACK)?.let { filterInfoListByTrack(it) }
+    }
+
     fun loadInfoList() = viewModelScope.launch {
         if (infoList.isEmpty()) {
             getSessionsUseCase().map { session ->
@@ -39,20 +44,7 @@ class SessionSelectViewModel @Inject constructor(
             }
         }
 
-        var isFiltered = false
-        savedStateHandle.get<String>(ARG_KEY_TYPE)?.let {
-            filterInfoListByType(it)
-            isFiltered = true
-        }
-        savedStateHandle.get<String>(ARG_KEY_TRACK)?.let {
-            filterInfoListByTrack(it)
-            isFiltered = true
-        }
-
-        // prevent filter again when pop stack from detail fragment
-        savedStateHandle = SavedStateHandle.createHandle(null, null)
-
-        if (!isFiltered) filterInfoList()
+        filterInfoList()
     }
 
     fun filterInfoListByType(type: String) {

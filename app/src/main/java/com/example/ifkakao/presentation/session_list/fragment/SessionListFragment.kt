@@ -1,32 +1,31 @@
-package com.example.ifkakao.presentation.presentation_session_list.fragment
+package com.example.ifkakao.presentation.session_list.fragment
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentSessionListBinding
 import com.example.ifkakao.di.component.SessionListComponent
 import com.example.ifkakao.domain.model.Session
-import com.example.ifkakao.presentation.home.fragment.HomeFragment
 import com.example.ifkakao.presentation.main_activity.MainActivity
 import com.example.ifkakao.presentation.main_activity.MainActivityListener
-import com.example.ifkakao.presentation.presentation_session_list.adapter.SessionGridAdapter
-import com.example.ifkakao.presentation.presentation_session_list.viewmodel.SessionListFragmentViewModel
+import com.example.ifkakao.presentation.session_list.adapter.SessionGridAdapter
+import com.example.ifkakao.presentation.session_list.viewmodel.SessionListFragmentViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SessionListFragment : Fragment(), SessionListFragmentListener {
+class SessionListFragment : Fragment() {
 
     private lateinit var onBackPressedCallback: OnBackPressedCallback
 
@@ -54,10 +53,7 @@ class SessionListFragment : Fragment(), SessionListFragmentListener {
         }
         onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                parentFragmentManager.commit {
-                    setReorderingAllowed(true)
-                    replace<HomeFragment>(R.id.main_fragment_container_view)
-                }
+                parentListener.goToFragment(MainActivityListener.Code.HOME)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
@@ -70,13 +66,34 @@ class SessionListFragment : Fragment(), SessionListFragmentListener {
         _binding = FragmentSessionListBinding.inflate(inflater, container, false)
 
         val dataList = mutableListOf(Session())
-        val adapter = SessionGridAdapter(dataList, this)
+        val adapter = SessionGridAdapter(dataList, ::goToDetailSession)
         binding.sessionList.adapter = adapter
         binding.sessionList.layoutManager = GridLayoutManager(activity, 2)
         adapter.list = dataList
 
-        viewModel.load()
-
+        binding.scheduleButton.setOnClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW, Uri.parse(
+                    "https://t1.kakaocdn.net/inhouse_daglona/ifkakao_2022/static/prod/timetable.html"
+                )
+            )
+            startActivity(browserIntent)
+        }
+        binding.filterButton.setOnClickListener {
+            binding.filterDrawerLayout.openDrawer(GravityCompat.START)
+        }
+        binding.filterDrawerMenu.trackCheckAi.setOnClickListener {
+            if (binding.filterDrawerMenu.trackCheckAi.isChecked) viewModel.addTrackFilter("ai")
+            else viewModel.deleteTrackFilter("ai")
+        }
+        binding.filterDrawerMenu.trackCheckMobile.setOnClickListener {
+            if (binding.filterDrawerMenu.trackCheckAi.isChecked) viewModel.addTrackFilter("mobile")
+            else viewModel.deleteTrackFilter("mobile")
+        }
+        binding.filterDrawerMenu.trackCheckTechDevops.setOnClickListener {
+            if (binding.filterDrawerMenu.trackCheckAi.isChecked) viewModel.addTrackFilter("devops")
+            else viewModel.deleteTrackFilter("devops")
+        }
         return binding.root
     }
 
@@ -84,11 +101,12 @@ class SessionListFragment : Fragment(), SessionListFragmentListener {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.sessionListUiState.collectLatest {
-                    binding.sessionList.adapter = SessionGridAdapter(it.sessions.toMutableList(), this@SessionListFragment)
+                viewModel.sessionListState.collectLatest {
+                    binding.sessionList.adapter = SessionGridAdapter(it.sessions.toMutableList(), ::goToDetailSession)
                 }
             }
         }
+        viewModel.load()
     }
 
     override fun onDetach() {
@@ -96,7 +114,7 @@ class SessionListFragment : Fragment(), SessionListFragmentListener {
         onBackPressedCallback.remove()
     }
 
-    override fun callBack(session: Session) {
-        parentListener.callBack(MainActivityListener.Code.GO_TO_DETAIL_SESSION, session)
+    private fun goToDetailSession(session: Session) {
+        parentListener.goToFragment(MainActivityListener.Code.DETAIL_SESSION, session)
     }
 }

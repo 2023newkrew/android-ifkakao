@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/filter_drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:background="@color/background_black"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/filter_reset_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/content_margin_near"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/filter_reset_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/content_margin_near"
+            android:src="@drawable/icon_update"
+            android:tint="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/filter_reset_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/content_margin_near"
+            android:text="초기화"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_size_small" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_near"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="유형"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large" />
+
+        <View
+            android:layout_width="@dimen/content_margin_near"
+            android:layout_height="0dp" />
+
+        <TextView
+            android:id="@+id/type_filter_selected_size_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/primary_blue"
+            android:textSize="@dimen/text_size_large" />
+
+        <TextView
+            android:id="@+id/type_filter_size_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/3"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_size_large" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <CheckBox
+        android:id="@+id/type_check_keynote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_near"
+        android:text="키노트"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_size_small" />
+
+    <CheckBox
+        android:id="@+id/type_check_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:text="프리뷰"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_size_small" />
+
+    <CheckBox
+        android:id="@+id/type_check_tech_session"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:text="기술세션"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_size_small" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/type_filter_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_near"
+        android:nestedScrollingEnabled="false"
+        android:overScrollMode="never" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/content_margin_near"
+        android:background="@color/primary_gray" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="트랙"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large" />
+
+        <View
+            android:layout_width="@dimen/content_margin_near"
+            android:layout_height="0dp" />
+
+        <TextView
+            android:id="@+id/track_filter_selected_size_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/primary_blue"
+            android:textSize="@dimen/text_size_large" />
+
+        <TextView
+            android:id="@+id/track_filter_size_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/3"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_size_large" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <CheckBox
+        android:id="@+id/track_check_ai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_near"
+        android:text="AI"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_size_small" />
+
+    <CheckBox
+        android:id="@+id/track_check_mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:text="Mobile"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_size_small" />
+
+    <CheckBox
+        android:id="@+id/track_check_tech_devops"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:text="DevOps"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_size_small" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/track_filter_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:nestedScrollingEnabled="false"
+        android:overScrollMode="never" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:background="@color/primary_gray" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="소속"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large" />
+
+        <View
+            android:layout_width="@dimen/content_margin_near"
+            android:layout_height="0dp" />
+
+        <TextView
+            android:id="@+id/company_filter_selected_size_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/primary_blue"
+            android:textSize="@dimen/text_size_large" />
+
+        <TextView
+            android:id="@+id/company_filter_size_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/3"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_size_large" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/company_filter_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:nestedScrollingEnabled="false"
+        android:overScrollMode="never" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:background="@color/primary_gray" />
+</LinearLayout>

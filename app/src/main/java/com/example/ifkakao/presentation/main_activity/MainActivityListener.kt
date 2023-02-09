@@ -4,9 +4,10 @@ import com.example.ifkakao.domain.model.Session
 
 interface MainActivityListener {
     enum class Code {
-        GO_TO_HOME,
-        GO_TO_SESSION_LIST,
-        GO_TO_DETAIL_SESSION,
+        HOME,
+        SESSION_LIST,
+        DETAIL_SESSION,
     }
-    fun callBack(code: Code, session: Session = Session())
+
+    fun goToFragment(code: Code, session: Session = Session())
 }

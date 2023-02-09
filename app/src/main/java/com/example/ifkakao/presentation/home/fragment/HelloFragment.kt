@@ -40,7 +40,7 @@ class HelloFragment : Fragment(), OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        parentListener.callBack(MainActivityListener.Code.GO_TO_SESSION_LIST)
+        parentListener.goToFragment(MainActivityListener.Code.SESSION_LIST)
     }
 
 

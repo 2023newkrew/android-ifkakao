@@ -10,13 +10,9 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
-import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentDetailSessionBinding
 import com.example.ifkakao.domain.model.Session
-import com.example.ifkakao.presentation.presentation_session_list.fragment.SessionListFragment
+import com.example.ifkakao.presentation.main_activity.MainActivityListener
 
 class DetailSessionFragment : Fragment() {
 
@@ -25,22 +21,29 @@ class DetailSessionFragment : Fragment() {
     private var _binding: FragmentDetailSessionBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var parentListener: MainActivityListener
+
     val session by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requireArguments().getSerializable("test", Session::class.java)
+            requireArguments().getSerializable("session", Session::class.java)
         } else {
-            requireArguments().getSerializable("test") as? Session
+            requireArguments().getSerializable("session") as? Session
         } ?: Session()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        if (context is MainActivityListener) {
+            parentListener = context
+        } else {
+            throw ClassCastException(
+                context.toString()
+                        + " must implement OnFragmentInteractionListener"
+            )
+        }
         onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                parentFragmentManager.commit {
-                    setReorderingAllowed(true)
-                    replace<SessionListFragment>(R.id.main_fragment_container_view)
-                }
+                parentListener.goToFragment(MainActivityListener.Code.SESSION_LIST)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
@@ -81,6 +84,9 @@ class DetailSessionFragment : Fragment() {
         }
         binding.sessionWebView.loadUrl("https://www.youtube.com/embed/" + session.videoLink.split("/").last())
 
+        binding.imageViewBack.setOnClickListener(View.OnClickListener {
+            parentListener.goToFragment(MainActivityListener.Code.SESSION_LIST)
+        })
         return binding.root
     }
 

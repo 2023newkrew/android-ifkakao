@@ -1,4 +1,4 @@
-package com.example.ifkakao.presentation.presentation_session_list.adapter
+package com.example.ifkakao.presentation.session_list.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifkakao.R
 import com.example.ifkakao.domain.model.Session
-import com.example.ifkakao.presentation.presentation_session_list.fragment.SessionListFragmentListener
 
-class SessionGridAdapter(var list: MutableList<Session>, private val listener: SessionListFragmentListener) : RecyclerView.Adapter<SessionGridAdapter.GridAdapter>() {
+class SessionGridAdapter(var list: MutableList<Session>, private val goToDetailSession: (Session) -> Unit) : RecyclerView.Adapter<SessionGridAdapter.GridAdapter>() {
 
-    class GridAdapter(layout: View) : RecyclerView.ViewHolder(layout){
+    class GridAdapter(layout: View) : RecyclerView.ViewHolder(layout) {
 // Adapter 에서 ClickEvent 설정
 //            var layout: View
 //        init {
@@ -48,7 +47,7 @@ class SessionGridAdapter(var list: MutableList<Session>, private val listener: S
         textFour.text = tempText
 
         holder.itemView.setOnClickListener {
-            listener.callBack(list[position])
+            goToDetailSession(list[position])
         }
     }
 

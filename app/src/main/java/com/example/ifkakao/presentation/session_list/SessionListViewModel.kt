@@ -92,23 +92,23 @@ class SessionListViewModel
     }
 
     fun dateSelected(num: Int) {
-        when(num){
+        when (num) {
             0 -> _filterItems.value = filterItems.value.copy(
                 isDateOne = false,
                 isDateTwo = false,
                 isDateThree = false
             )
-            1-> _filterItems.value = filterItems.value.copy(
+            1 -> _filterItems.value = filterItems.value.copy(
                 isDateOne = true,
                 isDateTwo = false,
                 isDateThree = false
             )
-            2-> _filterItems.value = filterItems.value.copy(
+            2 -> _filterItems.value = filterItems.value.copy(
                 isDateOne = false,
                 isDateTwo = true,
                 isDateThree = false
             )
-            3-> _filterItems.value = filterItems.value.copy(
+            3 -> _filterItems.value = filterItems.value.copy(
                 isDateOne = false,
                 isDateTwo = false,
                 isDateThree = true
@@ -127,7 +127,34 @@ class SessionListViewModel
         }
     }
 
-    fun filterItemChanged(id: Int, value: Boolean){
+    fun filterItemChanged(id: Int, value: Boolean) {
+        when (id) {
+            0 -> _filterItems.value = filterItems.value.copy(isKeynote = value)
+            1 -> _filterItems.value = filterItems.value.copy(isPreview = value)
+            2 -> _filterItems.value = filterItems.value.copy(isTechSession = value)
+            3 -> _filterItems.value = filterItems.value.copy(is1015 = value)
+            4 -> _filterItems.value = filterItems.value.copy(isAi = value)
+            5 -> _filterItems.value = filterItems.value.copy(isBe = value)
+            6 -> _filterItems.value = filterItems.value.copy(isFe = value)
+            7 -> _filterItems.value = filterItems.value.copy(isMobile = value)
+            8 -> _filterItems.value = filterItems.value.copy(isCloud = value)
+            9 -> _filterItems.value = filterItems.value.copy(isBigData = value)
+            10 -> _filterItems.value = filterItems.value.copy(isBlockChain = value)
+            11 -> _filterItems.value = filterItems.value.copy(isDevOps = value)
+            12 -> _filterItems.value = filterItems.value.copy(isESG = value)
+            13 -> _filterItems.value = filterItems.value.copy(isGeneral = value)
+            14 -> _filterItems.value = filterItems.value.copy(isCulture = value)
+            15 -> _filterItems.value = filterItems.value.copy(isKakao = value)
+            16 -> _filterItems.value = filterItems.value.copy(isKakaoPay = value)
+            17 -> _filterItems.value = filterItems.value.copy(isKakaoEnterprise = value)
+            18 -> _filterItems.value = filterItems.value.copy(isKakaoMobility = value)
+            19 -> _filterItems.value = filterItems.value.copy(isKakaoBank = value)
+            20 -> _filterItems.value = filterItems.value.copy(isKakaoBrain = value)
+            21 -> _filterItems.value = filterItems.value.copy(isKakaoGames = value)
+            22 -> _filterItems.value = filterItems.value.copy(isKakaoEntertainment = value)
+            23 -> _filterItems.value = filterItems.value.copy(isKrustUniverse = value)
+            24 -> _filterItems.value = filterItems.value.copy(isKakaoPickoma = value)
+        }
 
     }
 }

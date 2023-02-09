@@ -1,14 +1,11 @@
 package com.example.ifkakao.presentation.session_list
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -16,10 +13,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextPainter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -31,7 +26,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ifkakao.R
-import com.example.ifkakao.data.data_source.remote.dto.ResultSession
 import com.example.ifkakao.databinding.FragmentSessionListBinding
 import com.example.ifkakao.domain.model.Session
 import com.example.ifkakao.presentation.MainActivity
@@ -83,9 +77,8 @@ class SessionListFragment : Fragment() {
 
         binding.drawerComposeView.setContent {
             AppCompatTheme {
-                val data = viewModel.filterItems.collectAsState()
-
-                FilterLayout(data.value)
+                FilterLayout(viewModel, getString(R.string.app_name)
+                ) { binding.sessionListDrawerLayout.closeDrawer(GravityCompat.START) }
             }
         }
 
@@ -144,89 +137,93 @@ class SessionListFragment : Fragment() {
         viewModel.likeToggle(session.id)
     }
 
+}
 
-    @Composable
-    fun FilterLayout(filters: SessionListFilterItems) {
-        var checked by remember {
-            mutableStateOf(filters.isKeynote)
-        }
-        Column(
-            Modifier
-                .fillMaxSize()
-                .padding(10.dp)
+@Composable
+fun FilterLayout(
+    viewModel: SessionListViewModel,
+    appName: String,
+    onCloseClick: () -> (Unit)
+) {
+    val filterInfo by viewModel.filterItems.collectAsState()
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(10.dp)
 
-        ) {
-            Row {
-                Text(
-                    text = getString(R.string.app_name),
-                    color = Color.White,
-                    fontSize = 20.sp,
-                    modifier = Modifier.padding(10.dp)
+    ) {
+        Row {
+            Text(
+                text = appName,
+                color = Color.White,
+                fontSize = 20.sp,
+                modifier = Modifier.padding(10.dp)
+            )
+            Spacer(modifier = Modifier.weight(1f))
+
+            IconButton(onClick =  onCloseClick
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    tint = Color.White,
+                    contentDescription = "close button"
                 )
-                Spacer(modifier = Modifier.weight(1f))
-
-                IconButton(onClick = { binding.sessionListDrawerLayout.closeDrawer(GravityCompat.START) }
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        tint = Color.White,
-                        contentDescription = "close button"
-                    )
-                }
             }
-            Spacer(modifier = Modifier.height(10.dp))
-            Spacer(modifier = Modifier
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(
+            modifier = Modifier
                 .height(1.dp)
                 .fillMaxWidth()
-                .border(1.dp, Color.White))
-            Spacer(modifier = Modifier.height(10.dp))
-            Row {
-                Text(
-                    text = "유형",
-                    color = Color.White,
-                    fontSize = 18.sp,
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .align(Alignment.CenterVertically)
-                )
-                Text(
-                    text = "3",
-                    color = Color.Gray,
-                    fontSize = 18.sp,
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .align(Alignment.CenterVertically)
-                )
-            }
-
-
-            Row {
-                Checkbox(
-                    checked = checked,
-                    onCheckedChange = {
-                        checked = !checked
-                    },
-                    colors = checkBokClick(),
-                    enabled = true
-                )
-                Text(
-                    text = "키노트",
-                    color = Color.Gray,
-                    fontSize = 18.sp,
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .align(Alignment.CenterVertically)
-                )
-            }
-
-        }
-    }
-
-    @Composable
-    fun checkBokClick() : CheckboxColors{
-        return CheckboxDefaults.colors(
-            checkedColor = Color.Cyan,
-            uncheckedColor = Color.LightGray
+                .border(1.dp, Color.White)
         )
+        Spacer(modifier = Modifier.height(10.dp))
+        Row {
+            Text(
+                text = "유형",
+                color = Color.White,
+                fontSize = 18.sp,
+                modifier = Modifier
+                    .padding(10.dp)
+                    .align(Alignment.CenterVertically)
+            )
+            Text(
+                text = "3",
+                color = Color.Gray,
+                fontSize = 18.sp,
+                modifier = Modifier
+                    .padding(5.dp)
+                    .align(Alignment.CenterVertically)
+            )
+        }
+
+
+        Row {
+            Checkbox(
+                checked = filterInfo.isKeynote,
+                onCheckedChange = {
+                    viewModel.filterItemChanged(0,!filterInfo.isKeynote)
+                },
+                colors = checkBokClick(),
+                enabled = true
+            )
+            Text(
+                text = "키노트",
+                color = Color.Gray,
+                fontSize = 18.sp,
+                modifier = Modifier
+                    .padding(5.dp)
+                    .align(Alignment.CenterVertically)
+            )
+        }
+
     }
+}
+
+@Composable
+fun checkBokClick(): CheckboxColors {
+    return CheckboxDefaults.colors(
+        checkedColor = Color.Cyan,
+        uncheckedColor = Color.LightGray
+    )
 }

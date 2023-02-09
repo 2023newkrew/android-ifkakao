@@ -22,5 +22,5 @@ data class SessionInfo(
     val sessionVodLink: String,
     val sessionImg: String,
     val tags: String,
-    var isLiked: Boolean = false,
+    val isLiked: Boolean = false,
 ) : java.io.Serializable

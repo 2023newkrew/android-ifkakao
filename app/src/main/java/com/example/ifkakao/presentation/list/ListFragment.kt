@@ -21,6 +21,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FilterListBinding
 import com.example.ifkakao.databinding.FragmentListBinding
@@ -68,6 +70,11 @@ class ListFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = sessionListAdapter
+
+        val animator: RecyclerView.ItemAnimator? = recyclerView.itemAnimator
+        if (animator is SimpleItemAnimator) {
+            (animator as SimpleItemAnimator?)?.supportsChangeAnimations = false
+        }
 
         // drawer setting
         binding.filterDrawerNestedScrollView.isNestedScrollingEnabled = false

@@ -157,4 +157,10 @@ class SessionListViewModel
         }
 
     }
+
+    fun filterReset(){
+        for (i in 0..24){
+            filterItemChanged(i,false)
+        }
+    }
 }

@@ -11,7 +11,8 @@
     <color name="start_blue">#37DCFF</color>
     <color name="main_text_color">#EFF0F7</color>
     <color name="session_blue">#18D2FF</color>
-    <color name="radio_unselected">#ADAEB6</color>
+    <color name="second_main_text_color">#ADAEB6</color>
     <color name="session_grid_background">#212629</color>
     <color name="session_detail_button">#394046</color>
+    <color name="session_like_yellow">#FFEB3B</color>
 </resources>

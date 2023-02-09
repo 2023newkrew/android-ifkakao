@@ -5,8 +5,6 @@ import com.example.ifkakao.data.data_source.remote.dto.ResultSession
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 
-import org.junit.After
-import org.junit.Before
 import org.junit.Test
 
 object MockSessionService1 : SessionService {

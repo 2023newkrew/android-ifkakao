@@ -1,5 +1,8 @@
 package com.example.ifkakao.presentation.main
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,13 +19,10 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.ifkakao.R
 import com.example.ifkakao.databinding.FragmentMainBinding
-import com.example.ifkakao.presentation.CocURI
 import com.example.ifkakao.presentation.KakaoCorpURi
 import com.example.ifkakao.presentation.MainVideoURI
 import com.example.ifkakao.presentation.session_list.SessionListFilterItems
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -48,10 +48,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         navController = view.findNavController()
         val videoView = binding.mainVideoView
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val uri = Uri.parse(MainVideoURI)
-            videoView.setVideoURI(uri)
-        }
+        val uri = Uri.parse(MainVideoURI)
+        videoView.setVideoURI(uri)
 
         videoView.setOnPreparedListener {
             it.isLooping = true
@@ -60,7 +58,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainTotalSessionButton.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems()
                 )
@@ -70,7 +68,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainKeynoteImage.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isKeynote = true)
                 )
@@ -80,7 +78,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainTechImage.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isTechSession = true)
                 )
@@ -90,7 +88,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainEthicsImage.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isESG = true)
                 )
@@ -100,7 +98,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainImageAi.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isAi = true)
                 )
@@ -110,7 +108,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainImageBe.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isBe = true)
                 )
@@ -120,7 +118,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainImageCl.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isCloud = true)
                 )
@@ -130,7 +128,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainImageDo.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isDevOps = true)
                 )
@@ -140,7 +138,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainImageBc.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isBlockChain = true)
                 )
@@ -150,7 +148,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainImageDt.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isBigData = true)
                 )
@@ -160,7 +158,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainImageFe.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isFe = true)
                 )
@@ -170,7 +168,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.mainImageM.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems(isMobile = true)
                 )
@@ -178,9 +176,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             navController.navigate(R.id.session_list_fragment, args)
         }
 
+        binding.mainLinkCopy.setOnClickListener {
+            val clipboardManager: ClipboardManager = requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData: ClipData = ClipData.newPlainText("share", "https://if.kakao.com")
+            clipboardManager.setPrimaryClip(clipData)
+        }
+
         binding.mainSessionButton.setOnClickListener {
             val args = Bundle().apply {
-                putSerializable(
+                putParcelable(
                     "FilterItems",
                     SessionListFilterItems()
                 )
@@ -192,7 +196,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             viewModel.footerCorpClicked()
 
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(KakaoCorpURi))
-            //더 좋은 방법이 없을까
             packageManager?.let {
                 if (intent.resolveActivity(packageManager!!) != null) {
                     startActivity(intent)
@@ -203,7 +206,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         binding.mainFooterLastIfkakao.setOnClickListener {
             viewModel.footerLastKakaoClicked()
 
-            TODO() // View 새로 만들기
+            //TODO: // View 새로 만들기
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

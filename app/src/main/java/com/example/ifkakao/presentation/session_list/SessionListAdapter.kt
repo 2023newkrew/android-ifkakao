@@ -1,45 +1,32 @@
 package com.example.ifkakao.presentation.session_list
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifkakao.R
-import com.example.ifkakao.data.data_source.remote.dto.ResultSession
-import com.example.ifkakao.databinding.FragmentSessionListBinding
 import com.example.ifkakao.databinding.SessionGridItemBinding
+import com.example.ifkakao.domain.model.Session
 
 class SessionListAdapter(
-    private val onItemClick: (Int) -> (Unit),
-    private val onLikeClick: (Int) -> (Unit),
-) : ListAdapter<ResultSession, SessionListAdapter.ViewHolder>(diffCallback) {
+    private val onItemClick: (Session) -> (Unit),
+    private val onLikeClick: (Session) -> (Unit),
+) : ListAdapter<Session, SessionListAdapter.ViewHolder>(diffCallback) {
 
-    class ViewHolder(
-        val binding: SessionGridItemBinding,
-        val onItemClick: (Int) -> Unit,
-        val onLikeClick: (Int) -> Unit
-    ) :
-        RecyclerView.ViewHolder(binding.root){
-            init {
-                itemView.setOnClickListener{
-                    onItemClick(bindingAdapterPosition)
-                }
-                binding.sessionItemLikeButton.setOnClickListener {
-                    onLikeClick(bindingAdapterPosition)
-                }
-            }
-        }
+    class ViewHolder(val binding: SessionGridItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<ResultSession>() {
-            override fun areItemsTheSame(oldItem: ResultSession, newItem: ResultSession): Boolean {
+        private val diffCallback = object : DiffUtil.ItemCallback<Session>() {
+            override fun areItemsTheSame(oldItem: Session, newItem: Session): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: ResultSession,
-                newItem: ResultSession
+                oldItem: Session,
+                newItem: Session
             ): Boolean {
                 return oldItem.hashCode() == newItem.hashCode()
             }
@@ -47,11 +34,50 @@ class SessionListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.session_grid_item,parent,false)
-        return ViewHolder(SessionGridItemBinding.bind(view),onItemClick, onLikeClick)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.session_grid_item, parent, false)
+
+        return ViewHolder(SessionGridItemBinding.bind(view))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val dayList = listOf("", "12.07", "12.08", "12.09")
+        holder.binding.sessionItemLikeButton.setOnClickListener {
+            onLikeClick(currentList[holder.bindingAdapterPosition])
+        }
+        holder.itemView.setOnClickListener {
+            onItemClick(currentList[holder.bindingAdapterPosition])
+        }
+
+        holder.binding.sessionItemTitle.text = currentList[position].title
+        holder.binding.sessionItemDate.text = dayList[currentList[position].sessionDay]
+        holder.binding.sessionItemGroup.text = currentList[position].company.toString()
+        holder.binding.sessionItemKeynote.text = currentList[position].type.toString()
+        holder.binding.sessionItemTech.text = currentList[position].tracks.joinToString { "$it " }
+
+        if(currentList[position].isLike){
+            holder.binding.sessionItemLikeButton.imageTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(holder.binding.root.context,R.color.session_like_yellow)
+                )
+        }
+        else{
+            holder.binding.sessionItemLikeButton.imageTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(holder.binding.root.context,R.color.second_main_text_color)
+                )
+        }
+
+
+//        if (currentList[position].isLike) {
+//            holder.binding.sessionItemLikeButton.background =
+//                ContextCompat.getDrawable(
+//                    holder.binding.root.context,
+//                    R.drawable.baseline_star_24_yellow
+//                )
+//        } else {
+//            holder.binding.sessionItemLikeButton.background =
+//                ContextCompat.getDrawable(holder.binding.root.context, R.drawable.baseline_star_24)
+//        }
     }
 }

@@ -16,7 +16,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/session_detail_back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -35,9 +35,9 @@
                 android:text="@string/session_detail_back"
                 android:textColor="@color/main_text_color"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-                app:layout_constraintStart_toEndOf="@+id/imageButton"
-                app:layout_constraintTop_toTopOf="@+id/imageButton" />
+                app:layout_constraintBottom_toBottomOf="@+id/session_detail_back_button"
+                app:layout_constraintStart_toEndOf="@+id/session_detail_back_button"
+                app:layout_constraintTop_toTopOf="@+id/session_detail_back_button" />
 
             <TextView
                 android:id="@+id/session_detail_title"
@@ -50,7 +50,7 @@
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+                app:layout_constraintTop_toBottomOf="@+id/session_detail_back_button" />
 
             <TextView
                 android:id="@+id/session_detail_group"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/session_detail_date_init"
-                android:textColor="@color/radio_unselected"
+                android:textColor="@color/second_main_text_color"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/session_detail_group"
                 app:layout_constraintTop_toBottomOf="@+id/session_detail_group" />
@@ -128,7 +128,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="15dp"
                 android:text="@string/session_detail_tags_init"
-                android:textColor="@color/radio_unselected"
+                android:textColor="@color/second_main_text_color"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -176,7 +176,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="@string/session_detail_nick_name_detail_init"
-                android:textColor="@color/radio_unselected"
+                android:textColor="@color/second_main_text_color"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/session_detail_nick_name"
@@ -202,18 +202,11 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="15dp"
                 android:text="@string/session_detail_last_ifkakao"
-                android:textColor="@color/radio_unselected"
+                android:textColor="@color/second_main_text_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/session_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="start"
-        android:background="#1A000000"
-        android:minHeight="?attr/actionBarSize" />
 </FrameLayout>

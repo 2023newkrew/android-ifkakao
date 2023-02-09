@@ -1,7 +1,9 @@
 package com.example.ifkakao.presentation.session_list
-import java.io.Serializable
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class SessionListFilterItems(
     val isKeynote: Boolean = false,
     val isPreview: Boolean = false,
@@ -30,4 +32,10 @@ data class SessionListFilterItems(
     val isKakaoEntertainment: Boolean = false,
     val isKrustUniverse: Boolean = false,
     val isKakaoPickoma: Boolean = false,
-    ): Serializable
+
+    val isLikeItem: Boolean = false,
+
+    val isDateOne: Boolean = false,
+    val isDateTwo: Boolean = false,
+    val isDateThree: Boolean = false
+) : Parcelable

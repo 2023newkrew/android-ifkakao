@@ -77,7 +77,6 @@ class SessionListFragment : Fragment() {
                 R.id.session_radio_button_3 -> viewModel.dateSelected(2)
                 R.id.session_radio_button_4 -> viewModel.dateSelected(3)
             }
-            //TODO: 날짜 클릭시 recyclerview가 최상단으로 올라가지 않는 문제
             binding.sessionListGridView.smoothScrollToPosition(0)
         }
 
@@ -429,13 +428,17 @@ fun CheckBoxWrapper(id: Int, string: String, boolean: Boolean, viewModel: Sessio
             colors = checkBokClick(),
             enabled = true
         )
-        Text(
-            text = string,
-            color = Color.Gray,
-            fontSize = 15.sp,
+        ClickableText(
+            text = AnnotatedString(string),
+            onClick = { viewModel.filterItemChanged(id, !boolean) },
+            style = TextStyle(
+                color = Color.Gray,
+                fontSize = 15.sp
+            ),
             modifier = Modifier
                 .padding(5.dp)
                 .align(Alignment.CenterVertically)
         )
+
     }
 }

@@ -155,6 +155,14 @@ class SessionListViewModel
             23 -> _filterItems.value = filterItems.value.copy(isKrustUniverse = value)
             24 -> _filterItems.value = filterItems.value.copy(isKakaoPickoma = value)
         }
+        viewModelScope.launch {
+            _showSessionList.value = sessionList.filter {
+                it.isFilter(
+                    filterItems.value,
+                    _likeList.value
+                )
+            }
+        }
 
     }
 

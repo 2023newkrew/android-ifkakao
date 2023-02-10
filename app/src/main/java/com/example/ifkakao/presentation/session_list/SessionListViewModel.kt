@@ -12,7 +12,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import java.util.Locale.filter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -72,43 +71,66 @@ class SessionListViewModel
         val set = _likeList.value.toMutableSet()
         if (id.toString() in set) {
             set.remove(id.toString())
-            _showSessionList.value = showSessionList.value.map {
-                if (it.id == id) {
-                    it.copy(isLike = false)
-                } else
+            _likeList.value = set
+            _showSessionList.value = sessionList.filter {
+                it.isFilter(
+                    filterItems.value,
+                    _likeList.value
+                )
+            }.map {
+                if (_likeList.value.contains(it.id.toString()))
+                    it.copy(isLike = true)
+                else
                     it
             }
+//            _showSessionList.value = showSessionList.value.map {
+//                if (it.id == id) {
+//                    it.copy(isLike = false)
+//                } else
+//                    it
+//            }
         } else {
             set.add(id.toString())
-            _showSessionList.value = showSessionList.value.map {
-                if (it.id == id) {
+            _likeList.value = set
+            _showSessionList.value = sessionList.filter {
+                it.isFilter(
+                    filterItems.value,
+                    _likeList.value
+                )
+            }.map {
+                if (_likeList.value.contains(it.id.toString()))
                     it.copy(isLike = true)
-                } else
+                else
                     it
             }
+//            _showSessionList.value = showSessionList.value.map {
+//                if (it.id == id) {
+//                    it.copy(isLike = true)
+//                } else
+//                    it
+//            }
         }
-        _likeList.value = set
         saveLikeUseCase(set)
     }
 
     fun dateSelected(num: Int) {
-        when(num){
+        when (num) {
             0 -> _filterItems.value = filterItems.value.copy(
                 isDateOne = false,
                 isDateTwo = false,
                 isDateThree = false
             )
-            1-> _filterItems.value = filterItems.value.copy(
+            1 -> _filterItems.value = filterItems.value.copy(
                 isDateOne = true,
                 isDateTwo = false,
                 isDateThree = false
             )
-            2-> _filterItems.value = filterItems.value.copy(
+            2 -> _filterItems.value = filterItems.value.copy(
                 isDateOne = false,
                 isDateTwo = true,
                 isDateThree = false
             )
-            3-> _filterItems.value = filterItems.value.copy(
+            3 -> _filterItems.value = filterItems.value.copy(
                 isDateOne = false,
                 isDateTwo = false,
                 isDateThree = true
@@ -127,7 +149,73 @@ class SessionListViewModel
         }
     }
 
-    fun filterItemChanged(id: Int, value: Boolean){
+    fun filterItemChanged(id: Int, value: Boolean) {
+        when (id) {
+            0 -> _filterItems.value = filterItems.value.copy(isKeynote = value)
+            1 -> _filterItems.value = filterItems.value.copy(isPreview = value)
+            2 -> _filterItems.value = filterItems.value.copy(isTechSession = value)
+            3 -> _filterItems.value = filterItems.value.copy(is1015 = value)
+            4 -> _filterItems.value = filterItems.value.copy(isAi = value)
+            5 -> _filterItems.value = filterItems.value.copy(isBe = value)
+            6 -> _filterItems.value = filterItems.value.copy(isFe = value)
+            7 -> _filterItems.value = filterItems.value.copy(isMobile = value)
+            8 -> _filterItems.value = filterItems.value.copy(isCloud = value)
+            9 -> _filterItems.value = filterItems.value.copy(isBigData = value)
+            10 -> _filterItems.value = filterItems.value.copy(isBlockChain = value)
+            11 -> _filterItems.value = filterItems.value.copy(isDevOps = value)
+            12 -> _filterItems.value = filterItems.value.copy(isESG = value)
+            13 -> _filterItems.value = filterItems.value.copy(isGeneral = value)
+            14 -> _filterItems.value = filterItems.value.copy(isCulture = value)
+            15 -> _filterItems.value = filterItems.value.copy(isKakao = value)
+            16 -> _filterItems.value = filterItems.value.copy(isKakaoPay = value)
+            17 -> _filterItems.value = filterItems.value.copy(isKakaoEnterprise = value)
+            18 -> _filterItems.value = filterItems.value.copy(isKakaoMobility = value)
+            19 -> _filterItems.value = filterItems.value.copy(isKakaoBank = value)
+            20 -> _filterItems.value = filterItems.value.copy(isKakaoBrain = value)
+            21 -> _filterItems.value = filterItems.value.copy(isKakaoGames = value)
+            22 -> _filterItems.value = filterItems.value.copy(isKakaoEntertainment = value)
+            23 -> _filterItems.value = filterItems.value.copy(isKrustUniverse = value)
+            24 -> _filterItems.value = filterItems.value.copy(isKakaoPickoma = value)
+        }
+        viewModelScope.launch {
+            _showSessionList.value = sessionList.filter {
+                it.isFilter(
+                    filterItems.value,
+                    _likeList.value
+                )
+            }.map {
+                if (_likeList.value.contains(it.id.toString()))
+                    it.copy(isLike = true)
+                else
+                    it
+            }
+        }
 
+    }
+
+    fun filterReset() {
+        for (i in 0..24) {
+            filterItemChanged(i, false)
+        }
+        filterLikeSelected(false)
+    }
+
+    fun filterLikeSelected(value: Boolean) {
+        _filterItems.value = filterItems.value.copy(
+            isLikeItem = value
+        )
+        viewModelScope.launch {
+            _showSessionList.value = sessionList.filter {
+                it.isFilter(
+                    filterItems.value,
+                    _likeList.value
+                )
+            }.map {
+                if (_likeList.value.contains(it.id.toString()))
+                    it.copy(isLike = true)
+                else
+                    it
+            }
+        }
     }
 }

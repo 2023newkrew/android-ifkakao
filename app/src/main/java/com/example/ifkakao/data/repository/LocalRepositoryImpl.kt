@@ -9,7 +9,7 @@ class LocalRepositoryImpl(private val sharedPreferences: SharedPreferences) : Lo
         val set = setOf<String>()
         return try {
             sharedPreferences.getStringSet("Likes", set) ?: setOf<String>().toMutableSet()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             emptySet<String>().toMutableSet()
         }
     }

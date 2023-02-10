@@ -20,7 +20,8 @@ enum class Company(val alias: String) {
             KakaoPicComa -> "카카오픽코마"
             Grepp -> "grepp"
         }
-    companion object{
+
+    companion object {
         fun fromString(string: String): Company {
             return Company.values().first { it.alias == string }
         }

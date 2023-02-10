@@ -37,5 +37,122 @@ data class SessionListFilterItems(
 
     val isDateOne: Boolean = false,
     val isDateTwo: Boolean = false,
-    val isDateThree: Boolean = false
-) : Parcelable
+    val isDateThree: Boolean = false,
+
+    ) : Parcelable
+
+fun SessionListFilterItems.countType(): Int {
+    var result = 0
+    if (isKeynote)
+        result += 1
+    if (isPreview)
+        result += 1
+    if (isTechSession)
+        result += 1
+    return result
+}
+
+fun SessionListFilterItems.count(): Int {
+    var result = 0
+    if (isKeynote)
+        result += 1
+    if (isPreview)
+        result += 1
+    if (isTechSession)
+        result += 1
+    if (is1015)
+        result += 1
+    if (isAi)
+        result += 1
+    if (isBe)
+        result += 1
+    if (isFe)
+        result += 1
+    if (isMobile)
+        result += 1
+    if (isCloud)
+        result += 1
+    if (isBigData)
+        result += 1
+    if (isBlockChain)
+        result += 1
+    if (isDevOps)
+        result += 1
+    if (isESG)
+        result += 1
+    if (isGeneral)
+        result += 1
+    if (isCulture)
+        result += 1
+    if (isKakao)
+        result += 1
+    if (isKakaoEnterprise)
+        result += 1
+    if (isKakaoMobility)
+        result += 1
+    if (isKakaoBank)
+        result += 1
+    if (isKakaoBrain)
+        result += 1
+    if (isKakaoGames)
+        result += 1
+    if (isKakaoEnterprise)
+        result += 1
+    if (isKrustUniverse)
+        result += 1
+    if (isKakaoPickoma)
+        result += 1
+    return result
+}
+
+fun SessionListFilterItems.countTrack(): Int {
+    var result = 0
+    if (is1015)
+        result += 1
+    if (isAi)
+        result += 1
+    if (isBe)
+        result += 1
+    if (isFe)
+        result += 1
+    if (isMobile)
+        result += 1
+    if (isCloud)
+        result += 1
+    if (isBigData)
+        result += 1
+    if (isBlockChain)
+        result += 1
+    if (isDevOps)
+        result += 1
+    if (isESG)
+        result += 1
+    if (isGeneral)
+        result += 1
+    if (isCulture)
+        result += 1
+    return result
+}
+
+fun SessionListFilterItems.countCompany(): Int {
+    var result = 0
+    if (isKakao)
+        result += 1
+    if (isKakaoEnterprise)
+        result += 1
+    if (isKakaoMobility)
+        result += 1
+    if (isKakaoBank)
+        result += 1
+    if (isKakaoBrain)
+        result += 1
+    if (isKakaoGames)
+        result += 1
+    if (isKakaoEnterprise)
+        result += 1
+    if (isKrustUniverse)
+        result += 1
+    if (isKakaoPickoma)
+        result += 1
+    return result
+}

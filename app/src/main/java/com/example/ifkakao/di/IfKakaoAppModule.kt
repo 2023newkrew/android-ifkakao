@@ -23,13 +23,13 @@ object IfKakaoAppModule {
 
     @Provides
     @Singleton
-    fun provideSessionService(): SessionService{
+    fun provideSessionService(): SessionService {
         return SessionService.create()
     }
 
     @Provides
     @Singleton
-    fun provideRemoteRepository(service: SessionService): RemoteRepository{
+    fun provideRemoteRepository(service: SessionService): RemoteRepository {
         return RemoteRepositoryImpl(service)
     }
 
@@ -41,18 +41,16 @@ object IfKakaoAppModule {
 
     @Provides
     @Singleton
-    fun provideSharedPreference(@ApplicationContext context: Context): SharedPreferences{
-        return context.getSharedPreferences("if_kakao_shared_pref",Context.MODE_PRIVATE)
+    fun provideSharedPreference(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("if_kakao_shared_pref", Context.MODE_PRIVATE)
     }
-
 
 
     @Provides
     @Singleton
-    fun provideLocalRepository(sharedPreferences: SharedPreferences): LocalRepository{
+    fun provideLocalRepository(sharedPreferences: SharedPreferences): LocalRepository {
         return LocalRepositoryImpl(sharedPreferences)
     }
-
 
 
     @Provides

@@ -9,7 +9,7 @@ class RemoteRepositoryImpl(private val sessionService: SessionService) : RemoteR
     override suspend fun loadSessions(): List<ResultSession> {
         return try {
             sessionService.getIfKakaoSessions()
-        } catch (e: Exception){
+        } catch (e: Exception) {
             emptyList()
         }
     }

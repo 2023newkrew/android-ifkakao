@@ -13,7 +13,7 @@ import javax.inject.Inject
 class SessionDetailViewModel
 @Inject constructor(
     savedStateHandle: SavedStateHandle,
-): ViewModel() {
+) : ViewModel() {
     private val _likeList: MutableStateFlow<Set<String>> = MutableStateFlow(emptySet())
     val likeList by lazy {
         _likeList.asStateFlow()
@@ -21,9 +21,8 @@ class SessionDetailViewModel
     val session: Session
 
     init {
-        session = savedStateHandle.get<Session>("Session")?: Session()
+        session = savedStateHandle.get<Session>("Session") ?: Session()
     }
-
 
 
 }

@@ -19,7 +19,7 @@ data class Session(
     val users: List<User> = listOf(),
     val tags: String = "",
     val pptUrl: String = "",
-    var isLike: Boolean = false,
+    val isLike: Boolean = false,
 ) : Parcelable
 
 fun Session.getTypeAndTracksString(): String {

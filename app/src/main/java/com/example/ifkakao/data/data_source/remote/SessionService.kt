@@ -15,10 +15,10 @@ interface SessionService {
         @Query("accept") accept: String = "application/json",
     ): List<ResultSession>
 
-    companion object{
+    companion object {
         private const val BASE_URL = "http://104.198.248.76:3000/"
 
-        fun create(): SessionService{
+        fun create(): SessionService {
             val logger = HttpLoggingInterceptor()
             logger.level = HttpLoggingInterceptor.Level.BASIC
 

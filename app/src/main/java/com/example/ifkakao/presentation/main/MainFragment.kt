@@ -177,7 +177,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
 
         binding.mainLinkCopy.setOnClickListener {
-            val clipboardManager: ClipboardManager = requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            val clipboardManager: ClipboardManager =
+                requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
             val clipData: ClipData = ClipData.newPlainText("share", "https://if.kakao.com")
             clipboardManager.setPrimaryClip(clipData)
         }

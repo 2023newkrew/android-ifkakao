@@ -134,7 +134,7 @@ fun SessionListFilterItems.countTrack(): Int {
     return result
 }
 
-fun SessionListFilterItems.countCompany(): Int{
+fun SessionListFilterItems.countCompany(): Int {
     var result = 0
     if (isKakao)
         result += 1

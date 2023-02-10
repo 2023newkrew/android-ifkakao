@@ -13,6 +13,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -183,7 +184,9 @@ fun FilterLayout(
             IconButton(onClick = { viewModel.filterReset() }) {
                 Icon(
                     imageVector = Icons.Filled.Refresh,
-                    tint = if (filterInfo.count() > 0)
+                    tint = if (filterInfo.isLikeItem)
+                        Color.Yellow
+                    else if (filterInfo.count() > 0)
                         Color.Cyan
                     else Color.Gray,
                     contentDescription = "reset button"
@@ -193,18 +196,51 @@ fun FilterLayout(
                 text = AnnotatedString(text = "초기화"),
                 onClick = { viewModel.filterReset() },
                 style = TextStyle(
-                    color = if (filterInfo.count() > 0)
+                    color = if (filterInfo.isLikeItem)
+                        Color.Yellow
+                    else if (filterInfo.count() > 0)
                         Color.Cyan
                     else Color.Gray
                 ),
                 modifier = Modifier.align(Alignment.CenterVertically)
             )
-
         }
+
+        Spacer(modifier = Modifier.height(10.dp))
+        Row {
+            Text(
+                text = "즐겨찾기",
+                color = Color.White,
+                fontSize = 18.sp,
+                modifier = Modifier
+                    .padding(10.dp)
+                    .align(Alignment.CenterVertically)
+            )
+        }
+
+        IconButton(onClick = { viewModel.filterLikeSelected(!filterInfo.isLikeItem) }) {
+            Icon(
+                imageVector = Icons.Filled.Star,
+                contentDescription = "즐겨찾기",
+                tint = if (filterInfo.isLikeItem) Color.Yellow
+                else Color.Gray
+            )
+        }
+
+
+
+        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(
+            modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+                .border(1.dp, Color.Gray)
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+
         FilterTitle(
             title = "유형",
             num = 3,
-            filterInfo = filterInfo,
             checkCount = { filterInfo.countType() })
 
         CheckBoxWrapper(
@@ -238,7 +274,6 @@ fun FilterLayout(
         FilterTitle(
             title = "트랙",
             num = 12,
-            filterInfo = filterInfo,
             checkCount = { filterInfo.countTrack() })
 
         CheckBoxWrapper(
@@ -304,7 +339,6 @@ fun FilterLayout(
         FilterTitle(
             title = "소속",
             num = 10,
-            filterInfo = filterInfo,
             checkCount = { filterInfo.countCompany() })
 
         CheckBoxWrapper(
@@ -382,7 +416,6 @@ fun checkBokClick(): CheckboxColors {
 fun FilterTitle(
     title: String,
     num: Int,
-    filterInfo: SessionListFilterItems,
     checkCount: () -> (Int)
 ) {
     Spacer(modifier = Modifier.height(10.dp))

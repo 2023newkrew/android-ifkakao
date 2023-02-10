@@ -12,7 +12,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import java.util.Locale.filter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -72,22 +71,45 @@ class SessionListViewModel
         val set = _likeList.value.toMutableSet()
         if (id.toString() in set) {
             set.remove(id.toString())
-            _showSessionList.value = showSessionList.value.map {
-                if (it.id == id) {
-                    it.copy(isLike = false)
-                } else
+            _likeList.value = set
+            _showSessionList.value = sessionList.filter {
+                it.isFilter(
+                    filterItems.value,
+                    _likeList.value
+                )
+            }.map {
+                if (_likeList.value.contains(it.id.toString()))
+                    it.copy(isLike = true)
+                else
                     it
             }
+//            _showSessionList.value = showSessionList.value.map {
+//                if (it.id == id) {
+//                    it.copy(isLike = false)
+//                } else
+//                    it
+//            }
         } else {
             set.add(id.toString())
-            _showSessionList.value = showSessionList.value.map {
-                if (it.id == id) {
+            _likeList.value = set
+            _showSessionList.value = sessionList.filter {
+                it.isFilter(
+                    filterItems.value,
+                    _likeList.value
+                )
+            }.map {
+                if (_likeList.value.contains(it.id.toString()))
                     it.copy(isLike = true)
-                } else
+                else
                     it
             }
+//            _showSessionList.value = showSessionList.value.map {
+//                if (it.id == id) {
+//                    it.copy(isLike = true)
+//                } else
+//                    it
+//            }
         }
-        _likeList.value = set
         saveLikeUseCase(set)
     }
 
@@ -161,14 +183,39 @@ class SessionListViewModel
                     filterItems.value,
                     _likeList.value
                 )
+            }.map {
+                if (_likeList.value.contains(it.id.toString()))
+                    it.copy(isLike = true)
+                else
+                    it
             }
         }
 
     }
 
-    fun filterReset(){
-        for (i in 0..24){
-            filterItemChanged(i,false)
+    fun filterReset() {
+        for (i in 0..24) {
+            filterItemChanged(i, false)
+        }
+        filterLikeSelected(false)
+    }
+
+    fun filterLikeSelected(value: Boolean) {
+        _filterItems.value = filterItems.value.copy(
+            isLikeItem = value
+        )
+        viewModelScope.launch {
+            _showSessionList.value = sessionList.filter {
+                it.isFilter(
+                    filterItems.value,
+                    _likeList.value
+                )
+            }.map {
+                if (_likeList.value.contains(it.id.toString()))
+                    it.copy(isLike = true)
+                else
+                    it
+            }
         }
     }
 }

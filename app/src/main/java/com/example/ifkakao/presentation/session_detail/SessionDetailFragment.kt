@@ -45,7 +45,7 @@ class SessionDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navController = view.findNavController()
-        val dateList = listOf("","2022.12.07", "2022.12.08", "2022.12.09")
+        val dateList = listOf("", "2022.12.07", "2022.12.08", "2022.12.09")
 
         binding.sessionDetailTitle.text = viewModel.session.title
         binding.sessionDetailGroup.text = viewModel.session.company.toString()
@@ -69,11 +69,11 @@ class SessionDetailFragment : Fragment() {
 
         lifecycle.addObserver(binding.sessionDetailYoutubePlayer)
         binding.sessionDetailYoutubePlayer.addYouTubePlayerListener(
-             object : AbstractYouTubePlayerListener() {
-                 override fun onReady(youTubePlayer: YouTubePlayer) {
-                     val youtubeId = viewModel.session.sessionVodLink.split("/").last()
-                     youTubePlayer.loadVideo(youtubeId,0f)
-                 }
+            object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    val youtubeId = viewModel.session.sessionVodLink.split("/").last()
+                    youTubePlayer.loadVideo(youtubeId, 0f)
+                }
             }
         )
 

@@ -55,16 +55,18 @@ class SessionListAdapter(
         holder.binding.sessionItemKeynote.text = currentList[position].type.toString()
         holder.binding.sessionItemTech.text = currentList[position].tracks.joinToString { "$it " }
 
-        if(currentList[position].isLike){
+        if (currentList[position].isLike) {
             holder.binding.sessionItemLikeButton.imageTintList =
                 ColorStateList.valueOf(
-                    ContextCompat.getColor(holder.binding.root.context,R.color.session_like_yellow)
+                    ContextCompat.getColor(holder.binding.root.context, R.color.session_like_yellow)
                 )
-        }
-        else{
+        } else {
             holder.binding.sessionItemLikeButton.imageTintList =
                 ColorStateList.valueOf(
-                    ContextCompat.getColor(holder.binding.root.context,R.color.second_main_text_color)
+                    ContextCompat.getColor(
+                        holder.binding.root.context,
+                        R.color.second_main_text_color
+                    )
                 )
         }
 

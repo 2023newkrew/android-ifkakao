@@ -17,7 +17,6 @@ class SessionListAdapter(
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<SessionInfo>() {
             override fun areItemsTheSame(oldItem: SessionInfo, newItem: SessionInfo): Boolean {
-                println("oldItem: ${oldItem.isLiked} \n newItem: ${newItem.isLiked}")
                 return oldItem.id == newItem.id
             }
 
@@ -60,7 +59,6 @@ class SessionListAdapter(
             it.toString()
         }
         holder.binding.sessionTrack.text = tracks.joinToString(separator = "\t\t")
-        println("여기! ${currentList[position].isLiked}")
         if (currentList[position].isLiked) {
             holder.binding.likeImageView.background =
                 AppCompatResources.getDrawable(context, R.drawable.baseline_favorite_24)

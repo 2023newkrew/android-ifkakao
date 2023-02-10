@@ -30,9 +30,9 @@ class ListViewModel @Inject constructor(
     val sessionData = _sessionData.asStateFlow()
 
     init {
-        viewModelScope.launch {
-            getSessions()
-        }
+//        viewModelScope.launch {
+//            getSessions()
+//        }
     }
 
     fun getLikes(): Flow<List<Like>> =
@@ -50,7 +50,7 @@ class ListViewModel @Inject constructor(
             when (result) {
                 is ApiSuccess -> {
                     _sessionData.value = sessionData.value.copy(
-                        sessionList = result.data.toMutableList()
+                        sessionList = result.data
                     )
                 }
                 is ApiError -> {
@@ -121,12 +121,10 @@ class ListViewModel @Inject constructor(
     // 좋아요 확장 함수
     fun sessionLike(sessionInfo: SessionInfo) = viewModelScope.launch {
         likeUseCaseBundle.insertLikeUseCase(Like(sessionInfo.id))
-        sessionInfo.isLiked = true
     }
 
     fun sessionUnLike(sessionInfo: SessionInfo) = viewModelScope.launch {
         likeUseCaseBundle.deleteLikeUseCase(Like(sessionInfo.id))
-        sessionInfo.isLiked = false
     }
 
 }
